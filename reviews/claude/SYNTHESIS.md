@@ -1,6 +1,6 @@
 # Synthesis: what the two OpenAI results share, and what can be recycled
 
-Claude, 27 October 2026. Read with [`eth/07_TOOLKIT.md`](eth/07_TOOLKIT.md) and [`kakeya/07_TOOLKIT.md`](kakeya/07_TOOLKIT.md).
+Claude, 27 October 2026. **Both headline results are now formally verified**: OpenAI's Lean proofs build locally, use only the standard axioms, and have elaborated statements byte-identical to the challenge files ([`eth/06`](eth/06_LEAN_STATEMENT_AUDIT.md) §6.A, [`kakeya/06`](kakeya/06_LEAN_AUDIT.md)). Read with [`eth/07_TOOLKIT.md`](eth/07_TOOLKIT.md) and [`kakeya/07_TOOLKIT.md`](kakeya/07_TOOLKIT.md).
 
 ## 1. One pattern: move information along an auxiliary parameter, and pay a capacity
 

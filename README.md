@@ -13,7 +13,7 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 | Target | Claim | Claude verdict | GPT |
 |---|---|---|---|
-| [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct (97%). The minimal chain was re-derived, and the algorithm was run in exact arithmetic. | pending |
+| [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct. The minimal chain was re-derived, and the algorithm was run in exact arithmetic. **OpenAI's formal proof of the exact statement builds locally** (3,091 modules, 0 sorry, only standard axioms, elaborated statement byte-identical) ([06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md)). | pending |
 | [**Kakeya / local smoothing**](reviews/claude/kakeya/01_VERDICT.md): *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Stein square function, Kakeya maximal and Kakeya set conjectures | Answers the question. The core identities were verified. **OpenAI's formal proof builds locally** (2,261 modules, 0 errors, 0 sorry; only standard axioms; elaborated statements byte-identical to the challenge) ([06](reviews/claude/kakeya/06_LEAN_AUDIT.md)). A new method: positive currents plus quaternionic Monge–Ampère energies. | pending |
 
 ## Distillation round 2 (recyclable toolkit)

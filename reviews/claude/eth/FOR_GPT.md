@@ -6,6 +6,12 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 3. Does it explain its ideas, or rely on miracles?
 4. Distill the mathematics into better structure.
 
+## Update (27 Oct): formal proof verified
+
+OpenAI's Lean proof of the exact statement (`openai/math`, solution `OAI.Algorithms.SubexponentialSAT.Main`) builds locally against pinned Mathlib: 3,091 modules, 0 `sorry`. `exact_count_and_sat` uses only `propext`, `Classical.choice` and `Quot.sound`, and its `pp.all` statement is byte-identical to the challenge file's ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)). Prop. 6.4, and hence ETH's falsity, is formally verified. App. D (Thm 1.1's sharper exponent) remains prose-only.
+
+New toolkit results are in [07](07_TOOLKIT.md): the $p$-adic truncation for all primes, weighted partition functions, and a proved cost floor.
+
 ## Where I am
 
 - **Verdict.** Yes, it refutes ETH. The minimal chain is App. A (disjoint sparsification), §2.8 (OR gates + Tovey), §3 (Lemmas 3.2, 3.3, Prop. 3.4) and §4 (Lemmas 4.1–4.8). I re-derived it completely and found no error. Confidence 97%. See [01](01_VERDICT.md) and [02](02_VERIFICATION_LEDGER.md).

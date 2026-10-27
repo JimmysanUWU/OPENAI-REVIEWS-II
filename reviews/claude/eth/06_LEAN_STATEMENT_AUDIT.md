@@ -1,9 +1,11 @@
-# 6. Audit of the supplied Lean statement
+# 6. Audit of the Lean statement and of OpenAI's formal proof
+
+**Status (27 Oct, update): the formal proof exists, and it builds and checks.** OpenAI's `openai/math` proves this exact statement file: `lean/ComparatorChallenges/SubexponentialSAT.lean` has the same SHA-256. Its 3,091-module proof builds against the pinned Mathlib. The theorem uses only `propext`, `Classical.choice` and `Quot.sound`. Its fully elaborated statement, and all 42 definitions it uses, are byte-identical to the challenge file's. See §6.A at the end.
 
 File: [`../../../source/eth/SubexponentialSAT.statement.lean`](../../../source/eth/SubexponentialSAT.statement.lean)
 (SHA-256 `4183b205…6685`, 221 lines, `import Mathlib`). The main theorem is `OAI.Algorithms.SubexponentialSAT.SqrtLogSpace.exact_count_and_sat`, and **its body is `sorry`**. This is a statement file of the kind used for comparator challenges, not a proof.
 
-I read it by hand. I have not compiled it, because the session has no Mathlib toolchain and the file does not pin a Mathlib revision.
+I read it by hand (first pass). Since then I have compiled it, and OpenAI's proof of it, against the Mathlib revision pinned in `openai/math` (§6.A).
 
 ## What it states
 
@@ -38,10 +40,20 @@ The last two conjuncts about `countWord` (its value and its length $\le n+1$) ar
 
 **Conclusion.** The statement is a faithful and nontrivial formalization of Proposition 6.4. Taking $k=3$, it implies a deterministic $2^{o(n)}\mathrm{poly}(n+m)$-time, polynomial-space decision procedure for 3-SAT on a standard machine model. That is, it implies that ETH is false.
 
-## What is needed to close the formal side
+## 6.A Formal proof audit (done)
 
-1. The full Lean project: proof files, `lakefile`, `lean-toolchain`, and the Mathlib revision. I need this from the user's link.
-2. A build check that `exact_count_and_sat` has no `sorry` or extra axioms (`#print axioms` should show only `propext`, `Classical.choice`, `Quot.sound`).
-3. A comparator run showing the proved theorem is definitionally this statement. The previous project used Nanoda and Lean replay for this.
+| Item | Result |
+|---|---|
+| Solution module | `OAI.Algorithms.SubexponentialSAT.Main` (`openai/math` commit `7ef5c0cc`, `lean/ComparatorChallenges/SubexponentialSAT.json`); permitted axioms `propext`, `Quot.sound`, `Classical.choice` |
+| Import closure | **3,091** OAI modules, **547,460** lines; depends only on Lean core and Mathlib ([`lean/closure_scan.json`](lean/closure_scan.json), [`lean/closure_files.txt`](lean/closure_files.txt)) |
+| Escape-hatch scan | 0 `sorry`, 0 `admit`, 0 `axiom`, 0 `native_decide`, 0 `implemented_by`/`extern`/`unsafe`. There are 3 `opaque` declarations (`SqrtLog/LeafProgramPreparedRecovery{Query,Witness}.lean`), each with an explicit value checked by the kernel; they hide large data, not assumptions. |
+| Build | Lean `v4.34.1`, Mathlib `d13f23b`. All 3,091 modules built. The only failures were two SIGKILLs from the container's memory limit (exit 137, confirmed by `dmesg` oom-kill) while four large modules compiled in parallel; both modules then built alone. Final `lake build --no-build`: *All targets up-to-date (12014 jobs)*. 0 `sorry` warnings ([`lean/checks/build_summary.txt`](lean/checks/build_summary.txt)). |
+| Axioms | `exact_count_and_sat` depends on `[propext, Classical.choice, Quot.sound]` ([`lean/checks/print_axioms.txt`](lean/checks/print_axioms.txt)). Eight modules carry in-repo `#print axioms` audits; all report the same three. |
+| Statement identity | `pp.all` output of the theorem type and of all 42 definitions/structures/inductives it uses (`bitVal`, `toNat`, `Literal`, `Clause`, `CNF`, `eval`s, `WidthAtMost`, `count`, the whole encoding, `Trace`, `PrimitiveMachine`, `Cfg`, `step`, `init`, `runtimeScale`, `runtimeBound`, `countWord`, `LocatedCfg`, `locatedInit`, `headDisplacement`, `monitor`, `locatedStep`, `visitedSpace`). It is **byte-identical** in the challenge and solution environments: 51,981 characters, SHA-256 `805c7f15…fe31f3` ([`lean/checks/pp_all_comparison.txt`](lean/checks/pp_all_comparison.txt)). |
+| What the proof constructs | An explicit 1,220-tape machine, compiled from a `BitProgram` by a verified compiler (`GuardedCompiler.primitive program`), with count tape 256 and answer tape 1216. The time and visited-space bounds are proved for every prefix of the run. |
 
-Until then, the formal status is **statement audited, proof not seen**.
+**Conclusion.** Modulo the soundness of Lean's kernel and Mathlib, the following is **formally proved**. For every fixed $k\ge2$, a deterministic multitape Turing machine counts the satisfying assignments of any $k$-CNF on $n$ variables exactly. It runs in time $(L+1)^{O_k(1)}\,2^{O_k(n(\log\log n)^2/\sqrt{\log n})}$ and visits $(L+1)^{O_k(1)}$ cells, where $L$ is the input length.
+
+Taking $k=3$, **ETH is false**, and so are SETH and #ETH. This is Prop 6.4 of the paper (the $\rho(n)$ bound), not the sharper Theorem 1.1, which rests on App. D. The formal route goes through §5–§6 (sparse $\mathbb F_2$ systems, Tanner/Cayley-graph tests: `SqrtLog/SparseCodeTanner.lean`, `SqrtLog/CayleyGraph.lean`) and the swap design.
+
+Reproduce with [`lean/build_sequential.sh`](lean/build_sequential.sh) and the Kakeya review's [`lakefile`](../kakeya/lean/lakefile.lean). Copy the ETH closure files into `OAI/`, and build memory-heavy modules one at a time.
