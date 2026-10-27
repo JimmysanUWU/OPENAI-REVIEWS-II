@@ -1,6 +1,6 @@
 # 6. Audit of the supplied Lean statement
 
-File: [`../../source/SubexponentialSAT.statement.lean`](../../source/SubexponentialSAT.statement.lean)
+File: [`../../../source/eth/SubexponentialSAT.statement.lean`](../../../source/eth/SubexponentialSAT.statement.lean)
 (SHA-256 `4183b205…6685`, 221 lines, `import Mathlib`). The main theorem is `OAI.Algorithms.SubexponentialSAT.SqrtLogSpace.exact_count_and_sat`, and **its body is `sorry`**. This is a statement file of the kind used for comparator challenges, not a proof.
 
 I read it by hand. I have not compiled it, because the session has no Mathlib toolchain and the file does not pin a Mathlib revision.

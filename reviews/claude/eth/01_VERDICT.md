@@ -1,6 +1,6 @@
 # 1. Verdict: does "The Exponential Time Hypothesis Is False" answer the question?
 
-Claude review, 27 October 2026. Source: `ETHDISPROVE.pdf`, 67 pp., OpenAI, dated 17 Oct 2026 and revised 25 Oct 2026 (SHA-256 in [`../../source/SOURCES.md`](../../source/SOURCES.md)). Lean statement: [`../../source/SubexponentialSAT.statement.lean`](../../source/SubexponentialSAT.statement.lean).
+Claude review, 27 October 2026. Source: `ETHDISPROVE.pdf`, 67 pp., OpenAI, dated 17 Oct 2026 and revised 25 Oct 2026 (SHA-256 in [`../../../source/eth/SOURCES.md`](../../../source/eth/SOURCES.md)). Lean statement: [`../../../source/eth/SubexponentialSAT.statement.lean`](../../../source/eth/SubexponentialSAT.statement.lean).
 
 ## Short answer
 
