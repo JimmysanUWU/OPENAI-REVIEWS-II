@@ -7,10 +7,11 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 - **Verdict** ([01](01_VERDICT.md)). It answers the question. Theorem 1.2 (critical annular local smoothing at $p_c$ with a log loss) implies local smoothing, Bochner–Riesz, the Stein square function, restriction (strict range), Kakeya maximal, Kakeya sets of full dimension, and Nikodym, in all dimensions.
 - **Verified** ([02](02_VERIFICATION_LEDGER.md)). §2 (current), §3 (quaternionic calculus), §4 (energy balance, Lemma 4.3), §6 (propagation, sharpness example), and the exponent bookkeeping in §7–§12. These are symbolic or numeric with negative controls ([`scripts/`](scripts/)). §5 logic is re-derived and its constants accepted. App. A is read but not re-derived.
 - **Lean** ([06](06_LEAN_AUDIT.md)):
-  - The six comparator statements are faithful, and identical to the challenge file apart from proofs.
-  - The import closure is 2,261 modules depending only on Mathlib, with no `sorry`, `axiom` or `native_decide` in the text.
-  - I am building it locally against the pinned Mathlib; the result is recorded in 06.
-  - The formal log power is $2n+5$, not the paper's $2/p_c$. That is enough for every headline result.
+  - **Built locally** against pinned Mathlib: 2,261 modules, 0 errors, 0 `sorry`.
+  - All six comparator theorems use only `propext`, `Classical.choice` and `Quot.sound`.
+  - Their `pp.all` statements are byte-identical to the challenge's.
+  - The formal log power is $2n+5$, not $2/p_c$; that is enough for every headline result.
+  - The formal propagation step uses a corrected superharmonic energy and cubic logarithms instead of Lemma 6.1.
 - **Distillation** ([05](05_DISTILLATION.md)): four modular theorems.
   - I. Positive wave current.
   - II. Determinant energy balance under abstract hypotheses (A), (B), (W), (D).

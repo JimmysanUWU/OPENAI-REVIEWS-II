@@ -35,8 +35,8 @@ These implications are classical: Sogge and Mockenhaupt–Seeger–Sogge for Boc
 
 | Layer | What I did | Status |
 |---|---|---|
-| **The formal proof (Lean 4 + Mathlib, `openai/math`)** | Fetched the six comparator targets and computed the full import closure: 2,261 OAI modules, 190,467 lines, depending only on Mathlib. Scanned it for escape hatches. **Built it locally** against pinned Mathlib `d13f23b` and printed axioms. | See [06](06_LEAN_AUDIT.md) for the build log and result |
-| Fidelity of the six formal statements to the paper | Read them line by line; diffed them against the challenge file. | **Faithful.** Identical to the challenge apart from proofs (see 06). |
+| **The formal proof (Lean 4 + Mathlib, `openai/math`)** | Computed the full import closure: 2,261 OAI modules, 190,467 lines, depending only on Mathlib. Scanned it for escape hatches. **Built it locally** against pinned Mathlib `d13f23b`. | **Builds with 0 errors and 0 `sorry`.** All six theorems use only `propext`, `Classical.choice`, `Quot.sound`. Fully elaborated (`pp.all`) statements are **byte-identical** to the challenge's. See [06](06_LEAN_AUDIT.md). |
+| Fidelity of the six formal statements to the paper | Read line by line; compared the elaborated terms against the challenge. | **Faithful**, and identical at the elaborated-term level. |
 | §2 the conserved current | Symbolic and numerical checks of (2.1)–(2.4), Lemma 2.1, (2.9)–(2.13). Negative control: wrong sign of imaginary shift. | **Verified** ([`results/wave_current.json`](results/wave_current.json)) |
 | §3 quaternionic Hessian calculus | Lemma 3.1 including (3.4); Lemma 3.2 (3.6)–(3.8); Lemma 3.3 cofactor divergence in 2, 3 and 4 slots. Negative control: a non-Hessian field. | **Verified** ([`results/quaternion_calculus.json`](results/quaternion_calculus.json)) |
 | §4 energy balance and comparison | Re-derived Prop 4.2 (cancellation of the full determinant; vanishing normal cofactor) and Lemma 4.3 (also numerically). | **Verified** |
@@ -48,9 +48,8 @@ These implications are classical: Sogge and Mockenhaupt–Seeger–Sogge for Boc
 
 ## Confidence (subjective, after verification)
 
-- **Six headline consequences** (local smoothing with ε loss; Bochner–Riesz; restriction interior range; Kakeya maximal with δ^−ε; Kakeya sets of full dimension; Stein square function), as formalized: these rest on the Lean build in [06](06_LEAN_AUDIT.md).
-  - If the build completes with only `propext`, `Classical.choice` and `Quot.sound`, the residual risk is a Lean/Mathlib soundness bug or a mistranslated definition. I checked the definitions (06). My confidence is then **≈99%**.
-  - Without the formal proof, my own prose verification of the core would put it at **≈85–90%**. The analytic constants in §5 and the boundary regularity of App. A are where an error could hide.
+- **Six headline consequences**, as formalized: **≈99%**. These are local smoothing with ε loss, Bochner–Riesz, the restriction interior range, Kakeya maximal with δ^−ε, Kakeya sets of full dimension, and the Stein square function. The formal proof builds and its axioms and statements check out ([06](06_LEAN_AUDIT.md)). The residual risk is a soundness bug in Lean or Mathlib, which I regard as very small for proofs of this kind, or a community-level objection to how a classical notion is encoded. I examined the encodings and found none.
+  - My own prose verification of the core alone would put it at ≈85–90%. The formal proof is what lifts this.
 - **Sharp logarithmic power $2/p_c$ in Theorem 1.2**: ≈90%. The formalization proves the weaker power $2n+5$, which suffices for every headline result; the sharp power is prose-only.
 - **App. B (angular endpoint), C, D, E**: not assessed beyond reading.
 

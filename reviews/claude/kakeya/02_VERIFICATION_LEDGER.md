@@ -35,7 +35,7 @@ Notation follows the paper: $d=n-1$, $p_c=2n/d$, $q=p_c/2=n/d$, $h=N^{-1}$, $a=K
 
 | Item | Status | Notes |
 |---|---|---|
-| Lemma 4.1 (fiber geometry) | P | The structure ($H(r)=4J^*J$, null line in $G(r)^\perp\cap\ker H(|\Phi|^2)$) is verified. The size bounds (4.3)–(4.4) are accepted. |
+| Lemma 4.1 (fiber geometry) | R | With $F=(W/w_0,10Q)$ and $r=|F|^2-1$: $H(r)=4J^*J$, and the null line lies in $G(r)^\perp\cap\ker H(|\Phi|^2)$. For the bounds: $\partial W/\partial P=1/Y$, $|Y|\asymp s$, and $\partial_Z(10\Phi/a)=10(1-W\cdot W/2)/(\sqrt2a)$, so the smallest singular value of $J_{\rm fib}$ is $\gtrsim s^{-1}$ and $|\det J_{\rm fib}|\asymp a^{-1}s^{-d}$. Hence (4.3)–(4.4). $G G^*=4J^*FF^*J\le4|F|^2J^*J\le H(r)$ on the fiber. |
 | (4.5)–(4.8): regularized current $A$, density $\mu$, background $B_0=\lambda|\Phi|^2$, Dirichlet potential $u$ | R | $A\ge0$, $\mu>0$, $A:H(|\Phi|^2)=0$. $\mu^{1/d}\le\lambda=h^{-30n}$ from $\|f\|_2=1$ and $O(h^{-n})$ modes. |
 | (4.9)–(4.10): $A:H(u)=A:\Sigma+\lambda^{-1}\det H(B_0+u)$ | R | Schur complement (3.8) and $\det D_u=\lambda\mu$. |
 | **Prop 4.2 (energy balance)**: $\Delta_z\mathcal F+\int A:\Sigma=\int\rho\,G(r)^*A_wG(r)\,\delta(r)$ | R | The two identities: $\Delta X_0=\mathcal B-\int A:\Sigma-\lambda^{-1}\int\det$, and $\Delta E_z(u)=\lambda^{-1}\int\det H(B_0+u)$. The second uses (a) the full cofactor $C(H(B_0+\theta u))$ is divergence-free; (b) its normal coefficient vanishes because $H(B_0+\theta u)|_{\nu^\perp}$ contains the null line of $H(r)$, which lies in $\ker B$; (c) $\det B=0$ since $B$ has rank one. Verified line by line. |

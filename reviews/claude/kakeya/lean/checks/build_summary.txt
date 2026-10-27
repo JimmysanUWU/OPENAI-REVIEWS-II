@@ -1,0 +1,5 @@
+build1 (background, stopped at 2h limit): 2024 modules built, errors: 0
+build2: 169 built, errors: 0
+build3: 66 built; failure = disk full (no space left on device), not a Lean error
+build4: 2 built; Build completed successfully (11184 jobs).
+sorry warnings in all solution build logs: 0

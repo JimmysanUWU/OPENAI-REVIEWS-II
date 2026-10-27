@@ -1,6 +1,6 @@
 # 6. Audit of OpenAI's Lean formalization (local smoothing ⇒ Kakeya)
 
-**Status: static audit complete; local build in progress.** This file will be updated with the build result and `#print axioms` output.
+**Status: complete.** OpenAI's formal proof builds locally against the pinned Mathlib with no errors and no `sorry`. Its six comparator theorems depend only on `propext`, `Classical.choice` and `Quot.sound`. Their fully elaborated statements are byte-identical to the challenge file's. See §6.5–6.6.
 
 ## 6.1 What is formalized
 
@@ -23,7 +23,7 @@ Stripping comments and proofs, the definitions and statements in the solution mo
 
 The solution file writes `open _root_.MeasureTheory`, because it lives inside the `OAI` namespace. This resolves to the same Mathlib namespace as the challenge's `open MeasureTheory`.
 
-A textual match is not the same as an elaborated-term match: an imported instance could, in principle, change what `volume` or `inner` elaborate to. **Planned check after the build**: print each statement with `pp.all` in both environments and diff them. This is what the Comparator tool automates.
+A textual match is not the same as an elaborated-term match: an imported instance could, in principle, change what `volume` or `inner` elaborate to. §6.6 therefore compares the **fully elaborated** terms.
 
 ## 6.3 Import closure and escape-hatch scan
 
@@ -70,11 +70,47 @@ euclidean_local_smoothing := euclideanLocalSmoothing_of_logarithmicRefinement lo
 
 All six targets need only *some* fixed power, so they are unaffected. The sharp $2/p_c$, Theorem B.1, and the sharpness propositions of §8 are **not** among the comparator targets. The repository contains a `Sharpness/` directory (40 files), which is not in the comparator's closure and was not audited.
 
-## 6.5 Local build
+## 6.5 Local build (done)
 
 Reproduction:
 - [`lean/lakefile.lean`](lean/lakefile.lean) and [`lean/lean-toolchain`](lean/lean-toolchain): Lean `v4.34.1`, Mathlib `d13f23b723b8a846827a245b89c10fc7d3f11612`, with `autoImplicit false` as in OpenAI's lakefile.
 - Copy the closure files from `openai/math/lean/` into `OAI/`.
 - `lake exe cache get`, then `lake build OAI.Analysis.Fourier.LocalSmoothing.Comparator`.
 
-*Result: pending (in progress at the time of writing; no errors in the first ~540 modules).*
+Practical note: Lake writes an ~8 MB `*.setup.json` per module under `.lake/build/ir`, about 18 GB for this closure. Deleting them is safe; `lake build --no-build` still reports every target up to date.
+
+| Run | Modules built | Outcome |
+|---|---|---|
+| 1 (background) | 2,024 | stopped at the 2-hour session limit; 0 errors |
+| 2 | 169 | stopped at the chunk time limit; 0 errors |
+| 3 | 66 | stopped by **disk full** (an environment failure, not a Lean error) |
+| 4 | 2 | `Build completed successfully (11184 jobs)` |
+| **Total** | **2,261** | equals the closure size; **0 errors, 0 `sorry` warnings** |
+
+Details: [`lean/checks/build_summary.txt`](lean/checks/build_summary.txt).
+
+## 6.6 Axioms and statement identity
+
+[`lean/checks/Solution.lean`](lean/checks/Solution.lean) prints every comparator theorem and definition with `pp.all`, then runs `#print axioms`. [`lean/checks/Challenge.lean`](lean/checks/Challenge.lean) prints the same in the challenge environment (`import Mathlib` plus the challenge file).
+
+**Axioms.** All six theorems (`euclidean_local_smoothing`, `bochner_riesz`, `spherical_restriction`, `kakeya_maximal`, `kakeya`, `stein_square`) depend only on `[propext, Classical.choice, Quot.sound]`. These are exactly the permitted axioms ([`lean/checks/print_axioms.txt`](lean/checks/print_axioms.txt)).
+
+**Statement identity.** The `pp.all` output covers the 16 definitions (`Space`, the Fourier transforms, the half-wave, the Bessel potential, the observation measure, sphere measure, extension, Bochner–Riesz, tubes, the Kakeya maximal function, `IsKakeyaSet`, the Stein square function) and the 6 theorem types. It is **byte-identical** in the two environments: 411,445 characters, SHA-256 `db5adcf8…dce9dce` ([`lean/checks/pp_all_comparison.txt`](lean/checks/pp_all_comparison.txt)). Every instance, coercion and auxiliary constant elaborates to the same term. This is the property OpenAI's Comparator tool certifies; I checked it independently.
+
+## 6.7 Conclusion
+
+Modulo the soundness of Lean 4.34.1's kernel and of Mathlib at the pinned revision, the following are **formally proved**, for every dimension $n\ge2$:
+- Sogge's local smoothing conjecture (with $\varepsilon$ loss);
+- uniform Bochner–Riesz bounds in the full conjectured range;
+- spherical restriction in the strict conjectured range;
+- the Kakeya maximal conjecture with $\delta^{-\varepsilon}$ loss;
+- **full Hausdorff dimension of every Kakeya set**;
+- Stein's square function conjecture.
+
+Each is in exactly the form stated in [6.1](#61-what-is-formalized).
+
+What the formal proof does **not** certify:
+- the sharp logarithmic power $2/p_c$ of Theorem 1.2 (formalized with $2n+5$);
+- Theorem B.1;
+- the sharpness propositions of §8;
+- that the prose is the same proof. The formal propagation step differs: it uses a *corrected superharmonic* energy (`Concentration/CorrectedEnergy.lean`, correction $16-z_i^2-z_j^2$) and a cubic-logarithm cylinder lemma (`Concentration/Cylinder/Estimate.lean`) in place of Lemma 6.1's supersolution with potential.

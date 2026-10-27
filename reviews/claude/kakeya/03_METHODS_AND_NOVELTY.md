@@ -82,3 +82,38 @@ The ETH paper transplanted one known phenomenon (parity approximation) into a ne
 Yes, at the level of the field's best work, in my judgement. The decisive ideas (Leaps 1–3) are not recombinations of lemmas from the restriction literature. They import structures from complex and quaternionic geometry and from hyperbolic PDE to create a new mechanism. The paper explains it, and I verified its algebraic core.
 
 The 7/8 result extended a known analytic framework, and the ETH paper re-purposed a known phenomenon. This paper creates a new method. If its analytic estimates hold (and the formal proof indicates they do; see [06](06_LEAN_AUDIT.md)), it is the strongest evidence yet for the user's thesis.
+
+## 3.7 Stitching or creation? Why it was not found earlier
+
+**A test for stitching.** In a stitched proof, most of the content is cited theorems and the glue is routine. Here the cited inputs are a minority of the argument:
+- Alesker's cofactor identity;
+- Friedrichs' flux;
+- the Aubin–Mabuchi first variation;
+- CNS boundary estimates;
+- Bourgain's randomization.
+
+The rest consists of constructions invented to remove specific obstructions:
+
+| Obstruction | New construction |
+|---|---|
+| The stress tensor is indefinite | Lifted current with two auxiliary flows |
+| Two complex squares | One quaternionic rank-one object, via the holomorphic flux map |
+| The current has rank one, so $\det=0$ | Monge–Ampère with a rank-one background, used as an $L^{p_c}$ meter |
+| Boundary terms have no sign | Fiber design making the normal cofactor vanish |
+| Control in parameters | An almost-harmonic energy in $(T,\tau)$ |
+
+**A plausible discovery path.** This is speculation; no reasoning trace is published for this paper (`openai/math/reasoning_traces` has 11 traces, none for it).
+1. Serre's compensated integrability controls $(\det A)^{1/(n-1)}$, with the exponent $n/(n-1)=p_c/2$. That numerical match invites the attempt.
+2. Each obstruction then points to the next tool: positivity → phase-space (Husimi) densities; conservation → Friedrichs and analytic signals; rank one → Monge–Ampère with a background; parameter control → Aubin–Mabuchi energies.
+3. The September releases ([62]–[64] and 3D critical local smoothing, including "elliptic capacity propagation") suggest an iterated research program, not a single leap.
+4. A full formal proof makes a long, fragile chain worth attempting.
+
+**Why it was not found earlier.**
+1. **Belief.** Since Wolff and Katz–Tao, and reinforced by Wang–Zahl, Kakeya was believed to be fundamentally combinatorial.
+2. **Distance between fields.** The ingredients are spread across quaternionic pluripotential theory, Kähler energy functionals, and gas-dynamics compensated integrability. Few people work across all of these and restriction theory at once.
+3. **Cost of a trial.** One must solve a degenerate 3-slot Monge–Ampère problem on moving periodic fibers before learning whether the exponents close.
+4. **Counterintuition.** A huge background term ($\lambda=h^{-30n}$) is precisely what linearizes the problem at the right exponent.
+
+**Human precedent.** Bennett–Carbery–Tao proved *multilinear* Kakeya by heat-flow monotonicity, a PDE/positivity method. The missing step was the passage to the *linear* estimate. The rank-one background supplies it.
+
+**Assessment.** This is new mathematics, not a recombination. The decisive constructions are invented, internally motivated, and explained well enough to be learned. Among the three results reviewed so far (7/8 quasi-RH, ETH, this one), it is the clearest instance of AI producing a *method*.
