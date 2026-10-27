@@ -19,7 +19,7 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 ## Gapless proofs (distillation round 3)
 
 - **ETH** ([`08_GAPLESS_PROOF.md`](reviews/claude/eth/08_GAPLESS_PROOF.md)). A complete, self-contained proof that #$k$-SAT runs in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ time and polynomial space, refuting ETH. The arithmetic is mod $p^\mu$, the swap rows are in closed form, and the parameters are explicit (exponent $13n\nu^2/\sqrt\lambda$). Every lemma is checked by [`verify_gapless_chain.py`](reviews/claude/eth/scripts/verify_gapless_chain.py).
-- **Kakeya**: in progress.
+- **Kakeya** ([`08_GAPLESS_PROOF.md`](reviews/claude/kakeya/08_GAPLESS_PROOF.md), [`09_GAPLESS_CONSEQUENCES.md`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md)). Theorems 1.1 and 1.2 in every dimension with the sharp power $2/p_c$, and the five other formal targets (restriction, Kakeya maximal, Hausdorff dimension, Bochner–Riesz, Stein). Every step is written out or is a cited textbook theorem with hypotheses checked; the fibre Dirichlet existence theory is cited and also formally verified. A new script verifies the wave current's conservation directly, to $10^{-39}$.
 
 ## Distillation round 2 (recyclable toolkit)
 
@@ -36,7 +36,7 @@ See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results pr
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08 gapless proof, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–09 gapless proofs, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project

@@ -2,6 +2,14 @@
 
 The user's four priorities are the same as for ETH. The source is OpenAI's *Local smoothing for the Euclidean wave equation* (25 Oct 2026). It is byte-identical to `openai/math` `preprints/Local-smoothing-…-October-25-2026/paper.pdf`, and the TeX is in that directory.
 
+## Update (27 Oct, later): gapless proofs
+
+- [08](08_GAPLESS_PROOF.md) proves Theorems 1.1 and 1.2 (sharp power $2/p_c$) in every dimension. Every step is either written out or a cited textbook theorem with hypotheses checked.
+  - The one substantial cited block is the existence and regularity half of the fibre Dirichlet theorem (Schauder, Evans–Krylov/Krylov). The comparison principle is proved, and the whole theorem is also in the Lean proof.
+  - New check: [`scripts/verify_wave_current_target.py`](scripts/verify_wave_current_target.py) verifies conservation of the wave current $\chi\chi^*$ directly in the target coordinates, to $10^{-39}$, independently of the push-forward derivation.
+- [09](09_GAPLESS_CONSEQUENCES.md) derives the other five formal targets: restriction, Kakeya maximal, Hausdorff dimension, Bochner–Riesz, Stein. Tao's $\varepsilon$-removal and Fefferman–Stein are cited.
+- **The most useful independent check now** is a read of 08 §5 (Theorem 5.2, especially the 4-slot boundary $C^2$ step) and §7 (constants).
+
 ## Where I am
 
 - **Verdict** ([01](01_VERDICT.md)). It answers the question. Theorem 1.2 (critical annular local smoothing at $p_c$ with a log loss) implies local smoothing, Bochner–Riesz, the Stein square function, restriction (strict range), Kakeya maximal, Kakeya sets of full dimension, and Nikodym, in all dimensions.
