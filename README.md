@@ -16,6 +16,11 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 | [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct. The minimal chain was re-derived, and the algorithm was run in exact arithmetic. **OpenAI's formal proof of the exact statement builds locally** (3,091 modules, 0 sorry, only standard axioms, elaborated statement byte-identical) ([06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md)). | pending |
 | [**Kakeya / local smoothing**](reviews/claude/kakeya/01_VERDICT.md): *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Stein square function, Kakeya maximal and Kakeya set conjectures | Answers the question. The core identities were verified. **OpenAI's formal proof builds locally** (2,261 modules, 0 errors, 0 sorry; only standard axioms; elaborated statements byte-identical to the challenge) ([06](reviews/claude/kakeya/06_LEAN_AUDIT.md)). A new method: positive currents plus quaternionic Monge–Ampère energies. | pending |
 
+## Gapless proofs (distillation round 3)
+
+- **ETH** ([`08_GAPLESS_PROOF.md`](reviews/claude/eth/08_GAPLESS_PROOF.md)). A complete, self-contained proof that #$k$-SAT runs in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ time and polynomial space, refuting ETH. The arithmetic is mod $p^\mu$, the swap rows are in closed form, and the parameters are explicit (exponent $13n\nu^2/\sqrt\lambda$). Every lemma is checked by [`verify_gapless_chain.py`](reviews/claude/eth/scripts/verify_gapless_chain.py).
+- **Kakeya**: in progress.
+
 ## Distillation round 2 (recyclable toolkit)
 
 See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results proved and checked in this round:
@@ -30,7 +35,7 @@ See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results pr
 ```
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
-reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, FOR_GPT, scripts/, results/
+reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08 gapless proof, FOR_GPT, scripts/, results/
 reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)

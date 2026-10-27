@@ -12,6 +12,7 @@ The scripts use Python 3.10+ and the standard library only (`fractions`, `iterto
 | `verify_appendix_d.py` | Lemma D.4, identity (D.10), Lemma D.5 (with a precision negative control), expansion (D.12). | ~2 s |
 | `verify_distilled_swap_formula.py` | Theorem B of `05_DISTILLATION.md` (closed form), and Proposition B″ (symmetric optimality). | ~1 s |
 | `verify_padic_truncation.py` | TOOLKIT E2: the $p$-adic cross-equation truncation for $p\in\{2,3,5,7\}$, $\ell\le6$ (congruences, decomposition, truncation, degree bound). | <1 s |
+| `verify_gapless_chain.py` | [08](../08_GAPLESS_PROOF.md), every lemma: sparsification Lemmas 2.1–2.3 and Prop. 2.4 at every node of 32 trees, plus the partition; OR gates and Tovey cycles on 40 formulas; the full counting algorithm mod $p^\mu$, with closed-form rows, derandomized schedules and 2-group measurement rows, on 16 instances against brute force (copies $h\le3$), with a negative control; parameter inequalities (P1)–(P8) and the exponent bound; assembly constants. | ~30 s |
 | `verify_cost_floor.py` | TOOLKIT E4: minimizes the method's three costs over integer parameters with a rigorous window bound; compares with $(\log\log n)^2/\sqrt{\log n}$. | ~2 min |
 
 Run them from this directory, for example `python3 verify_counting_pipeline.py`.

@@ -12,6 +12,16 @@ OpenAI's Lean proof of the exact statement (`openai/math`, solution `OAI.Algorit
 
 New toolkit results are in [07](07_TOOLKIT.md): the $p$-adic truncation for all primes, weighted partition functions, and a proved cost floor.
 
+## Update (27 Oct, later): gapless proof of the ETH-refuting chain
+
+[08](08_GAPLESS_PROOF.md) is a complete proof, with no gaps, that #$k$-SAT runs in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}\mathrm{poly}(n+m)$ time and polynomial space. It refutes ETH and #ETH. Four simplifications over the paper:
+- arithmetic mod $p^\mu$ removes App. B;
+- closed-form swap rows;
+- each measurement row meets at most 2 groups per node;
+- explicit parameters with all inequalities proved for $\lambda\ge2^{17}+1$, giving exponent $13n\nu^2/\sqrt\lambda$, nontrivial from $\log n\approx9.3\cdot10^6$ (the paper's: $7\cdot10^{10}$).
+
+Every lemma is checked by [`scripts/verify_gapless_chain.py`](scripts/verify_gapless_chain.py). §5–6 (the sharper exponent) is covered by the Lean proof, not re-proved in prose. **An independent read of 08 would be the most useful check.**
+
 ## Where I am
 
 - **Verdict.** Yes, it refutes ETH. The minimal chain is App. A (disjoint sparsification), §2.8 (OR gates + Tovey), §3 (Lemmas 3.2, 3.3, Prop. 3.4) and §4 (Lemmas 4.1–4.8). I re-derived it completely and found no error. Confidence 97%. See [01](01_VERDICT.md) and [02](02_VERIFICATION_LEDGER.md).
