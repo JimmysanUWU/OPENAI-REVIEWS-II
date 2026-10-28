@@ -140,6 +140,13 @@ $$|S(t)h(z)|=(4\pi t)^{-d/2}\lambda^d\,\Big|Eg\Big(-\frac{\lambda z}{2t},\frac{\
 
 ## 5. The refinement appendices B, D, E: what was verified
 
+> **Update (28 Oct, later).** All three appendices are now proved in full:
+> - **B** in [14](14_GAPLESS_ANGULAR_ENDPOINT.md), line by line, including Lemma B.4's uniform stationary phase;
+> - **D** in [13](13_PLANAR_ENTRY_POINT.md);
+> - **E** in [11](11_FRAMEWORK_POSITIVITY_ENGINE.md), Corollary 11.3.
+>
+> The table below records the earlier, exponent-level check.
+
 | Appendix | Claim | Verified | Not re-derived |
 |---|---|---|---|
 | **B** | Theorem B.1: at $p_c$, $\|U f\|_{L^p}\lesssim\|L(J)^{1/p}f\|_p+\|L(\Lambda_\omega)^Bf\|_p$ for $B>\frac12+\frac1p$, and a weak-norm bound with angular weight only | Every exponent, listed below the table | The uniform-in-degree stationary phase of Lemma B.4 (it follows Stein Ch. VIII), and the vector-valued maximal and spherical-multiplier theorems (cited) |

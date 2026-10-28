@@ -44,7 +44,7 @@ These implications are classical: Sogge and Mockenhaupt–Seeger–Sogge for Boc
 | §6 propagation | Re-derived Lemma 6.1 and Prop 6.3. Numerically checked the Gronwall radial bound. Verified exactly the sharpness example of Remark 6.2. | **Verified** ([`results/propagation_and_exponents.json`](results/propagation_and_exponents.json)) |
 | §7–§12 transfers and applications | Re-derived the interpolation exponents (7.3), the focusing exponent of Prop 8.1, and Lemma 9.2/9.4 bookkeeping. Checked that the Stein and Bochner–Riesz thresholds match. | Verified at the level of exponents and logic |
 | App. A (Dirichlet problem for 3-slot quaternionic Monge–Ampère on periodic fibers) | Read; the continuity method plus CNS-type boundary estimates is plausible. Formalized (`OAI/Analysis/PDE/Dirichlet`, 398 modules). | Not independently re-derived |
-| App. B–E | **28 Oct, [10](10_GAPLESS_REMAINING.md):** App. C (Prop. 8.2) is re-derived in full. B, D and E are checked at the level of every exponent, every new algebraic identity (quaternionic completed square, rank-one Moore expansion, (E.2), Example E.2) and the structure of each argument. | C verified; E proved in [11](11_FRAMEWORK_POSITIVITY_ENGINE.md); D proved in [13](13_PLANAR_ENTRY_POINT.md); B correct as far as checked |
+| App. B–E | **28 Oct, [10](10_GAPLESS_REMAINING.md):** App. C (Prop. 8.2) is re-derived in full. B, D and E are checked at the level of every exponent, every new algebraic identity (quaternionic completed square, rank-one Moore expansion, (E.2), Example E.2) and the structure of each argument. | C verified; E proved in [11](11_FRAMEWORK_POSITIVITY_ENGINE.md); D proved in [13](13_PLANAR_ENTRY_POINT.md); B proved line by line in [14](14_GAPLESS_ANGULAR_ENDPOINT.md) |
 
 ## Confidence (subjective, after verification)
 
@@ -54,7 +54,7 @@ These implications are classical: Sogge and Mockenhaupt–Seeger–Sogge for Boc
 - **App. C** (weak-norm obstruction): ≈98%, re-derived in full.
 - **App. E** (symmetric pencils): ≈96%. It is now proved in full as Corollary 11.3 of [11](11_FRAMEWORK_POSITIVITY_ENGINE.md), an abstract engine theorem plus a verification that pencils satisfy its axioms. The pencil current's conservation is checked directly for five pencils.
 - **App. D** (planar case by a linear problem): ≈97%. It is proved in full in [13](13_PLANAR_ENTRY_POINT.md), using only linear PDE.
-- **App. B** (angular endpoint): ≈90%. Every exponent and new identity checks, but its analytic estimates re-run §4–§7 and were not rewritten line by line ([10](10_GAPLESS_REMAINING.md) §5).
+- **App. B** (angular endpoint): ≈95%, given Theorem 1.2. It is proved line by line in [14](14_GAPLESS_ANGULAR_ENDPOINT.md). Its uniform-in-degree stationary phase is replaced by an explicit Bessel bound ([14](14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 1.2). The residual risk is in the cited vector-valued maximal and spherical-multiplier theorems.
 - **Cone and paraboloid restriction, Schrödinger local smoothing, and Nikodym**: ≈97%, given Theorem 1.2. Re-derived in [10](10_GAPLESS_REMAINING.md) §2–§4, with cited textbook theorems.
 
 ## Relation to OpenAI's earlier releases

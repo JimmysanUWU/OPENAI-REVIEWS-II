@@ -33,7 +33,8 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The distilled route to the critical estimate in every dimension](#p-kak-engine) | Axioms -> engine theorem -> pencils -> the wave as the arrow pencil -> Theorems 1.2 and 1.1. | 13 | — |
 | [The paper's own route (08)](#p-kak-paper) | The wave-specific proof as written in the paper, made gapless in 08. | 11 | — |
 | [Consequences: restriction, Kakeya, Nikodym, Bochner-Riesz, Stein](#p-kak-conseq) | Everything downstream of Theorems 1.2 and 1.1. | 8 | `KAK.T12`, `KAK.T11` |
-| [Sharpness and refinements](#p-kak-limits) | Why the losses are what they are, and the refinement appendix still only partially checked. | 3 | `KAK.T12` |
+| [Sharpness](#p-kak-limits) | Why the losses are what they are: the focusing lower bound log^{1/p} and the weak-norm obstruction. The angular refinement that beats both is on P.KAK.ANGULAR. | 2 | `KAK.T12` |
+| [The angular endpoint (App. B, made gapless in 14)](#p-kak-angular) | How a little angular regularity removes one logarithm (strong norm) or all of them (weak norm): uniform Hankel -> shell transplant -> four-kernel envelope -> one annulus -> summation. | 5 | `KAK.T12` |
 | [ETH is false (Part I)](#p-eth-i) | The shortest complete refutation of ETH: deformation counting with swap interpolation. | 7 | — |
 | [The formally verified exponent rho(n) (Part II)](#p-eth-ii) | Reduction to sparse F_2 systems; parity lift; the bound OpenAI proved in Lean. | 5 | `ETH.I.SPARS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [The headline exponent (Part III, App. D)](#p-eth-iii) | Boolean tensor contraction by a 2-adic Cauchy-kernel deformation. | 9 | `ETH.I.SPARS`, `ETH.II.LIFT`, `ETH.II.TANNER`, `ETH.II.GREEDY` |
@@ -64,6 +65,12 @@ Notation used throughout the Kakeya paths:
 | two-circle propagation | Delta_{T,tau}E &lt;= V(\|tau\|)E implies H(0,r) &gt;~ log(r/b)/log^2(3/b) int_1^2 H(T,b), where H is the circular mean. This is the source of the log^2 loss; only a 2-dim auxiliary time gives logarithms (K4). | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §8 |
 | engine data (G1)-(G2), (A1)-(A4) | The axioms of Theorem 11.1: chart and scales; positive conserved current; tangency; Gaussian rows; invertible time row. | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §1 |
 | arrow pencil, Dirac pencil | A(xi) = [[xi_n, xi'^T],[xi', -xi_n I]], with lambda_max = \|xi\|; it is the paper's wave system. For n = 2 it is the Dirac pencil [[xi_2, xi_1],[xi_1, -xi_2]], whose chart is explicit: Phi = P_2 - sqrt(tau^2 - P_1^2). | [kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md) §1 |
+| Lambda_omega, L(v) | Lambda_omega = (1 - Delta_sphere)^{1/2} on each sphere about 0 (the scalar sqrt(1+nu(nu+d-1)) on degree-nu harmonics); L(v) = log(2+v). | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) §0.1 |
+| angular degree &lt;= M | Restricted to almost every sphere about 0, a sum of spherical harmonics of degree &lt;= M. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) §0.1 |
+| uniform Hankel expansion | S_z F = two point evaluations (theta, -theta) plus an L^1 -&gt; L^inf error, valid on degree &lt;= M once z &gt;= (2+M)^K; explicit via Hankel's integral. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 1.2 |
+| shell transplant | Seen from a ball of R wavelengths, an input shell at radius Q &gt;&gt; R^3 gives a wave independent of Q, so it can be moved to radius ~R^{3+n/p}: observation on a ball costs L(R)^A. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 3.2 |
+| radial profile h_g, G_g | h_g(v,theta) = \|v\|^{d/p}(\|g(\|v\|theta)\| + \|g(-\|v\|theta)\| + sphere average); G_g its maximal function in v; \|\|G_g\|\|_{L^p(dv dtheta)} &lt;~ \|\|g\|\|_p. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Definition 4.1 |
+| angular bands, selection m(j,r) | M_m = 2^{2^m}, Q_m = S_m - S_{m-1}; m(j,r) = the largest band whose stationary-phase threshold H_m fits below min(N_j^eta, N_j r). | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) §6.3 |
 <!-- END GENERATED: glossary-kak -->
 
 ### Shortest complete proof: sharp L^4 local smoothing in R^{2+1}
@@ -482,11 +489,11 @@ Assumes: [`KAK.T12`](#p-kak-engine--kak-t12), [`KAK.T11`](#p-kak-engine--kak-t11
 **Full proof:** [kakeya/09](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) §7, Thm 7.3 · **Lean:** `OAI.Analysis.Fourier.LocalSmoothing.Comparator.stein_square`
 <!-- END GENERATED: path-p-kak-conseq -->
 
-### Sharpness and refinements
+### Sharpness
 <a id="p-kak-limits"></a>
 
 <!-- BEGIN GENERATED: path-p-kak-limits -->
-*Why the losses are what they are, and the refinement appendix still only partially checked.*
+*Why the losses are what they are: the focusing lower bound log^{1/p} and the weak-norm obstruction. The angular refinement that beats both is on P.KAK.ANGULAR.*
 
 Assumes: [`KAK.T12`](#p-kak-engine--kak-t12).
 
@@ -509,17 +516,66 @@ Assumes: [`KAK.T12`](#p-kak-engine--kak-t12).
 **Proof sketch.** Binary-digit families of 2^{kd} lines (k ~ (1/4)log N) are separated at the input side but compressed to measure ~ k^{-d} at the output side. Wave packets along them, with random signs, put mass ~1 on a set of measure k^{-d}, so the weak L^p norm grows like k^{d(1/2-1/p)}.
 
 **Full proof:** [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §1, Prop. 1.1 · **checks:** [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py)
-
-#### <a id="p-kak-limits--kak-app-b"></a>3. `KAK.APP.B` — Angular endpoint
-
-*PARTIAL* · uses [`KAK.T12`](#p-kak-engine--kak-t12)
-
-**Statement.** At p_c: ||Uf||_p <~ ||L(J)^{1/p} f||_p + ||L(Lambda_omega)^B f||_p for B>1/2+1/p; weak-norm bound with angular weight only.
-
-**Proof sketch.** At p_c, separate the radial loss (weight L(J)^{1/p}) from the angular one (weight L(Lambda_omega)^B, B > 1/2 + 1/p). This uses a uniform-in-degree stationary phase (Lemma B.4) and cited vector-valued maximal and spherical-multiplier theorems. Every exponent is checked in 10 §5; Lemma B.4 is not rewritten line by line (target T.KAK.10).
-
-**Full proof:** [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5
 <!-- END GENERATED: path-p-kak-limits -->
+
+### The angular endpoint (App. B, made gapless in 14)
+<a id="p-kak-angular"></a>
+
+<!-- BEGIN GENERATED: path-p-kak-angular -->
+*How a little angular regularity removes one logarithm (strong norm) or all of them (weak norm): uniform Hankel -> shell transplant -> four-kernel envelope -> one annulus -> summation.*
+
+Assumes: [`KAK.T12`](#p-kak-engine--kak-t12).
+
+#### <a id="p-kak-angular--kak-ang-hankel"></a>1. `KAK.ANG.HANKEL` — Uniform Hankel expansion on an angular band
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** For degree <= M and z >= (2+M)^K: S_z F = (2pi)^alpha z^-alpha sum_{+-} e^{+-i(z - pi alpha/2)}(P_+- + E_{+-,z})F with P_+ = Id, P_- the antipodal map, and E (with log-derivatives) bounded L^1 -> L^inf uniformly in M. Explicitly |(x d_x)^k eps_mu(x)| <= e^{3/2}(2mu+2k+1)^{max(k-1,0)}(mu+1)^2/(2x) for x >= (mu+1)^2.
+
+**Proof sketch.** Funk-Hecke makes S_z a multiplier by (2pi)^{n/2} i^nu z^{1-n/2} J_{nu+n/2-1}(z) on degree-nu harmonics. Write J = Re H^(1) and use Hankel's integral: eps_mu(x) is an average of (1 + iu/2x)^{mu-1/2} - 1 against e^{-u}u^{mu-1/2}. With w = (1+iy)^-1 every log-derivative carries a factor (1-w) = O(y), which gives the explicit bound for x >= (mu+1)^2. Summing over a band uses |Z_nu| <= Z_nu(1) = dim H_nu/|S^d| and sum dim H_nu <= 2(M+1)^d. The threshold (mu+1)^2 is necessary: x|eps| ~ mu^2/2 there.
+
+**Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 1.2, Proposition 1.3, Cor. 1.4 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) · *Note:* Replaces the paper's pole-coordinate stationary phase (whose key identity lambda d_lambda I = -1/2 I(w.grad a) is also checked) by an explicit Bessel bound.
+
+#### <a id="p-kak-angular--kak-ang-ball"></a>2. `KAK.ANG.BALL` — Observation on a ball (shell transplant)
+
+*PROVED, CHECKED* · prose chain: cites KAK.DIR · uses [`KAK.T12`](#p-kak-engine--kak-t12), [`KAK.ANG.HANKEL`](#p-kak-angular--kak-ang-hankel)
+
+**Statement.** For N >= 2, 0 < r <= 1: ||U(t)Pi_N f||_{L^p(I x B(x_0,r))} <~ min{1,(Nr)^{n/p}} L(Nr)^A ||f||_p, given Theorem 1.2 with power A.
+
+**Proof sketch.** Rescale to frequency 1, T = N, R = Nr. Small R: Young in time on the unit kernel. R <= T <= 10S with S = 100R^{3+n/p}: the global estimate, since L(T) <~ L(R). T > 10S: an input shell at radius Q produces on the ball a wave T h(b,x) = int k(b-u+x.omega)h independent of Q up to R^{2+n/p}/Q, so move the shell to radius S where the global estimate costs L(S)^A ~ L(R)^A; the factor S^{1/p} cancels against ||f_S||_p ~ S^{-1/p}||h||_p because d - alpha p = -1. Cut [T,2T] into intervals of length ~R; the remaining input is off the light cone.
+
+**Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 3.2, Lemma 3.1 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py)
+
+#### <a id="p-kak-angular--kak-ang-env"></a>3. `KAK.ANG.ENV` — Four-kernel envelope and small source
+
+*PROVED, CHECKED* · prose chain: closed · uses [`KAK.ANG.HANKEL`](#p-kak-angular--kak-ang-hankel)
+
+**Statement.** If g has angular degree <= M, support in |y| >= s_0, and N min(r,s_0) >= (2+M)^K, then |U(t)Pi_N g(r theta)| <~ sum_+- G_g(t +- r, theta) r^{-alpha} (r <= 4; r^{-d/p} for r > 4), with ||G_g||_{L^p(dv dtheta)} <~ ||g||_p, uniformly in M, N. The input from |y| < N^{eta-1} costs N^{-delta} in strong L^p.
+
+**Proof sketch.** Polar coordinates give s^d int e^{-it rho} chi(rho/N) rho^d S_{r rho} S_{-s rho} g_s d rho. Expand both spherical operators by KAK.ANG.HANKEL into four phases t +- r +- s with amplitudes bounded at theta by |g_s(+-theta)| + ||g_s||_1. Integrate by parts in rho to get N&lt;N(t +- r +- s)>^{-D}; the weight s^alpha = s^{1/p} s^{d/p} is absorbed, and evenness in s turns the two s-phases into one convolution, bounded by the maximal function. The small source: interpolate L^2 and the N^{alpha+1} dispersive bound, then Holder on the ball.
+
+**Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 4.2, Lemma 4.3, Definition 4.1 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py)
+
+#### <a id="p-kak-angular--kak-ang-band"></a>4. `KAK.ANG.BAND` — One annulus, bounded angular degree
+
+*PROVED, CHECKED* · prose chain: cites KAK.DIR · uses [`KAK.T12`](#p-kak-engine--kak-t12), [`KAK.ANG.BALL`](#p-kak-angular--kak-ang-ball), [`KAK.ANG.ENV`](#p-kak-angular--kak-ang-env)
+
+**Statement.** For angular degree <= M: ||U(t)Pi_N f||_p <~ [L(N)^{1/p} + L(M)^A]||f||_p and ||U(t)Pi_N f||_{p,inf} <~ L(M)^A ||f||_p, uniformly in M, N.
+
+**Proof sketch.** H = (2+M)^K. If H > N^eta, the global estimate. Otherwise: the inner ball r <= H/N costs L(H)^A by KAK.ANG.BALL; outside it, drop the small source and apply the envelope. Change variables to v = t +- r: int_{1/N}^4 (r^{-alpha}G)^p r^d dr = G^p log 4N (strong: L(N)^{1/p}) while |{r^{-alpha}G > lambda}|_{r^d dr} = G^p/(n lambda^p) (weak: no logarithm), both because d - alpha p = -1.
+
+**Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Proposition 5.1 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py)
+
+#### <a id="p-kak-angular--kak-app-b"></a>5. `KAK.APP.B` — Angular endpoint
+
+*PROVED_CITED, CHECKED* · prose chain: cites KAK.APP.B, KAK.DIR · uses [`KAK.T12`](#p-kak-engine--kak-t12), [`KAK.ANG.BALL`](#p-kak-angular--kak-ang-ball), [`KAK.ANG.ENV`](#p-kak-angular--kak-ang-env)
+
+**Statement.** At p_c, for B > 1/2 + 1/p: ||U(t)f||_{L^p(R^n x I)} <~ ||L(J)^{1/p} f||_p + ||L(Lambda_omega)^B f||_p, and ||U(t)f||_{L^{p,inf}} <~ ||L(Lambda_omega)^B f||_p; Lambda_omega^sigma (sigma > 0) may replace L(Lambda_omega)^B.
+
+**Proof sketch.** Littlewood-Paley in space; group angular degrees in double-exponential bands M_m = 2^{2^m} so that L(degree) ~ 2^m. At output radius r and frequency 2^j, select the largest band m(j,r) whose threshold H_m = (2+2M_m)^K is <= min(N_j^eta, N_j r): the selected low-pass wave obeys the four-kernel envelope with a majorant (via the spherical maximal function) independent of r, so the radial integral pays L(N_j)^{1/p} in strong norm and nothing in weak norm (vector-valued maximal inequalities). Unselected band m lives on balls of H_m wavelengths and costs L(H_m)^{A + 1/2 - 1/p} by the shell transplant and l^2-vs-l^p over ~log H_m frequencies; summing against ||Q_m f||_p <~ 2^{-mB}||L(Lambda_omega)^B f||_p needs B > A + 1/2 - 1/p = 1/2 + 1/p. Reassemble with the synthesis operator (real interpolation for the weak norm).
+
+**Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Theorem 14.1, §6; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) · *Note:* Cited: Littlewood-Paley and synthesis (Grafakos), Fefferman-Stein, vector-valued maximal on S^d (Grafakos-Liu-Yang 2009), localized spherical cut-off kernels (Narcowich-Petrushev-Ward 2006), spherical multipliers (Bonami-Clerc 1973), real interpolation; hypotheses checked in 14 §0.3. Whether B > 1/2 + 1/p is sharp is open (T.KAK.13).
+<!-- END GENERATED: path-p-kak-angular -->
 
 ## ETH
 
@@ -934,7 +990,11 @@ Each node links to its first appearance on a path.
 | [`KAK.SQ`](#p-kak-conseq--kak-sq) | Stein's square function conjecture | FORMAL, PROVED_CITED | P.KAK.CONSEQ |
 | [`KAK.OB.FOCUS`](#p-kak-limits--kak-ob-focus) | Radial focusing (sharpness of s_+(p) and of the power 1/p_c) | PROVED, CHECKED | P.KAK.LIMITS |
 | [`KAK.OB.WEAK`](#p-kak-limits--kak-ob-weak) | Weak-norm obstruction | PROVED, CHECKED | P.KAK.LIMITS |
-| [`KAK.APP.B`](#p-kak-limits--kak-app-b) | Angular endpoint | PARTIAL | P.KAK.LIMITS |
+| [`KAK.ANG.HANKEL`](#p-kak-angular--kak-ang-hankel) | Uniform Hankel expansion on an angular band | NEW, PROVED, CHECKED | P.KAK.ANGULAR |
+| [`KAK.ANG.BALL`](#p-kak-angular--kak-ang-ball) | Observation on a ball (shell transplant) | PROVED, CHECKED | P.KAK.ANGULAR |
+| [`KAK.ANG.ENV`](#p-kak-angular--kak-ang-env) | Four-kernel envelope and small source | PROVED, CHECKED | P.KAK.ANGULAR |
+| [`KAK.ANG.BAND`](#p-kak-angular--kak-ang-band) | One annulus, bounded angular degree | PROVED, CHECKED | P.KAK.ANGULAR |
+| [`KAK.APP.B`](#p-kak-angular--kak-app-b) | Angular endpoint | PROVED_CITED, CHECKED | P.KAK.ANGULAR |
 | [`KAK.APP.D`](#p-kak-planar--kak-app-d) | Planar case by a linear Dirichlet problem (Theorem 13.1) | PROVED, CHECKED | P.KAK.PLANAR |
 | [`KAK.APP.E`](#p-kak-engine--kak-app-e) | Curved characteristic sheets of symmetric systems | PROVED, CHECKED | P.KAK.ENGINE |
 | [`KAK.ENGINE`](#p-kak-engine--kak-engine) | The positivity engine (Theorem 11.1) | NEW, PROVED | P.KAK.ENGINE |

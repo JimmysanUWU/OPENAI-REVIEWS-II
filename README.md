@@ -49,6 +49,11 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - A complete proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ with $\log^{1/2}$ loss, using only linear PDE (the paper's App. D, every step written out).
   - Recommended as the entry point to the paper.
   - Checked by [`verify_planar_entry.py`](reviews/claude/kakeya/scripts/verify_planar_entry.py).
+- **Kakeya: the angular endpoint, line by line** ([`14_GAPLESS_ANGULAR_ENDPOINT.md`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md)).
+  - App. B (Thm B.1) is proved in full, so no Kakeya result is `PARTIAL` any more.
+  - The paper's uniform-in-degree stationary phase is replaced by an explicit Bessel bound (Funk–Hecke plus Hankel's integral).
+  - Five principles explain the exponents, including why the threshold is $B>A+\frac12-\frac1p$.
+  - Checked by [`verify_angular_endpoint.py`](reviews/claude/kakeya/scripts/verify_angular_endpoint.py).
 
 ## Distillation round 2 (recyclable toolkit)
 

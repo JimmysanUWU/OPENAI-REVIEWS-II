@@ -16,7 +16,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 | *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Kakeya maximal and sets, Stein, Nikodym | **Correct** (≈99% for the six formal targets; ≈90% for the sharp power $2/p_c$, which is prose-only) | OpenAI's Lean proof of all six targets builds here, with only the standard axioms |
 
 **Where things stand (28 Oct 2026).**
-- **Verification is complete for both papers.** Every claim has a prose proof in this repository; only Kakeya App. B is still `PARTIAL`.
+- **Verification is complete for both papers.** Every claim has a prose proof in this repository; no node is `PARTIAL`. The last one, Kakeya App. B, is proved line by line in [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md).
 - **Distillation.** The Kakeya frameworks are written: the engine theorem, the slot calculus, and the planar entry point. The open targets are listed in [`ROADMAP.md`](ROADMAP.md) §6.
 
 ## 2. Read in this order
@@ -31,6 +31,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`11`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md): the engine theorem, pencils, and the wave as the arrow pencil;
      - [`12`](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md): the calculus;
      - [`13`](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md): the planar proof;
+     - [`14`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md): the angular endpoint (App. B);
      - [`09`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) and [`10`](reviews/claude/kakeya/10_GAPLESS_REMAINING.md): the consequences.
    - **ETH:**
      - [`08`](reviews/claude/eth/08_GAPLESS_PROOF.md): Part I;
@@ -47,8 +48,8 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 21 check scripts, about 3 min with 4 jobs; prints ALL OK
-python3 tools/verify_all.py --quick    # skips the three slowest scripts
+python3 tools/verify_all.py            # 2 roadmap checks + 22 check scripts, about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py --quick    # skips the four slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
 ```
@@ -70,7 +71,7 @@ tools/             check_roadmap.py (validator and renderer), test_check_roadmap
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
 reviews/claude/eth/     ETH review (01-12, FOR_GPT, scripts/, results/, lean/)
-reviews/claude/kakeya/  Kakeya review (01-13, FOR_GPT, scripts/, results/, lean/)
+reviews/claude/kakeya/  Kakeya review (01-14, FOR_GPT, scripts/, results/, lean/)
 reviews/gpt/            reserved for GPT's reviews (empty so far)
 ```
 
@@ -108,7 +109,7 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
 4. **The Kakeya formal proof** proves Theorem 1.2 with the power $2n+5$, not the sharp $2/p_c$. The sharp power is prose ([kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §8). The formal Kakeya maximal statement is the $\delta^{-\varepsilon}$ form.
 5. **The wave is the arrow pencil.** Its passive coordinate in 11 is spatial, while 08 (the paper) uses a null direction. Both satisfy the engine axioms, so they give two proofs of the cap estimate (`KAK.T12` has an alternative proof).
 6. **The paraboloid** is reached only through the wave, by rescaling. A direct engine for it is open (`T.KAK.12`).
-7. **`PARTIAL` items.** Kakeya App. B is the only one: its exponents are checked, but its stationary-phase lemma B.4 has not been rewritten (`T.KAK.10`).
+7. **App. B's threshold.** $B>\frac12+\frac1p$ is what the proof gives ($A+\frac12-\frac1p$ with $A=2/p$), not a proved optimum (`T.KAK.13`). Its uniform stationary phase holds only beyond $(\text{degree}+1)^2$ wavelengths. This is necessary, not an artefact (kakeya/14 Lemma 1.2 and its remark).
 
 ## 7. If you are continuing the work
 
@@ -119,6 +120,5 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
 - **Next targets** in the roadmap's order:
   - `T.ETH.2`: one deformation theorem for Parts I–III;
   - `T.ETH.4`: explicit thresholds;
-  - `T.KAK.10`: App. B line by line;
-  - the research targets (`T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.ETH.1`, `T.X.1`).
+  - the research targets (`T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.1`, `T.X.1`).
 - **Handoff notes** for the other model are in each project's `FOR_GPT.md`.

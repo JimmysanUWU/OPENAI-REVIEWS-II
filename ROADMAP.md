@@ -52,9 +52,9 @@ The checker enforces that a node proved in prose depends only on nodes proved in
 | Project | Results | FORMAL | PROVED | PROVED_CITED | PARTIAL | HEURISTIC | NEW | CHECKED |
 |---|---|---|---|---|---|---|---|---|
 | ETH | 30 | 1 | 28 | 2 | 0 | 0 | 4 | 22 |
-| KAK | 30 | 6 | 24 | 5 | 1 | 0 | 7 | 13 |
+| KAK | 34 | 6 | 28 | 6 | 0 | 0 | 8 | 18 |
 
-Targets: 14 open, 0 in progress, 3 done.
+Targets: 14 open, 0 in progress, 4 done.
 <!-- END GENERATED: summary -->
 
 ## 2. ETH: *The Exponential Time Hypothesis Is False*
@@ -271,6 +271,10 @@ flowchart TD
     KAK_OB_WEAK["KAK.OB.WEAK<br/>Weak-norm obstruction"]
   end
   subgraph KAK_g6["Refinements and frameworks"]
+    KAK_ANG_HANKEL["KAK.ANG.HANKEL<br/>Uniform Hankel expansion on an angular band (new)"]
+    KAK_ANG_BALL["KAK.ANG.BALL<br/>Observation on a ball (shell transplant)"]
+    KAK_ANG_ENV["KAK.ANG.ENV<br/>Four-kernel envelope and small source"]
+    KAK_ANG_BAND["KAK.ANG.BAND<br/>One annulus, bounded angular degree"]
     KAK_APP_B["KAK.APP.B<br/>Angular endpoint"]
     KAK_APP_D["KAK.APP.D<br/>Planar case by a linear Dirichlet problem (Theorem 13.1)"]
     KAK_APP_E["KAK.APP.E<br/>Curved characteristic sheets of symmetric systems"]
@@ -302,7 +306,15 @@ flowchart TD
   KAK_KM --> KAK_NIK
   KAK_T11 --> KAK_BR
   KAK_T11 --> KAK_SQ
+  KAK_T12 --> KAK_ANG_BALL
+  KAK_ANG_HANKEL --> KAK_ANG_BALL
+  KAK_ANG_HANKEL --> KAK_ANG_ENV
+  KAK_T12 --> KAK_ANG_BAND
+  KAK_ANG_BALL --> KAK_ANG_BAND
+  KAK_ANG_ENV --> KAK_ANG_BAND
   KAK_T12 --> KAK_APP_B
+  KAK_ANG_BALL --> KAK_APP_B
+  KAK_ANG_ENV --> KAK_APP_B
   KAK_PENCIL --> KAK_APP_D
   KAK_FRAME --> KAK_APP_D
   KAK_PROP --> KAK_APP_D
@@ -318,9 +330,8 @@ flowchart TD
   KAK_Q_CALC --> KAK_FRAME
   KAK_FRAME --> KAK_MAENERGY
   class KAK_T11,KAK_R_SPHERE,KAK_KM,KAK_KD,KAK_BR,KAK_SQ formal
-  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK,KAK_APP_D,KAK_APP_E,KAK_ENGINE,KAK_PENCIL,KAK_ARROW,KAK_FRAME,KAK_MAENERGY proved
-  class KAK_DIR,KAK_R_PARAB cited
-  class KAK_APP_B partial
+  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK,KAK_ANG_HANKEL,KAK_ANG_BALL,KAK_ANG_ENV,KAK_ANG_BAND,KAK_APP_D,KAK_APP_E,KAK_ENGINE,KAK_PENCIL,KAK_ARROW,KAK_FRAME,KAK_MAENERGY proved
+  class KAK_DIR,KAK_R_PARAB,KAK_APP_B cited
   classDef formal fill:#c8e6c9,stroke:#2e7d32,color:#000
   classDef proved fill:#bbdefb,stroke:#1565c0,color:#000
   classDef cited fill:#fff9c4,stroke:#f9a825,color:#000
@@ -356,7 +367,11 @@ flowchart TD
 | `KAK.SQ` | **Stein's square function conjecture.** \|\|G_alpha f\|\|_p &lt;= C\|\|f\|\|_p for alpha&gt;max(1/2, n(1/2-1/p)). | FORMAL, PROVED_CITED | cites KAK.DIR, KAK.SQ | `KAK.T11` | [kakeya/09](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) §7, Thm 7.3 | — | `stein_square` |
 | `KAK.OB.FOCUS` | **Radial focusing (sharpness of s_+(p) and of the power 1/p_c).** Lower bounds (8.1). | PROVED, CHECKED | closed | — | [kakeya/02](reviews/claude/kakeya/02_VERIFICATION_LEDGER.md) row for paper Prop. 8.1 | [verify_propagation_and_exponents](reviews/claude/kakeya/scripts/verify_propagation_and_exponents.py) | — |
 | `KAK.OB.WEAK` | **Weak-norm obstruction.** \|\|U(t)g_N\|\|_{L^{p,inf}} &gt;~ (log N)^{d(1/2-1/p)} \|\|g_N\|\|_p for 2&lt;p&lt;=p_c. | PROVED, CHECKED | closed | — | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §1, Prop. 1.1 | [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
-| `KAK.APP.B` | **Angular endpoint.** At p_c: \|\|Uf\|\|_p &lt;~ \|\|L(J)^{1/p} f\|\|_p + \|\|L(Lambda_omega)^B f\|\|_p for B&gt;1/2+1/p; weak-norm bound with angular weight only. | PARTIAL | — | `KAK.T12` | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | — | — |
+| `KAK.ANG.HANKEL` | **Uniform Hankel expansion on an angular band.** For degree &lt;= M and z &gt;= (2+M)^K: S_z F = (2pi)^alpha z^-alpha sum_{+-} e^{+-i(z - pi alpha/2)}(P_+- + E_{+-,z})F with P_+ = Id, P_- the antipodal map, and E (with log-derivatives) bounded L^1 -&gt; L^inf uniformly in M. Explicitly \|(x d_x)^k eps_mu(x)\| &lt;= e^{3/2}(2mu+2k+1)^{max(k-1,0)}(mu+1)^2/(2x) for x &gt;= (mu+1)^2. *Note:* Replaces the paper's pole-coordinate stationary phase (whose key identity lambda d_lambda I = -1/2 I(w.grad a) is also checked) by an explicit Bessel bound. | NEW, PROVED, CHECKED | closed | — | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 1.2, Proposition 1.3, Cor. 1.4 | [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) | — |
+| `KAK.ANG.BALL` | **Observation on a ball (shell transplant).** For N &gt;= 2, 0 &lt; r &lt;= 1: \|\|U(t)Pi_N f\|\|_{L^p(I x B(x_0,r))} &lt;~ min{1,(Nr)^{n/p}} L(Nr)^A \|\|f\|\|_p, given Theorem 1.2 with power A. | PROVED, CHECKED | cites KAK.DIR | `KAK.T12`, `KAK.ANG.HANKEL` | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 3.2, Lemma 3.1 | [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) | — |
+| `KAK.ANG.ENV` | **Four-kernel envelope and small source.** If g has angular degree &lt;= M, support in \|y\| &gt;= s_0, and N min(r,s_0) &gt;= (2+M)^K, then \|U(t)Pi_N g(r theta)\| &lt;~ sum_+- G_g(t +- r, theta) r^{-alpha} (r &lt;= 4; r^{-d/p} for r &gt; 4), with \|\|G_g\|\|_{L^p(dv dtheta)} &lt;~ \|\|g\|\|_p, uniformly in M, N. The input from \|y\| &lt; N^{eta-1} costs N^{-delta} in strong L^p. | PROVED, CHECKED | closed | `KAK.ANG.HANKEL` | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 4.2, Lemma 4.3, Definition 4.1 | [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) | — |
+| `KAK.ANG.BAND` | **One annulus, bounded angular degree.** For angular degree &lt;= M: \|\|U(t)Pi_N f\|\|_p &lt;~ [L(N)^{1/p} + L(M)^A]\|\|f\|\|_p and \|\|U(t)Pi_N f\|\|_{p,inf} &lt;~ L(M)^A \|\|f\|\|_p, uniformly in M, N. | PROVED, CHECKED | cites KAK.DIR | `KAK.T12`, `KAK.ANG.BALL`, `KAK.ANG.ENV` | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Proposition 5.1 | [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) | — |
+| `KAK.APP.B` | **Angular endpoint.** At p_c, for B &gt; 1/2 + 1/p: \|\|U(t)f\|\|_{L^p(R^n x I)} &lt;~ \|\|L(J)^{1/p} f\|\|_p + \|\|L(Lambda_omega)^B f\|\|_p, and \|\|U(t)f\|\|_{L^{p,inf}} &lt;~ \|\|L(Lambda_omega)^B f\|\|_p; Lambda_omega^sigma (sigma &gt; 0) may replace L(Lambda_omega)^B. *Note:* Cited: Littlewood-Paley and synthesis (Grafakos), Fefferman-Stein, vector-valued maximal on S^d (Grafakos-Liu-Yang 2009), localized spherical cut-off kernels (Narcowich-Petrushev-Ward 2006), spherical multipliers (Bonami-Clerc 1973), real interpolation; hypotheses checked in 14 §0.3. Whether B &gt; 1/2 + 1/p is sharp is open (T.KAK.13). | PROVED_CITED, CHECKED | cites KAK.APP.B, KAK.DIR | `KAK.T12`, `KAK.ANG.BALL`, `KAK.ANG.ENV` | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Theorem 14.1, §6; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) | — |
 | `KAK.APP.D` | **Planar case by a linear Dirichlet problem (Theorem 13.1).** n=2: \|\|e^{-iT\|D\|} phi(D/N) f\|\|_{L^4(R^2 x [1,2])} &lt;= C log(2+N)^{1/2} \|\|f\|\|_4, hence local smoothing in R^{2+1} for all 2&lt;=p&lt;inf with eps loss. The fibre problem is linear: C(B_fib):H_fib(u)=mu, i.e. 4 sum Re(conj e_a e_b) d_{X_a X_b} u + 4\|J\|^2 Lap_W u = mu on a disk, solved by Fourier series and the Dirichlet Laplacian; the energy (1/2) int(-u)mu is controlled by a completed-square inequality A:H &gt;= D_B(H). No Monge-Ampere theory. *Note:* Uses the 2D Dirac pencil, whose chart is explicit: W is the stereographic coordinate of (P - Phi e_2)/tau on the complexified unit circle and Phi = P_2 - sqrt(tau^2 - P_1^2). For n=2 the eps-loss form is due to Guth-Wang-Zhang (2020) by a different method. | PROVED, CHECKED | closed | `KAK.PENCIL`, `KAK.FRAME`, `KAK.PROP` | [kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md) Thm 13.1, Cor. 13.2, §1-5; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_planar_entry](reviews/claude/kakeya/scripts/verify_planar_entry.py), [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py), [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
 | `KAK.APP.E` | **Curved characteristic sheets of symmetric systems.** For a simple extremal eigenvalue phi of a symmetric pencil with definite transverse Hessian: \|\|e^{-iT phi(D)} b(hD) f\|\|_{L^{p_c}} &lt;= C log(2/h)^{2/p_c} \|\|f\|\|_{p_c}. *Note:* Completed in 11 (chart and current quantified, wave proof reused as one abstract argument). The single-patch lower bound of App. E is not re-derived. | PROVED, CHECKED | cites KAK.DIR | `KAK.ENGINE`, `KAK.PENCIL` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Cor. 11.3; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py), [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
 | `KAK.ENGINE` | **The positivity engine (Theorem 11.1).** Engine data on a cap (phi, K', v) -- a holomorphic fibre chart (W, Phi) with the scales (G1)-(G2), a positive conserved current chi chi^\* tangent to Phi whose rows are Fourier multipliers with Gaussian symbols C (hs)^{-d/2} sigma^m exp(-c_0 sigma \|W - v(eta)\|^2) (A1)-(A3), and an invertible time row (A4) -- imply, for some aperture gamma and all 0&lt;h&lt;=1, int_1^2 \|\|e^{-iT phi(D)} f\|\|_{L^p(T^n)}^p dT &lt;= C log^2(2/h) \|\|f\|\|_p^p, p=2n/(n-1), for f with Fourier support in the gamma-cap at scale h. *Note:* Re-runs the proofs of KAK.E.BAL, KAK.E.DEPTH and KAK.FIB under the axioms; the equation enters only through (A1)-(A4). Hypothesis-usage matrix and failure modes in 11 §7. | NEW, PROVED | cites KAK.DIR | `KAK.Q.CALC`, `KAK.DIR`, `KAK.PROP`, `KAK.CAP` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §1-5, Thm 11.1, Prop. 4.1; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K7 | — | — |
@@ -425,10 +440,11 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 | `T.KAK.7` | research | Pencils whose size differs from the spatial dimension | OPEN | — | `KAK.PENCIL`, `KAK.ENGINE` | Extend Theorem 11.2 beyond 'state dimension = spatial dimension'. For N&gt;n the flux map is a submersion; push the lifted current forward by fibre integration (still positive, conserved and tangent) and re-derive (A3)-(A4). Connects to determinantal representations of hyperbolic polynomials. | a theorem with a new class of symbols |
 | `T.KAK.8` | research | Variable coefficients: which hypothesis fails | OPEN | — | `KAK.ENGINE` | Explain the Minicozzi-Sogge counterexamples on curved metrics. By 11 §8.4 the obstruction must lie in the current axiom (A1): (A3)-(A4) are stable symbol estimates. Find the precise failure. | a precise failing hypothesis with an example |
 | `T.KAK.9` | research | Degenerate symbols with a rank-r background | OPEN | — | `KAK.E.DEPTH`, `KAK.E.BAL` | Find currents tangent to r&gt;1 passive coordinates and prove the rank-r energy comparison, giving critical estimates at 2(f+1)/f. | rank-r analogue of Lemma 6.3 with proof |
-| `T.KAK.10` | verification | Line-by-line verification of App. B | OPEN | — | `KAK.APP.B` | Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3). App. E was completed in 11 (Corollary 11.3). | complete derivations; KAK.APP.B upgraded to PROVED |
+| `T.KAK.10` | verification | Line-by-line verification of App. B | DONE | claude | `KAK.APP.B` | Re-derive the analytic estimates of App. B (Lemmas B.3, B.4, Prop. B.2, the summation). App. E was completed in 11 (Corollary 11.3). Deliverable: [`14_GAPLESS_ANGULAR_ENDPOINT.md`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md). | complete derivations; KAK.APP.B upgraded to PROVED |
 | `T.KAK.11` | formal | The sharp power 2/p_c in Lean | OPEN | — | `KAK.T12`, `KAK.PROP` | Formalize Theorem 1.2 with the sharp power. | Lean proof with standard axioms only |
 | `T.X.1` | research | Capacity of transport as a theorem | OPEN | — | `ETH.K.E4`, `KAK.CAP` | Turn the cross-paper analogy (move information along an auxiliary parameter and pay a capacity) into a precise statement covering both papers' barriers. | a precise common statement or a reasoned negative answer |
 | `T.KAK.12` | research | A direct engine for the paraboloid | OPEN | — | `KAK.ENGINE`, `KAK.ARROW`, `KAK.R.PARAB` | e^{it Delta} is not a first-order symmetric system, so it is not an instance of Theorem 11.2; its critical estimate currently comes from the wave by parabolic rescaling. Find an exactly conserved, positive current tangent to a passive coordinate for the Schrodinger flow satisfying (A1)-(A4), e.g. as a parabolic limit of arrow-pencil currents. | engine data for the paraboloid with proofs; a direct-coordinate conservation check |
+| `T.KAK.13` | research | The angular threshold | OPEN | — | `KAK.APP.B`, `KAK.ANG.BALL` | Decide whether B &gt; 1/2 + 1/p in the angular endpoint is sharp. The 1/2 - 1/p comes from l^2-vs-l^p over the ~log H_m frequencies near the stationary-phase threshold, and A = 2/p from the ball estimate: a square-function form of the shell-transplant lemma, or A = 1/p (T.KAK.6), would lower it. | a lower threshold with proof, or a counterexample family |
 <!-- END GENERATED: targets -->
 
 ## 7. Protocol for AI contributors
@@ -480,3 +496,8 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
   - nine reading paths, checked for dependency order and coverage;
   - a 28-term glossary;
   - `tools/verify_all.py`, which runs every script.
+- **2026-10-28 (later).** `T.KAK.10` done: [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md).
+  - `KAK.APP.B` is upgraded from PARTIAL to PROVED_CITED; no node is PARTIAL any more.
+  - New nodes `KAK.ANG.HANKEL`, `KAK.ANG.BALL`, `KAK.ANG.ENV` and `KAK.ANG.BAND`, on the new reading path `P.KAK.ANGULAR`; `P.KAK.LIMITS` now holds only the sharpness results.
+  - New target `T.KAK.13` (the angular threshold).
+  - Six glossary terms added.

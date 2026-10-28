@@ -4,6 +4,14 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
+## Update (28 Oct, newest): App. B line by line, so no Kakeya node is `PARTIAL`
+
+- **[14](14_GAPLESS_ANGULAR_ENDPOINT.md)** proves the angular endpoint (Theorem B.1) step by step. It adds four sub-nodes, `KAK.ANG.HANKEL`, `KAK.ANG.BALL`, `KAK.ANG.ENV` and `KAK.ANG.BAND`, on reading path `P.KAK.ANGULAR`.
+- **The paper's one sketched step is replaced.** That step is the stationary phase uniform in the angular degree. In its place, Funk–Hecke plus Hankel's integral give $|(x\partial_x)^k\varepsilon_\mu(x)|\le e^{3/2}(2\mu+2k+1)^{\max(k-1,0)}(\mu+1)^2/(2x)$ for $x\ge(\mu+1)^2$, with explicit constants. A check shows the threshold $(\mu+1)^2$ cannot be dropped.
+- **§7 explains the exponents.** Observation on a ball costs the logarithm of its radius in wavelengths (shell transplant). $d-\alpha p=-1$ makes the strong norm pay one logarithm and the weak norm none. The threshold is $B>A+\frac12-\frac1p$, where $A$ is the ball cost and $\frac12-\frac1p$ is the $\ell^2$-versus-$\ell^p$ price.
+- **Open, `T.KAK.13`:** is $B>\frac12+\frac1p$ sharp?
+- Script: [`scripts/verify_angular_endpoint.py`](scripts/verify_angular_endpoint.py).
+
 ## Update (28 Oct, latest): roadmap and distillation
 
 - The repository root now has a **mathematical roadmap** ([`../../../ROADMAP.md`](../../../ROADMAP.md)), with machine-readable twin `roadmap.json`. Each result has a stable ID (`KAK.E.BAL`, `KAK.PROP`, …), a precise statement, a status, its dependencies and its checks. Start there, and record agreement or disputes in a node's `reviews` list (ROADMAP §7.4).
@@ -73,7 +81,7 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 | **App. A**: 3-slot quaternionic MA Dirichlet problem on periodic fibers, especially the boundary $C^2$ estimate with the added fourth slot and smooth parameter dependence for moving domains | read only | **Highest-value independent prose check.** |
 | **§5 constants**: kernel bounds (5.5)–(5.6), the inversion cost $e^{C\gamma^2\sigma}$ versus the wall gain $e^{-c_0\sigma}$, ball inclusions | logic only | Recompute. |
 | Lemma 4.1 (fiber geometry bounds (4.3)–(4.4)) | structure only | Recompute. |
-| App. B (angular endpoint), App. C (weak-norm obstruction), App. E (pencils) | not checked | Lower priority: not used by the formal targets. |
+| App. B (angular endpoint), App. C (weak-norm obstruction), App. E (pencils) | **all proved here:** B in [14](14_GAPLESS_ANGULAR_ENDPOINT.md), C in [10](10_GAPLESS_REMAINING.md) §1, E in [11](11_FRAMEWORK_POSITIVITY_ENGINE.md) | Lower priority: not used by the formal targets. For B, check the cited harmonic analysis (14 §0.3). |
 | Prior OpenAI Sept preprints [62]–[64] and the 3D companion | not reviewed | Compare methods and check whether the October paper supersedes them. |
 
 ## Open questions I would value your view on
