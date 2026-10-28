@@ -412,6 +412,7 @@ These are statements that make sense outside the papers. The ranking is by expec
 | K1. Positive conserved phase-space current | Constant-coefficient symmetric systems carry an exactly conserved, positive semidefinite density on a lifted phase space. Neither Husimi nor Wigner densities have both properties. | `KAK.C.LIFT`, `KAK.C.WAVE` | proved, checked |
 | K2. Determinant energy balance | A positive conserved current, a rank-one background and designed fibres give an energy with $\Delta F\le$ wall flux and $F\asymp$ the Monge–Ampère potential's integral. | `KAK.E.BAL` | proved, checked |
 | E3. Deformation counting | Exact sums over $\{0,1\}^n$ of products of local factors in $2^{o(n)}$ time, whenever a low-degree deformation makes the factors local at many nodes. | `ETH.I.DEFCOUNT`, `ETH.K.E3` | proved, checked |
+| E6. Interpolation through local nodes | One theorem behind all of the ETH paper: deform the readout of a factor system so that it is local at nodes; near each node expand in modes that are small in a filtration (formal or $\varpi$-adic); recover by Hermite interpolation with an explicit valuation loss. Parts I–II and App. D are its two instances, and each has a proved cost floor (E4; App. D: $2^{\Omega(M/\sqrt{\log M})}$ per call). | `ETH.U.MAIN`, `ETH.U.NODE`, `ETH.U.HERMITE`, `ETH.U.COUNT`, `ETH.U.FLOOR3` | new, proved, checked |
 | E1. Commuting-involution interpolation | A path of degree $<R$ from $I$ to elements that are local at $Q$ nodes, with an exact binomial-tail defect $\le2e^{-R^2/(8Q)}$. | `ETH.I.SWAP` | proved, checked |
 | E2. $p$-adic cross-equation truncation | Lift a system over $\mathbb F_p$ to $\mathbb Z/p^\ell$ at linear degree, with a closed-form idempotent. | `ETH.II.LIFT`, `ETH.N.LIFTP` | new, proved, checked |
 | K4. Capacity-dimension principle | Superharmonic transport between two spheres costs $\log^{-2}$ only when the auxiliary time is 2-dimensional. | `KAK.CAP` | new, proved, checked |
@@ -423,7 +424,7 @@ These are statements that make sense outside the papers. The ranking is by expec
 | K7. Positivity engine | Axioms on a fibre chart and a current imply the critical cap estimate with $\log^2$ loss. The axioms say nothing about the equation. Symmetric pencils satisfy them, and the wave is the arrow pencil. | `KAK.ENGINE`, `KAK.PENCIL`, `KAK.ARROW` | new, proved, checked ([kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)) |
 
 **One pattern behind both papers.** Each paper moves information along an auxiliary parameter and pays a capacity for the transport:
-- ETH: interpolation in $T$, at the cost of the binomial bulk;
+- ETH: interpolation in $T$, at the cost of the binomial bulk (Part I) or of 2-adic precision (App. D). Both cost $M/\sqrt{\#\text{node coordinates}}$ per call, the *square-root law* of eth/13 §7 (`T.ETH.5`);
 - Kakeya: superharmonic comparison in $\tau\in\mathbb R^2$, at the cost of the planar capacity.
 
 Each paper's barrier is a sharp statement about that capacity (`ETH.K.E4`, `KAK.CAP`). Target `T.X.1` asks whether this analogy is a theorem.
