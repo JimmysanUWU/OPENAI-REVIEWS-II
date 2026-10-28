@@ -2,6 +2,13 @@
 
 This is a rewrite of the proof of Theorem 1.2 as four modular theorems, each with its hypotheses stated abstractly, followed by the assembly. The aim is that each design choice in §2–§6 appears as a checkable hypothesis.
 
+**Update (28 Oct).** This file is superseded in three places:
+- the assembly (§5.5) is now an abstract theorem with precise axioms: [11](11_FRAMEWORK_POSITIVITY_ENGINE.md) Theorem 11.1. Pencils and the wave (the arrow pencil) are its instances.
+- the calculus behind Theorems I–II is generalized in [12](12_QUATERNIONIC_SLOT_CALCULUS.md);
+- the planar case of §5.6 is written out in full in [13](13_PLANAR_ENTRY_POINT.md).
+
+Open targets §5.7 items 1, 2 and 4 are tracked in [`ROADMAP.md`](../../../ROADMAP.md) as `T.KAK.4`–`T.KAK.6`; item 3 is done, as `T.KAK.1`; item 5 is `T.KAK.11`.
+
 **Conventions.**
 - $\mathbb H$ denotes the quaternions; $\mathcal D=\operatorname{span}_{\mathbb R}(1,\mathbf i,\mathbf j)$ is the 3-slot space; $e_0,e_1,e_2=1,\mathbf i,\mathbf j$.
 - For $m$ slots with real coordinates $x_{a\alpha}$:

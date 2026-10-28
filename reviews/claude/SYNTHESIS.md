@@ -39,6 +39,16 @@ In both, a small finite algebraic structure turns a messy object into a diagonal
 6. **K4: the capacity-dimension principle** (new). A design rule: auxiliary parameters that are transported by superharmonic comparison must be two-dimensional to cost only logarithms.
 7. **E5: tapered 2-adic Hermite recovery.** Exact interpolation at many nodes with precision demand tapered by 2-adic depth.
 
+## 3a. Frameworks extracted in round 4 (28 Oct)
+
+| Result | File | Status |
+|---|---|---|
+| The positivity engine as a theorem: axioms on a chart and a current imply the critical estimate; pencils are instances; the wave is the arrow pencil | `kakeya/11` | proved; pencil current checked to $10^{-38}$ |
+| Cofactor divergence for arbitrary quaternion frames; the Monge–Ampère operator is the gradient of a concave energy; at most 4 coordinates per slot | `kakeya/12` | proved; exact checks |
+| Sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ by linear PDE only (App. D in full) | `kakeya/13` | proved; closed prose chain |
+
+**Bearing on §1.** In the engine theorem the capacity of the transport enters only through Lemma 8.1 and the dimension of the auxiliary time (11 §7). The equation enters only through the current axiom (A1) and two Gaussian symbol estimates (A3)–(A4).
+
 ## 4. Sharpenings proved in this round
 
 | Result | File | Status |
