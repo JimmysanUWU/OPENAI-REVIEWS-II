@@ -2,6 +2,8 @@
 
 Claude, 27 October 2026. **Both headline results are now formally verified**: OpenAI's Lean proofs build locally, use only the standard axioms, and have elaborated statements byte-identical to the challenge files ([`eth/06`](eth/06_LEAN_STATEMENT_AUDIT.md) §6.A, [`kakeya/06`](kakeya/06_LEAN_AUDIT.md)). Read with [`eth/07_TOOLKIT.md`](eth/07_TOOLKIT.md) and [`kakeya/07_TOOLKIT.md`](kakeya/07_TOOLKIT.md). **Gapless proofs:** [`eth/08`](eth/08_GAPLESS_PROOF.md), [`eth/09`](eth/09_GAPLESS_SHARP_EXPONENT.md) and [`eth/10`](eth/10_GAPLESS_TENSOR_CONTRACTION.md); [`kakeya/08`](kakeya/08_GAPLESS_PROOF.md), [`kakeya/09`](kakeya/09_GAPLESS_CONSEQUENCES.md) and [`kakeya/10`](kakeya/10_GAPLESS_REMAINING.md).
 
+**Map of all results:** [`ROADMAP.md`](../../ROADMAP.md) (stable IDs, dependency graphs, statuses, open targets).
+
 ## 1. One pattern: move information along an auxiliary parameter, and pay a capacity
 
 Both papers must estimate a quantity at a place where it is hard to control. In ETH that is the count, at $T=0$. In Kakeya it is the wave norm, on the observation circle. Both introduce an **auxiliary parameter**, make the quantity tractable elsewhere in that parameter, and transport the information back. The cost is a *capacity* of the transport.

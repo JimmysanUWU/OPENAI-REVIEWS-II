@@ -2,6 +2,8 @@
 
 Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the one used in [Claude-GPT-reviews](https://github.com/JimmysanUWU/Claude-GPT-reviews).
 
+**Start here: [`ROADMAP.md`](ROADMAP.md).** It maps every result reviewed here, with stable IDs, precise statements, statuses, dependency graphs, check scripts and open targets. Its machine-readable twin [`roadmap.json`](roadmap.json) is validated by `python3 tools/check_roadmap.py`. AI agents (GPT, Claude) should read it first and follow its protocol (§7).
+
 ## User priorities (each target)
 
 1. Does the paper answer the question?
@@ -42,6 +44,9 @@ See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results pr
 ## Layout
 
 ```
+ROADMAP.md                mathematical roadmap: results, dependencies, statuses, targets (start here)
+roadmap.json              its machine-readable twin (validated by tools/check_roadmap.py)
+tools/                    roadmap checker and its negative controls
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/

@@ -1,0 +1,1872 @@
+{
+ "schema": "openai-reviews-ii/roadmap/v1",
+ "updated": "2026-10-28",
+ "description": "Machine-readable map of the mathematics reviewed in this repository: every result has a stable ID, a statement, a status, where it is proved, what it depends on, which scripts check it, and its Lean name if formalized. Distillation and research targets have acceptance criteria. Validate with: python3 tools/check_roadmap.py",
+ "status_codes": {
+  "FORMAL": "the exact statement is a theorem of OpenAI's Lean proof, which was built locally with only propext, Classical.choice, Quot.sound and whose elaborated statement was audited (06 files). Internal lemmas are never marked FORMAL; see the optional field lean_area instead",
+  "PROVED": "complete prose proof in this repository; textbook theorems (spectral theorem, Hoeffding, Riesz-Thorin, Mihlin, ...) are cited by name",
+  "PROVED_CITED": "complete prose proof except for named non-elementary cited theorems (e.g. Evans-Krylov, Tao's epsilon-removal, Williams's algorithm), whose hypotheses are checked",
+  "CHECKED": "key identities or the algorithm checked exactly by a script (with negative controls)",
+  "PARTIAL": "exponents, new identities and structure checked; some analytic estimates not rewritten line by line",
+  "HEURISTIC": "blueprint or heuristic; not a theorem yet",
+  "NEW": "not in the source paper; proved here",
+  "OPEN": "target not started",
+  "IN_PROGRESS": "target being worked on",
+  "DONE": "target completed"
+ },
+ "node_fields": {
+  "id": "stable identifier; never renamed (add a new node and mark the old one superseded in notes)",
+  "project": "ETH or KAK",
+  "group": "subgraph in ROADMAP.md",
+  "kind": "theorem | proposition | lemma | corollary | framework",
+  "title": "short name",
+  "statement": "precise statement in ASCII math",
+  "status": "list of status codes",
+  "where": "files and labels (section, theorem numbers) where it is proved",
+  "depends_on": "node ids used in the proof",
+  "checks": "scripts that check it",
+  "paper_ref": "label in the source paper",
+  "formal": "full Lean name of an audited formal theorem",
+  "lean_area": "closest area of OpenAI's Lean development (informational)",
+  "confidence": "subjective probability that the statement is true, or null",
+  "notes": "free text"
+ },
+ "target_fields": {
+  "id": "T.<project>.<n>",
+  "kind": "distillation | research | formal | verification",
+  "title": "short name",
+  "goal": "what is to be done",
+  "builds_on": "node ids",
+  "status": "OPEN | IN_PROGRESS | DONE",
+  "owner": "claude | gpt | null",
+  "difficulty": "routine | substantial | research",
+  "acceptance": "criteria for DONE",
+  "deliverable": "file path (optional until DONE)"
+ },
+ "projects": {
+  "ETH": {
+   "paper": "The Exponential Time Hypothesis Is False (OpenAI, revised 25 Oct 2026)",
+   "dir": "reviews/claude/eth/",
+   "verdict": "reviews/claude/eth/01_VERDICT.md"
+  },
+  "KAK": {
+   "paper": "Local smoothing for the Euclidean wave equation (OpenAI, 25 Oct 2026)",
+   "dir": "reviews/claude/kakeya/",
+   "verdict": "reviews/claude/kakeya/01_VERDICT.md"
+  }
+ },
+ "nodes": [
+  {
+   "id": "ETH.I.SPARS",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "proposition",
+   "title": "Disjoint sparsification",
+   "statement": "For 0<sigma<=1 a k-CNF on n variables is split by a branching tree into at most (C_M n+1)^2 2^{sigma n} normalized CNFs of width <=k, whose satisfying sets partition Sat(F), each variable occurring in at most B=O_k((sigma^{-1}log(2/sigma))^{k-1}) clauses.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§2, Prop. 2.4, Lemma 2.5"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py"
+   ],
+   "paper_ref": "App. A, Lemma 6.3",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.TOVEY",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "proposition",
+   "title": "OR gates and Tovey cycles",
+   "statement": "A CNF of width <=k with occurrence bound B gives, in polynomial time, a CNF L' of width <=3 with every variable in 1..3 clauses and N<=6kBn variables, and z with #L=2^z #L'.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§3, Prop. 3.3"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py"
+   ],
+   "paper_ref": "§2.8",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.DEFCOUNT",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "theorem",
+   "title": "Deformation counting",
+   "statement": "Given a deformation of degree <=R' with Q<p nodes whose rows are local for measured partitions, the sum over {0,1}^n of a product of factors (clauses, or any factors with values in a free Z/p^mu-algebra, degree measured in the algebra) is computed with Q*C_q(n)*(2beta+1)^{c_*}*2r*2^s*poly operations, q=floor(dR'/Q).",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§4, Thm 4.6"
+    },
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "§1, Thm 1.1 (general factors)"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py",
+    "reviews/claude/eth/scripts/verify_sharp_route.py"
+   ],
+   "paper_ref": "§3, Prop. 3.4",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.SWAP",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "theorem",
+   "title": "Swap interpolation in closed form",
+   "statement": "P(T)=I-M_0+sum_k gamma_k sum_{|S|=k} prod_{s in S}(1-T/s) Pi_{S^c} has P(0)=I, degree <=R-1, coefficients in Z[1/(2Q!)], and P(t) is local on ker C at every node t; c/D <= 2exp(-R^2/(8Q)).",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§5, Thm 5.4, Cor. 5.6"
+    },
+    {
+     "file": "reviews/claude/eth/07_TOOLKIT.md",
+     "label": "E1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py",
+    "reviews/claude/eth/scripts/verify_distilled_swap_formula.py",
+    "reviews/claude/eth/scripts/verify_replacement_forms.py"
+   ],
+   "paper_ref": "§4, Lemmas 4.1-4.3",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.TRANSFER",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "lemma",
+   "title": "Transfer to a formula; balanced schedules",
+   "statement": "Labels from derandomized schedules turn the swap rows into a deformation with measurement rows of norm <=2^Q, at most 2hc rows per node, h<=2M/D, groups <=2n/r.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§6, Lemmas 6.1-6.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.SWAP"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py"
+   ],
+   "paper_ref": "§4, Lemmas 4.5-4.7",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.PARAM",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "theorem",
+   "title": "Counting at <=3 occurrences, explicit parameters",
+   "statement": "A CNF of width <=3 with occurrences in 1..3 is counted in poly(n)*2^{13 n nu^2/sqrt(lambda)} for n>2^{2^17}; the exact bound is nontrivial for lambda>9,297,119.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§7, Lemma 7.2, Thm 7.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.DEFCOUNT",
+    "ETH.I.SWAP",
+    "ETH.I.TRANSFER"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py"
+   ],
+   "paper_ref": "§4, Lemma 4.8",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.I.MAIN",
+   "project": "ETH",
+   "group": "Part I: subexponential #k-SAT",
+   "kind": "theorem",
+   "title": "ETH is false (Part I)",
+   "statement": "#k-SAT is computable in 2^{O_k(n(log log n)^{k+1}/(log n)^{1/(2k)})} poly(n+m) time and polynomial space; hence ETH, SETH, #ETH fail.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/08_GAPLESS_PROOF.md",
+     "label": "§8"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.SPARS",
+    "ETH.I.TOVEY",
+    "ETH.I.PARAM"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_gapless_chain.py",
+    "reviews/claude/eth/scripts/verify_counting_pipeline.py"
+   ],
+   "paper_ref": "§2.8 + §3 + §4 + App. A",
+   "formal": null,
+   "confidence": 0.99,
+   "notes": "Also implied by the formally verified ETH.II.MAIN."
+  },
+  {
+   "id": "ETH.II.LIFT",
+   "project": "ETH",
+   "group": "Part II: the formally verified exponent rho(n)",
+   "kind": "lemma",
+   "title": "Parity lift in closed form; cross-equation truncation",
+   "statement": "e_0=1-Y, e_j=(-1)^{j+1}C(2j-1,j-1)(2Y-1); p_ell=sum_{j<ell} e_j h^j (h=Y^2-Y) satisfies p_ell(y)=[2|y] mod 2^ell; S_ell(prod_i B_i mod V^ell)=prod_i [2|y_i] mod 2^ell with retained degree d_*(m+2(ell-1)); ||e_j||_1<=2*4^j.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "§2, Lemmas 2.1-2.2"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_sharp_route.py",
+    "reviews/claude/eth/scripts/verify_parity_lift.py"
+   ],
+   "paper_ref": "Lemmas 5.1, 5.2, B.1",
+   "formal": null,
+   "confidence": 0.995,
+   "notes": "The closed form is new; it replaces App. B.1's 2^{C ell^2}."
+  },
+  {
+   "id": "ETH.II.ZEROS",
+   "project": "ETH",
+   "group": "Part II: the formally verified exponent rho(n)",
+   "kind": "theorem",
+   "title": "Counting common zeros of sparse F_2 systems",
+   "statement": "m<=cn equations over F_2, each with at most (log n)^c monomials of degree <=k: common zeros counted in 2^{O_{k,c}(rho(n))} time, poly space.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "§3, Thm 3.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.DEFCOUNT",
+    "ETH.I.SWAP",
+    "ETH.I.TRANSFER",
+    "ETH.II.LIFT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_sharp_route.py"
+   ],
+   "paper_ref": "Thm 2.2, §5",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.II.TANNER",
+   "project": "ETH",
+   "group": "Part II: the formally verified exponent rho(n)",
+   "kind": "lemma",
+   "title": "Initial tests from a Tanner code",
+   "statement": "For m<=Bn there is a deterministic A^(0) with <=3n rows of <=D_0 ones such that every nonzero kernel vector has weight >=m/P, P=20000 B^2 mu^2.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "§4, Lemma 4.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_sharp_route.py"
+   ],
+   "paper_ref": "Lemma 6.1",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.II.GREEDY",
+   "project": "ETH",
+   "group": "Part II: the formally verified exponent rho(n)",
+   "kind": "lemma",
+   "title": "Greedy rows by exact counts",
+   "statement": "Appending 3n rows, each chosen among (2m)^P candidates to minimize the exact common-zero count, makes N(A)=#F.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "§4, Lemma 4.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.II.TANNER"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_sharp_route.py"
+   ],
+   "paper_ref": "Lemma 6.2",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.II.MAIN",
+   "project": "ETH",
+   "group": "Part II: the formally verified exponent rho(n)",
+   "kind": "theorem",
+   "title": "#k-SAT in 2^{O(rho(n))} (formally verified bound)",
+   "statement": "#k-SAT in (n+m)^{O_k(1)} 2^{O_k(rho(n))} time and (n+m)^{O_k(1)} space, rho(n)=n(log log n)^2/sqrt(log n).",
+   "status": [
+    "FORMAL",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md",
+     "label": "Thm 9.1"
+    },
+    {
+     "file": "reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md",
+     "label": "§6.A"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.SPARS",
+    "ETH.II.ZEROS",
+    "ETH.II.TANNER",
+    "ETH.II.GREEDY"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_sharp_route.py"
+   ],
+   "paper_ref": "Prop. 6.4",
+   "formal": "OAI.Algorithms.SubexponentialSAT.SqrtLogSpace.exact_count_and_sat",
+   "confidence": 0.995
+  },
+  {
+   "id": "ETH.III.RING",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Coefficient ring and interpolation points",
+   "statement": "O=Z_(2)[U]/(f), f irreducible mod 2 of degree e: v_2 is multiplicative, units are the elements nonzero mod 2, and the 2^e binary-coordinate points have unit differences.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§2, Lemma 2.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [],
+   "paper_ref": "D.4.1",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.III.CAUCHY",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Cauchy kernel",
+   "statement": "W_d(T)=C(T)/(C'(0)(T-d)), S={-L..L-1}: W(0)=I, W(t) is the shift by t, W_d(t+alpha z) is integral and divisible by 2^{a+1-v_2(t-d)} for d != t.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§3, Lemma 3.1, Cor. 3.2"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_appendix_d.py"
+   ],
+   "paper_ref": "(D.7), Lemma D.4",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.III.HERMITE",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Tapered 2-adic Hermite recovery",
+   "statement": "With multiplicities q_t=h max(0,u-v_2(t)), F(0) mod 2^p is recovered from F(t+alpha z) mod 2^{p_t}, p_t=p+8hD_t+8M(a+1); loss v_2(E_t(0))>=-6hD_t.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§4, Lemma 4.1"
+    },
+    {
+     "file": "reviews/claude/eth/07_TOOLKIT.md",
+     "label": "E5"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_appendix_d.py",
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "Lemma D.5",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.III.PACK",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Packing edges into packets",
+   "statement": "Derandomized labels in [r]^a and packets of L=2^a slots with orientation bits; <=3M/L packets; <=3M/r ports per symbol per side.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§5, Lemma 5.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [],
+   "paper_ref": "Lemma D.3",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "ETH.III.CHILD",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Modes and the child identity",
+   "statement": "At T=t+alpha zeta, crossing entries expand in tile moments sum_j j^b X_y with 2-adic weight b+1, and F(T)=sum_{beta: sum w beta<P} prod_g ct(N_{g,beta}) mod 2^P, with children of <=6M/r edges and exp(2 pi sqrt(MP/D_t)) mode tuples.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§6, Lemmas 6.1-6.4"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.CAUCHY",
+    "ETH.III.PACK"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "(D.12)-(D.16)",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "ETH.III.TENSOR",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "theorem",
+   "title": "Boolean tensor contraction",
+   "statement": "A bipartite Boolean tensor network with <=Cs edges, degree <=s^{9/10}, polynomially many vertices and suitable entry oracles is contracted in (s+L)^{O(1)} 2^{O(s/sqrt(log s))} time, poly space.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§7, Lemmas 7.1-7.3, Thm 10.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.RING",
+    "ETH.III.CAUCHY",
+    "ETH.III.HERMITE",
+    "ETH.III.PACK",
+    "ETH.III.CHILD"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "Thm D.1",
+   "formal": null,
+   "confidence": 0.95,
+   "notes": "Paper's floor u>=lambda^{4/5} holds only from log2(lambda)~500; absorption inequalities (A1)-(A2) suffice from ~26."
+  },
+  {
+   "id": "ETH.III.FIXED",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "proposition",
+   "title": "Fixed clause density",
+   "statement": "#k-SAT with m<=Dn in (n+m)^{O(1)} 2^{O_{k,D}(n/sqrt(log n))} via the clause network.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§8, Prop. 8.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.TENSOR"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "App. D.2",
+   "formal": null,
+   "confidence": 0.95
+  },
+  {
+   "id": "ETH.III.SPARSEZ",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "lemma",
+   "title": "Sparse systems by contraction",
+   "statement": "Sparse F_2 systems are counted in n^{O(1)} 2^{O(n log log n/sqrt(log n))} via incidence-subset networks with O(n log log n) wires.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "§9, Lemma 9.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.TENSOR",
+    "ETH.II.LIFT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "Lemma D.2",
+   "formal": null,
+   "confidence": 0.95
+  },
+  {
+   "id": "ETH.III.MAIN",
+   "project": "ETH",
+   "group": "Part III: App. D, tensor contraction",
+   "kind": "theorem",
+   "title": "Headline Theorem 1.1",
+   "statement": "#k-SAT in (n+m)^{O_k(1)} 2^{O_k(n log log n/sqrt(log n))}, and 2^{O_{k,D}(n/sqrt(log n))} when m<=Dn; polynomial space.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
+     "label": "Thm 10.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.FIXED",
+    "ETH.III.SPARSEZ",
+    "ETH.I.SPARS",
+    "ETH.II.TANNER",
+    "ETH.II.GREEDY"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_tensor_contraction.py"
+   ],
+   "paper_ref": "Thm 1.1, App. D",
+   "formal": null,
+   "confidence": 0.95,
+   "notes": "Not formalized."
+  },
+  {
+   "id": "ETH.C.MAXSAT",
+   "project": "ETH",
+   "group": "Corollaries",
+   "kind": "corollary",
+   "title": "Max-k-SAT approximation",
+   "statement": "OPT(F)-eps m in 2^{O_{k,eps}(rho(n))} randomized time.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/11_GAPLESS_COROLLARIES.md",
+     "label": "§1"
+    }
+   ],
+   "depends_on": [
+    "ETH.II.MAIN"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. 1.2",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "ETH.C.GRAPH",
+   "project": "ETH",
+   "group": "Corollaries",
+   "kind": "corollary",
+   "title": "Independent sets, colourings, perfect matchings",
+   "statement": "Counts in 2^{o(v)} (independent sets, q-colourings) and 2^{o(v+e)} (perfect matchings), polynomial space.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/11_GAPLESS_COROLLARIES.md",
+     "label": "§2"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.MAIN"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. 1.3",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "ETH.C.CIRC1",
+   "project": "ETH",
+   "group": "Corollaries",
+   "kind": "corollary",
+   "title": "E^NP not in SIZE(O(n))",
+   "statement": "Williams's theorem applied to 3-SAT in 2^{o(n)}.",
+   "status": [
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/11_GAPLESS_COROLLARIES.md",
+     "label": "§3, Cor. 3.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.II.MAIN"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. C.1",
+   "formal": null,
+   "confidence": 0.95
+  },
+  {
+   "id": "ETH.C.CIRC2",
+   "project": "ETH",
+   "group": "Corollaries",
+   "kind": "corollary",
+   "title": "E^NP circuit lower bound c n sqrt(log n)",
+   "statement": "Some L in E^NP has C_L(n)>c n sqrt(log n) infinitely often (needs the fixed-density bound; the formal bound alone gives n sqrt(log n)/(log log n)^2).",
+   "status": [
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/11_GAPLESS_COROLLARIES.md",
+     "label": "§3, Cor. 3.2, Remark 3.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.III.FIXED"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. 1.4",
+   "formal": null,
+   "confidence": 0.93
+  },
+  {
+   "id": "ETH.C.LOCAL",
+   "project": "ETH",
+   "group": "Corollaries",
+   "kind": "corollary",
+   "title": "Inverting maps of constant output locality",
+   "statement": "|G^{-1}(b)| and a preimage in (n+m)^{O_d(1)} 2^{O_d(rho(n))}.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/11_GAPLESS_COROLLARIES.md",
+     "label": "§4"
+    }
+   ],
+   "depends_on": [
+    "ETH.II.MAIN"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. C.2",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "ETH.N.LIFTP",
+   "project": "ETH",
+   "group": "New results",
+   "kind": "lemma",
+   "title": "p-adic lift for every prime (E2) with a closed form",
+   "statement": "p_ell=F_ell(Y^{p-1}) and its h-adic digits (h=Y^p-Y) give S_ell(prod B_i mod V^ell)=prod [p|y_i] mod p^ell with degree d_*(m(p-1)+p(ell-1)); closed form (1-(2z-1)(1+4 delta)^{-1/2})/2, z=Y^{p-1}, delta=Y^{p-2}h.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/07_TOOLKIT.md",
+     "label": "E2"
+    },
+    {
+     "file": "reviews/claude/eth/12_FP_COUNTING.md",
+     "label": "§1, Lemma 1.1, Remark 1.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.II.LIFT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_padic_truncation.py",
+    "reviews/claude/eth/scripts/verify_fp_counting.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "ETH.N.FQ",
+   "project": "ETH",
+   "group": "New results",
+   "kind": "theorem",
+   "title": "Counting zeros of sparse systems over any finite field (new)",
+   "statement": "Fixed q: m<=cn polynomials over F_q in n variables, each with at most (log n)^c terms of degree <=k: common zeros counted in 2^{O(rho(n))} time, poly space.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/12_FP_COUNTING.md",
+     "label": "Thm 12.1, Cor. 12.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.N.LIFTP",
+    "ETH.II.ZEROS",
+    "ETH.I.DEFCOUNT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_fp_counting.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97
+  },
+  {
+   "id": "ETH.K.E3",
+   "project": "ETH",
+   "group": "New results",
+   "kind": "corollary",
+   "title": "Exact partition functions of bounded-degree factor graphs",
+   "statement": "Weighted factor graphs with rational weights: exact partition function in 2^{O(n(log log n)^2/sqrt(log n))}.",
+   "status": [
+    "NEW",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/07_TOOLKIT.md",
+     "label": "E3"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.DEFCOUNT",
+    "ETH.I.SWAP",
+    "ETH.I.TRANSFER"
+   ],
+   "checks": [],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.95
+  },
+  {
+   "id": "ETH.K.E4",
+   "project": "ETH",
+   "group": "New results",
+   "kind": "theorem",
+   "title": "Cost floor of the method",
+   "statement": "For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/07_TOOLKIT.md",
+     "label": "E4"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.SWAP"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_cost_floor.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.95
+  },
+  {
+   "id": "KAK.Q.CALC",
+   "project": "KAK",
+   "group": "Algebra and currents",
+   "kind": "lemma",
+   "title": "Quaternionic slot calculus",
+   "statement": "For the 3-slot operators G, H: Hessian calculus (H(sum|F|^2)=4J*J), Moore determinant and cofactor identities, cofactor divergence (sum ebar_alpha d_{a alpha} C(H(u))_{ab}=0), Green's identity and compression.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§2, Lemmas 2.1-2.4"
+    },
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K6"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_quaternion_calculus.py"
+   ],
+   "paper_ref": "Lemmas 3.1-3.3",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Quaternion (CofactorDivergence, Polarization, Gram)",
+   "confidence": 0.995
+  },
+  {
+   "id": "KAK.C.LIFT",
+   "project": "KAK",
+   "group": "Algebra and currents",
+   "kind": "lemma",
+   "title": "Lifted current and push-forward",
+   "statement": "For constant-coefficient symmetric systems, B=Re sum_l Z_l (x) conj(Z_l) is PSD and conserved on (X,w_1,w_2); its density push-forward by a holomorphic flux map is conserved and quaternionic rank one.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§3, Lemmas 3.1-3.2"
+    },
+    {
+     "file": "reviews/claude/kakeya/05_DISTILLATION.md",
+     "label": "Thm I"
+    }
+   ],
+   "depends_on": [
+    "KAK.Q.CALC"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_wave_current.py"
+   ],
+   "paper_ref": "Lemma 2.1, (2.7)",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Current (Holomorphic)",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.C.WAVE",
+   "project": "KAK",
+   "group": "Algebra and currents",
+   "kind": "proposition",
+   "title": "The positive wave current",
+   "statement": "chi=sum V^v iota_e(conj u_{kappa,v}) m_{kappa,v}, A^0=chi chi^*: on Y!=0, A^0 is smooth, PSD and conserved, annihilated by the passive differential (dPhi)A^0=0, and A^0_TT=|S_0 u|^2+|S_1 u|^2 with explicit cap multipliers S_0,S_1 (3.5).",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§3, Prop. 3.3"
+    },
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K1"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_wave_current.py",
+    "reviews/claude/kakeya/scripts/verify_wave_current_target.py"
+   ],
+   "paper_ref": "Prop. 2.2",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Current (Wave, WaveDivergence)",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.F.GEOM",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "lemma",
+   "title": "Fibre geometry",
+   "statement": "On the closed fibres, uniformly in a<s<4: H_fib(r) >= c s^-2 I, G_fib G_fib^* <= H_fib, volume element ~ a^2 s^{2d}, det H_fib ~ a^-2 s^-2d; the full H(r)>=0 has a one-dimensional quaternionic kernel.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§4, Lemma 4.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.Q.CALC"
+   ],
+   "checks": [],
+   "paper_ref": "§4.1",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Current/Physical, .../Fiber",
+   "confidence": 0.98
+  },
+  {
+   "id": "KAK.DIR",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "theorem",
+   "title": "Periodic Dirichlet problem (3-slot quaternionic Monge-Ampere)",
+   "statement": "det H(B_0+u)=g, H(B_0+u)>0, u=0 on the wall: unique smooth solution with br<=u<=b'r.",
+   "status": [
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§5, Lemma 5.1, Thm 5.2"
+    }
+   ],
+   "depends_on": [
+    "KAK.Q.CALC"
+   ],
+   "checks": [],
+   "paper_ref": "Thm A.1",
+   "formal": null,
+   "lean_area": "OAI/Analysis/PDE/Dirichlet, OAI/Analysis/PDE/Schauder",
+   "confidence": 0.97,
+   "notes": "Comparison, barriers and the boundary C^2 estimate are proved; existence uses cited Schauder theory and the Evans-Krylov/Krylov estimates (GT 6.14, 6.19, 17.14, 17.26'). OpenAI's Lean proof contains a formal existence theory in lean_area."
+  },
+  {
+   "id": "KAK.E.BAL",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "theorem",
+   "title": "Determinant energy balance",
+   "statement": "Positive conserved current + rank-one background + designed fibres: Delta_z F <= wall flux and (n-1)/(n+1) X_0 <= F <= n/(n+1) X_0.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§6, Prop. 6.2, Lemma 6.3"
+    },
+    {
+     "file": "reviews/claude/kakeya/05_DISTILLATION.md",
+     "label": "Thm II"
+    },
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K2"
+    }
+   ],
+   "depends_on": [
+    "KAK.Q.CALC",
+    "KAK.C.WAVE",
+    "KAK.F.GEOM",
+    "KAK.DIR"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_quaternion_calculus.py"
+   ],
+   "paper_ref": "§4.3-4.4",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Current/Cancellation, .../Regularized*",
+   "confidence": 0.98
+  },
+  {
+   "id": "KAK.E.DEPTH",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "lemma",
+   "title": "Density to depth (rank-r background)",
+   "statement": "Background of rank r<n with eigenvalues ~lambda, f=n-r, det(B_fib+H_fib(u))=lambda^r mu, u=0 on the wall: interior -u(x) >= eps rho^2 m^{1/f} if mu>=m on B_rho(x) and m^{1/f}<=lambda; barrier 0<=u/r<=C_2 P if mu<=(c_1 kappa P)^f. The rank-one case (r=1) is the paper's.",
+   "status": [
+    "NEW",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K3"
+    },
+    {
+     "file": "reviews/claude/kakeya/05_DISTILLATION.md",
+     "label": "Thm III"
+    }
+   ],
+   "depends_on": [
+    "KAK.DIR"
+   ],
+   "checks": [],
+   "paper_ref": "§5",
+   "formal": null,
+   "confidence": 0.97
+  },
+  {
+   "id": "KAK.FIB",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "proposition",
+   "title": "Energy estimates on a fibre",
+   "statement": "For cap data at frequency ~1/h and a=Kh: F(0,tau) <= C a^2 ||f||_{p_c}^{p_c} at |tau|=4a; F(T,tau) >= c a^2 ||g_T||_{p_c}^{p_c} at |tau|=2a; Delta_z F <= C s^-2 e^{-cs/h} F for 2a<=s<=3.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§7, Prop. 7.1, Lemma 7.2"
+    }
+   ],
+   "depends_on": [
+    "KAK.E.BAL",
+    "KAK.E.DEPTH"
+   ],
+   "checks": [],
+   "paper_ref": "Prop. 5.1",
+   "formal": null,
+   "lean_area": "OAI/Analysis/Calculus/Current/Fiber/*, OAI/Analysis/PDE/Concentration",
+   "confidence": 0.97
+  },
+  {
+   "id": "KAK.PROP",
+   "project": "KAK",
+   "group": "Propagation",
+   "kind": "lemma",
+   "title": "Two-circle propagation",
+   "statement": "Delta E <= V(|tau|) E on R x {b<=|tau|<=3}: H(0,r) >= c log(r/b)/log^2(3/b) * int_1^2 H(T,b) dT; log^{-2} sharp for scalar supersolutions.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§8, Lemma 8.1, Prop. 8.2"
+    },
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K5"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_propagation_and_exponents.py"
+   ],
+   "paper_ref": "Lemma 6.1, Prop. 6.3",
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "Not used by the Lean proof, which takes a cruder route (corrected energy, power 2n+5)."
+  },
+  {
+   "id": "KAK.CAP",
+   "project": "KAK",
+   "group": "Propagation",
+   "kind": "theorem",
+   "title": "Capacity-dimension principle (new)",
+   "statement": "Superharmonic comparison between two spheres in an auxiliary time of dimension k costs log^{-2} only for k=2; for k!=2 it loses a power.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K4"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_capacity_dimension.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.T12",
+   "project": "KAK",
+   "group": "Main theorems",
+   "kind": "theorem",
+   "title": "Critical annular estimate (Theorem 1.2)",
+   "statement": "||U(T)P_N f||_{L^{p_c}(R^n x [1,2])} <= C [log(2+N)]^{2/p_c} ||f||_{p_c}.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§9"
+    }
+   ],
+   "depends_on": [
+    "KAK.FIB",
+    "KAK.PROP",
+    "KAK.C.WAVE"
+   ],
+   "checks": [],
+   "paper_ref": "Thm 1.2",
+   "formal": null,
+   "confidence": 0.9,
+   "notes": "Formalized only with the weaker power 2n+5, which suffices for every consequence. The prose chain cites the Dirichlet theory of KAK.DIR and textbook Riesz-Thorin, Mihlin, Littlewood-Paley."
+  },
+  {
+   "id": "KAK.T11",
+   "project": "KAK",
+   "group": "Main theorems",
+   "kind": "theorem",
+   "title": "Sogge's local smoothing conjecture (Theorem 1.1)",
+   "statement": "||U(T)f||_{L^p(R^n x [1,2])} <= C ||J^{s_+(p)+eps} f||_p for n>=2, 2<=p<inf, eps>0.",
+   "status": [
+    "FORMAL",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/08_GAPLESS_PROOF.md",
+     "label": "§9"
+    }
+   ],
+   "depends_on": [
+    "KAK.T12"
+   ],
+   "checks": [],
+   "paper_ref": "Thm 1.1",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.euclidean_local_smoothing",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.R.SPHERE",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Spherical restriction, interior range",
+   "statement": "E: L^a(S^{n-1}) -> L^b(R^n) for b>p_c, b>(n+1)a'/(n-1).",
+   "status": [
+    "FORMAL",
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md",
+     "label": "§1-2, Lemma 1.1, Cor. 2.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.T12"
+   ],
+   "checks": [],
+   "paper_ref": "Lemma 9.2, Cor. 9.3",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.spherical_restriction",
+   "confidence": 0.99,
+   "notes": "Tao's epsilon-removal cited."
+  },
+  {
+   "id": "KAK.R.CONE",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Truncated cone restriction",
+   "statement": "Same range for the truncated cone, by Nicola's slicing.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§2, Cor. 2.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.R.SPHERE"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "Cor. 9.3 (9.4)",
+   "formal": null,
+   "confidence": 0.97
+  },
+  {
+   "id": "KAK.R.PARAB",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Paraboloid restriction and Schrodinger local smoothing",
+   "statement": "Paraboloid extension in the interior range; ||e^{it Delta} f||_{L^{p_c}} <= C log^{2/p_c} ||f||; mixed-norm bounds via Lee-Rogers-Seeger.",
+   "status": [
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§4, Cor. 4.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.R.SPHERE"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "Cor. 12.1",
+   "formal": null,
+   "confidence": 0.97
+  },
+  {
+   "id": "KAK.KM",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Kakeya maximal conjecture",
+   "statement": "||K_delta f||_{L^n(S^{n-1})} <= C log(1/delta)^{2A} ||f||_n.",
+   "status": [
+    "FORMAL",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md",
+     "label": "§3-4, Lemma 3.1, Cor. 4.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.R.SPHERE"
+   ],
+   "checks": [],
+   "paper_ref": "Lemma 9.4, Cor. 9.1",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.kakeya_maximal",
+   "confidence": 0.99,
+   "notes": "The Lean statement is the weaker C_eps delta^-eps form; the paper and 09 prove a power of log(1/delta)."
+  },
+  {
+   "id": "KAK.KD",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Kakeya sets have full Hausdorff dimension",
+   "statement": "Every set containing a unit segment in every direction has dimension n.",
+   "status": [
+    "FORMAL",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md",
+     "label": "§5, Thm 5.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.KM"
+   ],
+   "checks": [],
+   "paper_ref": "Cor. 9.1",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.kakeya",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.NIK",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Nikodym maximal conjecture",
+   "statement": "||N_delta f||_n <= C log(1/delta)^{2A} ||f||_n, via a projective map.",
+   "status": [
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§3, Thm 3.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.KM"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "(9.7)",
+   "formal": null,
+   "confidence": 0.97
+  },
+  {
+   "id": "KAK.BR",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Bochner-Riesz conjecture (with maximal bounds for p>=2)",
+   "statement": "Uniform L^p bounds for alpha>delta(p).",
+   "status": [
+    "FORMAL",
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md",
+     "label": "§6, Thm 6.3"
+    }
+   ],
+   "depends_on": [
+    "KAK.T11"
+   ],
+   "checks": [],
+   "paper_ref": "Thm 10.1",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.bochner_riesz",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.SQ",
+   "project": "KAK",
+   "group": "Consequences",
+   "kind": "corollary",
+   "title": "Stein's square function conjecture",
+   "statement": "||G_alpha f||_p <= C||f||_p for alpha>max(1/2, n(1/2-1/p)).",
+   "status": [
+    "FORMAL",
+    "PROVED_CITED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md",
+     "label": "§7, Thm 7.3"
+    }
+   ],
+   "depends_on": [
+    "KAK.T11"
+   ],
+   "checks": [],
+   "paper_ref": "Thm 11.1",
+   "formal": "OAI.Analysis.Fourier.LocalSmoothing.Comparator.stein_square",
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.OB.FOCUS",
+   "project": "KAK",
+   "group": "Sharpness",
+   "kind": "proposition",
+   "title": "Radial focusing (sharpness of s_+(p) and of the power 1/p_c)",
+   "statement": "Lower bounds (8.1).",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/02_VERIFICATION_LEDGER.md",
+     "label": "row for paper Prop. 8.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_propagation_and_exponents.py"
+   ],
+   "paper_ref": "Prop. 8.1",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "KAK.OB.WEAK",
+   "project": "KAK",
+   "group": "Sharpness",
+   "kind": "proposition",
+   "title": "Weak-norm obstruction",
+   "statement": "||U(t)g_N||_{L^{p,inf}} >~ (log N)^{d(1/2-1/p)} ||g_N||_p for 2<p<=p_c.",
+   "status": [
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§1, Prop. 1.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "Prop. 8.2, App. C",
+   "formal": null,
+   "confidence": 0.98
+  },
+  {
+   "id": "KAK.APP.B",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "Angular endpoint",
+   "statement": "At p_c: ||Uf||_p <~ ||L(J)^{1/p} f||_p + ||L(Lambda_omega)^B f||_p for B>1/2+1/p; weak-norm bound with angular weight only.",
+   "status": [
+    "PARTIAL"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§5"
+    }
+   ],
+   "depends_on": [
+    "KAK.T12"
+   ],
+   "checks": [],
+   "paper_ref": "App. B, Thm B.1",
+   "formal": null,
+   "confidence": 0.9
+  },
+  {
+   "id": "KAK.APP.D",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "Planar case by a linear Dirichlet problem",
+   "statement": "n=2: the L^4 estimate with log^{1/2} via a linear auxiliary problem on a disk.",
+   "status": [
+    "PARTIAL",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§5"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.WAVE",
+    "KAK.PROP"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "App. D",
+   "formal": null,
+   "confidence": 0.9
+  },
+  {
+   "id": "KAK.APP.E",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "Curved characteristic sheets of symmetric systems",
+   "statement": "For a simple extremal eigenvalue phi of a symmetric pencil with definite transverse Hessian: ||e^{-iT phi(D)} b(hD) f||_{L^{p_c}} <= C log(2/h)^{2/p_c} ||f||_{p_c}.",
+   "status": [
+    "PARTIAL",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
+     "label": "§5"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT",
+    "KAK.E.BAL",
+    "KAK.PROP"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
+   ],
+   "paper_ref": "App. E, Thm E.1",
+   "formal": null,
+   "confidence": 0.9
+  },
+  {
+   "id": "KAK.ENGINE",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "framework",
+   "title": "The positivity engine (blueprint)",
+   "statement": "Hypotheses H1-H5 (current, fibres, window, inversion, capacity) imply the critical estimate p=2(f+1)/f with log^2 loss.",
+   "status": [
+    "HEURISTIC"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/07_TOOLKIT.md",
+     "label": "K7"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT",
+    "KAK.E.BAL",
+    "KAK.E.DEPTH",
+    "KAK.PROP",
+    "KAK.CAP"
+   ],
+   "checks": [],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Being turned into a theorem: target T.KAK.1."
+  }
+ ],
+ "targets": [
+  {
+   "id": "T.ETH.1",
+   "kind": "research",
+   "title": "Non-symmetric swap designs",
+   "goal": "Find the least p-biased measure of the set where a real polynomial of degree <R differs from parity on the cube; either prove e^{-O(R^2/Q)} for all polynomials (making the cost floor a barrier for the whole group algebra) or construct a non-symmetric design that beats the exponent (log log n)^2/sqrt(log n).",
+   "builds_on": [
+    "ETH.I.SWAP",
+    "ETH.K.E4"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a proof or construction with a precise statement",
+    "an exact check script with a negative control",
+    "roadmap updated"
+   ]
+  },
+  {
+   "id": "T.ETH.2",
+   "kind": "distillation",
+   "title": "A unified deformation theorem",
+   "goal": "One abstract statement covering the degree-controlled deformations (Parts I-II) and App. D's 2-adic deformation, with a cost functional that explains both sqrt(log) barriers.",
+   "builds_on": [
+    "ETH.I.DEFCOUNT",
+    "ETH.III.CHILD",
+    "ETH.III.HERMITE",
+    "ETH.K.E4"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "substantial",
+   "acceptance": [
+    "abstract theorem with hypotheses",
+    "both instances derived as corollaries",
+    "barrier computation for each instance"
+   ]
+  },
+  {
+   "id": "T.ETH.3",
+   "kind": "formal",
+   "title": "Formalize App. D (Theorem 1.1) in Lean",
+   "goal": "Extend OpenAI's Lean development from Prop. 6.4 to Theorem 1.1.",
+   "builds_on": [
+    "ETH.III.MAIN"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "substantial",
+   "acceptance": [
+    "a Lean proof building against the pinned Mathlib with standard axioms only"
+   ]
+  },
+  {
+   "id": "T.ETH.4",
+   "kind": "distillation",
+   "title": "Explicit thresholds for Parts II and III",
+   "goal": "Explicit n_0 in Theorem 9.1 and an explicit s_0 in Theorem 10.2, as was done for Part I (lambda >= 2^17+1).",
+   "builds_on": [
+    "ETH.II.MAIN",
+    "ETH.III.TENSOR"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "routine",
+   "acceptance": [
+    "every inequality checked by script on its full range",
+    "thresholds stated in the docs"
+   ]
+  },
+  {
+   "id": "T.KAK.1",
+   "kind": "distillation",
+   "title": "The positivity engine as a theorem",
+   "goal": "State axioms on (symbol, current, passive coordinate, fibres) under which the critical estimate follows, prove the abstract theorem, and derive the wave (Thm 1.2), symmetric pencils (App. E) and the paraboloid as instances; include a hypothesis-usage matrix.",
+   "builds_on": [
+    "KAK.ENGINE",
+    "KAK.C.LIFT",
+    "KAK.E.BAL",
+    "KAK.E.DEPTH",
+    "KAK.FIB",
+    "KAK.PROP",
+    "KAK.APP.E"
+   ],
+   "status": "IN_PROGRESS",
+   "owner": "claude",
+   "difficulty": "substantial",
+   "deliverable": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
+   "acceptance": [
+    "axioms stated precisely",
+    "abstract proof referencing only the axioms",
+    "each instance verifies the axioms",
+    "checks for the new identities"
+   ]
+  },
+  {
+   "id": "T.KAK.2",
+   "kind": "distillation",
+   "title": "The planar entry point",
+   "goal": "A self-contained complete proof of sharp L^4 local smoothing in R^{2+1} with log^{1/2}, using the linear Dirichlet problem of App. D (no Monge-Ampere regularity).",
+   "builds_on": [
+    "KAK.APP.D",
+    "KAK.C.WAVE",
+    "KAK.PROP"
+   ],
+   "status": "OPEN",
+   "owner": "claude",
+   "difficulty": "substantial",
+   "acceptance": [
+    "every step proved or a cited textbook theorem",
+    "App. D's remaining analytic steps re-derived",
+    "checks for the planar identities"
+   ]
+  },
+  {
+   "id": "T.KAK.3",
+   "kind": "distillation",
+   "title": "Quaternionic slot calculus as a standalone toolkit",
+   "goal": "A short self-contained account of the 3-slot calculus (G, H, Moore determinant, cofactor divergence, Green, Schur, rank-one expansion) usable outside the paper.",
+   "builds_on": [
+    "KAK.Q.CALC"
+   ],
+   "status": "OPEN",
+   "owner": "claude",
+   "difficulty": "routine",
+   "acceptance": [
+    "definitions and proofs",
+    "exact symbolic checks"
+   ]
+  },
+  {
+   "id": "T.KAK.4",
+   "kind": "research",
+   "title": "A coordinate-free conserved current",
+   "goal": "Describe the lifted current on the complexified characteristic variety as a CR-geometric object.",
+   "builds_on": [
+    "KAK.C.LIFT"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "invariant definition reproducing Prop. 3.3"
+   ]
+  },
+  {
+   "id": "T.KAK.5",
+   "kind": "distillation",
+   "title": "Avoid the fourth slot in the boundary C^2 estimate",
+   "goal": "Prove the boundary second-derivative estimate of App. A with 3-slot rigid motions only, or explain why a fourth slot is needed.",
+   "builds_on": [
+    "KAK.DIR"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "substantial",
+   "acceptance": [
+    "proof or obstruction"
+   ]
+  },
+  {
+   "id": "T.KAK.6",
+   "kind": "research",
+   "title": "One logarithm instead of two",
+   "goal": "Reach log^{1/p_c} (the lower bound) by using the energy's structure beyond superharmonicity.",
+   "builds_on": [
+    "KAK.PROP",
+    "KAK.OB.FOCUS",
+    "KAK.CAP"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "improved propagation lemma with proof"
+   ]
+  },
+  {
+   "id": "T.KAK.7",
+   "kind": "research",
+   "title": "Pencils whose size differs from the spatial dimension",
+   "goal": "Extend App. E beyond 'state dimension = spatial dimension', via determinantal representations of hyperbolic polynomials.",
+   "builds_on": [
+    "KAK.APP.E"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a theorem with a new class of symbols"
+   ]
+  },
+  {
+   "id": "T.KAK.8",
+   "kind": "research",
+   "title": "Variable coefficients: which hypothesis fails",
+   "goal": "Locate the engine hypothesis that fails for curved metrics, explaining the Minicozzi-Sogge counterexamples.",
+   "builds_on": [
+    "KAK.ENGINE"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a precise failing hypothesis with an example"
+   ]
+  },
+  {
+   "id": "T.KAK.9",
+   "kind": "research",
+   "title": "Degenerate symbols with a rank-r background",
+   "goal": "Find currents tangent to r>1 passive coordinates and prove the rank-r energy comparison, giving critical estimates at 2(f+1)/f.",
+   "builds_on": [
+    "KAK.E.DEPTH",
+    "KAK.E.BAL"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "rank-r analogue of Lemma 6.3 with proof"
+   ]
+  },
+  {
+   "id": "T.KAK.10",
+   "kind": "verification",
+   "title": "Line-by-line verification of Apps. B and E",
+   "goal": "Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3) and App. E (E.8)-(E.11).",
+   "builds_on": [
+    "KAK.APP.B",
+    "KAK.APP.E"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "substantial",
+   "acceptance": [
+    "complete derivations; statuses upgraded to PROVED"
+   ]
+  },
+  {
+   "id": "T.KAK.11",
+   "kind": "formal",
+   "title": "The sharp power 2/p_c in Lean",
+   "goal": "Formalize Theorem 1.2 with the sharp power.",
+   "builds_on": [
+    "KAK.T12",
+    "KAK.PROP"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "substantial",
+   "acceptance": [
+    "Lean proof with standard axioms only"
+   ]
+  },
+  {
+   "id": "T.X.1",
+   "kind": "research",
+   "title": "Capacity of transport as a theorem",
+   "goal": "Turn the cross-paper analogy (move information along an auxiliary parameter and pay a capacity) into a precise statement covering both papers' barriers.",
+   "builds_on": [
+    "ETH.K.E4",
+    "KAK.CAP"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a precise common statement or a reasoned negative answer"
+   ]
+  }
+ ]
+}
