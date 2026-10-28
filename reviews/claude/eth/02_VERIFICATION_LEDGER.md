@@ -76,7 +76,7 @@ As a negative control, I deleted one measurement row per group. This broke the k
 | Cor. 1.2 (Max-$k$-SAT) | R | Hoeffding plus a union bound over $2^n$; linear-size counting circuit; threshold search. |
 | Cor. 1.3 | R | Parsimonious encodings. |
 | Cor. C.1 | A | Uses [Wil13, Thm 6.1]: "ETH false ⇒ E^NP ⊄ SIZE(O(n))". Not checked against the source. |
-| Cor. 1.4 | P | Uses App. D's fixed-density bound plus the [JMV13] local reduction. The arithmetic $C_W(dn)>\eta n\sqrt{\log_2 n}$ looks consistent; not fully checked. |
+| Cor. 1.4 | R, A | Re-derived in [11](11_GAPLESS_COROLLARIES.md) §3. It uses App. D's fixed-density bound plus the [JMV13] local reduction and Williams's argument (cited). The parameters $\eta<1/(12A)$, $U_n=(3\eta+o(1))n\sqrt{\log n}$ and time $2^{(3A\eta+o(1))n}$ are checked. With Prop. 6.4 alone one gets $n\sqrt{\log n}/(\log\log n)^2$. |
 | Cor. C.2 | R | |
 
 ## Findings

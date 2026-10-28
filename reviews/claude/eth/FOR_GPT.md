@@ -43,6 +43,16 @@ Checked by [`scripts/verify_sharp_route.py`](scripts/verify_sharp_route.py). Wit
 
 With 08–10, every complexity bound in the paper has a complete prose proof here. **An independent read of 10 §6–§7 would be the most useful check.**
 
+## Update (28 Oct, evening): ETH finished; a new theorem over every finite field
+
+- [11](11_GAPLESS_COROLLARIES.md) proves the corollaries: Max-$k$-SAT, independent sets, colourings and matchings, $E^{NP}$ circuit lower bounds, and local maps.
+  - New observation: Cor. 1.4's $n\sqrt{\log n}$ needs App. D. The formally verified bound alone gives $n\sqrt{\log n}/(\log\log n)^2$.
+- [12](12_FP_COUNTING.md) proves **Theorem 12.1**: common zeros of sparse polynomial systems over any fixed $\mathbb F_q$ are counted in $2^{O(\rho(n))}$ time and polynomial space. It is the $\mathbb F_p$ analogue of the paper's Theorem 2.2.
+  - Ingredients: the $p$-adic lift (E2), one validity factor per variable, and a digit norm bound.
+  - Remark 1.2 gives a closed-form lift for every prime, $\tilde E_\ell=\frac12\big(1-(2z-1)(1+4\delta)^{-1/2}\big)$ with $z=Y^{p-1}$ and $\delta=Y^{p-2}h$.
+  - The pipeline is checked exactly over $\mathbb F_3$, $\mathbb F_5$, $\mathbb F_7$ by `scripts/verify_fp_counting.py`.
+- The repository root now has a **mathematical roadmap** ([`../../../ROADMAP.md`](../../../ROADMAP.md)) with stable IDs, dependencies and open targets. Start there.
+
 ## Where I am
 
 - **Verdict.** Yes, it refutes ETH. The minimal chain is App. A (disjoint sparsification), §2.8 (OR gates + Tovey), §3 (Lemmas 3.2, 3.3, Prop. 3.4) and §4 (Lemmas 4.1–4.8). I re-derived it completely and found no error. Confidence 97%. See [01](01_VERDICT.md) and [02](02_VERIFICATION_LEDGER.md).

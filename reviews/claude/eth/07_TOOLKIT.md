@@ -9,7 +9,7 @@ This file extracts from *The Exponential Time Hypothesis Is False* the parts tha
 | # | Tool | General form | Status | What is new here |
 |---|---|---|---|---|
 | E1 | Commuting-involution interpolation | any $Q$ commuting involutions on any space | R, X | Abstract form; closed-form rows; exact rank; optimality among symmetric choices |
-| E2 | $p$-adic cross-equation truncation | $\mathbb F_p$ for every prime $p$ | R, X | **New:** generalizes Lemmas 5.1–5.2 from $p=2$ |
+| E2 | $p$-adic cross-equation truncation | $\mathbb F_p$ for every prime $p$ | R, X | **New:** generalizes Lemmas 5.1–5.2 from $p=2$; its counting corollary is proved in [12](12_FP_COUNTING.md) |
 | E3 | Deformation counting | weighted factor graphs over any commutative $\mathbb Q$-algebra | R | **New corollary:** exact partition functions of bounded-degree graphical models in $2^{o(n)}$ |
 | E4 | Cost floor of the method | any symmetric design | R, X | **New:** the $(\log\log n)^2/\sqrt{\log n}$ barrier becomes a theorem about the method |
 | E5 | Tapered Hermite recovery (App. D) | any polynomial over $\mathbb Z_{(2)}$-algebras | P, X | Isolated as a standalone numerical-algebra lemma |
@@ -65,7 +65,7 @@ For $p=2$ this is exactly Lemmas 5.1–5.2 of the paper ($h=Y^2-Y$). Verified ex
 
 **What it buys.** §5 of the paper counts common zeros of sparse $\mathbb F_2$ systems by lifting each equation to $\mathbb Z/2^\ell$ while keeping *linear* total degree. Theorem E2 does the same over $\mathbb F_p$: the indicator of $\{P_1=\dots=P_m=0\}$ over $\mathbb F_p$ lifts to $\mathbb Z/p^\ell$ with degree $m(p-1)+p(\ell-1)$. This is the input needed to run the §5 pipeline for **counting zeros of sparse polynomial systems over any fixed prime field** (domain $\{0,\dots,p-1\}$, encoded by bits).
 
-*Status of that corollary:* blueprint. Theorem E2 replaces Lemma 5.2. The deformation counting (E3) is domain-agnostic once variables are encoded in binary. I have not re-derived the parameter bookkeeping of §5.5 for $p>2$.
+*Status of that corollary:* **proved (28 Oct) in [12](12_FP_COUNTING.md)**, Theorem 12.1: sparse systems over any fixed $\mathbb F_q$ are counted in $2^{O(\rho(n))}$. Two ingredients were needed beyond Theorem E2: one validity factor per variable for the bit encoding, and a norm bound on the digits. [12](12_FP_COUNTING.md) Remark 1.2 also gives a closed-form lift for every prime, generalizing Part II's central-binomial digits.
 
 ---
 

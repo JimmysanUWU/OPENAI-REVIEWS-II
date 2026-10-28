@@ -51,7 +51,7 @@ In both, a small finite algebraic structure turns a messy object into a diagonal
 ## 5. Research directions that these toolkits make concrete
 
 1. **Non-symmetric swap designs (ETH).** What is the least $p$-biased measure of the set where a real polynomial of degree $<R$ differs from parity? A bound of $e^{-O(R^2/Q)}$ for *all* polynomials would make E4 a barrier for the whole group algebra. A substantially better non-symmetric design would beat the paper's exponent.
-2. **Counting over $\mathbb F_p$ (ETH).** Carry out the §5.5 bookkeeping with E2 to obtain subexponential ($p^{o(n)}$) exact counting for sparse $\mathbb F_p$ systems.
+2. ~~**Counting over $\mathbb F_p$ (ETH).**~~ **Done (28 Oct):** [`eth/12`](eth/12_FP_COUNTING.md) Theorem 12.1 counts sparse systems over any fixed finite field in $2^{O(\rho(n))}$.
 3. **Beyond the light cone (Kakeya).** Extend App. E to pencils whose size differs from the spatial dimension (K7.1), connecting to determinantal representations of hyperbolic polynomials.
 4. **Degenerate symbols (Kakeya).** Find currents tangent to $r>1$ passive coordinates and prove the rank-$r$ analogue of Lemma 4.3. That would give critical estimates at $2(f+1)/f$ for symbols with $f$ curved directions (K3).
 5. **One logarithm (Kakeya).** Beat Remark 6.2 by using the energy's structure, not just superharmonicity.

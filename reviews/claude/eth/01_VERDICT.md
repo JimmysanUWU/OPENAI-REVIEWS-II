@@ -13,8 +13,8 @@ The part that refutes ETH is short and elementary. It also proves the result on 
 | **ETH false** (and SETH, #ETH, NSETH, Gap-ETH): #$k$-SAT in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ | §2.8 + §3 + §4 + App. A + App. B.4 | Every lemma re-derived; core lemmas and full pipeline checked in exact arithmetic. **Also formally verified via Prop. 6.4 (below).** | **≈99%** |
 | Prop. 6.4: #$k$-SAT in $2^{O_k(\rho(n))}$, $\rho(n)=n(\log\log n)^2/\sqrt{\log n}$ | §5, §6, App. A, App. B | Re-derived; Lemmas 5.1/5.2 checked exactly; **OpenAI's Lean proof built locally, only standard axioms, statement byte-identical** | **≈99%** |
 | Thm 1.1 headline: $2^{O_k(n\log\log n/\sqrt{\log n})}$, and $2^{O(n/\sqrt{\log n})}$ at fixed density | App. D (tensor contraction) | **Re-derived completely (28 Oct, [10](10_GAPLESS_TENSOR_CONTRACTION.md))**, including the recursion's bookkeeping. The child identity (D.16), the tile expansion, one recursion level at the honest precision, and both encodings are checked exactly. Not formalized. | ≈95% |
-| Cor. 1.2 (Max-$k$-SAT), Cor. 1.3 (colourings, matchings), Cor. C.2 (local maps) | standard reductions | Checked | 95% |
-| Cor. 1.4 / C.1 (E^NP circuit lower bounds) | Williams' witness-circuit argument, cited | Not independently checked | — |
+| Cor. 1.2 (Max-$k$-SAT), Cor. 1.3 (colourings, matchings), Cor. C.2 (local maps) | standard reductions | Proved in [11](11_GAPLESS_COROLLARIES.md) | ≈98% |
+| Cor. 1.4 / C.1 (E^NP circuit lower bounds) | Williams' witness-circuit argument, cited | Parameter bookkeeping checked in [11](11_GAPLESS_COROLLARIES.md). Cor. 1.4's $n\sqrt{\log n}$ needs App. D; the formally verified Prop. 6.4 alone gives $n\sqrt{\log n}/(\log\log n)^2$ | ≈93% (rests on cited theorems) |
 | Lean statement `exact_count_and_sat` | — | Faithful to Prop. 6.4. **OpenAI's formal proof builds; only standard axioms; elaborated statement identical** ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)) | formally verified |
 
 These are subjective confidences after verification, not measured error rates.
