@@ -498,7 +498,7 @@ Also $\sigma n\le n/(\log n)^{1/(2k)}$. Multiplying by the node count gives the 
 ## 9. What this proof covers, and what it does not
 
 - **Covered, with every step proved:** subexponential exact counting for $k$-CNF; the refutation of ETH and #ETH; polynomial space.
-- **Not re-proved: the paper's §5–6.** That route is lifted parity tests, Tanner codes on $\varepsilon$-biased Cayley graphs, and cross-equation 2-adic truncation. It removes the sparsification loss and gives exponent $n(\log\log n)^2/\sqrt{\log n}$ for every $k$. This is the theorem OpenAI formalized; its Lean proof builds and is audited in [06](06_LEAN_STATEMENT_AUDIT.md). The new ingredient, the cross-equation truncation, is proved for every prime in [07](07_TOOLKIT.md) E2.
+- **The paper's §5–6: proved in part II, [09](09_GAPLESS_SHARP_EXPONENT.md).** That route is lifted parity tests, Tanner codes on $\varepsilon$-biased Cayley graphs, and cross-equation 2-adic truncation. It removes the sparsification loss and gives exponent $n(\log\log n)^2/\sqrt{\log n}$ for every $k$. This is the theorem OpenAI formalized; its Lean proof builds and is audited in [06](06_LEAN_STATEMENT_AUDIT.md). Part II reuses this file's §2 and §4–6. The cross-equation truncation is also proved for every prime in [07](07_TOOLKIT.md) E2.
 - **Not re-proved: App. D**, which removes one $\log\log n$ factor (verified numerically in [`results/appendix_d.json`](results/appendix_d.json); ~80% in [01](01_VERDICT.md)).
 - **Why the exponent here is weaker.** Tovey's reduction multiplies the number of variables by $B=\mathrm{polylog}(n)$, and the Taylor cost is linear in the total degree. Removing that factor needs the §5–6 degree compression.
 

@@ -1,0 +1,410 @@
+{
+ "parity_lift_closed_form": {
+  "all_ok": true,
+  "ell_range": [
+   1,
+   128
+  ],
+  "samples": [
+   {
+    "ell": 1,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": true,
+    "log2_max_digit_norm": 1.0
+   },
+   {
+    "ell": 2,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": true,
+    "log2_max_digit_norm": 1.585
+   },
+   {
+    "ell": 3,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": true,
+    "log2_max_digit_norm": 3.17
+   },
+   {
+    "ell": 8,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": true,
+    "log2_max_digit_norm": 12.33
+   },
+   {
+    "ell": 32,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": true,
+    "log2_max_digit_norm": 59.276
+   },
+   {
+    "ell": 128,
+    "closed_equals_division": true,
+    "norm_bound": true,
+    "congruence_on_|y|<=40": "not run",
+    "log2_max_digit_norm": 250.263
+   }
+  ],
+  "negative_control_detects": true
+ },
+ "zeros_counting": {
+  "all_ok": true,
+  "cases": [
+   {
+    "r": 2,
+    "Q": 1,
+    "R": 1,
+    "n": 3,
+    "equations": 2,
+    "ell": 4,
+    "J": 1,
+    "untruncated_degree": 28,
+    "truncated_degree": 16,
+    "V_coeffs_of_H0": [
+     2,
+     0,
+     0,
+     0
+    ],
+    "S_ell_mod_2^ell": 2,
+    "brute": 2,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": null
+   },
+   {
+    "r": 2,
+    "Q": 1,
+    "R": 1,
+    "n": 4,
+    "equations": 2,
+    "ell": 5,
+    "J": 1,
+    "untruncated_degree": 36,
+    "truncated_degree": 20,
+    "V_coeffs_of_H0": [
+     4,
+     -12,
+     144,
+     -1344,
+     11712
+    ],
+    "S_ell_mod_2^ell": 8,
+    "brute": 8,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": null
+   },
+   {
+    "r": 2,
+    "Q": 2,
+    "R": 2,
+    "n": 3,
+    "equations": 2,
+    "ell": 4,
+    "J": 9,
+    "untruncated_degree": 28,
+    "truncated_degree": 16,
+    "V_coeffs_of_H0": [
+     5,
+     0,
+     0,
+     0
+    ],
+    "S_ell_mod_2^ell": 5,
+    "brute": 5,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   },
+   {
+    "r": 2,
+    "Q": 2,
+    "R": 2,
+    "n": 4,
+    "equations": 3,
+    "ell": 5,
+    "J": 12,
+    "untruncated_degree": 54,
+    "truncated_degree": 22,
+    "V_coeffs_of_H0": [
+     2,
+     0,
+     0,
+     0,
+     0
+    ],
+    "S_ell_mod_2^ell": 2,
+    "brute": 2,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   },
+   {
+    "r": 2,
+    "Q": 3,
+    "R": 2,
+    "n": 3,
+    "equations": 2,
+    "ell": 4,
+    "J": 6,
+    "untruncated_degree": 28,
+    "truncated_degree": 16,
+    "V_coeffs_of_H0": [
+     2,
+     -6,
+     72,
+     -672
+    ],
+    "S_ell_mod_2^ell": 4,
+    "brute": 4,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   },
+   {
+    "r": 2,
+    "Q": 3,
+    "R": 2,
+    "n": 4,
+    "equations": 3,
+    "ell": 5,
+    "J": 8,
+    "untruncated_degree": 54,
+    "truncated_degree": 22,
+    "V_coeffs_of_H0": [
+     5,
+     6,
+     -108,
+     1320,
+     -13920
+    ],
+    "S_ell_mod_2^ell": 7,
+    "brute": 7,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   },
+   {
+    "r": 3,
+    "Q": 2,
+    "R": 2,
+    "n": 3,
+    "equations": 2,
+    "ell": 4,
+    "J": 9,
+    "untruncated_degree": 28,
+    "truncated_degree": 16,
+    "V_coeffs_of_H0": [
+     5,
+     0,
+     0,
+     0
+    ],
+    "S_ell_mod_2^ell": 5,
+    "brute": 5,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   },
+   {
+    "r": 3,
+    "Q": 2,
+    "R": 2,
+    "n": 4,
+    "equations": 3,
+    "ell": 5,
+    "J": 12,
+    "untruncated_degree": 54,
+    "truncated_degree": 22,
+    "V_coeffs_of_H0": [
+     2,
+     6,
+     -36,
+     240,
+     -1680
+    ],
+    "S_ell_mod_2^ell": 4,
+    "brute": 4,
+    "separated_equals_direct": true,
+    "ok": true,
+    "negative_control_detects": true
+   }
+  ]
+ },
+ "tanner": {
+  "all_ok": true,
+  "toys": [
+   {
+    "seed": 0,
+    "eps": 0.5,
+    "delta_local": 0.5,
+    "mixing_ok": true,
+    "code_dim": 13,
+    "min_weight": 16,
+    "bound_delta(delta-eps)qd": 0,
+    "bound_nontrivial": false,
+    "ok": true
+   },
+   {
+    "seed": 1,
+    "eps": 0.5,
+    "delta_local": 0.5,
+    "mixing_ok": true,
+    "code_dim": 11,
+    "min_weight": 16,
+    "bound_delta(delta-eps)qd": 0,
+    "bound_nontrivial": false,
+    "ok": true
+   },
+   {
+    "seed": 2,
+    "eps": 0.5,
+    "delta_local": 0.5,
+    "mixing_ok": true,
+    "code_dim": 10,
+    "min_weight": 32,
+    "bound_delta(delta-eps)qd": 0,
+    "bound_nontrivial": false,
+    "ok": true
+   },
+   {
+    "seed": 3,
+    "eps": 0.5,
+    "delta_local": 0.625,
+    "mixing_ok": true,
+    "code_dim": 4,
+    "min_weight": 40,
+    "bound_delta(delta-eps)qd": 10.0,
+    "bound_nontrivial": true,
+    "ok": true
+   },
+   {
+    "seed": 4,
+    "eps": 0.5,
+    "delta_local": 0.625,
+    "mixing_ok": true,
+    "code_dim": 4,
+    "min_weight": 40,
+    "bound_delta(delta-eps)qd": 10.0,
+    "bound_nontrivial": true,
+    "ok": true
+   },
+   {
+    "seed": 5,
+    "eps": 0.5,
+    "delta_local": 0.625,
+    "mixing_ok": true,
+    "code_dim": 4,
+    "min_weight": 40,
+    "bound_delta(delta-eps)qd": 10.0,
+    "bound_nontrivial": true,
+    "ok": true
+   },
+   {
+    "seed": 6,
+    "eps": 0.5,
+    "delta_local": 0.625,
+    "mixing_ok": true,
+    "code_dim": 5,
+    "min_weight": 40,
+    "bound_delta(delta-eps)qd": 10.0,
+    "bound_nontrivial": true,
+    "ok": true
+   },
+   {
+    "seed": 7,
+    "eps": 0.5,
+    "delta_local": 1.0,
+    "mixing_ok": true,
+    "code_dim": 1,
+    "min_weight": 128,
+    "bound_delta(delta-eps)qd": 64.0,
+    "bound_nontrivial": true,
+    "ok": true
+   }
+  ],
+  "constants_ok": true
+ },
+ "greedy_rows": {
+  "all_ok": true,
+  "cases": [
+   {
+    "n": 5,
+    "m": 4,
+    "#F": 12,
+    "D_sequence": [
+     20,
+     4,
+     0
+    ],
+    "rounds": 2,
+    "ok": true
+   },
+   {
+    "n": 5,
+    "m": 4,
+    "#F": 7,
+    "D_sequence": [
+     25,
+     9,
+     1,
+     0
+    ],
+    "rounds": 3,
+    "ok": true
+   },
+   {
+    "n": 6,
+    "m": 4,
+    "#F": 30,
+    "D_sequence": [
+     34,
+     2,
+     0
+    ],
+    "rounds": 2,
+    "ok": true
+   },
+   {
+    "n": 5,
+    "m": 4,
+    "#F": 16,
+    "D_sequence": [
+     16,
+     0
+    ],
+    "rounds": 1,
+    "ok": true
+   },
+   {
+    "n": 4,
+    "m": 4,
+    "#F": 0,
+    "D_sequence": [
+     16,
+     0
+    ],
+    "rounds": 1,
+    "ok": true
+   },
+   {
+    "n": 4,
+    "m": 4,
+    "#F": 2,
+    "D_sequence": [
+     14,
+     2,
+     0
+    ],
+    "rounds": 2,
+    "ok": true
+   }
+  ]
+ },
+ "all_ok": true
+}

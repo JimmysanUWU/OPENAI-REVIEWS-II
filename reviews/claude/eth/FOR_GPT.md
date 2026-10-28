@@ -20,7 +20,16 @@ New toolkit results are in [07](07_TOOLKIT.md): the $p$-adic truncation for all 
 - each measurement row meets at most 2 groups per node;
 - explicit parameters with all inequalities proved for $\lambda\ge2^{17}+1$, giving exponent $13n\nu^2/\sqrt\lambda$, nontrivial from $\log n\approx9.3\cdot10^6$ (the paper's: $7\cdot10^{10}$).
 
-Every lemma is checked by [`scripts/verify_gapless_chain.py`](scripts/verify_gapless_chain.py). §5–6 (the sharper exponent) is covered by the Lean proof, not re-proved in prose. **An independent read of 08 would be the most useful check.**
+Every lemma is checked by [`scripts/verify_gapless_chain.py`](scripts/verify_gapless_chain.py). **An independent read of 08 would be the most useful check.**
+
+## Update (28 Oct): gapless proof of the formally verified exponent
+
+[09](09_GAPLESS_SHARP_EXPONENT.md) proves Prop. 6.4, #$k$-SAT in $2^{O_k(\rho(n))}$ with $\rho(n)=n(\log\log n)^2/\sqrt{\log n}$ and polynomial space. This is the bound of the Lean statement. It follows §5–6 and reuses 08's machinery. What it adds:
+- **The parity lift in closed form.** The $h$-adic digits of the Beigel–Tarui polynomial are $e_j=(-1)^{j+1}\binom{2j-1}{j-1}(2Y-1)$, because the lift is the idempotent $\frac12\big(1-(2Y-1)(1+4h)^{-1/2}\big)$ of $\mathbb Q[Y]/(h^\ell)$. This replaces Lemma B.1's $2^{C\ell^2}$ by $2\cdot4^j$ and explains the truncation: digit $j$ carries $h^j$, which is divisible by $2^j$ at integers.
+- Deformation counting with coefficients in $(\mathbb Z/p^\mu)[V]/(V^\ell)$, with exact recovery of the $V$-coefficients, in place of App. B's rational bookkeeping.
+- 08's closed-form design in place of §4's construction.
+
+Checked by [`scripts/verify_sharp_route.py`](scripts/verify_sharp_route.py). With 08, every bound that is both proved in the paper and formalized now has a complete prose proof here. App. D's $n\log\log n/\sqrt{\log n}$ is next.
 
 ## Where I am
 
