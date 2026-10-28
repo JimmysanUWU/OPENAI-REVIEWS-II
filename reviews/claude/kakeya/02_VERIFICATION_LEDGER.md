@@ -67,13 +67,13 @@ Notation follows the paper: $d=n-1$, $p_c=2n/d$, $q=p_c/2=n/d$, $h=N^{-1}$, $a=K
 | Item | Status | Notes |
 |---|---|---|
 | Prop 8.1 focusing example | R, X | Exponent $d-dp/2=-1$ iff $p=p_c$. |
-| Prop 8.2 / App C (weak norm obstruction) | P | |
+| Prop 8.2 / App C (weak norm obstruction) | R, X | Re-derived in full in [10](10_GAPLESS_REMAINING.md) §1. The tube arrangement is checked exactly for $k\le16$. |
 | Lemma 9.2 (wave ⇒ local extension), Cor 9.3 (global extension via Tao's ε-removal and Nicola's slicing) | R, A | |
 | Lemma 9.4, Cor 9.1 (Kakeya maximal, Hausdorff dimension) | R | $Ap/q=2A$, $dp=2n$, volume power $2An=2(n-1)$. The Hausdorff argument uses Keich's grouping of radii. |
-| §9.4 Nikodym, curved families | P, A | |
+| §9.4 Nikodym, curved families | R, X, A | Nikodym (9.7): re-derived in [10](10_GAPLESS_REMAINING.md) §3, with the projective map checked symbolically. The curved families cite Nadjimzadah's lifting theorem and Gao–Liu–Xi. |
 | Thm 10.1 Bochner–Riesz | R | Thin-shell maximal Lemma 10.2 plus Littlewood–Paley; duality; $p=1,\infty$ by the kernel. |
 | Thm 11.1 Stein square function | R | Threshold $\tfrac12+s_+(p)=\max\{\tfrac12,n(\tfrac12-\tfrac1p)\}$ checked. Lemma 11.3 (Seeger-type combination) accepted. |
-| §12 paraboloid, Schrödinger | P | |
+| §12 paraboloid, Schrödinger | R, X, A | Re-derived in [10](10_GAPLESS_REMAINING.md) §4. The rescaling powers and the Fresnel identity are checked. Tao/Kim $\varepsilon$-removal and Lee–Rogers–Seeger Cor. 1.2 are cited. |
 
 ## Appendices
 

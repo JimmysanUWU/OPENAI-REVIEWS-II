@@ -22,6 +22,10 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 - **ETH, formally verified exponent** ([`09_GAPLESS_SHARP_EXPONENT.md`](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md)). #$k$-SAT in $2^{O_k(n(\log\log n)^2/\sqrt{\log n})}$ time and polynomial space: the paper's Prop. 6.4 and the Lean statement's bound. New: the parity lift's $h$-adic digits in closed form, $e_j=(-1)^{j+1}\binom{2j-1}{j-1}(2Y-1)$, replacing App. B.1's $2^{C\ell^2}$ bound by $2\cdot4^j$. Checked by [`verify_sharp_route.py`](reviews/claude/eth/scripts/verify_sharp_route.py).
 - **ETH, the headline exponent** ([`10_GAPLESS_TENSOR_CONTRACTION.md`](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md)). Theorem 1.1, #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ ($2^{O(n/\sqrt{\log n})}$ at fixed density), via App. D's Boolean tensor contraction. App. D is verified completely, with explicit constants for its recursion. Its child identity and one recursion level at the honest precision are checked end to end by [`verify_tensor_contraction.py`](reviews/claude/eth/scripts/verify_tensor_contraction.py).
 - **Kakeya** ([`08_GAPLESS_PROOF.md`](reviews/claude/kakeya/08_GAPLESS_PROOF.md), [`09_GAPLESS_CONSEQUENCES.md`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md)). Theorems 1.1 and 1.2 in every dimension with the sharp power $2/p_c$, and the five other formal targets (restriction, Kakeya maximal, Hausdorff dimension, Bochner–Riesz, Stein). Every step is written out or is a cited textbook theorem with hypotheses checked; the fibre Dirichlet existence theory is cited and also formally verified. A new script verifies the wave current's conservation directly, to $10^{-39}$.
+- **Kakeya, the remaining claims** ([`10_GAPLESS_REMAINING.md`](reviews/claude/kakeya/10_GAPLESS_REMAINING.md)).
+  - Complete proofs of cone and paraboloid restriction, Schrödinger local smoothing, the Nikodym maximal conjecture, and the weak-norm obstruction (App. C).
+  - Apps. B, D and E are checked at the level of exponents and new identities.
+  - Checked by [`verify_remaining_claims.py`](reviews/claude/kakeya/scripts/verify_remaining_claims.py).
 
 ## Distillation round 2 (recyclable toolkit)
 
@@ -38,7 +42,7 @@ See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results pr
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–10 gapless proofs, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–09 gapless proofs, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project

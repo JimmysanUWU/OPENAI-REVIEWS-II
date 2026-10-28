@@ -1,0 +1,166 @@
+{
+ "tubes_appendix_C": {
+  "all_ok": "True",
+  "rows": [
+   {
+    "k": 6,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.375,
+    "k*|E| (d=1)": 0.019,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.01266
+   },
+   {
+    "k": 8,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.45,
+    "k*|E| (d=1)": 0.0215,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.01076
+   },
+   {
+    "k": 10,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.545,
+    "k*|E| (d=1)": 0.0272,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.01088
+   },
+   {
+    "k": 12,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.617,
+    "k*|E| (d=1)": 0.0298,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.009942
+   },
+   {
+    "k": 14,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.647,
+    "k*|E| (d=1)": 0.0351,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.010018
+   },
+   {
+    "k": 16,
+    "separated_at_X<=-1/2": true,
+    "|B_X| <= 2a/k + 2^m w": "True",
+    "max k|B_X|/alpha": 0.666,
+    "k*|E| (d=1)": 0.0306,
+    "sum|S_nu| (d=1)": 0.00390625,
+    "input-side union at X=-1/2 (= 2^k w = alpha/16)": 0.015625,
+    "output-side mean |B_X| on J": 0.007659
+   }
+  ]
+ },
+ "nikodym_projective_map": {
+  "all_ok": true,
+  "rows": [
+   {
+    "n": 2,
+    "det": "-1/(s**3 - 3*s**2*t0 + 3*s*t0**2 - t0**3)",
+    "lines_to_parallel_lines": true,
+    "area_jacobian_squared": "(x1**2 + 1)**(-2)",
+    "ok": true
+   },
+   {
+    "n": 3,
+    "det": "-1/(s**4 - 4*s**3*t0 + 6*s**2*t0**2 - 4*s*t0**3 + t0**4)",
+    "lines_to_parallel_lines": true,
+    "area_jacobian_squared": "1/(x1**6 + 3*x1**4*x2**2 + 3*x1**4 + 3*x1**2*x2**4 + 6*x1**2*x2**2 + 3*x1**2 + x2**6 + 3*x2**4 + 3*x2**2 + 1)",
+    "ok": true
+   },
+   {
+    "n": 4,
+    "det": "-1/(s - t0)**5",
+    "lines_to_parallel_lines": true,
+    "area_jacobian_squared": "1/(x1**8 + 4*x1**6*x2**2 + 4*x1**6*x3**2 + 4*x1**6 + 6*x1**4*x2**4 + 12*x1**4*x2**2*x3**2 + 12*x1**4*x2**2 + 6*x1**4*x3**4 + 12*x1**4*x3**2 + 6*x1**4 + 4*x1**2*x2**6 + 12*x1**2*x2**4*x3**2 + 12*x1**2*x2**4 + 12*x1**2*x2**2*x3**4 + 24*x1**2*x2**2*x3**2 + 12*x1**2*x2**2 + 4*x1**2*x3**6 + 12*x1**2*x3**4 + 12*x1**2*x3**2 + 4*x1**2 + x2**8 + 4*x2**6*x3**2 + 4*x2**6 + 6*x2**4*x3**4 + 12*x2**4*x3**2 + 6*x2**4 + 4*x2**2*x3**6 + 12*x2**2*x3**4 + 12*x2**2*x3**2 + 4*x2**2 + x3**8 + 4*x3**6 + 6*x3**4 + 4*x3**2 + 1)",
+    "ok": true
+   }
+  ]
+ },
+ "paraboloid_schrodinger": {
+  "all_ok": true,
+  "q_delta_expansion": "delta**2*v**4/4 + v**2",
+  "delta_powers_d1..6": [
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0"
+  ],
+  "fresnel_max_rel_err": 3.62018293645977e-16,
+  "jacobian_d2": "-lambda**4/(16*t**4)"
+ },
+ "cone_slicing": {
+  "all_ok": true,
+  "rows": [
+   {
+    "n": 2,
+    "pc": "4",
+    "measure_factor": "sqrt(2) rho^(n-1)"
+   },
+   {
+    "n": 3,
+    "pc": "3",
+    "measure_factor": "sqrt(2) rho^(n-1)"
+   },
+   {
+    "n": 4,
+    "pc": "8/3",
+    "measure_factor": "sqrt(2) rho^(n-1)"
+   },
+   {
+    "n": 5,
+    "pc": "5/2",
+    "measure_factor": "sqrt(2) rho^(n-1)"
+   }
+  ]
+ },
+ "appendix_E": {
+  "all_ok": true,
+  "charpoly": "t**3 + 2*t**2*z - t*x**2 - t*y**2 - t*z**2 - 2*x**2*z - y**2*z - 2*z**3",
+  "linear_factor_solutions": 0,
+  "top_eigenvalue": 1.0,
+  "transverse_hessian_formula": [
+   [
+    1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.6666666666666666
+   ]
+  ],
+  "transverse_hessian_fd": [
+   [
+    0.999999993922529,
+    0.0
+   ],
+   [
+    0.0,
+    0.6666666663157628
+   ]
+  ],
+  "E2_random_pencils_rel_err": 3.082972570567222e-07,
+  "hellmann_feynman_err": 6.087822335132387e-08
+ },
+ "appendix_D_algebra": {
+  "all_ok": true,
+  "completed_square_max_rel_err": 6.570985333554055e-16,
+  "rank_one_expansion_max_rel_err": 5.861977570020827e-14
+ },
+ "all_ok": true
+}

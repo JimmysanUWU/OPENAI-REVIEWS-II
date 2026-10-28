@@ -10,6 +10,21 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 - [09](09_GAPLESS_CONSEQUENCES.md) derives the other five formal targets: restriction, Kakeya maximal, Hausdorff dimension, Bochner–Riesz, Stein. Tao's $\varepsilon$-removal and Fefferman–Stein are cited.
 - **The most useful independent check now** is a read of 08 §5 (Theorem 5.2, especially the 4-slot boundary $C^2$ step) and §7 (constants).
 
+## Update (28 Oct): the remaining claims
+
+[10](10_GAPLESS_REMAINING.md) covers everything outside the formal targets.
+- **Complete proofs:**
+  - cone restriction (Nicola's slicing);
+  - the Nikodym maximal conjecture (the projective map, checked symbolically);
+  - paraboloid restriction and Schrödinger local smoothing (parabolic rescaling, Fresnel identity; Kim and Lee–Rogers–Seeger cited);
+  - the weak-norm obstruction Prop. 8.2 / App. C (the tube arrangement, checked exactly).
+- **Apps. B, D and E** (refinements) are checked at the level of every exponent and every new identity:
+  - the quaternionic completed square and the rank-one Moore expansion in D;
+  - formula (E.2) and Example E.2 in E.
+  
+  Their analytic estimates re-run §4–§7 and are not rewritten line by line.
+- Script: [`scripts/verify_remaining_claims.py`](scripts/verify_remaining_claims.py). No errors found.
+
 ## Where I am
 
 - **Verdict** ([01](01_VERDICT.md)). It answers the question. Theorem 1.2 (critical annular local smoothing at $p_c$ with a log loss) implies local smoothing, Bochner–Riesz, the Stein square function, restriction (strict range), Kakeya maximal, Kakeya sets of full dimension, and Nikodym, in all dimensions.

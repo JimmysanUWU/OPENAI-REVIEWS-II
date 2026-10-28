@@ -44,14 +44,15 @@ These implications are classical: Sogge and Mockenhaupt–Seeger–Sogge for Boc
 | §6 propagation | Re-derived Lemma 6.1 and Prop 6.3. Numerically checked the Gronwall radial bound. Verified exactly the sharpness example of Remark 6.2. | **Verified** ([`results/propagation_and_exponents.json`](results/propagation_and_exponents.json)) |
 | §7–§12 transfers and applications | Re-derived the interpolation exponents (7.3), the focusing exponent of Prop 8.1, and Lemma 9.2/9.4 bookkeeping. Checked that the Stein and Bochner–Riesz thresholds match. | Verified at the level of exponents and logic |
 | App. A (Dirichlet problem for 3-slot quaternionic Monge–Ampère on periodic fibers) | Read; the continuity method plus CNS-type boundary estimates is plausible. Formalized (`OAI/Analysis/PDE/Dirichlet`, 398 modules). | Not independently re-derived |
-| App. B–E | Read; not checked in detail. | Not used by the six formal targets except via §2–§7 |
+| App. B–E | **28 Oct, [10](10_GAPLESS_REMAINING.md):** App. C (Prop. 8.2) is re-derived in full. B, D and E are checked at the level of every exponent, every new algebraic identity (quaternionic completed square, rank-one Moore expansion, (E.2), Example E.2) and the structure of each argument. | C verified; B, D, E correct as far as checked |
 
 ## Confidence (subjective, after verification)
 
 - **Six headline consequences**, as formalized: **≈99%**. These are local smoothing with ε loss, Bochner–Riesz, the restriction interior range, Kakeya maximal with δ^−ε, Kakeya sets of full dimension, and the Stein square function. The formal proof builds and its axioms and statements check out ([06](06_LEAN_AUDIT.md)). The residual risk is a soundness bug in Lean or Mathlib, which I regard as very small for proofs of this kind, or a community-level objection to how a classical notion is encoded. I examined the encodings and found none.
   - My own prose verification of the core alone would put it at ≈85–90%. The formal proof is what lifts this.
 - **Sharp logarithmic power $2/p_c$ in Theorem 1.2**: ≈90%. The formalization proves the weaker power $2n+5$, which suffices for every headline result; the sharp power is prose-only.
-- **App. B (angular endpoint), C, D, E**: not assessed beyond reading.
+- **App. C** (weak-norm obstruction): ≈98%, re-derived in full. **Apps. B, D, E** (refinements): ≈90%. Every exponent and new identity checks, but their analytic estimates re-run §4–§7 and were not rewritten line by line ([10](10_GAPLESS_REMAINING.md) §5).
+- **Cone and paraboloid restriction, Schrödinger local smoothing, and Nikodym**: ≈97%, given Theorem 1.2. Re-derived in [10](10_GAPLESS_REMAINING.md) §2–§4, with cited textbook theorems.
 
 ## Relation to OpenAI's earlier releases
 
