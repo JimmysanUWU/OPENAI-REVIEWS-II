@@ -81,7 +81,7 @@ Notation follows the paper: $d=n-1$, $p_c=2n/d$, $q=p_c/2=n/d$, $h=N^{-1}$, $a=K
 |---|---|---|
 | Thm A.1 (periodic Dirichlet problem, 3-slot quaternionic MA) | P, L | Continuity method; comparison via the averaged linearization; $C^0$ by barriers; gradient by differentiating; boundary $C^2$ by CNS with quaternionic rigid motions in an added 4th periodic slot; Evans–Krylov. The structure is standard. Uniform ellipticity holds because the symbol $\hat\xi^*Q^{-1}\hat\xi$ is comparable to $|\xi|^2$ on the solution set. |
 | App B (angular endpoint) | — | Not checked. |
-| App D ($n=2$ linear version) | P | Read. Notable: for $n=2$ the determinant is linear in the unknown, so no Monge–Ampère theory is needed. |
+| App D ($n=2$ linear version) | P, R, X | Read. Notable: for $n=2$ the determinant is linear in the unknown, so no Monge–Ampère theory is needed. **28 Oct:** proved in full in [13](13_PLANAR_ENTRY_POINT.md) with the explicit Dirac-pencil chart. Checked: the disk operator ($4\cdot10^{-25}$), the energy algebra, and the mixed cofactor's conservation (exact). |
 | App E (symmetric pencils; cubic sheet) | P, R, X | Irreducibility of the cubic in Ex. E.2 re-derived. **28 Oct:** proved in full in [11](11_FRAMEWORK_POSITIVITY_ENGINE.md) (Theorem 11.2, Corollary 11.3). The pencil current is checked directly in target coordinates for five pencils, and the cubic's transverse Hessian $\mathrm{diag}(1,\frac23)$ is confirmed. |
 
 ## Findings

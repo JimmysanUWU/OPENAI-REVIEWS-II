@@ -1519,28 +1519,36 @@
    "project": "KAK",
    "group": "Refinements and frameworks",
    "kind": "theorem",
-   "title": "Planar case by a linear Dirichlet problem",
-   "statement": "n=2: the L^4 estimate with log^{1/2} via a linear auxiliary problem on a disk.",
+   "title": "Planar case by a linear Dirichlet problem (Theorem 13.1)",
+   "statement": "n=2: ||e^{-iT|D|} phi(D/N) f||_{L^4(R^2 x [1,2])} <= C log(2+N)^{1/2} ||f||_4, hence local smoothing in R^{2+1} for all 2<=p<inf with eps loss. The fibre problem is linear: C(B_fib):H_fib(u)=mu, i.e. 4 sum Re(conj e_a e_b) d_{X_a X_b} u + 4|J|^2 Lap_W u = mu on a disk, solved by Fourier series and the Dirichlet Laplacian; the energy (1/2) int(-u)mu is controlled by a completed-square inequality A:H >= D_B(H). No Monge-Ampere theory.",
    "status": [
-    "PARTIAL",
+    "PROVED",
     "CHECKED"
    ],
    "where": [
+    {
+     "file": "reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md",
+     "label": "Thm 13.1, Cor. 13.2, §1-5"
+    },
     {
      "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
      "label": "§5"
     }
    ],
    "depends_on": [
-    "KAK.C.WAVE",
+    "KAK.PENCIL",
+    "KAK.FRAME",
     "KAK.PROP"
    ],
    "checks": [
+    "reviews/claude/kakeya/scripts/verify_planar_entry.py",
+    "reviews/claude/kakeya/scripts/verify_positivity_engine.py",
     "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
    ],
    "paper_ref": "App. D",
    "formal": null,
-   "confidence": 0.9
+   "confidence": 0.97,
+   "notes": "Uses the 2D Dirac pencil, whose chart is explicit: W is the stereographic coordinate of (P - Phi e_2)/tau on the complexified unit circle and Phi = P_2 - sqrt(tau^2 - P_1^2). For n=2 the eps-loss form is due to Guth-Wang-Zhang (2020) by a different method."
   },
   {
    "id": "KAK.APP.E",
@@ -1829,14 +1837,15 @@
     "KAK.C.WAVE",
     "KAK.PROP"
    ],
-   "status": "OPEN",
+   "status": "DONE",
    "owner": "claude",
    "difficulty": "substantial",
    "acceptance": [
     "every step proved or a cited textbook theorem",
     "App. D's remaining analytic steps re-derived",
     "checks for the planar identities"
-   ]
+   ],
+   "deliverable": "reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md"
   },
   {
    "id": "T.KAK.3",

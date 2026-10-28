@@ -45,6 +45,10 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - The Monge–Ampère operator is the gradient of a concave energy.
   - Ellipticity forces at most 4 coordinates per slot.
   - Checked by [`verify_slot_calculus.py`](reviews/claude/kakeya/scripts/verify_slot_calculus.py).
+- **Kakeya: the planar entry point** ([`13_PLANAR_ENTRY_POINT.md`](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md)).
+  - A complete proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ with $\log^{1/2}$ loss, using only linear PDE (the paper's App. D, every step written out).
+  - Recommended as the entry point to the paper.
+  - Checked by [`verify_planar_entry.py`](reviews/claude/kakeya/scripts/verify_planar_entry.py).
 
 ## Distillation round 2 (recyclable toolkit)
 
@@ -64,7 +68,7 @@ tools/                    roadmap checker and its negative controls
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project

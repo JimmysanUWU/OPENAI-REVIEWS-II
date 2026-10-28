@@ -1,0 +1,26 @@
+{
+ "A": {
+  "chart_inverts": true,
+  "dPhi": true,
+  "e_in_kernel": true,
+  "Jcal": true,
+  "conormal": true
+ },
+ "L": {
+  "disk_operator_relative_error": 3.804869862951137e-25,
+  "B_fib_error": 9.983993604081346e-25
+ },
+ "EM": {
+  "D_B=beta det b": 3.476469427210988e-15,
+  "completed_square": 2.740019487961806e-15,
+  "M_TT": 7.152933800824712e-11,
+  "M:H=2D": 1.1307135610672101e-14,
+  "nu M nu": 6.217248937900877e-15,
+  "min_A:H-D_B": 3.4035792255581714
+ },
+ "P": {
+  "mixed_cofactor_divergence_nonzero_components": 0,
+  "control_non_hessian": 3
+ },
+ "all_ok": true
+}

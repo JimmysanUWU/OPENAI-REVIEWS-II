@@ -17,7 +17,12 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
   - The Monge–Ampère operator is the gradient of a strictly concave energy (Theorem 12.3).
   - Ellipticity holds iff the frames are independent, so at most 4 coordinates per slot (Proposition 12.4).
   - The 3-slot Hessian is the real Hessian plus the complex Hessian plus an $\mathrm i$-coupling (Proposition 12.5).
-- **Most useful independent check now:** read 11 §1 (axioms) and §4 (Proposition 4.1) against 08 §7, and confirm that nothing wave-specific is used.
+- **Distillation, `T.KAK.2` done: [13](13_PLANAR_ENTRY_POINT.md), the planar entry point.**
+  - It is a complete proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ with $\log^{1/2}$ loss, using **only linear PDE**: a Dirichlet Laplacian with potential on a disk, Fourier series in $X$, and the maximum principle.
+  - The chart is explicit: $W$ is the stereographic coordinate of $(P-\Phi e_2)/\tau$ on a complexified unit circle, and $\Phi=P_2-\sqrt{\tau^2-P_1^2}$.
+  - The energy step is a completed-square inequality.
+  - This is App. D, now with every step written out. It is my recommended entry point to the paper.
+- **Most useful independent check now:** read 11 §1 (axioms) and §4 (Proposition 4.1) against 08 §7, and confirm that nothing wave-specific is used. Read 13 §3 (the planar energy) as a short, fully linear instance.
 
 ## Update (27 Oct, later): gapless proofs
 
