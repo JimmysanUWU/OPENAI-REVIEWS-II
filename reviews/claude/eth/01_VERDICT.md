@@ -12,7 +12,7 @@ The part that refutes ETH is short and elementary. It also proves the result on 
 |---|---|---|---|
 | **ETH false** (and SETH, #ETH, NSETH, Gap-ETH): #$k$-SAT in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ | §2.8 + §3 + §4 + App. A + App. B.4 | Every lemma re-derived; core lemmas and full pipeline checked in exact arithmetic. **Also formally verified via Prop. 6.4 (below).** | **≈99%** |
 | Prop. 6.4: #$k$-SAT in $2^{O_k(\rho(n))}$, $\rho(n)=n(\log\log n)^2/\sqrt{\log n}$ | §5, §6, App. A, App. B | Re-derived; Lemmas 5.1/5.2 checked exactly; **OpenAI's Lean proof built locally, only standard axioms, statement byte-identical** | **≈99%** |
-| Thm 1.1 headline: $2^{O_k(n\log\log n/\sqrt{\log n})}$, and $2^{O(n/\sqrt{\log n})}$ at fixed density | App. D (tensor contraction) | Structure followed; Lemma D.4, (D.10), Lemma D.5, (D.12) checked exactly; recursion bookkeeping D.4.5–D.4.7 **not** fully re-derived | ~80% |
+| Thm 1.1 headline: $2^{O_k(n\log\log n/\sqrt{\log n})}$, and $2^{O(n/\sqrt{\log n})}$ at fixed density | App. D (tensor contraction) | **Re-derived completely (28 Oct, [10](10_GAPLESS_TENSOR_CONTRACTION.md))**, including the recursion's bookkeeping. The child identity (D.16), the tile expansion, one recursion level at the honest precision, and both encodings are checked exactly. Not formalized. | ≈95% |
 | Cor. 1.2 (Max-$k$-SAT), Cor. 1.3 (colourings, matchings), Cor. C.2 (local maps) | standard reductions | Checked | 95% |
 | Cor. 1.4 / C.1 (E^NP circuit lower bounds) | Williams' witness-circuit argument, cited | Not independently checked | — |
 | Lean statement `exact_count_and_sat` | — | Faithful to Prop. 6.4. **OpenAI's formal proof builds; only standard axioms; elaborated statement identical** ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)) | formally verified |
@@ -47,5 +47,5 @@ The construction needs $R\ll Q$: low degree, yet local at every node. This is th
 
 ## What remains open
 
-- **Appendix D** is a separate mechanism: Cauchy deformation, 2-adic tapered Hermite recovery and mode expansion. It supplies Theorem 1.1's sharper exponent and Corollary 1.4. I verified its local lemmas exactly. Its recursion (precision growth, child sizes, enumeration counts) deserves a full independent pass.
+- ~~**Appendix D.**~~ **Closed (28 Oct).** This separate mechanism (Cauchy deformation, 2-adic tapered Hermite recovery and mode expansion) supplies Theorem 1.1's sharper exponent and Corollary 1.4. Its recursion is now re-derived with explicit constants in [10](10_GAPLESS_TENSOR_CONTRACTION.md), and checked end to end on toy networks. I found no error. One stated inequality ($u\ge\lambda^{4/5}$) is stronger than the proof needs.
 - ~~**The Lean proof.**~~ **Closed (27 Oct).** OpenAI's formal proof of exactly this statement builds locally (3,091 modules). It uses only `propext`, `Classical.choice` and `Quot.sound`. Its elaborated statement is byte-identical to the supplied file's. ETH's falsity is therefore formally verified, modulo Lean/Mathlib soundness. See [06 §6.A](06_LEAN_STATEMENT_AUDIT.md).

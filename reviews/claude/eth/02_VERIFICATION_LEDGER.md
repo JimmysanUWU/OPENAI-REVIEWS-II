@@ -66,8 +66,8 @@ As a negative control, I deleted one measurement row per group. This broke the k
 | Lemma D.5 (tapered Hermite recovery) | R, X | Recovered $F(0)\bmod2^p$ from random lifts of the data mod $2^{p_t}$ in 46 trials. Negative control: with $p_t=p$, recovery failed in 46/46. |
 | (D.12) geometric mode expansion | X | Error valuation $\ge28$ after 12 terms, in all 32 crossing cases tested. |
 | (D.13)–(D.15) mode counting $\exp(O(M/\sqrt u))$ | R | Generating-function bound with $\theta=\sqrt{M/(Dp_t)}$. |
-| Lemma D.3 packing; D.4.6 children; D.4.7 totals; (D.11) precision | **P** | Followed the logic; did not re-derive every inequality in (D.4)–(D.6) and (D.11). |
-| Lemma D.2 (sparse systems as tensor networks) | P | The degree-array encoding with $M=O(n\nu)$ wires is plausible; not fully checked. |
+| Lemma D.3 packing; D.4.6 children; D.4.7 totals; (D.11) precision | R, X | Re-derived in [10](10_GAPLESS_TENSOR_CONTRACTION.md) §5–§7 with explicit constants ($p\le41Cs(d+1)2^{a_{d-1}}$, $p_t/D_t\le34M/u$). The child identity (D.16) is checked exactly on 66 cases, and one level at the honest precision on 8. The inequalities hold from $\log_2\lambda\approx26$. |
+| Lemma D.2 (sparse systems as tensor networks) | R, X | Re-derived in [10](10_GAPLESS_TENSOR_CONTRACTION.md) §9. The degree-array networks reproduce the common-zero count exactly on 6 systems. |
 
 ## D. Corollaries and appendices C
 

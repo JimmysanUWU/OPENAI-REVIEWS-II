@@ -499,7 +499,7 @@ Also $\sigma n\le n/(\log n)^{1/(2k)}$. Multiplying by the node count gives the 
 
 - **Covered, with every step proved:** subexponential exact counting for $k$-CNF; the refutation of ETH and #ETH; polynomial space.
 - **The paper's §5–6: proved in part II, [09](09_GAPLESS_SHARP_EXPONENT.md).** That route is lifted parity tests, Tanner codes on $\varepsilon$-biased Cayley graphs, and cross-equation 2-adic truncation. It removes the sparsification loss and gives exponent $n(\log\log n)^2/\sqrt{\log n}$ for every $k$. This is the theorem OpenAI formalized; its Lean proof builds and is audited in [06](06_LEAN_STATEMENT_AUDIT.md). Part II reuses this file's §2 and §4–6. The cross-equation truncation is also proved for every prime in [07](07_TOOLKIT.md) E2.
-- **Not re-proved: App. D**, which removes one $\log\log n$ factor (verified numerically in [`results/appendix_d.json`](results/appendix_d.json); ~80% in [01](01_VERDICT.md)).
+- **App. D: proved in part III, [10](10_GAPLESS_TENSOR_CONTRACTION.md).** It removes one $\log\log n$ factor by Boolean tensor contraction.
 - **Why the exponent here is weaker.** Tovey's reduction multiplies the number of variables by $B=\mathrm{polylog}(n)$, and the Taylor cost is linear in the total degree. Removing that factor needs the §5–6 degree compression.
 
 ## 10. Cross-references

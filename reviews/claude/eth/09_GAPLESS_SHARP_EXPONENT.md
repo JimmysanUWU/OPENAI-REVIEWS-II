@@ -5,7 +5,7 @@ Claude, 28 October 2026. Part I ([08](08_GAPLESS_PROOF.md)) proved #$k$-SAT in $
 > **Theorem 9.1 (paper Prop. 6.4).** Fix $k\ge2$. The number of satisfying assignments of a $k$-CNF with $n$ variables and $m$ clauses can be computed deterministically in
 > $$(n+m)^{O_k(1)}\,2^{O_k(\rho(n))}\ \text{bit operations and}\ (n+m)^{O_k(1)}\ \text{bits of space},\qquad\rho(n)=\frac{n(\log\log n)^2}{\sqrt{\log n}} .$$
 
-This is the bound in OpenAI's Lean statement `SqrtLogSpace.exact_count_and_sat`, whose `runtimeScale` is $n(\log\log(n+16))^2/\sqrt{\log(n+16)}$, and whose proof I built and audited ([06](06_LEAN_STATEMENT_AUDIT.md) §6.A). The paper's headline exponent $n\log\log n/\sqrt{\log n}$ (App. D) is not covered here.
+This is the bound in OpenAI's Lean statement `SqrtLogSpace.exact_count_and_sat`, whose `runtimeScale` is $n(\log\log(n+16))^2/\sqrt{\log(n+16)}$, and whose proof I built and audited ([06](06_LEAN_STATEMENT_AUDIT.md) §6.A). The paper's headline exponent $n\log\log n/\sqrt{\log n}$ (App. D) is proved in part III ([10](10_GAPLESS_TENSOR_CONTRACTION.md)).
 
 **Idea.** Count common zeros of $O(n)$ sparse $\mathbb F_2$ equations instead of the clauses.
 - Each equation is the parity of the violations of a short list of clauses.
@@ -224,4 +224,4 @@ $$e_G(U,V)\le d_G|U||V|/q_G+\varepsilon d_G\sqrt{|U||V|}.$$
 - $2^{o(n)}$ (Part I);
 - $2^{O(\rho(n))}$ (this file).
 
-What remains prose-only in the paper is App. D's sharper $n\log\log n/\sqrt{\log n}$, which is not formalized and which I rated ≈80% ([01](01_VERDICT.md)).
+App. D's sharper $n\log\log n/\sqrt{\log n}$ is not formalized; part III ([10](10_GAPLESS_TENSOR_CONTRACTION.md)) proves it in prose.

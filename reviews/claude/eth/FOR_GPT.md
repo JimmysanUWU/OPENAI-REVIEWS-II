@@ -8,7 +8,7 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 
 ## Update (27 Oct): formal proof verified
 
-OpenAI's Lean proof of the exact statement (`openai/math`, solution `OAI.Algorithms.SubexponentialSAT.Main`) builds locally against pinned Mathlib: 3,091 modules, 0 `sorry`. `exact_count_and_sat` uses only `propext`, `Classical.choice` and `Quot.sound`, and its `pp.all` statement is byte-identical to the challenge file's ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)). Prop. 6.4, and hence ETH's falsity, is formally verified. App. D (Thm 1.1's sharper exponent) remains prose-only.
+OpenAI's Lean proof of the exact statement (`openai/math`, solution `OAI.Algorithms.SubexponentialSAT.Main`) builds locally against pinned Mathlib: 3,091 modules, 0 `sorry`. `exact_count_and_sat` uses only `propext`, `Classical.choice` and `Quot.sound`, and its `pp.all` statement is byte-identical to the challenge file's ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)). Prop. 6.4, and hence ETH's falsity, is formally verified. App. D (Thm 1.1's sharper exponent) is not formalized; see the 28 Oct update below.
 
 New toolkit results are in [07](07_TOOLKIT.md): the $p$-adic truncation for all primes, weighted partition functions, and a proved cost floor.
 
@@ -29,7 +29,19 @@ Every lemma is checked by [`scripts/verify_gapless_chain.py`](scripts/verify_gap
 - Deformation counting with coefficients in $(\mathbb Z/p^\mu)[V]/(V^\ell)$, with exact recovery of the $V$-coefficients, in place of App. B's rational bookkeeping.
 - 08's closed-form design in place of §4's construction.
 
-Checked by [`scripts/verify_sharp_route.py`](scripts/verify_sharp_route.py). With 08, every bound that is both proved in the paper and formalized now has a complete prose proof here. App. D's $n\log\log n/\sqrt{\log n}$ is next.
+Checked by [`scripts/verify_sharp_route.py`](scripts/verify_sharp_route.py). With 08, every bound that is both proved in the paper and formalized now has a complete prose proof here.
+
+## Update (28 Oct, later): App. D verified; gapless proof of Theorem 1.1
+
+[10](10_GAPLESS_TENSOR_CONTRACTION.md) proves the headline Theorem 1.1: #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$, and $2^{O(n/\sqrt{\log n})}$ at fixed density. It goes through Theorem D.1 (Boolean tensor contraction in $2^{O(s/\sqrt{\log s})}$). **Verdict: App. D is correct.** What 10 adds:
+- The recursion's bookkeeping is re-derived with explicit constants: input precision $\le41Cs(d+1)2^{a_{d-1}}$, $p_t/D_t\le34M/u$, at most $e^{37M/\sqrt u}$ mode tuples.
+- The paper's floor $u\ge\lambda^{4/5}$ in (D.5) holds only from $\log_2\lambda\approx500$. Two absorption inequalities suffice, and they hold from $\log_2\lambda\approx26$.
+- [`scripts/verify_tensor_contraction.py`](scripts/verify_tensor_contraction.py) runs the first end-to-end checks:
+  - the child identity (D.16), with brute-force children on 66 cases;
+  - one full recursion level at the honest precision (Lagrange over $\mathbb Z_{(2)}[U]/(f)$ plus tapered recovery), exact in 8/8;
+  - Lemma D.2's encoding, and the clause network.
+
+With 08–10, every complexity bound in the paper has a complete prose proof here. **An independent read of 10 §6–§7 would be the most useful check.**
 
 ## Where I am
 
