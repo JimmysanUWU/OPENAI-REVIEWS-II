@@ -39,6 +39,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The formally verified exponent rho(n) (Part II)](#p-eth-ii) | Reduction to sparse F_2 systems; parity lift; the bound OpenAI proved in Lean. | 5 | `ETH.I.SPARS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [The headline exponent (Part III, App. D)](#p-eth-iii) | Boolean tensor contraction by a 2-adic Cauchy-kernel deformation. | 9 | `ETH.I.SPARS`, `ETH.II.LIFT`, `ETH.II.TANNER`, `ETH.II.GREEDY` |
 | [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
+| [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -595,6 +596,12 @@ Notation used throughout the ETH paths:
 | Cauchy kernel W_d, nodes S | W_d(T) = prod_{q in S \ {d}} (T-q)/C'(0), S = {-L..L-1}, L = 2^a. W(t) is the shift by t; it is 2-adically small off the diagonal at t + 2^{a+1}z. | [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §3 |
 | packets, tiles, modes, children | Edges are packed into slots of L; crossing tiles expand into modes L_Z = sum j^b X_y of 2-adic weight b+1. Fixing a mode tuple splits the network into children of &lt;= 6M/r edges. | [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §6 |
 | ct(N) | The contraction (sum over Boolean edge assignments of the product of vertex tensors) of a tensor network N. | [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §1 |
+| readout system | Boolean variables, factors Phi_f with ports, and a readout rho; Z(rho) = sum_x prod_f Phi_f(rho(x)). CNFs, weighted factor graphs and tensor networks are readout systems; the deformation acts on the readout. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §0 |
+| local node, measured locality | A parameter value where every port of a group-g factor depends only on x_g and the measurements y = (C_h x_h)_h; the sum then factorizes over groups (separation). | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Definition 1.1 |
+| mode, weight, source, target | Near a node the readout is local part + sum kappa_Z L_Z with kappa_Z of filtration weight w_Z; L_Z reads its source group; targeted modes are read only by one group. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Definition 2.2 |
+| Hermite loss l_t | -v(E_t(0)) = sum_q m_q (v(t-q) - v(q)): how much closer the other nodes are to t than to 0. Zero for unit-distance nodes; D_i Delta(i) on residue systems. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 3.1 |
+| depth profile, slope Delta(i) | Multiplicities m(v_2(t)) on the residue system mod 2^{a+1}; Delta(i) = sum_j (j/2^j)(m(i) - m(i+j)) sets both the loss and the node cost. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 3.3 |
+| square-root law | Both architectures pay M/sqrt(number of node coordinates) per call: Part I via the central limit window, Part III via Hardy-Ramanujan; open in general (T.ETH.5). | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §7 |
 <!-- END GENERATED: glossary-eth -->
 
 ### ETH is false (Part I)
@@ -630,6 +637,8 @@ Notation used throughout the ETH paths:
 **Statement.** Given a deformation of degree <=R' with Q&lt;p nodes whose rows are local for measured partitions, the sum over {0,1}^n of a product of factors (clauses, or any factors with values in a free Z/p^mu-algebra, degree measured in the algebra) is computed with Q\*C_q(n)\*(2beta+1)^{c_\*}\*2r\*2^s\*poly operations, q=floor(dR'/Q).
 
 **Proof sketch.** H(T) = sum_x prod_f Phi_{C_f}(&lt;P_{f,v}(T),x>) has degree <= dR' and H(0) = #F. At each node t, the jet of H(t+z) mod z^J is a sum over x of polynomials of degree <= q in x. Moebius inversion on the Boolean lattice reduces it to Boolean substitutions over sets E with |E| <= q (C_q(n) of them). Locality of the rows makes each sum factor over the groups once the measurement values y in [-beta,beta]^{c_\*} are fixed (separation by measurements). The nodes 1..Q have unit differences mod p > Q, so the Chinese remainder theorem recovers H(0) mod p^mu.
+
+**Alternative proof.** Uses [`ETH.U.MAIN`](#p-eth-unified--eth-u-main). As the formal-neighbourhood instance of the unified deformation theorem: unit nodes, Boolean coordinate modes, measurements. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 4.3)
 
 **Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py)
 
@@ -769,6 +778,8 @@ Assumes: [`ETH.I.SPARS`](#p-eth-i--eth-i-spars), [`ETH.II.LIFT`](#p-eth-ii--eth-
 
 **Proof sketch.** Hermite interpolation F(0) = sum_t E_t(0) P_t(-t/alpha), with node multiplicities q_t = h(u - v_2(t))^+ tapered by 2-adic depth (sum q_t > deg F). The 2-adic valuation of E_t(0) is >= -6hD_t (a geometric sum over depth levels), so knowing each jet mod 2^{p_t} with p_t = p + 8hD_t + 8M(a+1) determines F(0) mod 2^p.
 
+**Alternative proof.** Uses [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite). As Hermite recovery with valuation loss on the residue system mod 2^{a+1}: loss D_i Delta(i) <= 6 h D_i for the taper. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 3.3)
+
 **Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §4, Lemma 4.1; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E5 · **checks:** [verify_appendix_d](reviews/claude/eth/scripts/verify_appendix_d.py), [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
 
 #### <a id="p-eth-iii--eth-iii-pack"></a>4. `ETH.III.PACK` — Packing edges into packets
@@ -788,6 +799,8 @@ Assumes: [`ETH.I.SPARS`](#p-eth-i--eth-i-spars), [`ETH.II.LIFT`](#p-eth-ii--eth-
 **Statement.** At T=t+alpha zeta, crossing entries expand in tile moments sum_j j^b X_y with 2-adic weight b+1, and F(T)=sum_{beta: sum w beta&lt;P} prod_g ct(N_{g,beta}) mod 2^P, with children of <=6M/r edges and exp(2 pi sqrt(MP/D_t)) mode tuples.
 
 **Proof sketch.** At a node t of depth i, an entry W_{xy} for a crossing tile y_0 is a geometric series in j (y = y_0 + 2^{i+1}j) with ratio of valuation >= 1. So rows become lambda_x(X) + sum_Z kappa_{x,Z} L_Z(X), with modes L_Z = sum_j j^b X_y of weight b+1. Expanding in formal modes, the coefficient of Z^beta has valuation >= sum w beta, so only tuples with sum w beta < P survive. For each tuple the summand factors over the groups r into children with <= 6M/r edges. Rankin's bound counts the tuples by exp(2 pi sqrt(MP/D_t)).
+
+**Alternative proof.** Uses [`ETH.U.NODE`](#p-eth-unified--eth-u-node), [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack). As the targeted node lemma with tile power moments as modes (weights b+1, source = tile group, target = crossing rows). ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 2.7)
 
 **Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §6, Lemmas 6.1-6.4 · **checks:** [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
 
@@ -931,6 +944,111 @@ Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii
 **Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py)
 <!-- END GENERATED: path-p-eth-more -->
 
+### One deformation theorem for Parts I–III (13)
+<a id="p-eth-unified"></a>
+
+<!-- BEGIN GENERATED: path-p-eth-unified -->
+*The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors.*
+
+Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack).
+
+#### <a id="p-eth-unified--eth-u-node"></a>1. `ETH.U.NODE` — Node lemma: filtered mode expansion
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** Readout system Z(rho) = sum_x prod_f Phi_f(rho(x)). If rho = lambda + sum_Z kappa_Z L_Z mod a_P with lambda local (modulo measurements), kappa_Z in a_{w_Z} and L_Z reading only its source group, then Z(rho) = sum_y sum over correction indices of weight < P of products of group sums: (targeted modes) beta with sum w beta < P and symbolic coefficient extraction; (Boolean coordinate modes) pinned sets E with sum w < P and Moebius points U subset E.
+
+**Proof sketch.** Replace rho by lambda + sum kappa L (Phi_f has coefficients in the ring). Expand prod_f Phi_f(lambda + sum kappa zeta) in formal modes zeta: the coefficient of zeta^beta lies in a_{sum w beta}, so only light monomials survive. Targeted: each group's factors see only modes targeted at it, so coefficients factor by group and L^beta by source. Boolean: multilinearize, extract [zeta^E] by Moebius inversion at the points 1_U, and the pinning x_E = 1 replaces the monomial. In both cases separation by measurements factorizes the sum over groups.
+
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 2.3, Lemma 2.4, Lemma 1.2, Definition 2.2 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) · *Note:* Part I uses the formal (z-adic) neighbourhood with all coordinates as Boolean modes; Part III the 2-adic neighbourhood with structured tile modes. The script runs one generic implementation on genuine instances of both.
+
+#### <a id="p-eth-unified--eth-u-hermite"></a>2. `ETH.U.HERMITE` — Hermite recovery with valuation loss
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** Nodes t in a discretely valued field with multiplicities m_t and scalings alpha_t (v(alpha_t) >= v(t-q)): F(0) = sum_t E_t(0) sum_{j&lt;m_t} [z^j](F(t+alpha_t z)/E_t(t+alpha_t z)) (-t/alpha_t)^j, and knowing the jets mod varpi^{P_t}, P_t = P + l_t + (m_t-1) max(0,-v(t/alpha_t)), l_t = -v(E_t(0)), determines F(0) mod varpi^P; one digit less fails. For the residue system mod 2^{a+1} with a depth profile m: l_t = D_i Delta(i), Delta(i) = sum_j (j/2^j)(m(i)-m(i+j)).
+
+**Proof sketch.** Hermite: G(T) = sum_t E_t(T) P_t((T-t)/alpha_t) agrees with F to order m_t at every node and has degree < sum m_t, so G = F. E_t(t+alpha_t z) = prod (1 + alpha_t z/(t-q))^{m_q} is integral with constant term 1. A change delta at coefficient j propagates with valuation >= P_t - l_t - (m_t-1)max(0,-v(t/alpha_t)); at the top coefficient the bound is attained. The loss l_t = sum_q m_q (v(t-q) - v(q)) counts how much closer the other nodes are to t than to 0: zero for unit-distance nodes (Part I), D_i Delta(i) for residue systems (Part III).
+
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 3.1, Cor. 3.2, Cor. 3.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py)
+
+#### <a id="p-eth-unified--eth-u-count"></a>3. `ETH.U.COUNT` — Correction counts, two-sided
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** With c_w modes of weight w: #{beta : sum w beta < P} <= inf_theta e^{theta(P-1)} prod_w (1-e^{-theta w})^{-c_w} <= exp(pi sqrt(2cP/3)) if c_w <= c; and log_2 # >= (1/8) min(P-1, sqrt(c(P-1))) if c_w >= c for all w < P. Boolean: #{U subset E : weight(E) < P} <= inf_theta e^{theta(P-1)} prod_Z (1 + 2 e^{-theta w_Z}) (= C_{P-1}(n) for n weight-1 modes).
+
+**Proof sketch.** Rankin's trick with sum_w -log(1-e^{-theta w}) <= pi^2/(6 theta). Lower bound: if c >= (P-1)/8 take subsets of weight-1 modes; otherwise all subsets of the modes of weight <= sqrt(2(P-1)/c) - 1 have total weight < P, giving 2^{c W} >= 2^{0.7 sqrt(c(P-1))}.
+
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 4.1 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py)
+
+#### <a id="p-eth-unified--eth-u-main"></a>4. `ETH.U.MAIN` — Interpolation through local nodes (the unified deformation theorem)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.U.NODE`](#p-eth-unified--eth-u-node), [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite), [`ETH.U.COUNT`](#p-eth-unified--eth-u-count)
+
+**Statement.** Readout system, deformation rho(T) with rho(0) = incidence readout (degree R', deformed-port degree d), recovery data with sum m_t > dR', and at each node a mode expansion (formal, or varpi-adic at more than dR' unit-separated points): Z is computed mod varpi^P by node evaluation, interpolation and Hermite recovery, with work sum_t |Xi_t| Y_t N_t sum_g W_{t,g} + poly. Parts I-II (formal, unit nodes, Boolean modes, brute-force groups) and Part III (2-adic, residue system, tile modes, recursive groups) are corollaries.
+
+**Proof sketch.** H(T) = Z(rho(T)) has degree <= dR' and H(0) = Z (substitution homomorphism, degree measured in the coefficient algebra). The node lemma gives H near each node: directly as a jet (formal case) or at points t + alpha zeta, interpolated in zeta over a Vandermonde unit (varpi-adic case). Hermite recovery with loss returns H(0). The cost is the number of correction indices times measurement values times group costs, per node and point.
+
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 4.2, Cor. 4.3, Cor. 4.4, Definition 0.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py)
+
+#### <a id="p-eth-unified--eth-i-defcount"></a>5. `ETH.I.DEFCOUNT` — Deformation counting
+
+*PROVED, CHECKED* · prose chain: closed
+
+**Statement.** Given a deformation of degree <=R' with Q&lt;p nodes whose rows are local for measured partitions, the sum over {0,1}^n of a product of factors (clauses, or any factors with values in a free Z/p^mu-algebra, degree measured in the algebra) is computed with Q\*C_q(n)\*(2beta+1)^{c_\*}\*2r\*2^s\*poly operations, q=floor(dR'/Q).
+
+**Proof sketch.** H(T) = sum_x prod_f Phi_{C_f}(&lt;P_{f,v}(T),x>) has degree <= dR' and H(0) = #F. At each node t, the jet of H(t+z) mod z^J is a sum over x of polynomials of degree <= q in x. Moebius inversion on the Boolean lattice reduces it to Boolean substitutions over sets E with |E| <= q (C_q(n) of them). Locality of the rows makes each sum factor over the groups once the measurement values y in [-beta,beta]^{c_\*} are fixed (separation by measurements). The nodes 1..Q have unit differences mod p > Q, so the Chinese remainder theorem recovers H(0) mod p^mu.
+
+**Alternative proof.** Uses [`ETH.U.MAIN`](#p-eth-unified--eth-u-main). As the formal-neighbourhood instance of the unified deformation theorem: unit nodes, Boolean coordinate modes, measurements. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 4.3)
+
+**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py)
+
+#### <a id="p-eth-unified--eth-iii-child"></a>6. `ETH.III.CHILD` — Modes and the child identity
+
+*PROVED, CHECKED* · prose chain: closed · uses [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack)
+
+**Statement.** At T=t+alpha zeta, crossing entries expand in tile moments sum_j j^b X_y with 2-adic weight b+1, and F(T)=sum_{beta: sum w beta&lt;P} prod_g ct(N_{g,beta}) mod 2^P, with children of <=6M/r edges and exp(2 pi sqrt(MP/D_t)) mode tuples.
+
+**Proof sketch.** At a node t of depth i, an entry W_{xy} for a crossing tile y_0 is a geometric series in j (y = y_0 + 2^{i+1}j) with ratio of valuation >= 1. So rows become lambda_x(X) + sum_Z kappa_{x,Z} L_Z(X), with modes L_Z = sum_j j^b X_y of weight b+1. Expanding in formal modes, the coefficient of Z^beta has valuation >= sum w beta, so only tuples with sum w beta < P survive. For each tuple the summand factors over the groups r into children with <= 6M/r edges. Rankin's bound counts the tuples by exp(2 pi sqrt(MP/D_t)).
+
+**Alternative proof.** Uses [`ETH.U.NODE`](#p-eth-unified--eth-u-node), [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack). As the targeted node lemma with tile power moments as modes (weights b+1, source = tile group, target = crossing rows). ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 2.7)
+
+**Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §6, Lemmas 6.1-6.4 · **checks:** [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
+
+#### <a id="p-eth-unified--eth-iii-hermite"></a>7. `ETH.III.HERMITE` — Tapered 2-adic Hermite recovery
+
+*PROVED, CHECKED* · prose chain: closed
+
+**Statement.** With multiplicities q_t=h max(0,u-v_2(t)), F(0) mod 2^p is recovered from F(t+alpha z) mod 2^{p_t}, p_t=p+8hD_t+8M(a+1); loss v_2(E_t(0))>=-6hD_t.
+
+**Proof sketch.** Hermite interpolation F(0) = sum_t E_t(0) P_t(-t/alpha), with node multiplicities q_t = h(u - v_2(t))^+ tapered by 2-adic depth (sum q_t > deg F). The 2-adic valuation of E_t(0) is >= -6hD_t (a geometric sum over depth levels), so knowing each jet mod 2^{p_t} with p_t = p + 8hD_t + 8M(a+1) determines F(0) mod 2^p.
+
+**Alternative proof.** Uses [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite). As Hermite recovery with valuation loss on the residue system mod 2^{a+1}: loss D_i Delta(i) <= 6 h D_i for the taper. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 3.3)
+
+**Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §4, Lemma 4.1; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E5 · **checks:** [verify_appendix_d](reviews/claude/eth/scripts/verify_appendix_d.py), [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
+
+#### <a id="p-eth-unified--eth-k-e4"></a>8. `ETH.K.E4` — Cost floor of the method
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+
+**Statement.** For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n).
+
+**Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
+
+**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py)
+
+#### <a id="p-eth-unified--eth-u-floor3"></a>9. `ETH.U.FLOOR3` — Cost floor of the 2-adic architecture
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite), [`ETH.U.COUNT`](#p-eth-unified--eth-u-count)
+
+**Statement.** In App. D's architecture (Cauchy-kernel deformation, nodes S\{0}, any depth profile on depths < a, formula-based Hermite recovery at output precision p, tile modes with >= M/2 crossing wires), some node needs >= 2^{(1/8) min(p-1, sqrt(3/16) M/sqrt(a))} correction tuples; with a <= log_2 M and p >= M/C at the top level this is 2^{Omega(M/sqrt(log M))}, matching Thm D.1.
+
+**Proof sketch.** Depth-free node cost: a depth-i node has >= M/D_i modes per weight and needs precision >= p + D_i Delta(i), so modes x precision >= M Delta(i). Profile lemma: Hermite needs sum 2^{a-i} m(i) > M(2L-1), and a downward induction gives m(i) <= 2 Delta\*(a-i), so Delta\* > 3M/(8a). The lower bound of ETH.U.COUNT gives the count. The exact optimum of the profile problem and the paper's linear taper both tend to 6M/a.
+
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) · *Note:* Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5.
+<!-- END GENERATED: path-p-eth-unified -->
+
 ## Index of nodes
 
 Each node links to its first appearance on a path.
@@ -940,7 +1058,7 @@ Each node links to its first appearance on a path.
 |---|---|---|---|
 | [`ETH.I.SPARS`](#p-eth-i--eth-i-spars) | Disjoint sparsification | PROVED, CHECKED | P.ETH.I |
 | [`ETH.I.TOVEY`](#p-eth-i--eth-i-tovey) | OR gates and Tovey cycles | PROVED, CHECKED | P.ETH.I |
-| [`ETH.I.DEFCOUNT`](#p-eth-i--eth-i-defcount) | Deformation counting | PROVED, CHECKED | P.ETH.I |
+| [`ETH.I.DEFCOUNT`](#p-eth-i--eth-i-defcount) | Deformation counting | PROVED, CHECKED | P.ETH.I, P.ETH.UNIFIED |
 | [`ETH.I.SWAP`](#p-eth-i--eth-i-swap) | Swap interpolation in closed form | PROVED, CHECKED | P.ETH.I |
 | [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer) | Transfer to a formula; balanced schedules | PROVED, CHECKED | P.ETH.I |
 | [`ETH.I.PARAM`](#p-eth-i--eth-i-param) | Counting at &lt;=3 occurrences, explicit parameters | PROVED, CHECKED | P.ETH.I |
@@ -952,9 +1070,9 @@ Each node links to its first appearance on a path.
 | [`ETH.II.MAIN`](#p-eth-ii--eth-ii-main) | #k-SAT in 2^{O(rho(n))} (formally verified bound) | FORMAL, PROVED, CHECKED | P.ETH.II |
 | [`ETH.III.RING`](#p-eth-iii--eth-iii-ring) | Coefficient ring and interpolation points | PROVED | P.ETH.III |
 | [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy) | Cauchy kernel | PROVED, CHECKED | P.ETH.III |
-| [`ETH.III.HERMITE`](#p-eth-iii--eth-iii-hermite) | Tapered 2-adic Hermite recovery | PROVED, CHECKED | P.ETH.III |
+| [`ETH.III.HERMITE`](#p-eth-iii--eth-iii-hermite) | Tapered 2-adic Hermite recovery | PROVED, CHECKED | P.ETH.III, P.ETH.UNIFIED |
 | [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack) | Packing edges into packets | PROVED | P.ETH.III |
-| [`ETH.III.CHILD`](#p-eth-iii--eth-iii-child) | Modes and the child identity | PROVED, CHECKED | P.ETH.III |
+| [`ETH.III.CHILD`](#p-eth-iii--eth-iii-child) | Modes and the child identity | PROVED, CHECKED | P.ETH.III, P.ETH.UNIFIED |
 | [`ETH.III.TENSOR`](#p-eth-iii--eth-iii-tensor) | Boolean tensor contraction | PROVED, CHECKED | P.ETH.III |
 | [`ETH.III.FIXED`](#p-eth-iii--eth-iii-fixed) | Fixed clause density | PROVED, CHECKED | P.ETH.III |
 | [`ETH.III.SPARSEZ`](#p-eth-iii--eth-iii-sparsez) | Sparse systems by contraction | PROVED, CHECKED | P.ETH.III |
@@ -967,7 +1085,12 @@ Each node links to its first appearance on a path.
 | [`ETH.N.LIFTP`](#p-eth-more--eth-n-liftp) | p-adic lift for every prime (E2) with a closed form | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.N.FQ`](#p-eth-more--eth-n-fq) | Counting zeros of sparse systems over any finite field (new) | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.K.E3`](#p-eth-more--eth-k-e3) | Exact partition functions of bounded-degree factor graphs | NEW, PROVED | P.ETH.MORE |
-| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Cost floor of the method | NEW, PROVED, CHECKED | P.ETH.MORE |
+| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Cost floor of the method | NEW, PROVED, CHECKED | P.ETH.MORE, P.ETH.UNIFIED |
+| [`ETH.U.NODE`](#p-eth-unified--eth-u-node) | Node lemma: filtered mode expansion | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
+| [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite) | Hermite recovery with valuation loss | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
+| [`ETH.U.COUNT`](#p-eth-unified--eth-u-count) | Correction counts, two-sided | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
+| [`ETH.U.MAIN`](#p-eth-unified--eth-u-main) | Interpolation through local nodes (the unified deformation theorem) | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
+| [`ETH.U.FLOOR3`](#p-eth-unified--eth-u-floor3) | Cost floor of the 2-adic architecture | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
 | [`KAK.Q.CALC`](#p-kak-planar--kak-q-calc) | Quaternionic slot calculus | PROVED, CHECKED | P.KAK.PLANAR, P.KAK.ENGINE, P.KAK.PAPER |
 | [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift) | Lifted current and push-forward | PROVED, CHECKED | P.KAK.PLANAR, P.KAK.ENGINE, P.KAK.PAPER |
 | [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave) | The positive wave current | PROVED, CHECKED | P.KAK.PAPER |

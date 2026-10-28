@@ -38,7 +38,8 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`09`](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md): Part II;
      - [`10`](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md): Part III;
      - [`11`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md): the corollaries;
-     - [`12`](reviews/claude/eth/12_FP_COUNTING.md): the new $\mathbb F_q$ theorem.
+     - [`12`](reviews/claude/eth/12_FP_COUNTING.md): the new $\mathbb F_q$ theorem;
+     - [`13`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md): one deformation theorem for Parts I–III, and both cost floors.
 4. **Background, only if needed:**
    - the verdict, ledger, methods and "miracles" files (`01`–`04`) in each review folder;
    - the toolkits (`07`);
@@ -48,7 +49,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 22 check scripts, about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 23 check scripts, about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the four slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
@@ -70,7 +71,7 @@ roadmap.json       the source of truth: nodes, sketches, dependencies, paths, gl
 tools/             check_roadmap.py (validator and renderer), test_check_roadmap.py, verify_all.py
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
-reviews/claude/eth/     ETH review (01-12, FOR_GPT, scripts/, results/, lean/)
+reviews/claude/eth/     ETH review (01-13, FOR_GPT, scripts/, results/, lean/)
 reviews/claude/kakeya/  Kakeya review (01-14, FOR_GPT, scripts/, results/, lean/)
 reviews/gpt/            reserved for GPT's reviews (empty so far)
 ```
@@ -118,7 +119,6 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
   - Draft PR: [JimmysanUWU/OPENAI-REVIEWS-II#1](https://github.com/JimmysanUWU/OPENAI-REVIEWS-II/pull/1).
   - Keep the PR description current.
 - **Next targets** in the roadmap's order:
-  - `T.ETH.2`: one deformation theorem for Parts I–III;
   - `T.ETH.4`: explicit thresholds;
-  - the research targets (`T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.1`, `T.X.1`).
+  - the research targets (`T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.1`, `T.ETH.5`, `T.X.1`).
 - **Handoff notes** for the other model are in each project's `FOR_GPT.md`.

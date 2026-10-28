@@ -117,7 +117,7 @@ Suppose $\delta\le\delta_0:=(\log\log n)^2/\sqrt{\log n}$.
 
 **Remark (thresholds are not intrinsic).** The cost floor drops below $1$ (beats $2^n$) already at $\log_2n\approx2^{10}$. The paper's parameters need $\log_2n\approx7\cdot10^{10}$ ([`results/parameters.json`](results/parameters.json)). The floor ignores the balance conditions of Lemma 4.5 and the clause-degree factor $d/n\le3$, so it is a lower bound, not an achievable threshold. Still, the astronomically large threshold is mostly a matter of the paper's constants, not of the method.
 
-Beyond this floor, gains need non-symmetric designs (the open part of E1), or a different decoupling. Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
+Beyond this floor, gains need non-symmetric designs (the open part of E1), or a different decoupling. [13](13_UNIFIED_DEFORMATION.md) places E4 in a common framework with App. D, and proves App. D's own floor (Theorem 5.4). Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
 
 ---
 

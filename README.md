@@ -22,6 +22,10 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 - **ETH** ([`08_GAPLESS_PROOF.md`](reviews/claude/eth/08_GAPLESS_PROOF.md)). A complete, self-contained proof that #$k$-SAT runs in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ time and polynomial space, refuting ETH. The arithmetic is mod $p^\mu$, the swap rows are in closed form, and the parameters are explicit (exponent $13n\nu^2/\sqrt\lambda$). Every lemma is checked by [`verify_gapless_chain.py`](reviews/claude/eth/scripts/verify_gapless_chain.py).
 - **ETH, formally verified exponent** ([`09_GAPLESS_SHARP_EXPONENT.md`](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md)). #$k$-SAT in $2^{O_k(n(\log\log n)^2/\sqrt{\log n})}$ time and polynomial space: the paper's Prop. 6.4 and the Lean statement's bound. New: the parity lift's $h$-adic digits in closed form, $e_j=(-1)^{j+1}\binom{2j-1}{j-1}(2Y-1)$, replacing App. B.1's $2^{C\ell^2}$ bound by $2\cdot4^j$. Checked by [`verify_sharp_route.py`](reviews/claude/eth/scripts/verify_sharp_route.py).
+- **ETH, one deformation theorem for Parts I–III** ([`13_UNIFIED_DEFORMATION.md`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md)).
+  - Swap interpolation and App. D are two instances of *interpolation through local nodes*: a filtered node lemma, Hermite recovery with valuation loss, and correction counts.
+  - New: the cost floor of App. D's architecture, $2^{\Omega(M/\sqrt{\log M})}$ per call. With E4, both $\sqrt{\log}$ barriers are theorems.
+  - Checked by [`verify_unified_deformation.py`](reviews/claude/eth/scripts/verify_unified_deformation.py).
 - **ETH, corollaries and a new theorem** ([`11_GAPLESS_COROLLARIES.md`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md), [`12_FP_COUNTING.md`](reviews/claude/eth/12_FP_COUNTING.md)).
   - Proofs of all of the paper's corollaries. Cor. 1.4 is found to need App. D.
   - **New:** counting zeros of sparse polynomial systems over any fixed finite field in $2^{O(n(\log\log n)^2/\sqrt{\log n})}$. This is the $\mathbb F_p$ analogue of the paper's Theorem 2.2, with a closed-form $p$-adic lift. Checked by [`verify_fp_counting.py`](reviews/claude/eth/scripts/verify_fp_counting.py).

@@ -51,10 +51,10 @@ The checker enforces that a node proved in prose depends only on nodes proved in
 <!-- BEGIN GENERATED: summary -->
 | Project | Results | FORMAL | PROVED | PROVED_CITED | PARTIAL | HEURISTIC | NEW | CHECKED |
 |---|---|---|---|---|---|---|---|---|
-| ETH | 30 | 1 | 28 | 2 | 0 | 0 | 4 | 22 |
+| ETH | 35 | 1 | 33 | 2 | 0 | 0 | 9 | 27 |
 | KAK | 34 | 6 | 28 | 6 | 0 | 0 | 8 | 18 |
 
-Targets: 14 open, 0 in progress, 4 done.
+Targets: 14 open, 0 in progress, 5 done.
 <!-- END GENERATED: summary -->
 
 ## 2. ETH: *The Exponential Time Hypothesis Is False*
@@ -121,6 +121,14 @@ flowchart TD
     ETH_K_E3["ETH.K.E3<br/>Exact partition functions of bounded-degree factor graphs (new)"]
     ETH_K_E4["ETH.K.E4<br/>Cost floor of the method (new)"]
   end
+  subgraph ETH_g5["Unified deformation"]
+    ETH_U_NODE["ETH.U.NODE<br/>Node lemma: filtered mode expansion (new)"]
+    ETH_U_HERMITE["ETH.U.HERMITE<br/>Hermite recovery with valuation loss (new)"]
+    ETH_U_COUNT["ETH.U.COUNT<br/>Correction counts, two-sided (new)"]
+    ETH_U_MAIN["ETH.U.MAIN<br/>Interpolation through local nodes (the unified deformation theorem) (new)"]
+    ETH_U_FLOOR3["ETH.U.FLOOR3<br/>Cost floor of the 2-adic architecture (new)"]
+  end
+  ETH_U_MAIN -.->|alt| ETH_I_DEFCOUNT
   ETH_I_SWAP --> ETH_I_TRANSFER
   ETH_I_DEFCOUNT --> ETH_I_PARAM
   ETH_I_SWAP --> ETH_I_PARAM
@@ -137,8 +145,12 @@ flowchart TD
   ETH_II_ZEROS --> ETH_II_MAIN
   ETH_II_TANNER --> ETH_II_MAIN
   ETH_II_GREEDY --> ETH_II_MAIN
+  ETH_U_HERMITE -.->|alt| ETH_III_HERMITE
   ETH_III_CAUCHY --> ETH_III_CHILD
   ETH_III_PACK --> ETH_III_CHILD
+  ETH_U_NODE -.->|alt| ETH_III_CHILD
+  ETH_III_CAUCHY -.->|alt| ETH_III_CHILD
+  ETH_III_PACK -.->|alt| ETH_III_CHILD
   ETH_III_RING --> ETH_III_TENSOR
   ETH_III_CAUCHY --> ETH_III_TENSOR
   ETH_III_HERMITE --> ETH_III_TENSOR
@@ -165,8 +177,13 @@ flowchart TD
   ETH_I_SWAP --> ETH_K_E3
   ETH_I_TRANSFER --> ETH_K_E3
   ETH_I_SWAP --> ETH_K_E4
+  ETH_U_NODE --> ETH_U_MAIN
+  ETH_U_HERMITE --> ETH_U_MAIN
+  ETH_U_COUNT --> ETH_U_MAIN
+  ETH_U_HERMITE --> ETH_U_FLOOR3
+  ETH_U_COUNT --> ETH_U_FLOOR3
   class ETH_II_MAIN formal
-  class ETH_I_SPARS,ETH_I_TOVEY,ETH_I_DEFCOUNT,ETH_I_SWAP,ETH_I_TRANSFER,ETH_I_PARAM,ETH_I_MAIN,ETH_II_LIFT,ETH_II_ZEROS,ETH_II_TANNER,ETH_II_GREEDY,ETH_III_RING,ETH_III_CAUCHY,ETH_III_HERMITE,ETH_III_PACK,ETH_III_CHILD,ETH_III_TENSOR,ETH_III_FIXED,ETH_III_SPARSEZ,ETH_III_MAIN,ETH_C_MAXSAT,ETH_C_GRAPH,ETH_C_LOCAL,ETH_N_LIFTP,ETH_N_FQ,ETH_K_E3,ETH_K_E4 proved
+  class ETH_I_SPARS,ETH_I_TOVEY,ETH_I_DEFCOUNT,ETH_I_SWAP,ETH_I_TRANSFER,ETH_I_PARAM,ETH_I_MAIN,ETH_II_LIFT,ETH_II_ZEROS,ETH_II_TANNER,ETH_II_GREEDY,ETH_III_RING,ETH_III_CAUCHY,ETH_III_HERMITE,ETH_III_PACK,ETH_III_CHILD,ETH_III_TENSOR,ETH_III_FIXED,ETH_III_SPARSEZ,ETH_III_MAIN,ETH_C_MAXSAT,ETH_C_GRAPH,ETH_C_LOCAL,ETH_N_LIFTP,ETH_N_FQ,ETH_K_E3,ETH_K_E4,ETH_U_NODE,ETH_U_HERMITE,ETH_U_COUNT,ETH_U_MAIN,ETH_U_FLOOR3 proved
   class ETH_C_CIRC1,ETH_C_CIRC2 cited
   classDef formal fill:#c8e6c9,stroke:#2e7d32,color:#000
   classDef proved fill:#bbdefb,stroke:#1565c0,color:#000
@@ -211,6 +228,11 @@ flowchart TD
 | `ETH.N.FQ` | **Counting zeros of sparse systems over any finite field (new).** Fixed q: m&lt;=cn polynomials over F_q in n variables, each with at most (log n)^c terms of degree &lt;=k: common zeros counted in 2^{O(rho(n))} time, poly space. | NEW, PROVED, CHECKED | closed | `ETH.N.LIFTP`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT` | [eth/12](reviews/claude/eth/12_FP_COUNTING.md) Thm 12.1, Cor. 12.2 | [verify_fp_counting](reviews/claude/eth/scripts/verify_fp_counting.py) | — |
 | `ETH.K.E3` | **Exact partition functions of bounded-degree factor graphs.** Weighted factor graphs with rational weights: exact partition function in 2^{O(n(log log n)^2/sqrt(log n))}. | NEW, PROVED | closed | `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` | [eth/07](reviews/claude/eth/07_TOOLKIT.md) E3 | — | — |
 | `ETH.K.E4` | **Cost floor of the method.** For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n). | NEW, PROVED, CHECKED | closed | `ETH.I.SWAP` | [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 | [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) | — |
+| `ETH.U.NODE` | **Node lemma: filtered mode expansion.** Readout system Z(rho) = sum_x prod_f Phi_f(rho(x)). If rho = lambda + sum_Z kappa_Z L_Z mod a_P with lambda local (modulo measurements), kappa_Z in a_{w_Z} and L_Z reading only its source group, then Z(rho) = sum_y sum over correction indices of weight &lt; P of products of group sums: (targeted modes) beta with sum w beta &lt; P and symbolic coefficient extraction; (Boolean coordinate modes) pinned sets E with sum w &lt; P and Moebius points U subset E. *Note:* Part I uses the formal (z-adic) neighbourhood with all coordinates as Boolean modes; Part III the 2-adic neighbourhood with structured tile modes. The script runs one generic implementation on genuine instances of both. | NEW, PROVED, CHECKED | closed | — | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 2.3, Lemma 2.4, Lemma 1.2, Definition 2.2 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
+| `ETH.U.HERMITE` | **Hermite recovery with valuation loss.** Nodes t in a discretely valued field with multiplicities m_t and scalings alpha_t (v(alpha_t) &gt;= v(t-q)): F(0) = sum_t E_t(0) sum_{j&lt;m_t} [z^j](F(t+alpha_t z)/E_t(t+alpha_t z)) (-t/alpha_t)^j, and knowing the jets mod varpi^{P_t}, P_t = P + l_t + (m_t-1) max(0,-v(t/alpha_t)), l_t = -v(E_t(0)), determines F(0) mod varpi^P; one digit less fails. For the residue system mod 2^{a+1} with a depth profile m: l_t = D_i Delta(i), Delta(i) = sum_j (j/2^j)(m(i)-m(i+j)). | NEW, PROVED, CHECKED | closed | — | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 3.1, Cor. 3.2, Cor. 3.3 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
+| `ETH.U.COUNT` | **Correction counts, two-sided.** With c_w modes of weight w: #{beta : sum w beta &lt; P} &lt;= inf_theta e^{theta(P-1)} prod_w (1-e^{-theta w})^{-c_w} &lt;= exp(pi sqrt(2cP/3)) if c_w &lt;= c; and log_2 # &gt;= (1/8) min(P-1, sqrt(c(P-1))) if c_w &gt;= c for all w &lt; P. Boolean: #{U subset E : weight(E) &lt; P} &lt;= inf_theta e^{theta(P-1)} prod_Z (1 + 2 e^{-theta w_Z}) (= C_{P-1}(n) for n weight-1 modes). | NEW, PROVED, CHECKED | closed | — | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 4.1 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
+| `ETH.U.MAIN` | **Interpolation through local nodes (the unified deformation theorem).** Readout system, deformation rho(T) with rho(0) = incidence readout (degree R', deformed-port degree d), recovery data with sum m_t &gt; dR', and at each node a mode expansion (formal, or varpi-adic at more than dR' unit-separated points): Z is computed mod varpi^P by node evaluation, interpolation and Hermite recovery, with work sum_t \|Xi_t\| Y_t N_t sum_g W_{t,g} + poly. Parts I-II (formal, unit nodes, Boolean modes, brute-force groups) and Part III (2-adic, residue system, tile modes, recursive groups) are corollaries. | NEW, PROVED, CHECKED | closed | `ETH.U.NODE`, `ETH.U.HERMITE`, `ETH.U.COUNT` | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 4.2, Cor. 4.3, Cor. 4.4, Definition 0.3 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
+| `ETH.U.FLOOR3` | **Cost floor of the 2-adic architecture.** In App. D's architecture (Cauchy-kernel deformation, nodes S\{0}, any depth profile on depths &lt; a, formula-based Hermite recovery at output precision p, tile modes with &gt;= M/2 crossing wires), some node needs &gt;= 2^{(1/8) min(p-1, sqrt(3/16) M/sqrt(a))} correction tuples; with a &lt;= log_2 M and p &gt;= M/C at the top level this is 2^{Omega(M/sqrt(log M))}, matching Thm D.1. *Note:* Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5. | NEW, PROVED, CHECKED | closed | `ETH.U.HERMITE`, `ETH.U.COUNT` | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
 <!-- END GENERATED: eth-nodes -->
 
 ## 3. Kakeya: *Local smoothing for the Euclidean wave equation*
@@ -428,7 +450,7 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 | ID | Kind | Title | Status | Owner | Builds on | Goal | Acceptance |
 |---|---|---|---|---|---|---|---|
 | `T.ETH.1` | research | Non-symmetric swap designs | OPEN | — | `ETH.I.SWAP`, `ETH.K.E4` | Find the least p-biased measure of the set where a real polynomial of degree &lt;R differs from parity on the cube; either prove e^{-O(R^2/Q)} for all polynomials (making the cost floor a barrier for the whole group algebra) or construct a non-symmetric design that beats the exponent (log log n)^2/sqrt(log n). | a proof or construction with a precise statement; an exact check script with a negative control; roadmap updated |
-| `T.ETH.2` | distillation | A unified deformation theorem | OPEN | — | `ETH.I.DEFCOUNT`, `ETH.III.CHILD`, `ETH.III.HERMITE`, `ETH.K.E4` | One abstract statement covering the degree-controlled deformations (Parts I-II) and App. D's 2-adic deformation, with a cost functional that explains both sqrt(log) barriers. | abstract theorem with hypotheses; both instances derived as corollaries; barrier computation for each instance |
+| `T.ETH.2` | distillation | A unified deformation theorem | DONE | claude | `ETH.I.DEFCOUNT`, `ETH.III.CHILD`, `ETH.III.HERMITE`, `ETH.K.E4` | One abstract statement covering the degree-controlled deformations (Parts I-II) and App. D's 2-adic deformation, with a cost functional that explains both sqrt(log) barriers. Deliverable: [`13_UNIFIED_DEFORMATION.md`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md). | abstract theorem with hypotheses; both instances derived as corollaries; barrier computation for each instance |
 | `T.ETH.3` | formal | Formalize App. D (Theorem 1.1) in Lean | OPEN | — | `ETH.III.MAIN` | Extend OpenAI's Lean development from Prop. 6.4 to Theorem 1.1. | a Lean proof building against the pinned Mathlib with standard axioms only |
 | `T.ETH.4` | distillation | Explicit thresholds for Parts II and III | OPEN | — | `ETH.II.MAIN`, `ETH.III.TENSOR` | Explicit n_0 in Theorem 9.1 and an explicit s_0 in Theorem 10.2, as was done for Part I (lambda &gt;= 2^17+1). | every inequality checked by script on its full range; thresholds stated in the docs |
 | `T.KAK.1` | distillation | The positivity engine as a theorem | DONE | claude | `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.E.DEPTH`, `KAK.FIB`, `KAK.PROP`, `KAK.APP.E` | State axioms on (symbol, current, passive coordinate, fibres) under which the critical estimate follows, prove the abstract theorem, and derive the wave (Thm 1.2), symmetric pencils (App. E) and the paraboloid as instances; include a hypothesis-usage matrix. Deliverable: [`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md). | axioms stated precisely; abstract proof referencing only the axioms; each instance verifies the axioms; checks for the new identities |
@@ -445,6 +467,7 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 | `T.X.1` | research | Capacity of transport as a theorem | OPEN | — | `ETH.K.E4`, `KAK.CAP` | Turn the cross-paper analogy (move information along an auxiliary parameter and pay a capacity) into a precise statement covering both papers' barriers. | a precise common statement or a reasoned negative answer |
 | `T.KAK.12` | research | A direct engine for the paraboloid | OPEN | — | `KAK.ENGINE`, `KAK.ARROW`, `KAK.R.PARAB` | e^{it Delta} is not a first-order symmetric system, so it is not an instance of Theorem 11.2; its critical estimate currently comes from the wave by parabolic rescaling. Find an exactly conserved, positive current tangent to a passive coordinate for the Schrodinger flow satisfying (A1)-(A4), e.g. as a parabolic limit of arrow-pencil currents. | engine data for the paraboloid with proofs; a direct-coordinate conservation check |
 | `T.KAK.13` | research | The angular threshold | OPEN | — | `KAK.APP.B`, `KAK.ANG.BALL` | Decide whether B &gt; 1/2 + 1/p in the angular endpoint is sharp. The 1/2 - 1/p comes from l^2-vs-l^p over the ~log H_m frequencies near the stationary-phase threshold, and A = 2/p from the ball estimate: a square-function form of the shell-transplant lemma, or A = 1/p (T.KAK.6), would lower it. | a lower threshold with proof, or a counterexample family |
+| `T.ETH.5` | research | The square-root law | OPEN | — | `ETH.U.MAIN`, `ETH.U.FLOOR3`, `ETH.K.E4` | Does every interpolation-through-local-nodes scheme (13, Theorem 4.2) whose node coordinates come from a label space of size M^{O(1)} cost 2^{Omega(M/sqrt(log M))} per call? Part I pays it through the central limit window (E4), Part III through Hardy-Ramanujan and the profile lemma (13 Thm 5.4). A proof would make n/sqrt(log n) the limit of the method family; a counterexample would improve Theorem 1.1. | a precise class of schemes with a proof of the floor, or a scheme beating it |
 <!-- END GENERATED: targets -->
 
 ## 7. Protocol for AI contributors
@@ -500,4 +523,9 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
   - `KAK.APP.B` is upgraded from PARTIAL to PROVED_CITED; no node is PARTIAL any more.
   - New nodes `KAK.ANG.HANKEL`, `KAK.ANG.BALL`, `KAK.ANG.ENV` and `KAK.ANG.BAND`, on the new reading path `P.KAK.ANGULAR`; `P.KAK.LIMITS` now holds only the sharpness results.
   - New target `T.KAK.13` (the angular threshold).
+  - Six glossary terms added.
+- **2026-10-28 (later).** `T.ETH.2` done: [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md).
+  - New nodes `ETH.U.NODE`, `ETH.U.HERMITE`, `ETH.U.COUNT`, `ETH.U.MAIN` and `ETH.U.FLOOR3`, on the new reading path `P.ETH.UNIFIED`.
+  - Alternative proofs recorded for `ETH.I.DEFCOUNT`, `ETH.III.CHILD` and `ETH.III.HERMITE`.
+  - New target `T.ETH.5` (the square-root law).
   - Six glossary terms added.

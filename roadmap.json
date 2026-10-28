@@ -255,6 +255,28 @@
     "ETH.K.E3",
     "ETH.K.E4"
    ]
+  },
+  {
+   "id": "P.ETH.UNIFIED",
+   "project": "ETH",
+   "title": "One deformation theorem for Parts I-III (13)",
+   "purpose": "The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors.",
+   "assumes": [
+    "ETH.I.SWAP",
+    "ETH.III.CAUCHY",
+    "ETH.III.PACK"
+   ],
+   "nodes": [
+    "ETH.U.NODE",
+    "ETH.U.HERMITE",
+    "ETH.U.COUNT",
+    "ETH.U.MAIN",
+    "ETH.I.DEFCOUNT",
+    "ETH.III.CHILD",
+    "ETH.III.HERMITE",
+    "ETH.K.E4",
+    "ETH.U.FLOOR3"
+   ]
   }
  ],
  "glossary": [
@@ -495,6 +517,48 @@
    "meaning": "The contraction (sum over Boolean edge assignments of the product of vertex tensors) of a tensor network N.",
    "file": "reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md",
    "label": "§1"
+  },
+  {
+   "project": "ETH",
+   "term": "readout system",
+   "meaning": "Boolean variables, factors Phi_f with ports, and a readout rho; Z(rho) = sum_x prod_f Phi_f(rho(x)). CNFs, weighted factor graphs and tensor networks are readout systems; the deformation acts on the readout.",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "§0"
+  },
+  {
+   "project": "ETH",
+   "term": "local node, measured locality",
+   "meaning": "A parameter value where every port of a group-g factor depends only on x_g and the measurements y = (C_h x_h)_h; the sum then factorizes over groups (separation).",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "Definition 1.1"
+  },
+  {
+   "project": "ETH",
+   "term": "mode, weight, source, target",
+   "meaning": "Near a node the readout is local part + sum kappa_Z L_Z with kappa_Z of filtration weight w_Z; L_Z reads its source group; targeted modes are read only by one group.",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "Definition 2.2"
+  },
+  {
+   "project": "ETH",
+   "term": "Hermite loss l_t",
+   "meaning": "-v(E_t(0)) = sum_q m_q (v(t-q) - v(q)): how much closer the other nodes are to t than to 0. Zero for unit-distance nodes; D_i Delta(i) on residue systems.",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "Lemma 3.1"
+  },
+  {
+   "project": "ETH",
+   "term": "depth profile, slope Delta(i)",
+   "meaning": "Multiplicities m(v_2(t)) on the residue system mod 2^{a+1}; Delta(i) = sum_j (j/2^j)(m(i) - m(i+j)) sets both the loss and the node cost.",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "Cor. 3.3"
+  },
+  {
+   "project": "ETH",
+   "term": "square-root law",
+   "meaning": "Both architectures pay M/sqrt(number of node coordinates) per call: Part I via the central limit window, Part III via Hardy-Ramanujan; open in general (T.ETH.5).",
+   "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+   "label": "§7"
   }
  ],
  "nodes": [
@@ -579,7 +643,21 @@
    ],
    "paper_ref": "§3, Prop. 3.4",
    "formal": null,
-   "confidence": 0.99
+   "confidence": 0.99,
+   "alt_proofs": [
+    {
+     "depends_on": [
+      "ETH.U.MAIN"
+     ],
+     "where": [
+      {
+       "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+       "label": "Cor. 4.3"
+      }
+     ],
+     "note": "As the formal-neighbourhood instance of the unified deformation theorem: unit nodes, Boolean coordinate modes, measurements."
+    }
+   ]
   },
   {
    "id": "ETH.I.SWAP",
@@ -930,7 +1008,21 @@
    ],
    "paper_ref": "Lemma D.5",
    "formal": null,
-   "confidence": 0.99
+   "confidence": 0.99,
+   "alt_proofs": [
+    {
+     "depends_on": [
+      "ETH.U.HERMITE"
+     ],
+     "where": [
+      {
+       "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+       "label": "Cor. 3.3"
+      }
+     ],
+     "note": "As Hermite recovery with valuation loss on the residue system mod 2^{a+1}: loss D_i Delta(i) <= 6 h D_i for the taper."
+    }
+   ]
   },
   {
    "id": "ETH.III.PACK",
@@ -982,7 +1074,23 @@
    ],
    "paper_ref": "(D.12)-(D.16)",
    "formal": null,
-   "confidence": 0.98
+   "confidence": 0.98,
+   "alt_proofs": [
+    {
+     "depends_on": [
+      "ETH.U.NODE",
+      "ETH.III.CAUCHY",
+      "ETH.III.PACK"
+     ],
+     "where": [
+      {
+       "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+       "label": "Cor. 2.7"
+      }
+     ],
+     "note": "As the targeted node lemma with tile power moments as modes (weights b+1, source = tile group, target = crossing rows)."
+    }
+   ]
   },
   {
    "id": "ETH.III.TENSOR",
@@ -1353,6 +1461,150 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.95
+  },
+  {
+   "project": "ETH",
+   "group": "Unified deformation",
+   "formal": null,
+   "id": "ETH.U.NODE",
+   "kind": "lemma",
+   "title": "Node lemma: filtered mode expansion",
+   "statement": "Readout system Z(rho) = sum_x prod_f Phi_f(rho(x)). If rho = lambda + sum_Z kappa_Z L_Z mod a_P with lambda local (modulo measurements), kappa_Z in a_{w_Z} and L_Z reading only its source group, then Z(rho) = sum_y sum over correction indices of weight < P of products of group sums: (targeted modes) beta with sum w beta < P and symbolic coefficient extraction; (Boolean coordinate modes) pinned sets E with sum w < P and Moebius points U subset E.",
+   "sketch": "Replace rho by lambda + sum kappa L (Phi_f has coefficients in the ring). Expand prod_f Phi_f(lambda + sum kappa zeta) in formal modes zeta: the coefficient of zeta^beta lies in a_{sum w beta}, so only light monomials survive. Targeted: each group's factors see only modes targeted at it, so coefficients factor by group and L^beta by source. Boolean: multilinearize, extract [zeta^E] by Moebius inversion at the points 1_U, and the pinning x_E = 1 replaces the monomial. In both cases separation by measurements factorizes the sum over groups.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+     "label": "Lemma 2.3, Lemma 2.4, Lemma 1.2, Definition 2.2"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_unified_deformation.py"
+   ],
+   "paper_ref": "Parts I-III (08 Thm 4.6 steps 2-3; 10 Lemma 6.3)",
+   "confidence": 0.97,
+   "notes": "Part I uses the formal (z-adic) neighbourhood with all coordinates as Boolean modes; Part III the 2-adic neighbourhood with structured tile modes. The script runs one generic implementation on genuine instances of both."
+  },
+  {
+   "project": "ETH",
+   "group": "Unified deformation",
+   "formal": null,
+   "id": "ETH.U.HERMITE",
+   "kind": "lemma",
+   "title": "Hermite recovery with valuation loss",
+   "statement": "Nodes t in a discretely valued field with multiplicities m_t and scalings alpha_t (v(alpha_t) >= v(t-q)): F(0) = sum_t E_t(0) sum_{j<m_t} [z^j](F(t+alpha_t z)/E_t(t+alpha_t z)) (-t/alpha_t)^j, and knowing the jets mod varpi^{P_t}, P_t = P + l_t + (m_t-1) max(0,-v(t/alpha_t)), l_t = -v(E_t(0)), determines F(0) mod varpi^P; one digit less fails. For the residue system mod 2^{a+1} with a depth profile m: l_t = D_i Delta(i), Delta(i) = sum_j (j/2^j)(m(i)-m(i+j)).",
+   "sketch": "Hermite: G(T) = sum_t E_t(T) P_t((T-t)/alpha_t) agrees with F to order m_t at every node and has degree < sum m_t, so G = F. E_t(t+alpha_t z) = prod (1 + alpha_t z/(t-q))^{m_q} is integral with constant term 1. A change delta at coefficient j propagates with valuation >= P_t - l_t - (m_t-1)max(0,-v(t/alpha_t)); at the top coefficient the bound is attained. The loss l_t = sum_q m_q (v(t-q) - v(q)) counts how much closer the other nodes are to t than to 0: zero for unit-distance nodes (Part I), D_i Delta(i) for residue systems (Part III).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+     "label": "Lemma 3.1, Cor. 3.2, Cor. 3.3"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_unified_deformation.py"
+   ],
+   "paper_ref": "08 Lemma 4.3; App. D Lemma D.5",
+   "confidence": 0.98
+  },
+  {
+   "project": "ETH",
+   "group": "Unified deformation",
+   "formal": null,
+   "id": "ETH.U.COUNT",
+   "kind": "lemma",
+   "title": "Correction counts, two-sided",
+   "statement": "With c_w modes of weight w: #{beta : sum w beta < P} <= inf_theta e^{theta(P-1)} prod_w (1-e^{-theta w})^{-c_w} <= exp(pi sqrt(2cP/3)) if c_w <= c; and log_2 # >= (1/8) min(P-1, sqrt(c(P-1))) if c_w >= c for all w < P. Boolean: #{U subset E : weight(E) < P} <= inf_theta e^{theta(P-1)} prod_Z (1 + 2 e^{-theta w_Z}) (= C_{P-1}(n) for n weight-1 modes).",
+   "sketch": "Rankin's trick with sum_w -log(1-e^{-theta w}) <= pi^2/(6 theta). Lower bound: if c >= (P-1)/8 take subsets of weight-1 modes; otherwise all subsets of the modes of weight <= sqrt(2(P-1)/c) - 1 have total weight < P, giving 2^{c W} >= 2^{0.7 sqrt(c(P-1))}.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+     "label": "Lemma 4.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_unified_deformation.py"
+   ],
+   "paper_ref": "08 Lemma A.1; App. D Lemma D.6 (Rankin)",
+   "confidence": 0.99
+  },
+  {
+   "project": "ETH",
+   "group": "Unified deformation",
+   "formal": null,
+   "id": "ETH.U.MAIN",
+   "kind": "theorem",
+   "title": "Interpolation through local nodes (the unified deformation theorem)",
+   "statement": "Readout system, deformation rho(T) with rho(0) = incidence readout (degree R', deformed-port degree d), recovery data with sum m_t > dR', and at each node a mode expansion (formal, or varpi-adic at more than dR' unit-separated points): Z is computed mod varpi^P by node evaluation, interpolation and Hermite recovery, with work sum_t |Xi_t| Y_t N_t sum_g W_{t,g} + poly. Parts I-II (formal, unit nodes, Boolean modes, brute-force groups) and Part III (2-adic, residue system, tile modes, recursive groups) are corollaries.",
+   "sketch": "H(T) = Z(rho(T)) has degree <= dR' and H(0) = Z (substitution homomorphism, degree measured in the coefficient algebra). The node lemma gives H near each node: directly as a jet (formal case) or at points t + alpha zeta, interpolated in zeta over a Vandermonde unit (varpi-adic case). Hermite recovery with loss returns H(0). The cost is the number of correction indices times measurement values times group costs, per node and point.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+     "label": "Theorem 4.2, Cor. 4.3, Cor. 4.4, Definition 0.3"
+    }
+   ],
+   "depends_on": [
+    "ETH.U.NODE",
+    "ETH.U.HERMITE",
+    "ETH.U.COUNT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_unified_deformation.py"
+   ],
+   "paper_ref": "Parts I-III, App. D (unifies Thm 4.6 and Thm D.1's recursion step)",
+   "confidence": 0.97
+  },
+  {
+   "project": "ETH",
+   "group": "Unified deformation",
+   "formal": null,
+   "id": "ETH.U.FLOOR3",
+   "kind": "theorem",
+   "title": "Cost floor of the 2-adic architecture",
+   "statement": "In App. D's architecture (Cauchy-kernel deformation, nodes S\\{0}, any depth profile on depths < a, formula-based Hermite recovery at output precision p, tile modes with >= M/2 crossing wires), some node needs >= 2^{(1/8) min(p-1, sqrt(3/16) M/sqrt(a))} correction tuples; with a <= log_2 M and p >= M/C at the top level this is 2^{Omega(M/sqrt(log M))}, matching Thm D.1.",
+   "sketch": "Depth-free node cost: a depth-i node has >= M/D_i modes per weight and needs precision >= p + D_i Delta(i), so modes x precision >= M Delta(i). Profile lemma: Hermite needs sum 2^{a-i} m(i) > M(2L-1), and a downward induction gives m(i) <= 2 Delta*(a-i), so Delta* > 3M/(8a). The lower bound of ETH.U.COUNT gives the count. The exact optimum of the profile problem and the paper's linear taper both tend to 6M/a.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md",
+     "label": "Theorem 5.4, Lemma 5.2, Lemma 5.3"
+    }
+   ],
+   "depends_on": [
+    "ETH.U.HERMITE",
+    "ETH.U.COUNT"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_unified_deformation.py"
+   ],
+   "paper_ref": "App. D (new lower bound for its method)",
+   "confidence": 0.93,
+   "notes": "Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5."
   },
   {
    "id": "KAK.Q.CALC",
@@ -2402,14 +2654,15 @@
     "ETH.III.HERMITE",
     "ETH.K.E4"
    ],
-   "status": "OPEN",
-   "owner": null,
+   "status": "DONE",
+   "owner": "claude",
    "difficulty": "substantial",
    "acceptance": [
     "abstract theorem with hypotheses",
     "both instances derived as corollaries",
     "barrier computation for each instance"
-   ]
+   ],
+   "deliverable": "reviews/claude/eth/13_UNIFIED_DEFORMATION.md"
   },
   {
    "id": "T.ETH.3",
@@ -2679,6 +2932,23 @@
    "difficulty": "research",
    "acceptance": [
     "a lower threshold with proof, or a counterexample family"
+   ]
+  },
+  {
+   "id": "T.ETH.5",
+   "kind": "research",
+   "title": "The square-root law",
+   "goal": "Does every interpolation-through-local-nodes scheme (13, Theorem 4.2) whose node coordinates come from a label space of size M^{O(1)} cost 2^{Omega(M/sqrt(log M))} per call? Part I pays it through the central limit window (E4), Part III through Hardy-Ramanujan and the profile lemma (13 Thm 5.4). A proof would make n/sqrt(log n) the limit of the method family; a counterexample would improve Theorem 1.1.",
+   "builds_on": [
+    "ETH.U.MAIN",
+    "ETH.U.FLOOR3",
+    "ETH.K.E4"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a precise class of schemes with a proof of the floor, or a scheme beating it"
    ]
   }
  ]

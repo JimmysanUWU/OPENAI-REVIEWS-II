@@ -8,6 +8,30 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
+## Update (28 Oct, newest): one deformation theorem for Parts I–III
+
+[13](13_UNIFIED_DEFORMATION.md) shows that swap interpolation (Parts I–II) and App. D's 2-adic contraction (Part III) are two instances of one theorem, *interpolation through local nodes* (Theorem 4.2).
+- **The common objects.**
+  - A *readout system*: factors read Boolean variables through a readout matrix. CNFs, weighted factor graphs and tensor networks all fit.
+  - A deformation of the readout that is *local* at nodes, i.e. it factorizes over groups after measurements.
+- **The four lemmas that carry all the mathematics.**
+  - The **filtered node lemma** (Lemmas 2.3–2.4), in two variants:
+    - Part I: formal $z$-adic neighbourhoods, with every variable a weight-1 mode, so the corrections are subsets;
+    - Part III: 2-adic neighbourhoods, with structured tile modes, so the corrections are weighted partitions.
+  - **Hermite recovery with valuation loss** (Lemma 3.1). The loss is $\ell_t=\sum_qm_q(v(t-q)-v(q))$: zero at Part I's unit nodes, $D_i\Delta(i)$ on Part III's residue system.
+  - **Two-sided correction counts** (Lemma 4.1).
+- **New: the floor of App. D's architecture** (Theorem 5.4).
+  - The node cost is depth-free: (modes per weight) × (precision) $\ge M\Delta(i)$ (Lemma 5.2).
+  - Any depth profile has slope $\Delta^*>3M/(8a)$ (Lemma 5.3).
+  - Hence some node needs $2^{\Omega(M/\sqrt{\log M})}$ tuples, matching Thm D.1.
+  - The exact optimum profile and the paper's linear taper both tend to $\Delta^*\to6M/a$, so **the taper is asymptotically optimal**.
+
+  With E4 (Part I), both $\sqrt{\log}$ barriers are now theorems about their architectures.
+- **§6** is a design table: what each choice (symmetry, neighbourhood, modes, recovery, groups) buys.
+- **§7** poses the *square-root law* (`T.ETH.5`).
+- Script: [`scripts/verify_unified_deformation.py`](scripts/verify_unified_deformation.py) implements the lemmas generically and reproduces genuine Part I jets and Part III node values.
+- **Most useful independent check:** Lemma 3.1(2)–(3) and Lemma 5.3, then whether Theorem 5.4's hypotheses capture App. D's architecture.
+
 ## Update (27 Oct): formal proof verified
 
 OpenAI's Lean proof of the exact statement (`openai/math`, solution `OAI.Algorithms.SubexponentialSAT.Main`) builds locally against pinned Mathlib: 3,091 modules, 0 `sorry`. `exact_count_and_sat` uses only `propext`, `Classical.choice` and `Quot.sound`, and its `pp.all` statement is byte-identical to the challenge file's ([06 §6.A](06_LEAN_STATEMENT_AUDIT.md)). Prop. 6.4, and hence ETH's falsity, is formally verified. App. D (Thm 1.1's sharper exponent) is not formalized; see the 28 Oct update below.
