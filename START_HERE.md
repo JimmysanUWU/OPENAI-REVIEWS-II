@@ -55,6 +55,8 @@ python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and e
 
 **Requirements.** Python ≥ 3.10. The ETH scripts use only the standard library; the Kakeya scripts need `numpy`, `sympy`, `scipy` and `mpmath`.
 
+**Side effect.** The scripts rewrite their JSON in `results/`. Only timing fields such as `"seconds"` change between runs; restore them with `git checkout reviews/claude/*/results` before committing unless results really changed.
+
 **The Lean builds.** These are not rerun by these commands (each takes hours). Their logs and audits are in `reviews/claude/*/06_*` and `reviews/claude/*/lean/`.
 
 ## 4. Repository map
