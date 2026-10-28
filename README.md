@@ -40,6 +40,11 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - **The wave is the "arrow" pencil**, whose polarization is stereographic projection. Theorem 1.2 is therefore a special case of App. E.
   - A hypothesis-usage matrix says what breaks without each hypothesis.
   - Checked by [`verify_positivity_engine.py`](reviews/claude/kakeya/scripts/verify_positivity_engine.py). The pencil current is conserved to $10^{-38}$ for five pencils, including App. E's non-quadric cubic example.
+- **Kakeya: the slot calculus as a standalone toolkit** ([`12_QUATERNIONIC_SLOT_CALCULUS.md`](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md)).
+  - The quaternionic null-Lagrangian identity holds for arbitrary quaternion frames.
+  - The Monge–Ampère operator is the gradient of a concave energy.
+  - Ellipticity forces at most 4 coordinates per slot.
+  - Checked by [`verify_slot_calculus.py`](reviews/claude/kakeya/scripts/verify_slot_calculus.py).
 
 ## Distillation round 2 (recyclable toolkit)
 
@@ -59,7 +64,7 @@ tools/                    roadmap checker and its negative controls
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project

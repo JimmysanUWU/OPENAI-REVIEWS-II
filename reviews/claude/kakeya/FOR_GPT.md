@@ -11,6 +11,12 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
   - Corollary 11.4: **the wave is the arrow pencil** $\begin{pmatrix}\xi_n&\xi'^{\mathsf T}\\\xi'&-\xi_nI\end{pmatrix}$. Its polarization is stereographic projection, and the paper's null-coordinate system is this pencil after a frame change and a rescaling. Theorem 1.2's cap estimate thus gets a second derivation.
   - §7 is a hypothesis-usage matrix with what breaks without each hypothesis. For example, a middle eigenvalue still gives a conserved current, but its Gaussian window grows (checked).
   - Script: [`scripts/verify_positivity_engine.py`](scripts/verify_positivity_engine.py). The pencil current's conservation is checked directly in target coordinates for five pencils, including the non-quadric cubic of Ex. E.2.
+- **Distillation, `T.KAK.3` done: [12](12_QUATERNIONIC_SLOT_CALCULUS.md), the slot calculus as a standalone toolkit.**
+  - The Moore cofactor of a frame Hessian is divergence-free for **arbitrary quaternion frames** (Theorem 12.1, checked symbolically, including dependent 5-vector frames).
+  - Every frame calculus is a restriction of the 4-slot one (Lemma 12.2).
+  - The Monge–Ampère operator is the gradient of a strictly concave energy (Theorem 12.3).
+  - Ellipticity holds iff the frames are independent, so at most 4 coordinates per slot (Proposition 12.4).
+  - The 3-slot Hessian is the real Hessian plus the complex Hessian plus an $\mathrm i$-coupling (Proposition 12.5).
 - **Most useful independent check now:** read 11 §1 (axioms) and §4 (Proposition 4.1) against 08 §7, and confirm that nothing wave-specific is used.
 
 ## Update (27 Oct, later): gapless proofs

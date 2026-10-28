@@ -901,11 +901,16 @@
     {
      "file": "reviews/claude/kakeya/07_TOOLKIT.md",
      "label": "K6"
+    },
+    {
+     "file": "reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md",
+     "label": "Lemma 1.2, Lemma 2.1, Prop. 12.5"
     }
    ],
    "depends_on": [],
    "checks": [
-    "reviews/claude/kakeya/scripts/verify_quaternion_calculus.py"
+    "reviews/claude/kakeya/scripts/verify_quaternion_calculus.py",
+    "reviews/claude/kakeya/scripts/verify_slot_calculus.py"
    ],
    "paper_ref": "Lemmas 3.1-3.3",
    "formal": null,
@@ -1661,6 +1666,61 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.97
+  },
+  {
+   "id": "KAK.FRAME",
+   "project": "KAK",
+   "group": "Algebra and currents",
+   "kind": "theorem",
+   "title": "Cofactor divergence for arbitrary quaternionic frames (Theorem 12.1)",
+   "statement": "For any quaternions f_{a,i} (any number per slot, possibly dependent) and H_f(u)_{ab}=sum f_{a,i} conj(f_{b,j}) d_{a,i} d_{b,j} u: sum_{a,i} conj(f_{a,i}) d_{a,i} C(H_f(u))_{ab}=0. Every frame calculus is the restriction H_f(u) o A = H^{(4)}(u o A) of the 4-slot calculus (Lemma 12.2). Q^{-1}:H_f is elliptic iff every slot frame is R-linearly independent, hence at most 4 real coordinates per slot (Prop. 12.4).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md",
+     "label": "§3-5, Thm 12.1, Lemma 12.2, Prop. 12.4"
+    }
+   ],
+   "depends_on": [
+    "KAK.Q.CALC"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_slot_calculus.py"
+   ],
+   "paper_ref": "Lemma 3.3 (frames (1,i,j), (1,i,j,k))",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.MAENERGY",
+   "project": "KAK",
+   "group": "Fibres and energy",
+   "kind": "theorem",
+   "title": "The Monge-Ampere operator is the gradient of a concave energy (Theorem 12.3)",
+   "statement": "Independent frames, H_f(B_0)>=0, P={u: u=0 on the boundary, H_f(B_0+u)>0}: E(u)=int u int_0^1 det H_f(B_0+theta u) dtheta has dE(u)[v]=int v det H_f(B_0+u) and d^2E(u)[v,v]=-int Re(G(v)^* C(H_f(B_0+u)) G(v))<0; so det H_f(B_0+u)=g is the Euler-Lagrange equation of the strictly concave E(u)-int g u, and the energy of 08 §6 is its Legendre-type transform.",
+   "status": [
+    "NEW",
+    "PROVED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md",
+     "label": "§6, Thm 12.3"
+    }
+   ],
+   "depends_on": [
+    "KAK.FRAME"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_slot_calculus.py"
+   ],
+   "paper_ref": "§4 (energy)",
+   "formal": null,
+   "confidence": 0.98
   }
  ],
  "targets": [
@@ -1786,13 +1846,14 @@
    "builds_on": [
     "KAK.Q.CALC"
    ],
-   "status": "OPEN",
+   "status": "DONE",
    "owner": "claude",
    "difficulty": "routine",
    "acceptance": [
     "definitions and proofs",
     "exact symbolic checks"
-   ]
+   ],
+   "deliverable": "reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md"
   },
   {
    "id": "T.KAK.4",

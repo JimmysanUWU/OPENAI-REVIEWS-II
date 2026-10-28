@@ -48,9 +48,9 @@ The checker enforces that a node proved in prose depends only on nodes proved in
 | Project | Results | FORMAL | PROVED | PROVED_CITED | PARTIAL | HEURISTIC | NEW | CHECKED |
 |---|---|---|---|---|---|---|---|---|
 | ETH | 30 | 1 | 28 | 2 | 0 | 0 | 4 | 22 |
-| KAK | 28 | 6 | 21 | 5 | 2 | 0 | 5 | 12 |
+| KAK | 30 | 6 | 23 | 5 | 2 | 0 | 7 | 13 |
 
-Targets: 16 open, 0 in progress, 1 done.
+Targets: 15 open, 0 in progress, 2 done.
 <!-- END GENERATED: summary -->
 
 ## 2. ETH: *The Exponential Time Hypothesis Is False*
@@ -234,6 +234,7 @@ flowchart TD
     KAK_Q_CALC["KAK.Q.CALC<br/>Quaternionic slot calculus"]
     KAK_C_LIFT["KAK.C.LIFT<br/>Lifted current and push-forward"]
     KAK_C_WAVE["KAK.C.WAVE<br/>The positive wave current"]
+    KAK_FRAME["KAK.FRAME<br/>Cofactor divergence for arbitrary quaternionic frames (Theorem 12.1) (new)"]
   end
   subgraph KAK_g1["Fibres and energy"]
     KAK_F_GEOM["KAK.F.GEOM<br/>Fibre geometry"]
@@ -241,6 +242,7 @@ flowchart TD
     KAK_E_BAL["KAK.E.BAL<br/>Determinant energy balance"]
     KAK_E_DEPTH["KAK.E.DEPTH<br/>Density to depth (rank-r background) (new)"]
     KAK_FIB["KAK.FIB<br/>Energy estimates on a fibre"]
+    KAK_MAENERGY["KAK.MAENERGY<br/>The Monge-Ampere operator is the gradient of a concave energy (Theorem 12.3) (new)"]
   end
   subgraph KAK_g2["Propagation"]
     KAK_PROP["KAK.PROP<br/>Two-circle propagation"]
@@ -307,8 +309,10 @@ flowchart TD
   KAK_C_LIFT --> KAK_PENCIL
   KAK_Q_CALC --> KAK_PENCIL
   KAK_APP_E --> KAK_ARROW
+  KAK_Q_CALC --> KAK_FRAME
+  KAK_FRAME --> KAK_MAENERGY
   class KAK_T11,KAK_R_SPHERE,KAK_KM,KAK_KD,KAK_BR,KAK_SQ formal
-  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK,KAK_APP_E,KAK_ENGINE,KAK_PENCIL,KAK_ARROW proved
+  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK,KAK_APP_E,KAK_ENGINE,KAK_PENCIL,KAK_ARROW,KAK_FRAME,KAK_MAENERGY proved
   class KAK_DIR,KAK_R_PARAB cited
   class KAK_APP_B,KAK_APP_D partial
   classDef formal fill:#c8e6c9,stroke:#2e7d32,color:#000
@@ -324,7 +328,7 @@ flowchart TD
 <!-- BEGIN GENERATED: kak-nodes -->
 | ID | Result | Status | Prose chain | Depends on | Where | Checks | Lean |
 |---|---|---|---|---|---|---|---|
-| `KAK.Q.CALC` | **Quaternionic slot calculus.** For the 3-slot operators G, H: Hessian calculus (H(sum\|F\|^2)=4J\*J), Moore determinant and cofactor identities, cofactor divergence (sum ebar_alpha d_{a alpha} C(H(u))_{ab}=0), Green's identity and compression. | PROVED, CHECKED | closed | — | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §2, Lemmas 2.1-2.4; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K6 | [verify_quaternion_calculus](reviews/claude/kakeya/scripts/verify_quaternion_calculus.py) | — |
+| `KAK.Q.CALC` | **Quaternionic slot calculus.** For the 3-slot operators G, H: Hessian calculus (H(sum\|F\|^2)=4J\*J), Moore determinant and cofactor identities, cofactor divergence (sum ebar_alpha d_{a alpha} C(H(u))_{ab}=0), Green's identity and compression. | PROVED, CHECKED | closed | — | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §2, Lemmas 2.1-2.4; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K6; [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md) Lemma 1.2, Lemma 2.1, Prop. 12.5 | [verify_quaternion_calculus](reviews/claude/kakeya/scripts/verify_quaternion_calculus.py), [verify_slot_calculus](reviews/claude/kakeya/scripts/verify_slot_calculus.py) | — |
 | `KAK.C.LIFT` | **Lifted current and push-forward.** For constant-coefficient symmetric systems, B=Re sum_l Z_l (x) conj(Z_l) is PSD and conserved on (X,w_1,w_2); its density push-forward by a holomorphic flux map is conserved and quaternionic rank one. | PROVED, CHECKED | closed | `KAK.Q.CALC` | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §3, Lemmas 3.1-3.2; [kakeya/05](reviews/claude/kakeya/05_DISTILLATION.md) Thm I | [verify_wave_current](reviews/claude/kakeya/scripts/verify_wave_current.py) | — |
 | `KAK.C.WAVE` | **The positive wave current.** chi=sum V^v iota_e(conj u_{kappa,v}) m_{kappa,v}, A^0=chi chi^\*: on Y!=0, A^0 is smooth, PSD and conserved, annihilated by the passive differential (dPhi)A^0=0, and A^0_TT=\|S_0 u\|^2+\|S_1 u\|^2 with explicit cap multipliers S_0,S_1 (3.5). | PROVED, CHECKED | closed | `KAK.C.LIFT` | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §3, Prop. 3.3; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K1 | [verify_wave_current](reviews/claude/kakeya/scripts/verify_wave_current.py), [verify_wave_current_target](reviews/claude/kakeya/scripts/verify_wave_current_target.py) | — |
 | `KAK.F.GEOM` | **Fibre geometry.** On the closed fibres, uniformly in a&lt;s&lt;4: H_fib(r) &gt;= c s^-2 I, G_fib G_fib^\* &lt;= H_fib, volume element ~ a^2 s^{2d}, det H_fib ~ a^-2 s^-2d; the full H(r)&gt;=0 has a one-dimensional quaternionic kernel. | PROVED | closed | `KAK.Q.CALC` | [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §4, Lemma 4.1 | — | — |
@@ -352,6 +356,8 @@ flowchart TD
 | `KAK.ENGINE` | **The positivity engine (Theorem 11.1).** Engine data on a cap (phi, K', v) -- a holomorphic fibre chart (W, Phi) with the scales (G1)-(G2), a positive conserved current chi chi^\* tangent to Phi whose rows are Fourier multipliers with Gaussian symbols C (hs)^{-d/2} sigma^m exp(-c_0 sigma \|W - v(eta)\|^2) (A1)-(A3), and an invertible time row (A4) -- imply, for some aperture gamma and all 0&lt;h&lt;=1, int_1^2 \|\|e^{-iT phi(D)} f\|\|_{L^p(T^n)}^p dT &lt;= C log^2(2/h) \|\|f\|\|_p^p, p=2n/(n-1), for f with Fourier support in the gamma-cap at scale h. *Note:* Re-runs the proofs of KAK.E.BAL, KAK.E.DEPTH and KAK.FIB under the axioms; the equation enters only through (A1)-(A4). Hypothesis-usage matrix and failure modes in 11 §7. | NEW, PROVED | cites KAK.DIR | `KAK.Q.CALC`, `KAK.DIR`, `KAK.PROP`, `KAK.CAP` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §1-5, Thm 11.1, Prop. 4.1; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K7 | — | — |
 | `KAK.PENCIL` | **Symmetric pencils carry engine data (Theorem 11.2).** C(xi)=sum xi_j C_j real symmetric n x n, phi=lambda_max simple at omega with D^2 phi(omega)&gt;0 on omega^perp: with E(xi)=(1,v(xi)), S=phi I-C, L w=(C(w)e_0)_perp, B(W)=e(W)^T C e(W)/(1+W.W), the chart P=tau B(W)+Phi omega and App. E's pushed current chi_mu=J^{-1/2} sum_a (C^mu z)_a i G_a satisfy (G1)-(G2) and (A1)-(A4); D^2 phi(omega)=2 L^T S_perp^{-1} L, Dv(omega)=S_perp^{-1} L, dB(0)=2 L^T, and the window is exp(-(y/2h)(W-v)^\* S_perp (W-v)). *Note:* Conservation of the pencil current checked directly in target coordinates for 5 pencils (incl. the cubic of Ex. E.2), to 1e-38. | NEW, PROVED, CHECKED | closed | `KAK.C.LIFT`, `KAK.Q.CALC` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Lemmas 6.1-6.4, Thm 11.2 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py) | — |
 | `KAK.ARROW` | **The wave is the arrow pencil (Corollary 11.4).** A(xi)=[[xi_n, xi'^T],[xi', -xi_n I]] has lambda_max=\|xi\| (simple off the ray xi'=0, xi_n&lt;0), polarization v(xi)=xi'/(\|xi\|+xi_n) (stereographic) and group-velocity map B(W)=(2W,1-W.W)/(1+W.W) (inverse stereographic); the paper's null-coordinate wave system is A after the frame change (t,s_0)-&gt;(T,b) and the state scaling (C^T)^{-1/2}. Hence Theorem 1.2's cap estimate is Corollary 11.3 for two rotated arrow pencils (a second derivation, with a spatial passive coordinate). | NEW, PROVED, CHECKED | cites KAK.DIR | `KAK.APP.E` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Cor. 11.4 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py) | — |
+| `KAK.FRAME` | **Cofactor divergence for arbitrary quaternionic frames (Theorem 12.1).** For any quaternions f_{a,i} (any number per slot, possibly dependent) and H_f(u)_{ab}=sum f_{a,i} conj(f_{b,j}) d_{a,i} d_{b,j} u: sum_{a,i} conj(f_{a,i}) d_{a,i} C(H_f(u))_{ab}=0. Every frame calculus is the restriction H_f(u) o A = H^{(4)}(u o A) of the 4-slot calculus (Lemma 12.2). Q^{-1}:H_f is elliptic iff every slot frame is R-linearly independent, hence at most 4 real coordinates per slot (Prop. 12.4). | NEW, PROVED, CHECKED | closed | `KAK.Q.CALC` | [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md) §3-5, Thm 12.1, Lemma 12.2, Prop. 12.4 | [verify_slot_calculus](reviews/claude/kakeya/scripts/verify_slot_calculus.py) | — |
+| `KAK.MAENERGY` | **The Monge-Ampere operator is the gradient of a concave energy (Theorem 12.3).** Independent frames, H_f(B_0)&gt;=0, P={u: u=0 on the boundary, H_f(B_0+u)&gt;0}: E(u)=int u int_0^1 det H_f(B_0+theta u) dtheta has dE(u)[v]=int v det H_f(B_0+u) and d^2E(u)[v,v]=-int Re(G(v)^\* C(H_f(B_0+u)) G(v))&lt;0; so det H_f(B_0+u)=g is the Euler-Lagrange equation of the strictly concave E(u)-int g u, and the energy of 08 §6 is its Legendre-type transform. | NEW, PROVED | closed | `KAK.FRAME` | [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md) §6, Thm 12.3 | [verify_slot_calculus](reviews/claude/kakeya/scripts/verify_slot_calculus.py) | — |
 <!-- END GENERATED: kak-nodes -->
 
 ## 4. Frameworks extracted so far
@@ -370,7 +376,7 @@ These are statements that make sense outside the papers. The ranking is by expec
 | E4. Cost floor | Symmetric swap designs cannot beat the exponent $(\log\log n)^2/\sqrt{\log n}$. | `ETH.K.E4` | new, proved, checked |
 | E5. Tapered Hermite recovery | Exact interpolation from many nodes, where the precision needed tapers with the 2-adic depth of the node. | `ETH.III.HERMITE` | proved, checked |
 | K5. Two-circle propagation | $\Delta E\le VE$ on a thin cylinder transports averages between two circles at cost $\log(r/b)/\log^2(3/b)$, sharp for supersolutions. | `KAK.PROP` | proved, checked |
-| K6. 3-slot cofactor conservation | The Moore cofactor of a 3-slot quaternionic Hessian is divergence-free. | `KAK.Q.CALC` | proved, checked |
+| K6. Cofactor conservation, any frame | The Moore cofactor of a frame Hessian $\sum f_{a,i}\bar f_{b,j}\partial\partial u$ is divergence-free, for any quaternion frames. The Monge–Ampère operator is the gradient of a concave energy. | `KAK.Q.CALC`, `KAK.FRAME`, `KAK.MAENERGY` | proved, checked; generalized in [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md) |
 | K7. Positivity engine | Axioms on a fibre chart and a current imply the critical cap estimate with $\log^2$ loss. The axioms say nothing about the equation. Symmetric pencils satisfy them, and the wave is the arrow pencil. | `KAK.ENGINE`, `KAK.PENCIL`, `KAK.ARROW` | new, proved, checked ([kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)) |
 
 **One pattern behind both papers.** Each paper moves information along an auxiliary parameter and pays a capacity for the transport:
@@ -389,7 +395,7 @@ Verification is complete for both papers (see the verdict files). The remaining 
    - Corollary 11.4 shows the wave is the arrow pencil.
    - The paraboloid follows only through the wave, by rescaling. A direct engine for it is open (`T.KAK.12`).
    - §7 is the hypothesis-usage matrix.
-2. **Kakeya, `T.KAK.3`: the quaternionic slot calculus** as a standalone toolkit, with exact symbolic checks.
+2. **Kakeya, `T.KAK.3`: the quaternionic slot calculus. Done** ([kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md)). Cofactor divergence holds for arbitrary quaternion frames (Theorem 12.1). The Monge–Ampère operator is the gradient of a concave energy (Theorem 12.3). Ellipticity holds iff the frames are independent (Proposition 12.4).
 3. **Kakeya, `T.KAK.2`: the planar entry point.** A self-contained proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$, using App. D's linear Dirichlet problem.
 4. **ETH, `T.ETH.2`: one deformation theorem** covering the degree-controlled deformations of Parts I–II and the 2-adic one of Part III. Then `T.ETH.4`: explicit thresholds.
 
@@ -406,7 +412,7 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 | `T.ETH.4` | distillation | Explicit thresholds for Parts II and III | OPEN | — | `ETH.II.MAIN`, `ETH.III.TENSOR` | Explicit n_0 in Theorem 9.1 and an explicit s_0 in Theorem 10.2, as was done for Part I (lambda &gt;= 2^17+1). | every inequality checked by script on its full range; thresholds stated in the docs |
 | `T.KAK.1` | distillation | The positivity engine as a theorem | DONE | claude | `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.E.DEPTH`, `KAK.FIB`, `KAK.PROP`, `KAK.APP.E` | State axioms on (symbol, current, passive coordinate, fibres) under which the critical estimate follows, prove the abstract theorem, and derive the wave (Thm 1.2), symmetric pencils (App. E) and the paraboloid as instances; include a hypothesis-usage matrix. Deliverable: [`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md). | axioms stated precisely; abstract proof referencing only the axioms; each instance verifies the axioms; checks for the new identities |
 | `T.KAK.2` | distillation | The planar entry point | OPEN | claude | `KAK.APP.D`, `KAK.C.WAVE`, `KAK.PROP` | A self-contained complete proof of sharp L^4 local smoothing in R^{2+1} with log^{1/2}, using the linear Dirichlet problem of App. D (no Monge-Ampere regularity). | every step proved or a cited textbook theorem; App. D's remaining analytic steps re-derived; checks for the planar identities |
-| `T.KAK.3` | distillation | Quaternionic slot calculus as a standalone toolkit | OPEN | claude | `KAK.Q.CALC` | A short self-contained account of the 3-slot calculus (G, H, Moore determinant, cofactor divergence, Green, Schur, rank-one expansion) usable outside the paper. | definitions and proofs; exact symbolic checks |
+| `T.KAK.3` | distillation | Quaternionic slot calculus as a standalone toolkit | DONE | claude | `KAK.Q.CALC` | A short self-contained account of the 3-slot calculus (G, H, Moore determinant, cofactor divergence, Green, Schur, rank-one expansion) usable outside the paper. Deliverable: [`12_QUATERNIONIC_SLOT_CALCULUS.md`](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md). | definitions and proofs; exact symbolic checks |
 | `T.KAK.4` | research | A coordinate-free conserved current | OPEN | — | `KAK.C.LIFT` | Describe the lifted current on the complexified characteristic variety as a CR-geometric object. | invariant definition reproducing Prop. 3.3 |
 | `T.KAK.5` | distillation | Avoid the fourth slot in the boundary C^2 estimate | OPEN | — | `KAK.DIR` | Prove the boundary second-derivative estimate of App. A with 3-slot rigid motions only, or explain why a fourth slot is needed. | proof or obstruction |
 | `T.KAK.6` | research | One logarithm instead of two | OPEN | — | `KAK.PROP`, `KAK.OB.FOCUS`, `KAK.CAP` | Reach log^{1/p_c} (the lower bound) by using the energy's structure beyond superharmonicity. | improved propagation lemma with proof |
@@ -458,3 +464,4 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
   - New nodes `KAK.PENCIL` and `KAK.ARROW`.
   - `KAK.APP.E` is upgraded from PARTIAL to PROVED.
   - New target `T.KAK.12`; `T.KAK.7`, `T.KAK.8` and `T.KAK.10` refined.
+- **2026-10-28 (later).** `T.KAK.3` done: [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md). New nodes `KAK.FRAME` and `KAK.MAENERGY`.

@@ -123,6 +123,8 @@ which the K4 script confirms to 4 digits. The proof's Gronwall factor $\exp(-\in
 
 ## K6. 3-slot cofactor conservation
 
+**Update (28 Oct).** Generalized in [12](12_QUATERNIONIC_SLOT_CALCULUS.md) to arbitrary quaternion frames (Theorem 12.1), with the variational structure of the Monge–Ampère energy (Theorem 12.3).
+
 For every real $C^3$ function $u$, in 2, 3 or 4 slots, $\sum_{a,\alpha}\bar e_\alpha\partial_{a\alpha}C(H(u))_{ab}=0$, with no definiteness assumed (Lemma 3.3). This is the quaternionic null-Lagrangian identity that makes every integration by parts in §4 possible.
 - Exact symbolic checks: [`scripts/verify_quaternion_calculus.py`](scripts/verify_quaternion_calculus.py).
 - Formal statement: `OAI/Analysis/Calculus/Quaternion/CofactorDivergence.lean`, `mooreCofactor_quaternionHessian_divergence`, for arbitrary slot systems.
