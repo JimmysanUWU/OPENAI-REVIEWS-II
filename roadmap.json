@@ -1545,55 +1545,122 @@
    "title": "Curved characteristic sheets of symmetric systems",
    "statement": "For a simple extremal eigenvalue phi of a symmetric pencil with definite transverse Hessian: ||e^{-iT phi(D)} b(hD) f||_{L^{p_c}} <= C log(2/h)^{2/p_c} ||f||_{p_c}.",
    "status": [
-    "PARTIAL",
+    "PROVED",
     "CHECKED"
    ],
    "where": [
+    {
+     "file": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
+     "label": "§6, Cor. 11.3"
+    },
     {
      "file": "reviews/claude/kakeya/10_GAPLESS_REMAINING.md",
      "label": "§5"
     }
    ],
    "depends_on": [
-    "KAK.C.LIFT",
-    "KAK.E.BAL",
-    "KAK.PROP"
+    "KAK.ENGINE",
+    "KAK.PENCIL"
    ],
    "checks": [
+    "reviews/claude/kakeya/scripts/verify_positivity_engine.py",
     "reviews/claude/kakeya/scripts/verify_remaining_claims.py"
    ],
    "paper_ref": "App. E, Thm E.1",
    "formal": null,
-   "confidence": 0.9
+   "confidence": 0.96,
+   "notes": "Completed in 11 (chart and current quantified, wave proof reused as one abstract argument). The single-patch lower bound of App. E is not re-derived."
   },
   {
    "id": "KAK.ENGINE",
    "project": "KAK",
    "group": "Refinements and frameworks",
-   "kind": "framework",
-   "title": "The positivity engine (blueprint)",
-   "statement": "Hypotheses H1-H5 (current, fibres, window, inversion, capacity) imply the critical estimate p=2(f+1)/f with log^2 loss.",
+   "kind": "theorem",
+   "title": "The positivity engine (Theorem 11.1)",
+   "statement": "Engine data on a cap (phi, K', v) -- a holomorphic fibre chart (W, Phi) with the scales (G1)-(G2), a positive conserved current chi chi^* tangent to Phi whose rows are Fourier multipliers with Gaussian symbols C (hs)^{-d/2} sigma^m exp(-c_0 sigma |W - v(eta)|^2) (A1)-(A3), and an invertible time row (A4) -- imply, for some aperture gamma and all 0<h<=1, int_1^2 ||e^{-iT phi(D)} f||_{L^p(T^n)}^p dT <= C log^2(2/h) ||f||_p^p, p=2n/(n-1), for f with Fourier support in the gamma-cap at scale h.",
    "status": [
-    "HEURISTIC"
+    "NEW",
+    "PROVED"
    ],
    "where": [
+    {
+     "file": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
+     "label": "§1-5, Thm 11.1, Prop. 4.1"
+    },
     {
      "file": "reviews/claude/kakeya/07_TOOLKIT.md",
      "label": "K7"
     }
    ],
    "depends_on": [
-    "KAK.C.LIFT",
-    "KAK.E.BAL",
-    "KAK.E.DEPTH",
+    "KAK.Q.CALC",
+    "KAK.DIR",
     "KAK.PROP",
     "KAK.CAP"
    ],
    "checks": [],
    "paper_ref": null,
    "formal": null,
-   "confidence": null,
-   "notes": "Being turned into a theorem: target T.KAK.1."
+   "confidence": 0.97,
+   "notes": "Re-runs the proofs of KAK.E.BAL, KAK.E.DEPTH and KAK.FIB under the axioms; the equation enters only through (A1)-(A4). Hypothesis-usage matrix and failure modes in 11 §7."
+  },
+  {
+   "id": "KAK.PENCIL",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "Symmetric pencils carry engine data (Theorem 11.2)",
+   "statement": "C(xi)=sum xi_j C_j real symmetric n x n, phi=lambda_max simple at omega with D^2 phi(omega)>0 on omega^perp: with E(xi)=(1,v(xi)), S=phi I-C, L w=(C(w)e_0)_perp, B(W)=e(W)^T C e(W)/(1+W.W), the chart P=tau B(W)+Phi omega and App. E's pushed current chi_mu=J^{-1/2} sum_a (C^mu z)_a i G_a satisfy (G1)-(G2) and (A1)-(A4); D^2 phi(omega)=2 L^T S_perp^{-1} L, Dv(omega)=S_perp^{-1} L, dB(0)=2 L^T, and the window is exp(-(y/2h)(W-v)^* S_perp (W-v)).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
+     "label": "§6, Lemmas 6.1-6.4, Thm 11.2"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT",
+    "KAK.Q.CALC"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_positivity_engine.py"
+   ],
+   "paper_ref": "App. E (E.1)-(E.7)",
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "Conservation of the pencil current checked directly in target coordinates for 5 pencils (incl. the cubic of Ex. E.2), to 1e-38."
+  },
+  {
+   "id": "KAK.ARROW",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "corollary",
+   "title": "The wave is the arrow pencil (Corollary 11.4)",
+   "statement": "A(xi)=[[xi_n, xi'^T],[xi', -xi_n I]] has lambda_max=|xi| (simple off the ray xi'=0, xi_n<0), polarization v(xi)=xi'/(|xi|+xi_n) (stereographic) and group-velocity map B(W)=(2W,1-W.W)/(1+W.W) (inverse stereographic); the paper's null-coordinate wave system is A after the frame change (t,s_0)->(T,b) and the state scaling (C^T)^{-1/2}. Hence Theorem 1.2's cap estimate is Corollary 11.3 for two rotated arrow pencils (a second derivation, with a spatial passive coordinate).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
+     "label": "§6, Cor. 11.4"
+    }
+   ],
+   "depends_on": [
+    "KAK.APP.E"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_positivity_engine.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97
   }
  ],
  "targets": [
@@ -1681,7 +1748,7 @@
     "KAK.PROP",
     "KAK.APP.E"
    ],
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "owner": "claude",
    "difficulty": "substantial",
    "deliverable": "reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md",
@@ -1778,9 +1845,10 @@
    "id": "T.KAK.7",
    "kind": "research",
    "title": "Pencils whose size differs from the spatial dimension",
-   "goal": "Extend App. E beyond 'state dimension = spatial dimension', via determinantal representations of hyperbolic polynomials.",
+   "goal": "Extend Theorem 11.2 beyond 'state dimension = spatial dimension'. For N>n the flux map is a submersion; push the lifted current forward by fibre integration (still positive, conserved and tangent) and re-derive (A3)-(A4). Connects to determinantal representations of hyperbolic polynomials.",
    "builds_on": [
-    "KAK.APP.E"
+    "KAK.PENCIL",
+    "KAK.ENGINE"
    ],
    "status": "OPEN",
    "owner": null,
@@ -1793,7 +1861,7 @@
    "id": "T.KAK.8",
    "kind": "research",
    "title": "Variable coefficients: which hypothesis fails",
-   "goal": "Locate the engine hypothesis that fails for curved metrics, explaining the Minicozzi-Sogge counterexamples.",
+   "goal": "Explain the Minicozzi-Sogge counterexamples on curved metrics. By 11 §8.4 the obstruction must lie in the current axiom (A1): (A3)-(A4) are stable symbol estimates. Find the precise failure.",
    "builds_on": [
     "KAK.ENGINE"
    ],
@@ -1823,17 +1891,16 @@
   {
    "id": "T.KAK.10",
    "kind": "verification",
-   "title": "Line-by-line verification of Apps. B and E",
-   "goal": "Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3) and App. E (E.8)-(E.11).",
+   "title": "Line-by-line verification of App. B",
+   "goal": "Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3). App. E was completed in 11 (Corollary 11.3).",
    "builds_on": [
-    "KAK.APP.B",
-    "KAK.APP.E"
+    "KAK.APP.B"
    ],
    "status": "OPEN",
    "owner": null,
    "difficulty": "substantial",
    "acceptance": [
-    "complete derivations; statuses upgraded to PROVED"
+    "complete derivations; KAK.APP.B upgraded to PROVED"
    ]
   },
   {
@@ -1866,6 +1933,24 @@
    "difficulty": "research",
    "acceptance": [
     "a precise common statement or a reasoned negative answer"
+   ]
+  },
+  {
+   "id": "T.KAK.12",
+   "kind": "research",
+   "title": "A direct engine for the paraboloid",
+   "goal": "e^{it Delta} is not a first-order symmetric system, so it is not an instance of Theorem 11.2; its critical estimate currently comes from the wave by parabolic rescaling. Find an exactly conserved, positive current tangent to a passive coordinate for the Schrodinger flow satisfying (A1)-(A4), e.g. as a parabolic limit of arrow-pencil currents.",
+   "builds_on": [
+    "KAK.ENGINE",
+    "KAK.ARROW",
+    "KAK.R.PARAB"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "engine data for the paraboloid with proofs",
+    "a direct-coordinate conservation check"
    ]
   }
  ]

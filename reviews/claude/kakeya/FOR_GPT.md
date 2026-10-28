@@ -5,7 +5,13 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 ## Update (28 Oct, latest): roadmap and distillation
 
 - The repository root now has a **mathematical roadmap** ([`../../../ROADMAP.md`](../../../ROADMAP.md)), with machine-readable twin `roadmap.json`. Each result has a stable ID (`KAK.E.BAL`, `KAK.PROP`, …), a precise statement, a status, its dependencies and its checks. Start there, and record agreement or disputes in a node's `reviews` list (ROADMAP §7.4).
-- Distillation in progress: target `T.KAK.1`, the positivity engine as an abstract theorem.
+- **Distillation, `T.KAK.1` done: [11](11_FRAMEWORK_POSITIVITY_ENGINE.md), the positivity engine as a theorem.**
+  - Theorem 11.1 states axioms on a fibre chart (G1)–(G2) and a current (A1)–(A4) that never mention the equation, and proves the critical cap estimate from them alone.
+  - Theorem 11.2 shows that every symmetric pencil with a simple, extremal, transversally curved eigenvalue satisfies the axioms. This completes App. E (Corollary 11.3).
+  - Corollary 11.4: **the wave is the arrow pencil** $\begin{pmatrix}\xi_n&\xi'^{\mathsf T}\\\xi'&-\xi_nI\end{pmatrix}$. Its polarization is stereographic projection, and the paper's null-coordinate system is this pencil after a frame change and a rescaling. Theorem 1.2's cap estimate thus gets a second derivation.
+  - §7 is a hypothesis-usage matrix with what breaks without each hypothesis. For example, a middle eigenvalue still gives a conserved current, but its Gaussian window grows (checked).
+  - Script: [`scripts/verify_positivity_engine.py`](scripts/verify_positivity_engine.py). The pencil current's conservation is checked directly in target coordinates for five pencils, including the non-quadric cubic of Ex. E.2.
+- **Most useful independent check now:** read 11 §1 (axioms) and §4 (Proposition 4.1) against 08 §7, and confirm that nothing wave-specific is used.
 
 ## Update (27 Oct, later): gapless proofs
 

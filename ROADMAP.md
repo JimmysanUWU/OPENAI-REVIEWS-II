@@ -48,9 +48,9 @@ The checker enforces that a node proved in prose depends only on nodes proved in
 | Project | Results | FORMAL | PROVED | PROVED_CITED | PARTIAL | HEURISTIC | NEW | CHECKED |
 |---|---|---|---|---|---|---|---|---|
 | ETH | 30 | 1 | 28 | 2 | 0 | 0 | 4 | 22 |
-| KAK | 26 | 6 | 17 | 5 | 3 | 1 | 2 | 10 |
+| KAK | 28 | 6 | 21 | 5 | 2 | 0 | 5 | 12 |
 
-Targets: 15 open, 1 in progress, 0 done.
+Targets: 16 open, 0 in progress, 1 done.
 <!-- END GENERATED: summary -->
 
 ## 2. ETH: *The Exponential Time Hypothesis Is False*
@@ -268,7 +268,9 @@ flowchart TD
     KAK_APP_B["KAK.APP.B<br/>Angular endpoint"]
     KAK_APP_D["KAK.APP.D<br/>Planar case by a linear Dirichlet problem"]
     KAK_APP_E["KAK.APP.E<br/>Curved characteristic sheets of symmetric systems"]
-    KAK_ENGINE["KAK.ENGINE<br/>The positivity engine (blueprint)"]
+    KAK_ENGINE["KAK.ENGINE<br/>The positivity engine (Theorem 11.1) (new)"]
+    KAK_PENCIL["KAK.PENCIL<br/>Symmetric pencils carry engine data (Theorem 11.2) (new)"]
+    KAK_ARROW["KAK.ARROW<br/>The wave is the arrow pencil (Corollary 11.4) (new)"]
   end
   KAK_Q_CALC --> KAK_C_LIFT
   KAK_C_LIFT --> KAK_C_WAVE
@@ -296,19 +298,19 @@ flowchart TD
   KAK_T12 --> KAK_APP_B
   KAK_C_WAVE --> KAK_APP_D
   KAK_PROP --> KAK_APP_D
-  KAK_C_LIFT --> KAK_APP_E
-  KAK_E_BAL --> KAK_APP_E
-  KAK_PROP --> KAK_APP_E
-  KAK_C_LIFT --> KAK_ENGINE
-  KAK_E_BAL --> KAK_ENGINE
-  KAK_E_DEPTH --> KAK_ENGINE
+  KAK_ENGINE --> KAK_APP_E
+  KAK_PENCIL --> KAK_APP_E
+  KAK_Q_CALC --> KAK_ENGINE
+  KAK_DIR --> KAK_ENGINE
   KAK_PROP --> KAK_ENGINE
   KAK_CAP --> KAK_ENGINE
+  KAK_C_LIFT --> KAK_PENCIL
+  KAK_Q_CALC --> KAK_PENCIL
+  KAK_APP_E --> KAK_ARROW
   class KAK_T11,KAK_R_SPHERE,KAK_KM,KAK_KD,KAK_BR,KAK_SQ formal
-  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK proved
+  class KAK_Q_CALC,KAK_C_LIFT,KAK_C_WAVE,KAK_F_GEOM,KAK_E_BAL,KAK_E_DEPTH,KAK_FIB,KAK_PROP,KAK_CAP,KAK_T12,KAK_R_CONE,KAK_NIK,KAK_OB_FOCUS,KAK_OB_WEAK,KAK_APP_E,KAK_ENGINE,KAK_PENCIL,KAK_ARROW proved
   class KAK_DIR,KAK_R_PARAB cited
-  class KAK_APP_B,KAK_APP_D,KAK_APP_E partial
-  class KAK_ENGINE heuristic
+  class KAK_APP_B,KAK_APP_D partial
   classDef formal fill:#c8e6c9,stroke:#2e7d32,color:#000
   classDef proved fill:#bbdefb,stroke:#1565c0,color:#000
   classDef cited fill:#fff9c4,stroke:#f9a825,color:#000
@@ -346,8 +348,10 @@ flowchart TD
 | `KAK.OB.WEAK` | **Weak-norm obstruction.** \|\|U(t)g_N\|\|_{L^{p,inf}} &gt;~ (log N)^{d(1/2-1/p)} \|\|g_N\|\|_p for 2&lt;p&lt;=p_c. | PROVED, CHECKED | closed | — | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §1, Prop. 1.1 | [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
 | `KAK.APP.B` | **Angular endpoint.** At p_c: \|\|Uf\|\|_p &lt;~ \|\|L(J)^{1/p} f\|\|_p + \|\|L(Lambda_omega)^B f\|\|_p for B&gt;1/2+1/p; weak-norm bound with angular weight only. | PARTIAL | — | `KAK.T12` | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | — | — |
 | `KAK.APP.D` | **Planar case by a linear Dirichlet problem.** n=2: the L^4 estimate with log^{1/2} via a linear auxiliary problem on a disk. | PARTIAL, CHECKED | — | `KAK.C.WAVE`, `KAK.PROP` | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
-| `KAK.APP.E` | **Curved characteristic sheets of symmetric systems.** For a simple extremal eigenvalue phi of a symmetric pencil with definite transverse Hessian: \|\|e^{-iT phi(D)} b(hD) f\|\|_{L^{p_c}} &lt;= C log(2/h)^{2/p_c} \|\|f\|\|_{p_c}. | PARTIAL, CHECKED | — | `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.PROP` | [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
-| `KAK.ENGINE` | **The positivity engine (blueprint).** Hypotheses H1-H5 (current, fibres, window, inversion, capacity) imply the critical estimate p=2(f+1)/f with log^2 loss. *Note:* Being turned into a theorem: target T.KAK.1. | HEURISTIC | — | `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.E.DEPTH`, `KAK.PROP`, `KAK.CAP` | [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K7 | — | — |
+| `KAK.APP.E` | **Curved characteristic sheets of symmetric systems.** For a simple extremal eigenvalue phi of a symmetric pencil with definite transverse Hessian: \|\|e^{-iT phi(D)} b(hD) f\|\|_{L^{p_c}} &lt;= C log(2/h)^{2/p_c} \|\|f\|\|_{p_c}. *Note:* Completed in 11 (chart and current quantified, wave proof reused as one abstract argument). The single-patch lower bound of App. E is not re-derived. | PROVED, CHECKED | cites KAK.DIR | `KAK.ENGINE`, `KAK.PENCIL` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Cor. 11.3; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py), [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py) | — |
+| `KAK.ENGINE` | **The positivity engine (Theorem 11.1).** Engine data on a cap (phi, K', v) -- a holomorphic fibre chart (W, Phi) with the scales (G1)-(G2), a positive conserved current chi chi^\* tangent to Phi whose rows are Fourier multipliers with Gaussian symbols C (hs)^{-d/2} sigma^m exp(-c_0 sigma \|W - v(eta)\|^2) (A1)-(A3), and an invertible time row (A4) -- imply, for some aperture gamma and all 0&lt;h&lt;=1, int_1^2 \|\|e^{-iT phi(D)} f\|\|_{L^p(T^n)}^p dT &lt;= C log^2(2/h) \|\|f\|\|_p^p, p=2n/(n-1), for f with Fourier support in the gamma-cap at scale h. *Note:* Re-runs the proofs of KAK.E.BAL, KAK.E.DEPTH and KAK.FIB under the axioms; the equation enters only through (A1)-(A4). Hypothesis-usage matrix and failure modes in 11 §7. | NEW, PROVED | cites KAK.DIR | `KAK.Q.CALC`, `KAK.DIR`, `KAK.PROP`, `KAK.CAP` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §1-5, Thm 11.1, Prop. 4.1; [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) K7 | — | — |
+| `KAK.PENCIL` | **Symmetric pencils carry engine data (Theorem 11.2).** C(xi)=sum xi_j C_j real symmetric n x n, phi=lambda_max simple at omega with D^2 phi(omega)&gt;0 on omega^perp: with E(xi)=(1,v(xi)), S=phi I-C, L w=(C(w)e_0)_perp, B(W)=e(W)^T C e(W)/(1+W.W), the chart P=tau B(W)+Phi omega and App. E's pushed current chi_mu=J^{-1/2} sum_a (C^mu z)_a i G_a satisfy (G1)-(G2) and (A1)-(A4); D^2 phi(omega)=2 L^T S_perp^{-1} L, Dv(omega)=S_perp^{-1} L, dB(0)=2 L^T, and the window is exp(-(y/2h)(W-v)^\* S_perp (W-v)). *Note:* Conservation of the pencil current checked directly in target coordinates for 5 pencils (incl. the cubic of Ex. E.2), to 1e-38. | NEW, PROVED, CHECKED | closed | `KAK.C.LIFT`, `KAK.Q.CALC` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Lemmas 6.1-6.4, Thm 11.2 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py) | — |
+| `KAK.ARROW` | **The wave is the arrow pencil (Corollary 11.4).** A(xi)=[[xi_n, xi'^T],[xi', -xi_n I]] has lambda_max=\|xi\| (simple off the ray xi'=0, xi_n&lt;0), polarization v(xi)=xi'/(\|xi\|+xi_n) (stereographic) and group-velocity map B(W)=(2W,1-W.W)/(1+W.W) (inverse stereographic); the paper's null-coordinate wave system is A after the frame change (t,s_0)-&gt;(T,b) and the state scaling (C^T)^{-1/2}. Hence Theorem 1.2's cap estimate is Corollary 11.3 for two rotated arrow pencils (a second derivation, with a spatial passive coordinate). | NEW, PROVED, CHECKED | cites KAK.DIR | `KAK.APP.E` | [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) §6, Cor. 11.4 | [verify_positivity_engine](reviews/claude/kakeya/scripts/verify_positivity_engine.py) | — |
 <!-- END GENERATED: kak-nodes -->
 
 ## 4. Frameworks extracted so far
@@ -367,7 +371,7 @@ These are statements that make sense outside the papers. The ranking is by expec
 | E5. Tapered Hermite recovery | Exact interpolation from many nodes, where the precision needed tapers with the 2-adic depth of the node. | `ETH.III.HERMITE` | proved, checked |
 | K5. Two-circle propagation | $\Delta E\le VE$ on a thin cylinder transports averages between two circles at cost $\log(r/b)/\log^2(3/b)$, sharp for supersolutions. | `KAK.PROP` | proved, checked |
 | K6. 3-slot cofactor conservation | The Moore cofactor of a 3-slot quaternionic Hessian is divergence-free. | `KAK.Q.CALC` | proved, checked |
-| K7. Positivity engine | Hypotheses H1–H5 on a dispersive symbol imply the critical estimate with $\log^2$ loss. | `KAK.ENGINE` | blueprint; target `T.KAK.1` |
+| K7. Positivity engine | Axioms on a fibre chart and a current imply the critical cap estimate with $\log^2$ loss. The axioms say nothing about the equation. Symmetric pencils satisfy them, and the wave is the arrow pencil. | `KAK.ENGINE`, `KAK.PENCIL`, `KAK.ARROW` | new, proved, checked ([kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)) |
 
 **One pattern behind both papers.** Each paper moves information along an auxiliary parameter and pays a capacity for the transport:
 - ETH: interpolation in $T$, at the cost of the binomial bulk;
@@ -379,16 +383,17 @@ Each paper's barrier is a sharp statement about that capacity (`ETH.K.E4`, `KAK.
 
 Verification is complete for both papers (see the verdict files). The remaining work is distillation: rebuilding the mathematics as reusable definitions and theorems with short proofs. It is ordered as follows.
 
-1. **Kakeya, `T.KAK.1`: the positivity engine as a theorem** (Claude, in progress).
-   - State axioms on (symbol, current, passive coordinate, fibres) that refer to no wave-specific formula.
-   - Prove the critical estimate from the axioms alone.
-   - Derive the wave, the symmetric pencils of App. E and the paraboloid as instances.
-   - Give a matrix of which hypothesis is used where, and why each one is needed.
+1. **Kakeya, `T.KAK.1`: the positivity engine as a theorem. Done** ([kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)).
+   - Theorem 11.1 proves the critical cap estimate from axioms (G1)–(G2) and (A1)–(A4).
+   - Theorem 11.2 shows that symmetric pencils satisfy them, which completes App. E.
+   - Corollary 11.4 shows the wave is the arrow pencil.
+   - The paraboloid follows only through the wave, by rescaling. A direct engine for it is open (`T.KAK.12`).
+   - §7 is the hypothesis-usage matrix.
 2. **Kakeya, `T.KAK.3`: the quaternionic slot calculus** as a standalone toolkit, with exact symbolic checks.
 3. **Kakeya, `T.KAK.2`: the planar entry point.** A self-contained proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$, using App. D's linear Dirichlet problem.
 4. **ETH, `T.ETH.2`: one deformation theorem** covering the degree-controlled deformations of Parts I–II and the 2-adic one of Part III. Then `T.ETH.4`: explicit thresholds.
 
-Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.X.1`) are open problems made precise by the distillation. They are listed for anyone who wants them.
+Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are open problems made precise by the distillation. They are listed for anyone who wants them.
 
 ## 6. Targets
 
@@ -399,18 +404,19 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.X.1`) are open problems m
 | `T.ETH.2` | distillation | A unified deformation theorem | OPEN | — | `ETH.I.DEFCOUNT`, `ETH.III.CHILD`, `ETH.III.HERMITE`, `ETH.K.E4` | One abstract statement covering the degree-controlled deformations (Parts I-II) and App. D's 2-adic deformation, with a cost functional that explains both sqrt(log) barriers. | abstract theorem with hypotheses; both instances derived as corollaries; barrier computation for each instance |
 | `T.ETH.3` | formal | Formalize App. D (Theorem 1.1) in Lean | OPEN | — | `ETH.III.MAIN` | Extend OpenAI's Lean development from Prop. 6.4 to Theorem 1.1. | a Lean proof building against the pinned Mathlib with standard axioms only |
 | `T.ETH.4` | distillation | Explicit thresholds for Parts II and III | OPEN | — | `ETH.II.MAIN`, `ETH.III.TENSOR` | Explicit n_0 in Theorem 9.1 and an explicit s_0 in Theorem 10.2, as was done for Part I (lambda &gt;= 2^17+1). | every inequality checked by script on its full range; thresholds stated in the docs |
-| `T.KAK.1` | distillation | The positivity engine as a theorem | IN_PROGRESS | claude | `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.E.DEPTH`, `KAK.FIB`, `KAK.PROP`, `KAK.APP.E` | State axioms on (symbol, current, passive coordinate, fibres) under which the critical estimate follows, prove the abstract theorem, and derive the wave (Thm 1.2), symmetric pencils (App. E) and the paraboloid as instances; include a hypothesis-usage matrix. Deliverable: [`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md). | axioms stated precisely; abstract proof referencing only the axioms; each instance verifies the axioms; checks for the new identities |
+| `T.KAK.1` | distillation | The positivity engine as a theorem | DONE | claude | `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.E.BAL`, `KAK.E.DEPTH`, `KAK.FIB`, `KAK.PROP`, `KAK.APP.E` | State axioms on (symbol, current, passive coordinate, fibres) under which the critical estimate follows, prove the abstract theorem, and derive the wave (Thm 1.2), symmetric pencils (App. E) and the paraboloid as instances; include a hypothesis-usage matrix. Deliverable: [`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md). | axioms stated precisely; abstract proof referencing only the axioms; each instance verifies the axioms; checks for the new identities |
 | `T.KAK.2` | distillation | The planar entry point | OPEN | claude | `KAK.APP.D`, `KAK.C.WAVE`, `KAK.PROP` | A self-contained complete proof of sharp L^4 local smoothing in R^{2+1} with log^{1/2}, using the linear Dirichlet problem of App. D (no Monge-Ampere regularity). | every step proved or a cited textbook theorem; App. D's remaining analytic steps re-derived; checks for the planar identities |
 | `T.KAK.3` | distillation | Quaternionic slot calculus as a standalone toolkit | OPEN | claude | `KAK.Q.CALC` | A short self-contained account of the 3-slot calculus (G, H, Moore determinant, cofactor divergence, Green, Schur, rank-one expansion) usable outside the paper. | definitions and proofs; exact symbolic checks |
 | `T.KAK.4` | research | A coordinate-free conserved current | OPEN | — | `KAK.C.LIFT` | Describe the lifted current on the complexified characteristic variety as a CR-geometric object. | invariant definition reproducing Prop. 3.3 |
 | `T.KAK.5` | distillation | Avoid the fourth slot in the boundary C^2 estimate | OPEN | — | `KAK.DIR` | Prove the boundary second-derivative estimate of App. A with 3-slot rigid motions only, or explain why a fourth slot is needed. | proof or obstruction |
 | `T.KAK.6` | research | One logarithm instead of two | OPEN | — | `KAK.PROP`, `KAK.OB.FOCUS`, `KAK.CAP` | Reach log^{1/p_c} (the lower bound) by using the energy's structure beyond superharmonicity. | improved propagation lemma with proof |
-| `T.KAK.7` | research | Pencils whose size differs from the spatial dimension | OPEN | — | `KAK.APP.E` | Extend App. E beyond 'state dimension = spatial dimension', via determinantal representations of hyperbolic polynomials. | a theorem with a new class of symbols |
-| `T.KAK.8` | research | Variable coefficients: which hypothesis fails | OPEN | — | `KAK.ENGINE` | Locate the engine hypothesis that fails for curved metrics, explaining the Minicozzi-Sogge counterexamples. | a precise failing hypothesis with an example |
+| `T.KAK.7` | research | Pencils whose size differs from the spatial dimension | OPEN | — | `KAK.PENCIL`, `KAK.ENGINE` | Extend Theorem 11.2 beyond 'state dimension = spatial dimension'. For N&gt;n the flux map is a submersion; push the lifted current forward by fibre integration (still positive, conserved and tangent) and re-derive (A3)-(A4). Connects to determinantal representations of hyperbolic polynomials. | a theorem with a new class of symbols |
+| `T.KAK.8` | research | Variable coefficients: which hypothesis fails | OPEN | — | `KAK.ENGINE` | Explain the Minicozzi-Sogge counterexamples on curved metrics. By 11 §8.4 the obstruction must lie in the current axiom (A1): (A3)-(A4) are stable symbol estimates. Find the precise failure. | a precise failing hypothesis with an example |
 | `T.KAK.9` | research | Degenerate symbols with a rank-r background | OPEN | — | `KAK.E.DEPTH`, `KAK.E.BAL` | Find currents tangent to r&gt;1 passive coordinates and prove the rank-r energy comparison, giving critical estimates at 2(f+1)/f. | rank-r analogue of Lemma 6.3 with proof |
-| `T.KAK.10` | verification | Line-by-line verification of Apps. B and E | OPEN | — | `KAK.APP.B`, `KAK.APP.E` | Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3) and App. E (E.8)-(E.11). | complete derivations; statuses upgraded to PROVED |
+| `T.KAK.10` | verification | Line-by-line verification of App. B | OPEN | — | `KAK.APP.B` | Re-derive the analytic estimates of App. B (Lemma B.4, Prop. B.2, B.3). App. E was completed in 11 (Corollary 11.3). | complete derivations; KAK.APP.B upgraded to PROVED |
 | `T.KAK.11` | formal | The sharp power 2/p_c in Lean | OPEN | — | `KAK.T12`, `KAK.PROP` | Formalize Theorem 1.2 with the sharp power. | Lean proof with standard axioms only |
 | `T.X.1` | research | Capacity of transport as a theorem | OPEN | — | `ETH.K.E4`, `KAK.CAP` | Turn the cross-paper analogy (move information along an auxiliary parameter and pay a capacity) into a precise statement covering both papers' barriers. | a precise common statement or a reasoned negative answer |
+| `T.KAK.12` | research | A direct engine for the paraboloid | OPEN | — | `KAK.ENGINE`, `KAK.ARROW`, `KAK.R.PARAB` | e^{it Delta} is not a first-order symmetric system, so it is not an instance of Theorem 11.2; its critical estimate currently comes from the wave by parabolic rescaling. Find an exactly conserved, positive current tangent to a passive coordinate for the Schrodinger flow satisfying (A1)-(A4), e.g. as a parabolic limit of arrow-pencil currents. | engine data for the paraboloid with proofs; a direct-coordinate conservation check |
 <!-- END GENERATED: targets -->
 
 ## 7. Protocol for AI contributors
@@ -447,3 +453,8 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
 
 ## 8. Changelog
 - **2026-10-28.** Roadmap created: 56 results (30 ETH, 26 Kakeya) and 16 targets. Distillation target `T.KAK.1` started.
+- **2026-10-28 (later).** `T.KAK.1` done: [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md).
+  - `KAK.ENGINE` is now a theorem (was heuristic).
+  - New nodes `KAK.PENCIL` and `KAK.ARROW`.
+  - `KAK.APP.E` is upgraded from PARTIAL to PROVED.
+  - New target `T.KAK.12`; `T.KAK.7`, `T.KAK.8` and `T.KAK.10` refined.

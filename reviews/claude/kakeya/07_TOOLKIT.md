@@ -15,7 +15,7 @@ This file extracts the parts of *Local smoothing for the Euclidean wave equation
 | K4 | Capacity-dimension principle | auxiliary time of any dimension $k$ | R, X | **New:** only $k=2$ gives logarithmic loss, so two auxiliary flows are *necessary* |
 | K5 | Two-circle propagation | supersolutions with exponentially small potential | P, R, X, L | Sharpness constant identified exactly |
 | K6 | 3-slot cofactor conservation | real $C^3$ functions, 2/3/4 slots | P, X, L | |
-| K7 | The positivity engine | hypotheses H1–H5 | R (assembly), H (open instances) | Master blueprint and open instances |
+| K7 | The positivity engine | axioms (G1)–(G2), (A1)–(A4) | R, X | **Now a theorem:** [11](11_FRAMEWORK_POSITIVITY_ENGINE.md) Theorem 11.1, with pencils (Theorem 11.2) and the wave as the arrow pencil (Corollary 11.4) |
 
 ---
 
@@ -130,6 +130,8 @@ For every real $C^3$ function $u$, in 2, 3 or 4 slots, $\sum_{a,\alpha}\bar e_\a
 ---
 
 ## K7. The positivity engine: a master blueprint
+
+**Update (28 Oct).** This blueprint is now a theorem: [11](11_FRAMEWORK_POSITIVITY_ENGINE.md) Theorem 11.1, with precise axioms and a hypothesis-usage matrix (§7). H1 becomes (A1)–(A2) and (G1)–(G2). H2 becomes (G2). H3 and H4 become (A3) and (A4). H5 is built into the slot structure. Symmetric pencils satisfy the axioms (Theorem 11.2), and the wave is the arrow pencil (Corollary 11.4).
 
 **Hypotheses for a dispersive family $e^{-iT\phi(D)}$ on a frequency cap:**
 - **H1** (current) A constant-coefficient symmetric system realizes $\phi$ as a simple extremal eigenvalue sheet, with a holomorphic flux map making the lifted current (K1) quaternionic rank one and tangent to a passive coordinate $\Phi$.

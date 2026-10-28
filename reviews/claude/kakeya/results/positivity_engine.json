@@ -1,0 +1,287 @@
+{
+ "G": [
+  {
+   "pencil": "arrow n=2 (Dirac)",
+   "n": 2,
+   "gap": 2.0,
+   "hellmann_feynman": 7.31019346650806e-42,
+   "curvature": 3.973395041275871e-26,
+   "Dv": 1.899147504851699e-42,
+   "dB0": 0.0,
+   "stationarity": 1.5557538194652854e-41,
+   "omega_dot_dB0": 0.0,
+   "L_omega": 0.0,
+   "det_dB0_omega": 2.0,
+   "transverse_hessian_eigs": [
+    0.0,
+    1.0
+   ],
+   "ok": true,
+   "conormal": 1.2007490218624246e-41
+  },
+  {
+   "pencil": "arrow n=3",
+   "n": 3,
+   "gap": 2.0,
+   "hellmann_feynman": 4.1388787855170576e-41,
+   "curvature": 1.3421674224264355e-30,
+   "Dv": 3.5248109566683273e-42,
+   "dB0": 0.0,
+   "stationarity": 1.5557538194652854e-41,
+   "omega_dot_dB0": 0.0,
+   "L_omega": 0.0,
+   "det_dB0_omega": 4.0,
+   "transverse_hessian_eigs": [
+    0.0,
+    1.0,
+    1.0
+   ],
+   "ok": true,
+   "conormal": 4.5655380957991624e-42
+  },
+  {
+   "pencil": "arrow n=4",
+   "n": 4,
+   "gap": 2.0,
+   "hellmann_feynman": 1.6478111231891728e-41,
+   "curvature": 4.368625480404062e-31,
+   "Dv": 1.5836338076772156e-41,
+   "dB0": 0.0,
+   "stationarity": 1.5557538194652854e-41,
+   "omega_dot_dB0": 0.0,
+   "L_omega": 0.0,
+   "det_dB0_omega": 8.0,
+   "transverse_hessian_eigs": [
+    0.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "ok": true,
+   "conormal": 5.9104783728917e-42
+  },
+  {
+   "pencil": "cubic (Example E.2)",
+   "n": 3,
+   "gap": 2.0,
+   "hellmann_feynman": 6.628221299538076e-42,
+   "curvature": 5.331539631936193e-31,
+   "Dv": 7.449214461365312e-42,
+   "dB0": 0.0,
+   "stationarity": 1.5557538194652854e-41,
+   "omega_dot_dB0": 0.0,
+   "L_omega": 0.0,
+   "det_dB0_omega": 4.0,
+   "transverse_hessian_eigs": [
+    0.0,
+    0.6666666666666666,
+    1.0
+   ],
+   "ok": true,
+   "conormal": 2.883991692642355e-42
+  },
+  {
+   "pencil": "perturbed arrow n=3",
+   "n": 3,
+   "gap": 1.8525317082164643,
+   "hellmann_feynman": 2.487438880138958e-41,
+   "curvature": 6.9563888905017334e-31,
+   "Dv": 1.0696173620484276e-41,
+   "dB0": 0.0,
+   "stationarity": 1.5557538194652854e-41,
+   "omega_dot_dB0": 1.356404910542657e-61,
+   "L_omega": 6.782024552713285e-62,
+   "det_dB0_omega": 3.0003412982120112,
+   "transverse_hessian_eigs": [
+    4.9657346214912406e-123,
+    0.6899628442719937,
+    0.8445594849117076
+   ],
+   "ok": true,
+   "conormal": 1.215641278128895e-41
+  }
+ ],
+ "C": [
+  {
+   "pencil": "arrow n=2 (Dirac)",
+   "n": 2,
+   "trial": 0,
+   "divergence_relative": 4.120073578249649e-39,
+   "tangency_relative": 3.1976681695456764e-40,
+   "J_identity": 8.521658812757771e-62,
+   "gaussian_identity": 4.375557617246115e-62,
+   "row_identity": 5.276884902017077e-61,
+   "control_wrong_conjugation": 0.06336372696469934,
+   "control_no_volume_factor": 2.7065237291952955,
+   "ok": true
+  },
+  {
+   "pencil": "arrow n=2 (Dirac)",
+   "n": 2,
+   "trial": 1,
+   "divergence_relative": 1.124437872944862e-38,
+   "tangency_relative": 1.3714571223205607e-40,
+   "J_identity": 1.0824644473868326e-61,
+   "gaussian_identity": 1.0209634440240936e-61,
+   "row_identity": 1.0401218591096233e-60,
+   "ok": true
+  },
+  {
+   "pencil": "arrow n=3",
+   "n": 3,
+   "trial": 0,
+   "divergence_relative": 5.571361880317371e-39,
+   "tangency_relative": 6.050079684937536e-40,
+   "J_identity": 0.0,
+   "gaussian_identity": 6.466101812152593e-61,
+   "row_identity": 1.3177688265237822e-60,
+   "control_wrong_conjugation": 0.0005252983025058192,
+   "control_no_volume_factor": 2.9721286666376106,
+   "ok": true
+  },
+  {
+   "pencil": "arrow n=3",
+   "n": 3,
+   "trial": 1,
+   "divergence_relative": 4.549642237284386e-39,
+   "tangency_relative": 4.616504121942769e-40,
+   "J_identity": 5.551729599978645e-61,
+   "gaussian_identity": 4.813113378970727e-61,
+   "row_identity": 1.1431773400246863e-60,
+   "ok": true
+  },
+  {
+   "pencil": "arrow n=4",
+   "n": 4,
+   "trial": 0,
+   "divergence_relative": 4.53741878652702e-39,
+   "tangency_relative": 2.079051330163039e-40,
+   "J_identity": 4.6251531330487776e-61,
+   "gaussian_identity": 4.667261458395856e-61,
+   "row_identity": 6.932108073533526e-61,
+   "control_wrong_conjugation": 0.009197738719150613,
+   "control_no_volume_factor": 5.461305524250806,
+   "ok": true
+  },
+  {
+   "pencil": "cubic (Example E.2)",
+   "n": 3,
+   "trial": 0,
+   "divergence_relative": 2.008779224656919e-39,
+   "tangency_relative": 3.2713193539422265e-40,
+   "J_identity": 1.0106657012610494e-61,
+   "gaussian_identity": 1.567908146179858e-61,
+   "row_identity": 2.8880067969529263e-61,
+   "control_wrong_conjugation": 0.026485944725355207,
+   "control_no_volume_factor": 4.051453167824447,
+   "ok": true
+  },
+  {
+   "pencil": "cubic (Example E.2)",
+   "n": 3,
+   "trial": 1,
+   "divergence_relative": 6.354911618694304e-39,
+   "tangency_relative": 6.603713237892942e-40,
+   "J_identity": 5.911751425745801e-61,
+   "gaussian_identity": 5.73684220927824e-61,
+   "row_identity": 5.8641578281437984e-61,
+   "ok": true
+  },
+  {
+   "pencil": "perturbed arrow n=3",
+   "n": 3,
+   "trial": 0,
+   "divergence_relative": 4.7988736596206106e-39,
+   "tangency_relative": 9.103348710788847e-41,
+   "J_identity": 1.0214054070796171e-61,
+   "gaussian_identity": 2.2363961154813478e-61,
+   "row_identity": 4.970494092896917e-61,
+   "control_wrong_conjugation": 0.04980281456444326,
+   "control_no_volume_factor": 2.6030034424529878,
+   "ok": true
+  },
+  {
+   "pencil": "perturbed arrow n=3",
+   "n": 3,
+   "trial": 1,
+   "divergence_relative": 2.7662748850474412e-39,
+   "tangency_relative": 1.8165233654032273e-40,
+   "J_identity": 1.5898218376022532e-61,
+   "gaussian_identity": 6.271632584719432e-61,
+   "row_identity": 1.4177521429824556e-60,
+   "ok": true
+  }
+ ],
+ "M": {
+  "seed": 1,
+  "S_perp_eigs": [
+   -1.2750382452390894,
+   0.9594705006780078
+  ],
+  "conservation": [
+   {
+    "pencil": "middle sheet (generic n=3, seed 1)",
+    "n": 3,
+    "trial": 0,
+    "divergence_relative": 1.275176027797859e-38,
+    "tangency_relative": 1.5594903570145608e-40,
+    "J_identity": 1.787737010870812e-61,
+    "gaussian_identity": 1.3734389187466973e-61,
+    "row_identity": 4.11591992988306e-61,
+    "ok": true
+   }
+  ],
+  "gaussian_factor_at_|W-v|=0.1_y=1": 1.0058193467344192,
+  "note": "y/h = sigma multiplies the exponent: the factor is exp(+c sigma), not a window"
+ },
+ "W": {
+  "n=2": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "n=3": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "n=4": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "cubic_transverse_hessian": [
+  [
+   1.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.6666666666666666,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "all_ok": true
+}

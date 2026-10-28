@@ -32,7 +32,7 @@ In both, a small finite algebraic structure turns a messy object into a diagonal
 ## 3. What is genuinely recyclable (ranked by expected reach)
 
 1. **K1: the positive, exactly conserved phase-space density** for constant-coefficient symmetric systems. It is a new object with no previous analogue: Husimi densities are not conserved, and Wigner functions are not positive. Any "positivity + conservation" argument in dispersive PDE can start from it.
-2. **K2: the determinant energy balance.** A wave-free engine: positive current + rank-one background + designed fibers ⇒ almost-superharmonic energy. It imports Kähler-geometry energies (Aubin–Mabuchi) into harmonic analysis.
+2. **K2: the determinant energy balance.** A wave-free engine: positive current + rank-one background + designed fibers ⇒ almost-superharmonic energy. It imports Kähler-geometry energies (Aubin–Mabuchi) into harmonic analysis. **Now a theorem with precise axioms** ([`kakeya/11`](kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) Theorem 11.1). Symmetric pencils are instances, and the wave is the arrow pencil.
 3. **E3: deformation counting.** A general exact algorithm for partition functions of bounded-degree factor graphs, in $2^{o(n)}$. Its new corollary covers Ising/Potts partition functions with rational weights.
 4. **E1: commuting-involution interpolation.** A representation-theoretic lemma: a low-degree path from $I$ to "local" group elements, with an exact defect formula, optimal among symmetric choices.
 5. **E2: $p$-adic cross-equation truncation** (new). Lifting $\mathbb F_p$ systems to $\mathbb Z/p^\ell$ at *linear* degree, for every prime.

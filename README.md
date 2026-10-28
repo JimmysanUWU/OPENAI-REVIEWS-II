@@ -32,6 +32,15 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - Apps. B, D and E are checked at the level of exponents and new identities.
   - Checked by [`verify_remaining_claims.py`](reviews/claude/kakeya/scripts/verify_remaining_claims.py).
 
+## Distillation round 4: frameworks
+
+- **Kakeya: the positivity engine as a theorem** ([`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)).
+  - Theorem 11.1 states axioms on a fibre chart and a current that never mention the equation, and proves the critical estimate from them alone.
+  - Every symmetric pencil with a simple, extremal, transversally curved eigenvalue satisfies the axioms. This gives a complete proof of the paper's App. E.
+  - **The wave is the "arrow" pencil**, whose polarization is stereographic projection. Theorem 1.2 is therefore a special case of App. E.
+  - A hypothesis-usage matrix says what breaks without each hypothesis.
+  - Checked by [`verify_positivity_engine.py`](reviews/claude/kakeya/scripts/verify_positivity_engine.py). The pencil current is conserved to $10^{-38}$ for five pencils, including App. E's non-quadric cubic example.
+
 ## Distillation round 2 (recyclable toolkit)
 
 See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results proved and checked in this round:
@@ -50,7 +59,7 @@ tools/                    roadmap checker and its negative controls
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project
