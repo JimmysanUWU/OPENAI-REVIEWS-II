@@ -44,6 +44,13 @@ def main():
         "target without owner": lambda d: d["targets"][0].update(status="IN_PROGRESS", owner=None),
         "done without deliverable": lambda d: d["targets"][0].update(status="DONE"),
         "bad review": lambda d: node(d, "KAK.CAP").__setitem__("reviews", [{"by": "gpt", "verdict": "maybe", "file": "README.md"}]),
+        "missing sketch": lambda d: node(d, "KAK.PROP").__setitem__("sketch", "short"),
+        "path out of order": lambda d: d["reading_paths"][0]["nodes"].reverse(),
+        "node on no path": lambda d: [p["nodes"].remove("KAK.OB.WEAK") for p in d["reading_paths"] if "KAK.OB.WEAK" in p["nodes"]],
+        "unknown assumed node": lambda d: d["reading_paths"][3]["assumes"].append("KAK.NOPE"),
+        "bad alternative proof": lambda d: node(d, "KAK.T12")["alt_proofs"][0]["depends_on"].append("KAK.NOPE"),
+        "alt proof makes a cycle": lambda d: node(d, "KAK.ARROW").__setitem__("alt_proofs", [{"depends_on": ["KAK.T11"], "note": "x"}]),
+        "glossary bad pointer": lambda d: d["glossary"][0].__setitem__("label", "§99"),
     }
     failed = []
     for name, corrupt in corruptions.items():

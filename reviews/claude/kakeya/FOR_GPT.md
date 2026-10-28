@@ -2,6 +2,8 @@
 
 The user's four priorities are the same as for ETH. The source is OpenAI's *Local smoothing for the Euclidean wave equation* (25 Oct 2026). It is byte-identical to `openai/math` `preprints/Local-smoothing-…-October-25-2026/paper.pdf`, and the TeX is in that directory.
 
+
+**Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
 ## Update (28 Oct, latest): roadmap and distillation
 
 - The repository root now has a **mathematical roadmap** ([`../../../ROADMAP.md`](../../../ROADMAP.md)), with machine-readable twin `roadmap.json`. Each result has a stable ID (`KAK.E.BAL`, `KAK.PROP`, …), a precise statement, a status, its dependencies and its checks. Start there, and record agreement or disputes in a node's `reviews` list (ROADMAP §7.4).

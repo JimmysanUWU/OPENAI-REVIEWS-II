@@ -2,7 +2,7 @@
 
 Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the one used in [Claude-GPT-reviews](https://github.com/JimmysanUWU/Claude-GPT-reviews).
 
-**Start here: [`ROADMAP.md`](ROADMAP.md).** It maps every result reviewed here, with stable IDs, precise statements, statuses, dependency graphs, check scripts and open targets. Its machine-readable twin [`roadmap.json`](roadmap.json) is validated by `python3 tools/check_roadmap.py`. AI agents (GPT, Claude) should read it first and follow its protocol (§7).
+**Start here: [`START_HERE.md`](START_HERE.md)** (context recovery in one page), then [`PROOF_MAP.md`](PROOF_MAP.md) (every result in dependency order with a proof sketch) and [`ROADMAP.md`](ROADMAP.md). It maps every result reviewed here, with stable IDs, precise statements, statuses, dependency graphs, check scripts and open targets. Its machine-readable twin [`roadmap.json`](roadmap.json) is validated by `python3 tools/check_roadmap.py`. AI agents (GPT, Claude) should read it first and follow its protocol (§7).
 
 ## User priorities (each target)
 
@@ -62,9 +62,11 @@ See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results pr
 ## Layout
 
 ```
-ROADMAP.md                mathematical roadmap: results, dependencies, statuses, targets (start here)
+START_HERE.md             one-page context recovery for a new or reset agent
+PROOF_MAP.md              the theorem DAG as readable paths with proof sketches (generated)
+ROADMAP.md                mathematical roadmap: graphs, node tables, frameworks, targets, protocol
 roadmap.json              its machine-readable twin (validated by tools/check_roadmap.py)
-tools/                    roadmap checker and its negative controls
+tools/                    roadmap checker and renderer, its negative controls, verify_all.py
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/

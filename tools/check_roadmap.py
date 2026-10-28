@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""Validate roadmap.json and keep the generated parts of ROADMAP.md in sync.
+"""Validate roadmap.json and keep the generated parts of ROADMAP.md and PROOF_MAP.md in sync.
 
 Usage (from the repository root):
     python3 tools/check_roadmap.py            # validate; exit 1 on any error
-    python3 tools/check_roadmap.py --write    # validate, then regenerate the generated blocks of ROADMAP.md
-    python3 tools/check_roadmap.py --node ID  # print a node and everything it rests on
+    python3 tools/check_roadmap.py --write    # validate, then regenerate the generated blocks
+    python3 tools/check_roadmap.py --node ID  # print a node, its proof sketch, and everything it rests on
+    python3 tools/check_roadmap.py --path ID  # print a reading path in order (statements and sketches)
 
 Checks:
 - schema: required fields, id formats, known kinds and status codes;
 - references: every dependency, target base and script exists; every cited file exists;
 - labels: structured labels ("§3", "Lemma 2.1", "Thms 4.6", "K3", ...) resolve to a heading or a bold
   statement in the cited file (free-text labels are allowed and not checked);
-- logic: the dependency graph is acyclic; a node proved in prose depends only on nodes proved in prose;
+- logic: the dependency graph (with alternative proofs) is acyclic; a node proved in prose depends only on
+  nodes proved in prose; every reading path lists nodes in dependency order (each node's dependencies, for
+  its main proof or one alternative, appear earlier or are declared as assumed) and every node is on a path;
   FORMAL marks exactly the nodes with an audited Lean name, and that name occurs in the pinned statement file;
 - sync: the blocks of ROADMAP.md between <!-- BEGIN GENERATED: x --> and <!-- END GENERATED: x -->
   equal what this script renders from roadmap.json.
@@ -26,6 +29,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_PATH = os.path.join(ROOT, "roadmap.json")
 MD_PATH = os.path.join(ROOT, "ROADMAP.md")
+MAP_PATH = os.path.join(ROOT, "PROOF_MAP.md")
 
 NODE_CODES = {"FORMAL", "PROVED", "PROVED_CITED", "CHECKED", "PARTIAL", "HEURISTIC", "NEW"}
 PROSE = {"PROVED", "PROVED_CITED"}
@@ -34,7 +38,7 @@ KINDS = {"theorem", "proposition", "lemma", "corollary", "framework"}
 TARGET_KINDS = {"distillation", "research", "formal", "verification"}
 OWNERS = {None, "claude", "gpt"}
 REVIEW_VERDICTS = {"agree", "dispute", "partial"}
-NODE_REQUIRED = ["id", "project", "group", "kind", "title", "statement", "status", "where", "depends_on", "checks",
+NODE_REQUIRED = ["id", "project", "group", "kind", "title", "statement", "sketch", "status", "where", "depends_on", "checks",
                  "paper_ref", "formal", "confidence"]
 TARGET_REQUIRED = ["id", "kind", "title", "goal", "builds_on", "status", "owner", "difficulty", "acceptance"]
 FORMAL_SOURCES = {"ETH": "source/eth/SubexponentialSAT.statement.lean",
@@ -97,6 +101,26 @@ def resolve_piece(piece, text):
 
 # ---------------------------------------------------------------- validation
 
+def check_where(owner, wheres, rep, texts):
+    for w in wheres:
+        path = w.get("file", "")
+        if not os.path.isfile(os.path.join(ROOT, path)):
+            rep.err("%s: missing file %s" % (owner, path))
+            continue
+        text = texts.setdefault(path, read(path))
+        for piece in label_pieces(w.get("label", "")):
+            ok = resolve_piece(piece, text)
+            if ok is None:
+                rep.unchecked += 1
+            elif not ok:
+                rep.err("%s: label %r not found in %s" % (owner, piece, path))
+
+
+def proofs(n):
+    """Dependency sets of every proof of a node: the main one, then the alternatives."""
+    return [n.get("depends_on", [])] + [a.get("depends_on", []) for a in n.get("alt_proofs", [])]
+
+
 def validate(data, rep):
     for key in ["schema", "updated", "status_codes", "projects", "nodes", "targets"]:
         if key not in data:
@@ -129,18 +153,16 @@ def validate(data, rep):
                 rep.err("%s: unknown dependency %s" % (nid, d))
             if d == nid:
                 rep.err("%s: depends on itself" % nid)
-        for w in n.get("where", []):
-            path = w.get("file", "")
-            if not os.path.isfile(os.path.join(ROOT, path)):
-                rep.err("%s: missing file %s" % (nid, path))
-                continue
-            text = texts.setdefault(path, read(path))
-            for piece in label_pieces(w.get("label", "")):
-                ok = resolve_piece(piece, text)
-                if ok is None:
-                    rep.unchecked += 1
-                elif not ok:
-                    rep.err("%s: label %r not found in %s" % (nid, piece, path))
+        check_where(nid, n.get("where", []), rep, texts)
+        if len(n.get("sketch", "")) < 40:
+            rep.err("%s: proof sketch missing or too short" % nid)
+        for a in n.get("alt_proofs", []):
+            if not a.get("depends_on") or not a.get("note"):
+                rep.err("%s: alternative proof needs depends_on and note" % nid)
+            for d in a.get("depends_on", []):
+                if d not in by_id or d == nid:
+                    rep.err("%s: bad alternative dependency %s" % (nid, d))
+            check_where(nid + " (alt)", a.get("where", []), rep, texts)
         for c in n.get("checks", []):
             if not os.path.isfile(os.path.join(ROOT, c)):
                 rep.err("%s: missing check script %s" % (nid, c))
@@ -161,16 +183,17 @@ def validate(data, rep):
         if conf is not None and not (0 <= conf <= 1):
             rep.err("%s: confidence outside [0,1]" % nid)
         if set(st) & PROSE:
-            for d in n.get("depends_on", []):
-                if d in by_id and not set(by_id[d]["status"]) & (PROSE | {"FORMAL"}):
-                    rep.err("%s is proved in prose but depends on %s (%s)" % (nid, d, ",".join(by_id[d]["status"])))
+            for deps in proofs(n):
+                for d in deps:
+                    if d in by_id and not set(by_id[d]["status"]) & (PROSE | {"FORMAL"}):
+                        rep.err("%s is proved in prose but depends on %s (%s)" % (nid, d, ",".join(by_id[d]["status"])))
 
     # acyclicity (iterative DFS)
     color = {i: 0 for i in by_id}
     for start in by_id:
         if color[start]:
             continue
-        stack = [(start, iter(by_id[start].get("depends_on", [])))]
+        stack = [(start, iter(sum(proofs(by_id[start]), [])))]
         color[start] = 1
         while stack:
             node, it = stack[-1]
@@ -183,7 +206,39 @@ def validate(data, rep):
                     rep.err("dependency cycle through %s -> %s" % (node, nxt))
                 elif color[nxt] == 0:
                     color[nxt] = 1
-                    stack.append((nxt, iter(by_id[nxt].get("depends_on", []))))
+                    stack.append((nxt, iter(sum(proofs(by_id[nxt]), []))))
+
+    # reading paths: dependency order and coverage
+    paths = data.get("reading_paths", [])
+    pids = [p.get("id") for p in paths]
+    if len(set(pids)) != len(pids):
+        rep.err("duplicate reading path ids")
+    covered = set()
+    for p in paths:
+        pid = p.get("id", "?")
+        if not re.fullmatch(r"P\.(ETH|KAK)\.[A-Z0-9]+", pid):
+            rep.err("%s: bad reading path id" % pid)
+        known = set(p.get("assumes", []))
+        for a in known:
+            if a not in by_id:
+                rep.err("%s: unknown assumed node %s" % (pid, a))
+        for x in p.get("nodes", []):
+            if x not in by_id:
+                rep.err("%s: unknown node %s" % (pid, x))
+                continue
+            if not any(set(deps) <= known for deps in proofs(by_id[x])):
+                missing = sorted(set(by_id[x]["depends_on"]) - known)
+                rep.err("%s: %s comes before its dependencies %s" % (pid, x, missing))
+            known.add(x)
+            covered.add(x)
+    if paths:
+        for nid in by_id:
+            if nid not in covered:
+                rep.err("%s is on no reading path" % nid)
+    for g in data.get("glossary", []):
+        if not g.get("term") or not g.get("meaning") or g.get("project") not in ("ETH", "KAK"):
+            rep.err("bad glossary entry %r" % g.get("term"))
+        check_where("glossary %r" % g.get("term"), [{"file": g.get("file", ""), "label": g.get("label", "")}], rep, texts)
 
     tids = [t.get("id") for t in targets]
     if len(set(tids)) != len(tids):
@@ -233,6 +288,12 @@ def chain(nid, by_id):
         return "—"
     cited = sorted(a for a in ancestors(nid, by_id) | {nid} if "PROVED_CITED" in by_id[a]["status"])
     return "closed" if not cited else "cites " + ", ".join(cited)
+
+
+def prose_escape(s):
+    """Escaping for running text (outside tables): keep the source readable as plain text."""
+    s = s.replace("*", "\\*")
+    return re.sub(r"<(?=[A-Za-z/!])", "&lt;", s)
 
 
 def md_escape(s):
@@ -305,6 +366,9 @@ def render_graph(project, nodes):
     for n in mine:
         for d in n["depends_on"]:
             out.append("  %s --> %s" % (d.replace(".", "_"), n["id"].replace(".", "_")))
+        for a in n.get("alt_proofs", []):
+            for d in a["depends_on"]:
+                out.append("  %s -.->|alt| %s" % (d.replace(".", "_"), n["id"].replace(".", "_")))
     for cls in ["formal", "proved", "cited", "partial", "heuristic"]:
         members = [n["id"].replace(".", "_") for n in mine if mermaid_class(n) == cls]
         if members:
@@ -353,28 +417,38 @@ def blocks(data, by_id):
             "targets": render_targets(targets)}
 
 
-BLOCK_RE = re.compile(r"(<!-- BEGIN GENERATED: ([a-z-]+) -->\n)(.*?)(<!-- END GENERATED: \2 -->)", re.S)
+BLOCK_RE = re.compile(r"(<!-- BEGIN GENERATED: ([a-z0-9-]+) -->\n)(.*?)(<!-- END GENERATED: \2 -->)", re.S)
 
 
-def sync(md, rendered, rep, write):
+def sync(md, rendered, rep, write, fname="ROADMAP.md"):
     found = set()
 
     def sub(m):
         name = m.group(2)
         found.add(name)
         if name not in rendered:
-            rep.err("ROADMAP.md: unknown generated block %r" % name)
+            rep.err("%s: unknown generated block %r" % (fname, name))
             return m.group(0)
         body = rendered[name] + "\n"
         if m.group(3) != body and not write:
-            rep.err("ROADMAP.md: block %r is out of date (run with --write)" % name)
+            rep.err("%s: block %r is out of date (run with --write)" % (fname, name))
         return m.group(1) + body + m.group(4)
 
     new = BLOCK_RE.sub(sub, md)
     for name in rendered:
         if name not in found:
-            rep.err("ROADMAP.md: missing generated block %r" % name)
+            rep.err("%s: missing generated block %r" % (fname, name))
     return new
+
+
+def print_node(n):
+    print("%s [%s] %s" % (n["id"], ",".join(n["status"]), n["title"]))
+    print("    statement: " + n["statement"])
+    print("    sketch:    " + n["sketch"])
+    print("    uses:      " + (", ".join(n["depends_on"]) or "-"))
+    for a in n.get("alt_proofs", []):
+        print("    alt proof: uses " + ", ".join(a["depends_on"]) + " -- " + a["note"])
+    print("    where:     " + "; ".join("%s (%s)" % (w["file"], w["label"]) for w in n["where"]))
 
 
 def show(nid, by_id):
@@ -382,18 +456,120 @@ def show(nid, by_id):
         print("unknown node", nid)
         return 1
     for x in [nid] + sorted(ancestors(nid, by_id)):
-        n = by_id[x]
-        print("%s [%s] %s" % (x, ",".join(n["status"]), n["title"]))
-        print("    " + n["statement"])
-        print("    where: " + "; ".join("%s (%s)" % (w["file"], w["label"]) for w in n["where"]))
+        print_node(by_id[x])
     print("prose chain:", chain(nid, by_id))
     return 0
+
+
+def show_path(pid, data, by_id):
+    p = next((q for q in data.get("reading_paths", []) if q["id"] == pid), None)
+    if p is None:
+        print("unknown path", pid, "- known:", ", ".join(q["id"] for q in data.get("reading_paths", [])))
+        return 1
+    print("%s: %s\n%s\nassumes: %s\n" % (p["id"], p["title"], p["purpose"], ", ".join(p["assumes"]) or "-"))
+    for i, x in enumerate(p["nodes"], 1):
+        print("%d. " % i, end="")
+        print_node(by_id[x])
+    return 0
+
+
+def anchor(pid, nid):
+    return (pid + "--" + nid).lower().replace(".", "-")
+
+
+def canonical_anchors(data):
+    out = {}
+    for p in data.get("reading_paths", []):
+        for x in p["nodes"]:
+            out.setdefault(x, anchor(p["id"], x))
+    return out
+
+
+def link_md(path):
+    return "[%s](%s)" % (short(path), path)
+
+
+def render_path(p, by_id, canon):
+    here = set(p["nodes"])
+    known = set(p["assumes"])
+    lines = ["*%s*" % prose_escape(p["purpose"])]
+    if p["assumes"]:
+        lines.append("")
+        lines.append("Assumes: " + ", ".join("[`%s`](#%s)" % (a, canon[a]) for a in p["assumes"]) + ".")
+    for i, x in enumerate(p["nodes"], 1):
+        n = by_id[x]
+        def ref(d):
+            return "[`%s`](#%s)" % (d, anchor(p["id"], d) if d in here else canon[d])
+        lines += ["", '#### <a id="%s"></a>%d. `%s` — %s' % (anchor(p["id"], x), i, x, prose_escape(n["title"])), ""]
+        meta = "*%s*" % ", ".join(n["status"])
+        ch = chain(x, by_id)
+        if ch != "—":
+            meta += " · prose chain: %s" % ch
+        if n["depends_on"]:
+            meta += " · uses " + ", ".join(ref(d) for d in n["depends_on"])
+        lines.append(meta)
+        lines += ["", "**Statement.** " + prose_escape(n["statement"]), "", "**Proof sketch.** " + prose_escape(n["sketch"])]
+        if not set(n["depends_on"]) <= known:
+            lines += ["", "**On this path the result is reached by the alternative proof below**; the sketch above is the main proof."]
+        known.add(x)
+        for a in n.get("alt_proofs", []):
+            lines += ["", "**Alternative proof.** Uses " + ", ".join(ref(d) for d in a["depends_on"]) + ". " + prose_escape(a["note"])
+                      + (" (" + "; ".join("%s %s" % (link_md(w["file"]), prose_escape(w["label"])) for w in a.get("where", [])) + ")" if a.get("where") else "")]
+        tail = "**Full proof:** " + "; ".join("%s %s" % (link_md(w["file"]), prose_escape(w["label"])) for w in n["where"])
+        if n["checks"]:
+            tail += " · **checks:** " + ", ".join(link_md(c) for c in n["checks"])
+        if n["formal"]:
+            tail += " · **Lean:** `%s`" % n["formal"]
+        if n.get("notes"):
+            tail += " · *Note:* " + prose_escape(n["notes"])
+        lines += ["", tail]
+    return "\n".join(lines)
+
+
+def render_path_index(data):
+    rows = ["| Path | Read it for | Steps | Assumes |", "|---|---|---|---|"]
+    for p in data.get("reading_paths", []):
+        rows.append("| [%s](#%s) | %s | %d | %s |" % (
+            md_escape(p["title"]), p["id"].lower().replace(".", "-"), prose_escape(p["purpose"]).replace("|", "\\|"), len(p["nodes"]),
+            ", ".join("`%s`" % a for a in p["assumes"]) or "—"))
+    return "\n".join(rows)
+
+
+def render_glossary(data, project):
+    rows = ["| Term | Meaning | Defined in |", "|---|---|---|"]
+    for g in data.get("glossary", []):
+        if g["project"] == project:
+            rows.append("| %s | %s | %s %s |" % (md_escape(g["term"]), md_escape(g["meaning"]), link_md(g["file"]), md_escape(g["label"])))
+    return "\n".join(rows)
+
+
+def render_node_index(data, by_id):
+    canon = canonical_anchors(data)
+    onpaths = {}
+    for p in data.get("reading_paths", []):
+        for x in p["nodes"]:
+            onpaths.setdefault(x, []).append(p["id"])
+    rows = ["| Node | Title | Status | On paths |", "|---|---|---|---|"]
+    for n in data["nodes"]:
+        rows.append("| [`%s`](#%s) | %s | %s | %s |" % (n["id"], canon[n["id"]], md_escape(n["title"]), ", ".join(n["status"]),
+                                                        ", ".join(onpaths.get(n["id"], []))))
+    return "\n".join(rows)
+
+
+def map_blocks(data, by_id):
+    canon = canonical_anchors(data)
+    out = {"path-index": render_path_index(data), "glossary-kak": render_glossary(data, "KAK"),
+           "glossary-eth": render_glossary(data, "ETH"), "node-index": render_node_index(data, by_id)}
+    for p in data.get("reading_paths", []):
+        out["path-" + p["id"].lower().replace(".", "-")] = render_path(p, by_id, canon)
+    return out
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--write", action="store_true", help="regenerate the generated blocks of ROADMAP.md")
     ap.add_argument("--node", help="print a node and its transitive dependencies")
+    ap.add_argument("--path", help="print a reading path in order")
     args = ap.parse_args()
     with open(JSON_PATH, encoding="utf-8") as fh:
         data = json.load(fh)
@@ -401,17 +577,20 @@ def main():
     by_id = validate(data, rep)
     if args.node:
         return show(args.node, by_id)
+    if args.path:
+        return show_path(args.path, data, by_id)
     if rep.errors:
         print("\n".join("ERROR " + e for e in rep.errors))
         print("FAILED: %d error(s); ROADMAP.md not touched" % len(rep.errors))
         return 1
-    with open(MD_PATH, encoding="utf-8") as fh:
-        md = fh.read()
-    new = sync(md, blocks(data, by_id), rep, args.write)
-    if args.write and new != md:
-        with open(MD_PATH, "w", encoding="utf-8") as fh:
-            fh.write(new)
-        print("ROADMAP.md regenerated")
+    for path, rendered in ((MD_PATH, blocks(data, by_id)), (MAP_PATH, map_blocks(data, by_id))):
+        with open(path, encoding="utf-8") as fh:
+            md = fh.read()
+        new = sync(md, rendered, rep, args.write, os.path.basename(path))
+        if args.write and new != md:
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write(new)
+            print("%s regenerated" % os.path.basename(path))
     if rep.errors:
         print("\n".join("ERROR " + e for e in rep.errors))
         print("FAILED: %d error(s)" % len(rep.errors))

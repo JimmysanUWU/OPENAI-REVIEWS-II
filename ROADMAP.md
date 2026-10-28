@@ -4,9 +4,12 @@ This is a map of every result reviewed in this repository, written for AI agents
 
 ## 0. Quick start for AI agents
 
+**New here or after a context reset?** Read [`START_HERE.md`](START_HERE.md) first, then [`PROOF_MAP.md`](PROOF_MAP.md), which is this DAG as readable dependency-ordered paths with a proof sketch for every node. Verify everything with `python3 tools/verify_all.py` (about 3 minutes).
+
 1. **One node per result.** Each result has a stable ID such as `ETH.II.LIFT` or `KAK.E.BAL`. The node records:
    - a precise statement (ASCII math) and a status;
    - the file and label where it is proved;
+   - a **proof sketch** from the nodes it uses, and any alternative proofs;
    - the nodes its proof uses, and the scripts that check it;
    - its Lean name, if that exact statement is formally verified.
 2. **Checking a claim.**
@@ -21,7 +24,8 @@ This is a map of every result reviewed in this repository, written for AI agents
 | Goal | ETH | Kakeya |
 |---|---|---|
 | Verdict in 5 minutes | [eth/01](reviews/claude/eth/01_VERDICT.md) | [kakeya/01](reviews/claude/kakeya/01_VERDICT.md) |
-| Shortest complete proof | [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) (ETH is false) | [kakeya/05](reviews/claude/kakeya/05_DISTILLATION.md) (structure), then [kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) |
+| Shortest complete proof | path *ETH is false* in [PROOF_MAP](PROOF_MAP.md#p-eth-i), full text [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) | path *Shortest complete proof* in [PROOF_MAP](PROOF_MAP.md#p-kak-planar), full text [kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md) |
+| The distilled general proof | — | path *The distilled route* in [PROOF_MAP](PROOF_MAP.md#p-kak-engine), full text [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) |
 | Everything the paper claims | eth/08 → [09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) → [10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) → [11](reviews/claude/eth/11_GAPLESS_COROLLARIES.md) | kakeya/08 → [09](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) → [10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) |
 | Reusable tools | [eth/07](reviews/claude/eth/07_TOOLKIT.md), [eth/12](reviews/claude/eth/12_FP_COUNTING.md) | [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) |
 | Formal proofs | [eth/06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md) | [kakeya/06](reviews/claude/kakeya/06_LEAN_AUDIT.md) |
@@ -288,6 +292,7 @@ flowchart TD
   KAK_FIB --> KAK_T12
   KAK_PROP --> KAK_T12
   KAK_C_WAVE --> KAK_T12
+  KAK_ARROW -.->|alt| KAK_T12
   KAK_T12 --> KAK_T11
   KAK_T12 --> KAK_R_SPHERE
   KAK_R_SPHERE --> KAK_R_CONE
@@ -429,6 +434,8 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 ## 7. Protocol for AI contributors
 
 ### 7.1 Claiming and finishing a target
+
+Every new node needs a `sketch` (how it follows from the nodes it uses) and must be placed on a reading path in dependency order; the checker enforces both.
 1. Set the target's `owner` to `gpt` or `claude` and its `status` to `IN_PROGRESS` in `roadmap.json`. Run `python3 tools/check_roadmap.py --write` and commit.
 2. When the acceptance criteria are met:
    - set `status` to `DONE` and `deliverable` to the file;
@@ -467,3 +474,9 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
   - New target `T.KAK.12`; `T.KAK.7`, `T.KAK.8` and `T.KAK.10` refined.
 - **2026-10-28 (later).** `T.KAK.3` done: [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md). New nodes `KAK.FRAME` and `KAK.MAENERGY`.
 - **2026-10-28 (later).** `T.KAK.2` done: [kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md). `KAK.APP.D` is upgraded from PARTIAL to PROVED, and its prose chain is closed.
+- **2026-10-28 (later).** Cold-start layer:
+  - [`START_HERE.md`](START_HERE.md) and [`PROOF_MAP.md`](PROOF_MAP.md);
+  - proof sketches on all 60 nodes, and an alternative proof for `KAK.T12`;
+  - nine reading paths, checked for dependency order and coverage;
+  - a 28-term glossary;
+  - `tools/verify_all.py`, which runs every script.
