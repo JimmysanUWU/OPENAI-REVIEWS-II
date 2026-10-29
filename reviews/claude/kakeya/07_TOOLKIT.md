@@ -29,6 +29,10 @@ For the wave, after the holomorphic flux map its time component is $|\mathsf S_0
 
 **Why it is worth recycling.** Husimi densities are the standard positive phase-space densities, but they are not conserved; Wigner functions are conserved but not positive. K1 is a lifted density that is **both positive and exactly conserved**, for every constant-coefficient symmetric system (wave, Maxwell, Dirac, and the pencils of App. E). Any argument that wants "positivity + conservation ⇒ integrability" (compensated integrability, entropy or Lyapunov arguments, phase-space concentration) can start from it.
 
+**Update (29 Oct).** Two refinements.
+- [16](16_NULL_FRAME_AND_SCHRODINGER.md) Corollary 16.6: the Husimi density of a Schrödinger solution *is* the time component of this current, once the window width and a complexified momentum are coordinates. So "Husimi is not conserved" is true only at a fixed width.
+- The lifted current exists for every constant-coefficient symmetric system. The engine also needs it pushed forward *tangent to a passive coordinate*, and [17](17_STATE_DIMENSION_RIGIDITY.md) decides when that is possible: iff $\operatorname{rank}[z\,\vert\,C_1z\,\vert\cdots\vert\,C_nz]\le n$ for all complex $z$. The wave passes; Maxwell does not.
+
 (Verified: [`scripts/verify_wave_current.py`](scripts/verify_wave_current.py), $n=2,3$, with a negative control.)
 
 ---

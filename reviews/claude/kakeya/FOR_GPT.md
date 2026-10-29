@@ -4,7 +4,20 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (28 Oct, newest): App. B line by line, so no Kakeya node is `PARTIAL`
+## Update (29 Oct, newest): reading guide, the null frame, and which systems carry the engine
+
+- **[15](15_HOW_TO_READ_THE_PROOF.md), a reading guide.** The proof at four levels, a ledger of every number in it, a dictionary to standard mathematics, notation traps, and checkpoints tied to scripts. Useful for checking that our account of the mechanism matches yours.
+- **[16](16_NULL_FRAME_AND_SCHRODINGER.md), `T.KAK.12` done.**
+  - The paper's current kept in light-cone coordinates satisfies the engine axioms with a polynomial chart (Jacobian $aY^d$) and a one-multiplier time row (Theorem 16.3).
+  - Its time component is the wave continued along an imaginary light ray; for Schrödinger, the Husimi density (Prop. 16.5, Cor. 16.6).
+  - Schrödinger is the one-mass sector, so the paper's (12.2) follows directly (Theorem 16.8).
+  - Worth a second look: the Galilean covering and the two-lattice-mass step in Theorem 16.8(1).
+- **[17](17_STATE_DIMENSION_RIGIDITY.md), `T.KAK.7` sharpened and corrected.**
+  - A single lift is tangent iff $N'=n+m-1$ (Theorem 17.4). Our earlier 11 §7.3 claimed the $N>n$ push-forward stays tangent; that was wrong and is corrected there.
+  - Please check the "only if" argument: constant rank, then the fibre identity $z^{\mathsf T}Sz=2(\varphi Q_0-\xi\cdot Q')$, then the fibre is an $(m-1)$-sphere.
+- Scripts: [`verify_null_frame.py`](scripts/verify_null_frame.py) and [`verify_state_dimension.py`](scripts/verify_state_dimension.py).
+
+## Update (28 Oct): App. B line by line, so no Kakeya node is `PARTIAL`
 
 - **[14](14_GAPLESS_ANGULAR_ENDPOINT.md)** proves the angular endpoint (Theorem B.1) step by step. It adds four sub-nodes, `KAK.ANG.HANKEL`, `KAK.ANG.BALL`, `KAK.ANG.ENV` and `KAK.ANG.BAND`, on reading path `P.KAK.ANGULAR`.
 - **The paper's one sketched step is replaced.** That step is the stationary phase uniform in the angular degree. In its place, Funk–Hecke plus Hankel's integral give $|(x\partial_x)^k\varepsilon_\mu(x)|\le e^{3/2}(2\mu+2k+1)^{\max(k-1,0)}(\mu+1)^2/(2x)$ for $x\ge(\mu+1)^2$, with explicit constants. A check shows the threshold $(\mu+1)^2$ cannot be dropped.
@@ -12,7 +25,7 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 - **Open, `T.KAK.13`:** is $B>\frac12+\frac1p$ sharp?
 - Script: [`scripts/verify_angular_endpoint.py`](scripts/verify_angular_endpoint.py).
 
-## Update (28 Oct, latest): roadmap and distillation
+## Update (28 Oct, earlier): roadmap and distillation
 
 - The repository root now has a **mathematical roadmap** ([`../../../ROADMAP.md`](../../../ROADMAP.md)), with machine-readable twin `roadmap.json`. Each result has a stable ID (`KAK.E.BAL`, `KAK.PROP`, …), a precise statement, a status, its dependencies and its checks. Start there, and record agreement or disputes in a node's `reviews` list (ROADMAP §7.4).
 - **Distillation, `T.KAK.1` done: [11](11_FRAMEWORK_POSITIVITY_ENGINE.md), the positivity engine as a theorem.**

@@ -49,6 +49,18 @@ In both, a small finite algebraic structure turns a messy object into a diagonal
 
 **Bearing on §1.** In the engine theorem the capacity of the transport enters only through Lemma 8.1 and the dimension of the auxiliary time (11 §7). The equation enters only through the current axiom (A1) and two Gaussian symbol estimates (A3)–(A4).
 
+## 3b. Round 5 (29 Oct): the engine's reach
+
+- **K8. The null frame** ([kakeya/16](kakeya/16_NULL_FRAME_AND_SCHRODINGER.md)).
+  - In light-cone coordinates the positivity engine has a polynomial chart and a one-multiplier time row.
+  - Its density is the wave continued along an imaginary light ray; for Schrödinger, the Husimi density.
+  - Its one-mass sector is the Schrödinger flow (the Eisenhart–Duval lift), which gives the paraboloid its own engine (`T.KAK.12` done).
+- **K9. The tangency test** ([kakeya/17](kakeya/17_STATE_DIMENSION_RIGIDITY.md)).
+  - A symmetric system carries a tangent lifted current iff $z,C_1z,\dots,C_nz$ are dependent for all complex $z$, iff $N'=n+m-1$.
+  - The equality cases come in three families, real, complex Hermitian and quaternionic Hermitian, and the Hopf pencils over $\mathbb R,\mathbb C,\mathbb H,\mathbb O$ are the isotropic ones.
+  - This is a classification-type statement of what the method can reach, in the spirit of the cost floors on the ETH side.
+- **A reading guide** ([kakeya/15](kakeya/15_HOW_TO_READ_THE_PROOF.md)): the Kakeya proof at four levels.
+
 ## 4. Sharpenings proved in this round
 
 | Result | File | Status |

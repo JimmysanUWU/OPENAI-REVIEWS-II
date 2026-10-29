@@ -41,6 +41,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
 | [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
+| [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -73,6 +74,10 @@ Notation used throughout the Kakeya paths:
 | shell transplant | Seen from a ball of R wavelengths, an input shell at radius Q &gt;&gt; R^3 gives a wave independent of Q, so it can be moved to radius ~R^{3+n/p}: observation on a ball costs L(R)^A. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Lemma 3.2 |
 | radial profile h_g, G_g | h_g(v,theta) = \|v\|^{d/p}(\|g(\|v\|theta)\| + \|g(-\|v\|theta)\| + sphere average); G_g its maximal function in v; \|\|G_g\|\|_{L^p(dv dtheta)} &lt;~ \|\|g\|\|_p. | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Definition 4.1 |
 | angular bands, selection m(j,r) | M_m = 2^{2^m}, Q_m = S_m - S_{m-1}; m(j,r) = the largest band whose stationary-phase threshold H_m fits below min(N_j^eta, N_j r). | [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) §6.3 |
+| null frame | Light-cone coordinates t = (T+b)/sqrt2, s_0 = (b-T)/sqrt2 with parameter slot t + Y i; chart W = P/Y, Phi = S_1 + P.P/(2Y); null symbol phi(xi) = \|xi_x\|^2/(2 xi_{s_0}). The simplest engine instance; its one-mass sector is the Schrodinger flow. | [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) §0 |
+| Husimi density (as a current) | For one-mass data, A^0_tt = (kappa/y)^d e^{-kappa y\|W\|^2}\|psi(t - iy, x - iy Re W)\|^2: the Husimi density of psi(t) at (x, kappa W), width sqrt(y/kappa), as the time component of a positive conserved tensor. | [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Corollary 16.6 |
+| single lift, tangency test | Lift with auxiliary states in V (span of the extremal eigenvectors) and push through the flux map plus one passive variable. A passive coordinate exists iff rank[z \| C_1 z \| ... \| C_n z] &lt;= n for all complex z, iff N' = n + m - 1. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.2 |
+| Hopf pencil | C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = \|xi\|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Proposition 17.6 |
 <!-- END GENERATED: glossary-kak -->
 
 ### Shortest complete proof: sharp L^4 local smoothing in R^{2+1}
@@ -438,6 +443,8 @@ Assumes: [`KAK.T12`](#p-kak-engine--kak-t12), [`KAK.T11`](#p-kak-engine--kak-t11
 
 **Proof sketch.** Rescale a cap of S^d of size delta parabolically to the paraboloid graph q_delta = |v|^2 + O(delta^2); the powers of delta cancel at p_c. Replace q_delta by |v|^2 at cost O(delta^2 R). For Schroedinger, the Fresnel identity writes e^{it Delta}h as a rescaled paraboloid extension evaluated at (-lambda z/2t, lambda^2/4t).
 
+**Alternative proof.** Uses [`KAK.SCHR`](#p-kak-scope--kak-schr). (12.2) directly from the null-frame engine (Schrodinger as its one-mass sector); (12.1) and (12.3) still go through the sphere. ([kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Theorem 16.8)
+
 **Full proof:** [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §4, Cor. 4.1 · **checks:** [verify_remaining_claims](reviews/claude/kakeya/scripts/verify_remaining_claims.py)
 
 #### <a id="p-kak-conseq--kak-km"></a>4. `KAK.KM` — Kakeya maximal conjecture
@@ -578,6 +585,65 @@ Assumes: [`KAK.T12`](#p-kak-engine--kak-t12).
 
 **Full proof:** [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md) Theorem 14.1, §6; [kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §5 · **checks:** [verify_angular_endpoint](reviews/claude/kakeya/scripts/verify_angular_endpoint.py) · *Note:* Cited: Littlewood-Paley and synthesis (Grafakos), Fefferman-Stein, vector-valued maximal on S^d (Grafakos-Liu-Yang 2009), localized spherical cut-off kernels (Narcowich-Petrushev-Ward 2006), spherical multipliers (Bonami-Clerc 1973), real interpolation; hypotheses checked in 14 §0.3. Whether B > 1/2 + 1/p is sharp is open (T.KAK.13).
 <!-- END GENERATED: path-p-kak-angular -->
+
+### The reach of the engine: the null frame, Schrödinger, and which systems carry it (16, 17)
+<a id="p-kak-scope"></a>
+
+<!-- BEGIN GENERATED: path-p-kak-scope -->
+*The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current.*
+
+Assumes: [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave), [`KAK.ENGINE`](#p-kak-engine--kak-engine), [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.PENCIL`](#p-kak-planar--kak-pencil).
+
+#### <a id="p-kak-scope--kak-null"></a>1. `KAK.NULL` — The null frame carries engine data (Theorem 16.3)
+
+*NEW, PROVED, CHECKED* · prose chain: cites KAK.DIR · uses [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave), [`KAK.ENGINE`](#p-kak-engine--kak-engine)
+
+**Statement.** In light-cone coordinates (t, x, s_0) with parameter slot t + Y i, the chart W = P/Y, Phi = S_1 + P.P/(2Y) (inverse P = YW, S_1 = aQ - Y W.W/2, complex Jacobian a Y^d) and the paper's current chi = sum V^v iota_e(conj u_{kappa,v}) m_{kappa,v}, V^v = (1, (v+W)/2, -W.v/2), are engine data on the cap of the null symbol phi(xi) = |xi_x|^2/(2 xi_{s_0}). The time row is one Gaussian multiplier. Hence int_1^2 ||e^{-it phi(D)} f||_{L^{p_c}(T^n)}^{p_c} dt <= C log^2(2/h) ||f||_{p_c}^{p_c} for null-cap data: a critical estimate on null slabs.
+
+**Proof sketch.** Keep 08 Prop. 3.3 in the null slots instead of rotating (t, s_0) to (T, b). The chart (P, S_1) <-> (W, Q) is polynomial with Jacobian a Y^d and y = s exactly, so (G1)-(G2) hold with C_0 = 2. Each row splits into its Re_k and Im_k parts, which lie in orthogonal planes, giving (A3) with L = 2. The time row V^v_t = 1 is a single real Gaussian multiplier whose inverse costs e^{32 gamma^2 sigma}, which is (A4). Theorem 11.1 then applies verbatim.
+
+**Full proof:** [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Lemma 16.1, Lemma 16.2, Theorem 16.3, Corollary 16.4 · **checks:** [verify_null_frame](reviews/claude/kakeya/scripts/verify_null_frame.py) · *Note:* The simplest instance of the engine: the paper's physical-frame instance is this one after rotating two slots.
+
+#### <a id="p-kak-scope--kak-hus"></a>2. `KAK.HUS` — The time component is the continued wave; Husimi densities (Prop. 16.5)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave)
+
+**Statement.** A^0_tt = y^{-d} |f_0(t - iy, x - iy Re W, s_0 + iy|W|^2/2)|^2 with f_0 = sum kappa^{d/2} u_{kappa,v}: the wave continued along the imaginary displacement q = y(1, Re W, -|W|^2/2), which lies in the closed forward light cone (on it iff W is real). For one mass kappa, A^0_tt = (kappa/y)^d e^{-kappa y|W|^2} |psi(t - iy, x - iy Re W)|^2, the Husimi density of the Schrodinger solution psi(t) at (x, kappa W) with window width sqrt(y/kappa).
+
+**Proof sketch.** At the displaced point each plane wave gains the real factor exp(-(kappa y/2)|W - v|^2), which is exactly the window m_{kappa,v}. Summing gives y^{-d/2} f_0(X - iq) = sum m u, whose modulus is |chi_t|. For one mass, complex time is heat smoothing and complex position shifts the frequency window, which gives the Husimi density. A fixed-width Husimi density obeys d_t H + div_x((xi/kappa)H + (beta/2kappa) grad_xi H) = 0, whose flux has no sign; this is why the lift is needed.
+
+**Full proof:** [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Proposition 16.5, Corollary 16.6 · **checks:** [verify_null_frame](reviews/claude/kakeya/scripts/verify_null_frame.py)
+
+#### <a id="p-kak-scope--kak-schr"></a>3. `KAK.SCHR` — A direct engine for the paraboloid (Theorem 16.8)
+
+*NEW, PROVED, CHECKED* · prose chain: cites KAK.DIR · uses [`KAK.NULL`](#p-kak-scope--kak-null)
+
+**Statement.** For d >= 1 and p = 2(d+1)/d, real kappa >= 1 and psi on T^d with Fourier support in |xi| <= 2 kappa: int_{1/(2kappa)}^{1/kappa} ||e^{is Delta} psi||_{L^p(T^d)}^p ds <= C kappa^{-1} log^2(2+kappa) ||psi||_p^p. The same holds on R^d for supp psi^ in B(0, kappa), and hence paper (12.2): ||e^{it Delta} psi||_{L^p(R^d x I)} <= C_I log^{2/p}(2+N) ||psi||_p for supp psi^ in B(0,N).
+
+**Proof sketch.** Null reduction: on F = e^{i kappa s_0}(psi, grad psi/(i kappa)), rows j >= 1 of the null system vanish and row 0 is e^{i kappa s_0}(2 d_t psi - (i/kappa) Lap psi). So one-mass data of the null-frame engine are Schrodinger solutions, and the current on them is built from psi alone. Corollary 16.4 at h = 1/kappa gives the estimate for frequencies <= gamma kappa. Galilean boosts cover frequencies <= 3 kappa, two lattice masses cover every real kappa, the cube argument transfers to R^d, and parabolic scaling of dyadic time windows gives (12.2).
+
+**Full proof:** [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Lemma 16.7, Theorem 16.8 · **checks:** [verify_null_frame](reviews/claude/kakeya/scripts/verify_null_frame.py) · *Note:* Resolves T.KAK.12. 16 §6 shows numerically that focusing data give exactly one logarithm ((3/2) log kappa); the theorem gives two.
+
+#### <a id="p-kak-scope--kak-rigid"></a>4. `KAK.RIGID` — State-dimension rigidity: the tangency test (Theorems 17.2, 17.4)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.PENCIL`](#p-kak-planar--kak-pencil)
+
+**Statement.** Let C^0 = I, C^1..C^n be real symmetric N x N with an extremal, transversally curved sheet of constant multiplicity m; let V be the span of its eigenvectors and N' = dim V. A single lift (08 Lemma 3.1, flux map z^T C^mu z/2 plus one passive variable, fibre integration) admits a passive coordinate iff rank[z | C_V^1 z | ... | C_V^n z] <= n for all z in V_C, iff N' = n + m - 1. Always N' >= n + m - 1. For simple sheets this reads N' = n: App. E's hypothesis 'state dimension = n' is necessary.
+
+**Proof sketch.** (dPhi) chi~ = sum_a d_{z_a}(Phi o Theta) i G_a, and G ranges over V, so tangency means Pi_V C(dPhi) z = 0. Then z, C_V^1 z, ... are dependent on an open set, hence everywhere. Hellmann-Feynman on eigenspaces and transversal curvature make the eigen-cone an (n-1+m)-dimensional submanifold and give rank DQ_V >= n at real eigenvectors. With rank <= n, the level set through z_0 has dimension N'-n; the identity z^T S z = 2(phi Q_0 - xi.Q') puts it inside the eigenspace, where it is an (m-1)-sphere. Conversely, N' = n + m - 1 makes every state an eigenvector, hence rank <= n, and Phi comes from the implicit function theorem.
+
+**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py) · *Note:* Corrects 11 §7.3, which had called the N > n push-forward tangent.
+
+#### <a id="p-kak-scope--kak-hopf"></a>5. `KAK.HOPF` — Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.RIGID`](#p-kak-scope--kak-rigid)
+
+**Statement.** N' = n + m - 1 holds for real symmetric pencils with N' = n (App. E), for complex Hermitian m' x m' pencils with n = 2m'-1 (m = 2), and for quaternionic Hermitian m'' x m'' pencils with n = 4m''-3 (m = 4), whenever the sheet is transversally curved and its eigenvectors span. The Clifford pencils C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O (n = k+1, N = 2k, m = k) meet it: the flux map is the Hopf map and the polarization is the Hopf fibration. By Hurwitz-Radon they are the only Clifford pencils that do (n = 2, 3, 5, 9). Maxwell's equations fail (N' = 6 > n + m - 1 = 4).
+
+**Proof sketch.** Hermitian pencils: m = 2 or 4 and N' = 2m' or 4m'', so Theorem 17.4 gives the stated counts. Clifford pencils: L_a^T L_a = L_a L_a^T = |a|^2 I gives C(xi)^2 = |xi|^2 I, and sum_e &lt;y, L_e x>^2 = |x|^2|y|^2 gives |Q'| = Q_0. So every state is a top eigenvector of C(Q'/Q_0), and Phi = w.P - sqrt(tau^2 - P.P + (w.P)^2). For Clifford pencils m = N/2, so the count reads N = 2(n-1). The products C^1 C^j are n-1 anticommuting complex structures, and rho(2(n-1)) >= n only for n = 2, 3, 5, 9.
+
+**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Proposition 17.6, Corollary 17.7 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py)
+<!-- END GENERATED: path-p-kak-scope -->
 
 ## ETH
 
@@ -1181,4 +1247,9 @@ Each node links to its first appearance on a path.
 | [`ETH.D.SMOL`](#p-eth-floor--eth-d-smol) | Parity under a biased measure (Smolensky + restriction) | NEW, PROVED, CHECKED | P.ETH.FLOOR |
 | [`ETH.D.FLOOR`](#p-eth-floor--eth-d-floor) | Design floor: every graded swap design pays (log log n)^2/sqrt(log n) | NEW, PROVED, CHECKED | P.ETH.FLOOR |
 | [`ETH.D.FACE`](#p-eth-floor--eth-d-face) | Face lemma for arbitrary group-algebra designs | NEW, PROVED | P.ETH.FLOOR |
+| [`KAK.NULL`](#p-kak-scope--kak-null) | The null frame carries engine data (Theorem 16.3) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
+| [`KAK.HUS`](#p-kak-scope--kak-hus) | The time component is the continued wave; Husimi densities (Prop. 16.5) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
+| [`KAK.SCHR`](#p-kak-scope--kak-schr) | A direct engine for the paraboloid (Theorem 16.8) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
+| [`KAK.RIGID`](#p-kak-scope--kak-rigid) | State-dimension rigidity: the tangency test (Theorems 17.2, 17.4) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
+| [`KAK.HOPF`](#p-kak-scope--kak-hopf) | Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
 <!-- END GENERATED: node-index -->

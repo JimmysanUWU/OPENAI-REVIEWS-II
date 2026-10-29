@@ -1,0 +1,369 @@
+{
+ "R_rank_criterion": {
+  "ok": true,
+  "detail": {
+   "arrow n=2": {
+    "flux image on the light cone": true,
+    "rank M(z)": [
+     2,
+     2,
+     2,
+     2,
+     2
+    ]
+   },
+   "arrow n=3": {
+    "flux image on the light cone": true,
+    "rank M(z)": [
+     3,
+     3,
+     3,
+     3,
+     3
+    ]
+   },
+   "arrow n=4": {
+    "flux image on the light cone": true,
+    "rank M(z)": [
+     4,
+     4,
+     4,
+     4,
+     4
+    ]
+   },
+   "random N=n+1, n=2": {
+    "det M(z) nonzero polynomial": true,
+    "top eigenvalue simple": true,
+    "rank M(z)": [
+     3,
+     3,
+     3,
+     3,
+     3
+    ]
+   },
+   "random N=n+1, n=3": {
+    "det M(z) nonzero polynomial": true,
+    "top eigenvalue simple": true,
+    "rank M(z)": [
+     4,
+     4,
+     4,
+     4,
+     4
+    ]
+   },
+   "random N=n+1, n=4": {
+    "det M(z) nonzero polynomial": true,
+    "top eigenvalue simple": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5,
+     5
+    ]
+   },
+   "coupled arrow n=3, N=4": {
+    "top simple on the cap": true,
+    "span of top eigenvectors": 4,
+    "rank M(z)": [
+     4,
+     4,
+     4,
+     4,
+     4
+    ]
+   },
+   "arrow (+) scalar (uncoupled)": {
+    "span of top eigenvectors N'": 3,
+    "rank of the compressed pencil": [
+     3,
+     3,
+     3,
+     3,
+     3
+    ]
+   },
+   "fibre identity": true
+  }
+ },
+ "H_hopf_pencils": {
+  "ok": true,
+  "detail": {
+   "k=1 (n=2, N=2)": {
+    "anticommutation": true,
+    "Hopf identity": true,
+    "multiplicity m of |xi|": 1,
+    "N = n + m - 1": true,
+    "rank M(z)": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "Phi o Theta = eta, max error": 1.150183594254971e-41,
+    "tangency, max |sum dPhi C z|": 2.2976274371136015e-41,
+    "|h(z)| = 1": 1.1102230246251565e-16,
+    "C(h(z)) z = z, error": 0.0,
+    "ok": true
+   },
+   "k=2 (n=3, N=4)": {
+    "anticommutation": true,
+    "Hopf identity": true,
+    "multiplicity m of |xi|": 2,
+    "N = n + m - 1": true,
+    "rank M(z)": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "Phi o Theta = eta, max error": 1.1485040845818452e-41,
+    "tangency, max |sum dPhi C z|": 1.1679480986794865e-41,
+    "|h(z)| = 1": 1.1102230246251565e-16,
+    "C(h(z)) z = z, error": 1.7747636526791638e-16,
+    "ok": true
+   },
+   "k=4 (n=5, N=8)": {
+    "anticommutation": true,
+    "Hopf identity": true,
+    "multiplicity m of |xi|": 4,
+    "N = n + m - 1": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "Phi o Theta = eta, max error": 1.1485040845818452e-41,
+    "tangency, max |sum dPhi C z|": 1.7252753913824564e-41,
+    "|h(z)| = 1": 0.0,
+    "C(h(z)) z = z, error": 6.287548939901432e-17,
+    "ok": true
+   },
+   "k=8 (n=9, N=16)": {
+    "anticommutation": true,
+    "Hopf identity": true,
+    "multiplicity m of |xi|": 8,
+    "N = n + m - 1": true,
+    "rank M(z)": [
+     9,
+     9,
+     9,
+     9
+    ],
+    "Phi o Theta = eta, max error": 1.7234096231375327e-41,
+    "tangency, max |sum dPhi C z|": 1.722756126872768e-41,
+    "|h(z)| = 1": 0.0,
+    "C(h(z)) z = z, error": 1.8541674841318157e-16,
+    "ok": true
+   },
+   "controls": {
+    "H, four matrices: Hopf identity fails": true,
+    "H, four matrices: rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "perturbed C pencil: rank M(z)": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "arrow (+) arrow, one lift: rank M(z)": [
+     4,
+     4,
+     4,
+     4
+    ]
+   }
+  }
+ },
+ "Q_division_algebra_pencils": {
+  "ok": true,
+  "detail": {
+   "complex Hermitian 2x2, n=3": {
+    "N": 4,
+    "multiplicity m": 2,
+    "span N'": 4,
+    "n + m - 1": 4,
+    "transversally curved": true,
+    "rank M(z)": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "passes tangency test": true,
+    "consistent with Theorem 17.3": true
+   },
+   "control: complex 2x2, n=2": {
+    "N": 4,
+    "multiplicity m": 2,
+    "span N'": 4,
+    "n + m - 1": 3,
+    "transversally curved": true,
+    "rank M(z)": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   },
+   "complex Hermitian 3x3, n=5": {
+    "N": 6,
+    "multiplicity m": 2,
+    "span N'": 6,
+    "n + m - 1": 6,
+    "transversally curved": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "passes tangency test": true,
+    "consistent with Theorem 17.3": true
+   },
+   "control: complex 3x3, n=4": {
+    "N": 6,
+    "multiplicity m": 2,
+    "span N'": 6,
+    "n + m - 1": 5,
+    "transversally curved": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   },
+   "complex Hermitian 4x4, n=7": {
+    "N": 8,
+    "multiplicity m": 2,
+    "span N'": 8,
+    "n + m - 1": 8,
+    "transversally curved": true,
+    "rank M(z)": [
+     7,
+     7,
+     7,
+     7
+    ],
+    "passes tangency test": true,
+    "consistent with Theorem 17.3": true
+   },
+   "control: complex 4x4, n=6": {
+    "N": 8,
+    "multiplicity m": 2,
+    "span N'": 8,
+    "n + m - 1": 7,
+    "transversally curved": true,
+    "rank M(z)": [
+     7,
+     7,
+     7,
+     7
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   },
+   "quaternionic Hermitian 2x2, n=5": {
+    "N": 8,
+    "multiplicity m": 4,
+    "span N'": 8,
+    "n + m - 1": 8,
+    "transversally curved": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "passes tangency test": true,
+    "consistent with Theorem 17.3": true
+   },
+   "control: quaternionic 2x2, n=4": {
+    "N": 8,
+    "multiplicity m": 4,
+    "span N'": 8,
+    "n + m - 1": 7,
+    "transversally curved": true,
+    "rank M(z)": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   },
+   "quaternionic Hermitian 3x3, n=9": {
+    "N": 12,
+    "multiplicity m": 4,
+    "span N'": 12,
+    "n + m - 1": 12,
+    "transversally curved": true,
+    "rank M(z)": [
+     9,
+     9,
+     9,
+     9
+    ],
+    "passes tangency test": true,
+    "consistent with Theorem 17.3": true
+   },
+   "control: quaternionic 3x3, n=8": {
+    "N": 12,
+    "multiplicity m": 4,
+    "span N'": 12,
+    "n + m - 1": 11,
+    "transversally curved": true,
+    "rank M(z)": [
+     9,
+     9,
+     9,
+     9
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   },
+   "Maxwell (isotropic), n=3": {
+    "N": 6,
+    "multiplicity m": 2,
+    "span N'": 6,
+    "n + m - 1": 4,
+    "transversally curved": true,
+    "rank M(z)": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "passes tangency test": false,
+    "consistent with Theorem 17.3": true
+   }
+  }
+ },
+ "W_hurwitz_radon": {
+  "ok": true,
+  "detail": {
+   "n <= 40 with rho(2(n-1)) >= n": [
+    2,
+    3,
+    5,
+    9
+   ]
+  }
+ },
+ "all_ok": true,
+ "seconds": 12.7
+}

@@ -293,6 +293,25 @@
     "ETH.D.FLOOR",
     "ETH.D.FACE"
    ]
+  },
+  {
+   "id": "P.KAK.SCOPE",
+   "project": "KAK",
+   "title": "The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)",
+   "purpose": "The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current.",
+   "assumes": [
+    "KAK.C.WAVE",
+    "KAK.ENGINE",
+    "KAK.C.LIFT",
+    "KAK.PENCIL"
+   ],
+   "nodes": [
+    "KAK.NULL",
+    "KAK.HUS",
+    "KAK.SCHR",
+    "KAK.RIGID",
+    "KAK.HOPF"
+   ]
   }
  ],
  "glossary": [
@@ -589,6 +608,34 @@
    "meaning": "A degree-D real polynomial agrees with parity on at most sum_{i <= (m+D)/2} C(m,i) points of {0,1}^m; tau_D(m) = P[Bin(m,1/2) > (m+D)/2] is the forced error, and under mu_p it becomes E tau_D(Bin(Q,2p)).",
    "file": "reviews/claude/eth/14_DESIGN_FLOOR.md",
    "label": "Lemma 2.1"
+  },
+  {
+   "project": "KAK",
+   "term": "null frame",
+   "meaning": "Light-cone coordinates t = (T+b)/sqrt2, s_0 = (b-T)/sqrt2 with parameter slot t + Y i; chart W = P/Y, Phi = S_1 + P.P/(2Y); null symbol phi(xi) = |xi_x|^2/(2 xi_{s_0}). The simplest engine instance; its one-mass sector is the Schrodinger flow.",
+   "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+   "label": "§0"
+  },
+  {
+   "project": "KAK",
+   "term": "Husimi density (as a current)",
+   "meaning": "For one-mass data, A^0_tt = (kappa/y)^d e^{-kappa y|W|^2}|psi(t - iy, x - iy Re W)|^2: the Husimi density of psi(t) at (x, kappa W), width sqrt(y/kappa), as the time component of a positive conserved tensor.",
+   "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+   "label": "Corollary 16.6"
+  },
+  {
+   "project": "KAK",
+   "term": "single lift, tangency test",
+   "meaning": "Lift with auxiliary states in V (span of the extremal eigenvectors) and push through the flux map plus one passive variable. A passive coordinate exists iff rank[z | C_1 z | ... | C_n z] <= n for all complex z, iff N' = n + m - 1.",
+   "file": "reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md",
+   "label": "Theorem 17.2"
+  },
+  {
+   "project": "KAK",
+   "term": "Hopf pencil",
+   "meaning": "C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = |xi|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9.",
+   "file": "reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md",
+   "label": "Proposition 17.6"
   }
  ],
  "nodes": [
@@ -2094,7 +2141,21 @@
    ],
    "paper_ref": "Cor. 12.1",
    "formal": null,
-   "confidence": 0.97
+   "confidence": 0.97,
+   "alt_proofs": [
+    {
+     "depends_on": [
+      "KAK.SCHR"
+     ],
+     "where": [
+      {
+       "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+       "label": "Theorem 16.8"
+      }
+     ],
+     "note": "(12.2) directly from the null-frame engine (Schrodinger as its one-mass sector); (12.1) and (12.3) still go through the sphere."
+    }
+   ]
   },
   {
    "id": "KAK.KM",
@@ -2764,6 +2825,156 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.98
+  },
+  {
+   "id": "KAK.NULL",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "The null frame carries engine data (Theorem 16.3)",
+   "statement": "In light-cone coordinates (t, x, s_0) with parameter slot t + Y i, the chart W = P/Y, Phi = S_1 + P.P/(2Y) (inverse P = YW, S_1 = aQ - Y W.W/2, complex Jacobian a Y^d) and the paper's current chi = sum V^v iota_e(conj u_{kappa,v}) m_{kappa,v}, V^v = (1, (v+W)/2, -W.v/2), are engine data on the cap of the null symbol phi(xi) = |xi_x|^2/(2 xi_{s_0}). The time row is one Gaussian multiplier. Hence int_1^2 ||e^{-it phi(D)} f||_{L^{p_c}(T^n)}^{p_c} dt <= C log^2(2/h) ||f||_{p_c}^{p_c} for null-cap data: a critical estimate on null slabs.",
+   "sketch": "Keep 08 Prop. 3.3 in the null slots instead of rotating (t, s_0) to (T, b). The chart (P, S_1) <-> (W, Q) is polynomial with Jacobian a Y^d and y = s exactly, so (G1)-(G2) hold with C_0 = 2. Each row splits into its Re_k and Im_k parts, which lie in orthogonal planes, giving (A3) with L = 2. The time row V^v_t = 1 is a single real Gaussian multiplier whose inverse costs e^{32 gamma^2 sigma}, which is (A4). Theorem 11.1 then applies verbatim.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+     "label": "Lemma 16.1, Lemma 16.2, Theorem 16.3, Corollary 16.4"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.WAVE",
+    "KAK.ENGINE"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_null_frame.py"
+   ],
+   "paper_ref": "Prop. 2.2 before the rotation (2.14)",
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "The simplest instance of the engine: the paper's physical-frame instance is this one after rotating two slots."
+  },
+  {
+   "id": "KAK.HUS",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "proposition",
+   "title": "The time component is the continued wave; Husimi densities (Prop. 16.5)",
+   "statement": "A^0_tt = y^{-d} |f_0(t - iy, x - iy Re W, s_0 + iy|W|^2/2)|^2 with f_0 = sum kappa^{d/2} u_{kappa,v}: the wave continued along the imaginary displacement q = y(1, Re W, -|W|^2/2), which lies in the closed forward light cone (on it iff W is real). For one mass kappa, A^0_tt = (kappa/y)^d e^{-kappa y|W|^2} |psi(t - iy, x - iy Re W)|^2, the Husimi density of the Schrodinger solution psi(t) at (x, kappa W) with window width sqrt(y/kappa).",
+   "sketch": "At the displaced point each plane wave gains the real factor exp(-(kappa y/2)|W - v|^2), which is exactly the window m_{kappa,v}. Summing gives y^{-d/2} f_0(X - iq) = sum m u, whose modulus is |chi_t|. For one mass, complex time is heat smoothing and complex position shifts the frequency window, which gives the Husimi density. A fixed-width Husimi density obeys d_t H + div_x((xi/kappa)H + (beta/2kappa) grad_xi H) = 0, whose flux has no sign; this is why the lift is needed.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+     "label": "Proposition 16.5, Corollary 16.6"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.WAVE"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_null_frame.py"
+   ],
+   "paper_ref": "(2.15)",
+   "formal": null,
+   "confidence": 0.99
+  },
+  {
+   "id": "KAK.SCHR",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "A direct engine for the paraboloid (Theorem 16.8)",
+   "statement": "For d >= 1 and p = 2(d+1)/d, real kappa >= 1 and psi on T^d with Fourier support in |xi| <= 2 kappa: int_{1/(2kappa)}^{1/kappa} ||e^{is Delta} psi||_{L^p(T^d)}^p ds <= C kappa^{-1} log^2(2+kappa) ||psi||_p^p. The same holds on R^d for supp psi^ in B(0, kappa), and hence paper (12.2): ||e^{it Delta} psi||_{L^p(R^d x I)} <= C_I log^{2/p}(2+N) ||psi||_p for supp psi^ in B(0,N).",
+   "sketch": "Null reduction: on F = e^{i kappa s_0}(psi, grad psi/(i kappa)), rows j >= 1 of the null system vanish and row 0 is e^{i kappa s_0}(2 d_t psi - (i/kappa) Lap psi). So one-mass data of the null-frame engine are Schrodinger solutions, and the current on them is built from psi alone. Corollary 16.4 at h = 1/kappa gives the estimate for frequencies <= gamma kappa. Galilean boosts cover frequencies <= 3 kappa, two lattice masses cover every real kappa, the cube argument transfers to R^d, and parabolic scaling of dyadic time windows gives (12.2).",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md",
+     "label": "Lemma 16.7, Theorem 16.8"
+    }
+   ],
+   "depends_on": [
+    "KAK.NULL"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_null_frame.py"
+   ],
+   "paper_ref": "(12.2)",
+   "formal": null,
+   "confidence": 0.95,
+   "notes": "Resolves T.KAK.12. 16 §6 shows numerically that focusing data give exactly one logarithm ((3/2) log kappa); the theorem gives two."
+  },
+  {
+   "id": "KAK.RIGID",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "theorem",
+   "title": "State-dimension rigidity: the tangency test (Theorems 17.2, 17.4)",
+   "statement": "Let C^0 = I, C^1..C^n be real symmetric N x N with an extremal, transversally curved sheet of constant multiplicity m; let V be the span of its eigenvectors and N' = dim V. A single lift (08 Lemma 3.1, flux map z^T C^mu z/2 plus one passive variable, fibre integration) admits a passive coordinate iff rank[z | C_V^1 z | ... | C_V^n z] <= n for all z in V_C, iff N' = n + m - 1. Always N' >= n + m - 1. For simple sheets this reads N' = n: App. E's hypothesis 'state dimension = n' is necessary.",
+   "sketch": "(dPhi) chi~ = sum_a d_{z_a}(Phi o Theta) i G_a, and G ranges over V, so tangency means Pi_V C(dPhi) z = 0. Then z, C_V^1 z, ... are dependent on an open set, hence everywhere. Hellmann-Feynman on eigenspaces and transversal curvature make the eigen-cone an (n-1+m)-dimensional submanifold and give rank DQ_V >= n at real eigenvectors. With rank <= n, the level set through z_0 has dimension N'-n; the identity z^T S z = 2(phi Q_0 - xi.Q') puts it inside the eigenspace, where it is an (m-1)-sphere. Conversely, N' = n + m - 1 makes every state an eigenvector, hence rank <= n, and Phi comes from the implicit function theorem.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md",
+     "label": "Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT",
+    "KAK.PENCIL"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_state_dimension.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "Corrects 11 §7.3, which had called the N > n push-forward tangent."
+  },
+  {
+   "id": "KAK.HOPF",
+   "project": "KAK",
+   "group": "Refinements and frameworks",
+   "kind": "proposition",
+   "title": "Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7)",
+   "statement": "N' = n + m - 1 holds for real symmetric pencils with N' = n (App. E), for complex Hermitian m' x m' pencils with n = 2m'-1 (m = 2), and for quaternionic Hermitian m'' x m'' pencils with n = 4m''-3 (m = 4), whenever the sheet is transversally curved and its eigenvectors span. The Clifford pencils C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O (n = k+1, N = 2k, m = k) meet it: the flux map is the Hopf map and the polarization is the Hopf fibration. By Hurwitz-Radon they are the only Clifford pencils that do (n = 2, 3, 5, 9). Maxwell's equations fail (N' = 6 > n + m - 1 = 4).",
+   "sketch": "Hermitian pencils: m = 2 or 4 and N' = 2m' or 4m'', so Theorem 17.4 gives the stated counts. Clifford pencils: L_a^T L_a = L_a L_a^T = |a|^2 I gives C(xi)^2 = |xi|^2 I, and sum_e <y, L_e x>^2 = |x|^2|y|^2 gives |Q'| = Q_0. So every state is a top eigenvector of C(Q'/Q_0), and Phi = w.P - sqrt(tau^2 - P.P + (w.P)^2). For Clifford pencils m = N/2, so the count reads N = 2(n-1). The products C^1 C^j are n-1 anticommuting complex structures, and rho(2(n-1)) >= n only for n = 2, 3, 5, 9.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md",
+     "label": "Proposition 17.6, Corollary 17.7"
+    }
+   ],
+   "depends_on": [
+    "KAK.RIGID"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_state_dimension.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97
   }
  ],
  "targets": [
@@ -2936,7 +3147,7 @@
    "id": "T.KAK.6",
    "kind": "research",
    "title": "One logarithm instead of two",
-   "goal": "Reach log^{1/p_c} (the lower bound) by using the energy's structure beyond superharmonicity.",
+   "goal": "Reach log^{1/p_c} (the lower bound) by using the energy's structure beyond superharmonicity. The Schrodinger case (16 §6) is the simplest test bed: focusing data give exactly one logarithm numerically ((3/2) log kappa).",
    "builds_on": [
     "KAK.PROP",
     "KAK.OB.FOCUS",
@@ -2952,17 +3163,20 @@
   {
    "id": "T.KAK.7",
    "kind": "research",
-   "title": "Pencils whose size differs from the spatial dimension",
-   "goal": "Extend Theorem 11.2 beyond 'state dimension = spatial dimension'. For N>n the flux map is a submersion; push the lifted current forward by fibre integration (still positive, conserved and tangent) and re-derive (A3)-(A4). Connects to determinantal representations of hyperbolic polynomials.",
+   "title": "Engines for Hermitian pencils",
+   "goal": "17 shows that a single lift is tangent iff N' = n + m - 1. So simple sheets need N' = n, and the earlier claim that the N > n push-forward stays tangent was wrong. Complex Hermitian pencils with n = 2m'-1 and quaternionic Hermitian pencils with n = 4m''-3 pass this test; the Hopf pencils are their isotropic members. Prove (A3)-(A4) for their fibre-integrated currents (the fibres are complexified spheres, non-compact in imaginary directions) and decide whether their sheets reach beyond App. E. Connects to Hermitian versus real symmetric determinantal representations of hyperbolic polynomials.",
    "builds_on": [
-    "KAK.PENCIL",
-    "KAK.ENGINE"
+    "KAK.RIGID",
+    "KAK.HOPF",
+    "KAK.ENGINE",
+    "KAK.PENCIL"
    ],
    "status": "OPEN",
    "owner": null,
    "difficulty": "research",
    "acceptance": [
-    "a theorem with a new class of symbols"
+    "(A3)-(A4) for the fibre-integrated current of a class of Hermitian pencils meeting N' = n + m - 1, with proofs",
+    "an example whose sheet is not an App. E sheet, or a reason none exists"
    ]
   },
   {
@@ -3054,13 +3268,14 @@
     "KAK.ARROW",
     "KAK.R.PARAB"
    ],
-   "status": "OPEN",
-   "owner": null,
+   "status": "DONE",
+   "owner": "claude",
    "difficulty": "research",
    "acceptance": [
     "engine data for the paraboloid with proofs",
     "a direct-coordinate conservation check"
-   ]
+   ],
+   "deliverable": "reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md"
   },
   {
    "id": "T.KAK.13",

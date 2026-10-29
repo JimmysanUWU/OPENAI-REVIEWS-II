@@ -18,9 +18,14 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 **Where things stand (29 Oct 2026).**
 - **Verification is complete for both papers.** Every claim has a prose proof in this repository; no node is `PARTIAL`. The last one, Kakeya App. B, is proved line by line in [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md).
 - **Distillation.** The Kakeya frameworks are written: the engine theorem, the slot calculus, and the planar entry point. For ETH, one deformation theorem covers Parts I–III ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md)), and the design floor ([eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md)) shows that no graded swap design beats Part I's exponent. The open targets are listed in [`ROADMAP.md`](ROADMAP.md) §6.
+- **Latest round (Kakeya).**
+  - A reading guide at four levels: [kakeya/15](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md).
+  - The engine in light-cone coordinates is its simplest instance, and its one-mass sector is a direct engine for Schrödinger (`T.KAK.12` done): [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md).
+  - A linear-algebra test decides which symmetric systems can carry the engine's current. It corrects a claim in 11 §7.3: [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md).
 
 ## 2. Read in this order
 
+0. **New to the Kakeya proof?** Start with [kakeya/15](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md), the reading guide. It has four levels, from no formulas to the Lean statements, with a ledger of every number in the proof and checkpoints tied to the scripts.
 1. **[`PROOF_MAP.md`](PROOF_MAP.md).** Every result as a step in a dependency-ordered path, each with a statement and a proof sketch.
    - Start with the path *Shortest complete proof* (Kakeya, 6 steps, linear PDE only) or *ETH is false* (7 steps).
    - About 20 minutes per project.
@@ -32,6 +37,8 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`12`](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md): the calculus;
      - [`13`](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md): the planar proof;
      - [`14`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md): the angular endpoint (App. B);
+     - [`16`](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md): the null frame, the Husimi current, and a direct engine for Schrödinger;
+     - [`17`](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md): which symmetric systems carry the engine (the tangency test);
      - [`09`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) and [`10`](reviews/claude/kakeya/10_GAPLESS_REMAINING.md): the consequences.
    - **ETH:**
      - [`08`](reviews/claude/eth/08_GAPLESS_PROOF.md): Part I;
@@ -50,7 +57,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 24 check scripts, about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 26 check scripts, about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
@@ -73,7 +80,7 @@ tools/             check_roadmap.py (validator and renderer), test_check_roadmap
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
 reviews/claude/eth/     ETH review (01-14, FOR_GPT, scripts/, results/, lean/)
-reviews/claude/kakeya/  Kakeya review (01-14, FOR_GPT, scripts/, results/, lean/)
+reviews/claude/kakeya/  Kakeya review (01-17, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
 reviews/gpt/            reserved for GPT's reviews (empty so far)
 ```
 
@@ -110,9 +117,10 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
 3. **ETH App. D's floor** $u\ge\lambda^{4/5}$ holds only from $\log_2\lambda\approx500$. The proof needs only two absorption inequalities, which hold from ≈26. This is not an error.
 4. **The Kakeya formal proof** proves Theorem 1.2 with the power $2n+5$, not the sharp $2/p_c$. The sharp power is prose ([kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §8). The formal Kakeya maximal statement is the $\delta^{-\varepsilon}$ form.
 5. **The wave is the arrow pencil.** Its passive coordinate in 11 is spatial, while 08 (the paper) uses a null direction. Both satisfy the engine axioms, so they give two proofs of the cap estimate (`KAK.T12` has an alternative proof).
-6. **The paraboloid** is reached only through the wave, by rescaling. A direct engine for it is open (`T.KAK.12`).
+6. **The paraboloid has its own engine.** Schrödinger is the one-mass sector of the wave in light-cone coordinates ([kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Theorem 16.8), which proves the paper's (12.2) directly. (12.1) and (12.3) still go through the sphere ([kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §4).
 7. **Part I's floor covers graded designs, not every design.** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) proves the floor for every design whose far group elements have constant coefficients, which includes every $M_0$ in E1. Designs with node-dependent coefficients on far elements are open (`T.ETH.6`); the face lemma alone gives only $2^{1-R}/R$.
 8. **App. B's threshold.** $B>\frac12+\frac1p$ is what the proof gives ($A+\frac12-\frac1p$ with $A=2/p$), not a proved optimum (`T.KAK.13`). Its uniform stationary phase holds only beyond $(\text{degree}+1)^2$ wavelengths. This is necessary, not an artefact (kakeya/14 Lemma 1.2 and its remark).
+9. **Larger systems.** For a pencil with $N>n$ states, the lifted current is tangent to a passive coordinate only if $N'=n+m-1$, where $N'$ is the dimension of the span of the extremal eigenvectors and $m$ their multiplicity ([kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.4). An earlier version of 11 §7.3 said the push-forward stays tangent; it is corrected.
 
 ## 7. If you are continuing the work
 
@@ -122,5 +130,5 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
   - Keep the PR description current.
 - **Next targets** in the roadmap's order:
   - `T.ETH.4`: explicit thresholds;
-  - the research targets (`T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.5`, `T.ETH.6`, `T.X.1`).
+  - the research targets (`T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.13`, `T.ETH.5`, `T.ETH.6`, `T.X.1`).
 - **Handoff notes** for the other model are in each project's `FOR_GPT.md`.

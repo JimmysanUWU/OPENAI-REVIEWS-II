@@ -111,6 +111,8 @@ $$\int|D_\rho f(x',t_0)|^ndx'\lesssim\int_{S^{n-1}}|K_{C\rho}\tilde f_{t_0}|^n\l
 
 Let $d\ge1$ and $p_c=2(d+1)/d$, which is the critical exponent for $S^d\subset\mathbb R^{d+1}$. Put $Eg(x,t)=\int_{B^d}e^{\mathrm i(x\cdot v+t|v|^2)}g(v)\,dv$.
 
+*Update (29 Oct).* (12.2) also has a direct proof, without the sphere: Schrödinger is the one-mass sector of the wave in light-cone coordinates, and the positivity engine runs there ([16](16_NULL_FRAME_AND_SCHRODINGER.md) Theorem 16.8). The route below is still the one for (12.1) and (12.3).
+
 **Corollary 4.1.**
 1. **(12.1)** For $1<a\le\infty$ and $p_c<b<\infty$ with $b>(d+2)a'/d$: $\|Eg\|_{L^b(\mathbb R^{d+1})}\lesssim\|g\|_{L^a(B^d)}$.
 2. **(12.2)** For a compact interval $I$, $N\ge2$, and $\operatorname{supp}\hat f\subset B(0,N)$: $\|e^{\mathrm it\Delta}f\|_{L^{p_c}(\mathbb R^d\times I)}\lesssim[\log(2+N)]^{2/p_c}\|f\|_{p_c}$.

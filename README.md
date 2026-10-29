@@ -4,6 +4,8 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 **Start here: [`START_HERE.md`](START_HERE.md)** (context recovery in one page), then [`PROOF_MAP.md`](PROOF_MAP.md) (every result in dependency order with a proof sketch) and [`ROADMAP.md`](ROADMAP.md). It maps every result reviewed here, with stable IDs, precise statements, statuses, dependency graphs, check scripts and open targets. Its machine-readable twin [`roadmap.json`](roadmap.json) is validated by `python3 tools/check_roadmap.py`. AI agents (GPT, Claude) should read it first and follow its protocol (§7).
 
+**New to the Kakeya proof?** [`reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md`](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md) reads it at four levels, from no formulas to the Lean statements.
+
 ## User priorities (each target)
 
 1. Does the paper answer the question?
@@ -63,6 +65,23 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - Five principles explain the exponents, including why the threshold is $B>A+\frac12-\frac1p$.
   - Checked by [`verify_angular_endpoint.py`](reviews/claude/kakeya/scripts/verify_angular_endpoint.py).
 
+## Distillation round 5: reading guide, the paraboloid's own engine, which systems carry it
+
+- **How to read the Kakeya proof** ([`15_HOW_TO_READ_THE_PROOF.md`](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md)).
+  - Four levels: no formulas; seven moves with one formula each; the proof on one page; reading routes through the paper, the gapless files and the Lean proof.
+  - A ledger of every number in the proof and where it comes from, a dictionary to standard mathematics, notation traps, and checkpoints tied to the scripts.
+- **The null frame and a direct engine for Schrödinger** ([`16_NULL_FRAME_AND_SCHRODINGER.md`](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md)). Target `T.KAK.12` is done.
+  - In light-cone coordinates the engine is simplest: polynomial chart, Jacobian $aY^d$, and a one-multiplier time row.
+  - Its density is the wave continued along an imaginary light ray. For Schrödinger it is the Husimi density, which is therefore the time component of a positive conserved tensor.
+  - Schrödinger is the one-mass sector of the null-frame wave, so the paraboloid estimate (12.2) follows directly, without the sphere.
+  - Numerically, focusing gives exactly one logarithm, $\frac32\log\kappa$.
+  - Checked by [`verify_null_frame.py`](reviews/claude/kakeya/scripts/verify_null_frame.py).
+- **State-dimension rigidity** ([`17_STATE_DIMENSION_RIGIDITY.md`](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md)). This sharpens and corrects `T.KAK.7`.
+  - A symmetric system carries a tangent lifted current iff $\operatorname{rank}[z\,\vert\,C_1z\,\vert\cdots\vert\,C_nz]\le n$ for every complex state, iff $N'=n+m-1$.
+  - Simple sheets need $N'=n$: App. E's hypothesis is necessary. This corrects 11 §7.3.
+  - The equality cases are real, complex Hermitian and quaternionic Hermitian pencils. The Hopf pencils over $\mathbb R,\mathbb C,\mathbb H,\mathbb O$ are the isotropic ones, with the Hopf fibration as polarization. Maxwell's equations fail.
+  - Checked by [`verify_state_dimension.py`](reviews/claude/kakeya/scripts/verify_state_dimension.py).
+
 ## Distillation round 2 (recyclable toolkit)
 
 See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results proved and checked in this round:
@@ -83,7 +102,7 @@ tools/                    roadmap checker and renderer, its negative controls, v
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, FOR_GPT, scripts/, results/, lean/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/gpt/              GPT's reviews (to be added)
 REVIEW_STANDARD.md        working standard for this project
