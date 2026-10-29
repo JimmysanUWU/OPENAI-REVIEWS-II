@@ -1,0 +1,467 @@
+{
+ "lift": {
+  "all_ok": true,
+  "rows": [
+   {
+    "p": 2,
+    "ell": 1,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 2,
+    "ell": 4,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 2,
+    "ell": 8,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 3,
+    "ell": 1,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 3,
+    "ell": 4,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 3,
+    "ell": 8,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 5,
+    "ell": 1,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 5,
+    "ell": 4,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 5,
+    "ell": 8,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 7,
+    "ell": 1,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 7,
+    "ell": 4,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   },
+   {
+    "p": 7,
+    "ell": 8,
+    "E2_truncation": true,
+    "closed_form_congruence": true,
+    "closed_form = p_ell mod h^ell": true
+   }
+  ],
+  "p2_equals_part_II_lemma_2_1": true,
+  "negative_control_detects": true
+ },
+ "pipeline": {
+  "all_ok": true,
+  "cases": [
+   {
+    "p": 3,
+    "F_p variables": 2,
+    "bits": 4,
+    "equations": [
+     [
+      [
+       1,
+       {
+        "1": 1,
+        "0": 1
+       }
+      ],
+      [
+       1,
+       {
+        "1": 2
+       }
+      ]
+     ],
+     [
+      [
+       1,
+       {
+        "1": 2
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     1,
+     1
+    ],
+    "ell": 3,
+    "degree_d": 24,
+    "J": 1,
+    "V_coeffs_of_H0": [
+     1698,
+     -110100,
+     816589080
+    ],
+    "count": 3,
+    "brute": 3,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 8,
+    "ok": true
+   },
+   {
+    "p": 3,
+    "F_p variables": 2,
+    "bits": 4,
+    "equations": [
+     [
+      [
+       2,
+       {
+        "1": 1
+       }
+      ],
+      [
+       1,
+       {
+        "1": 1
+       }
+      ]
+     ],
+     [
+      [
+       2,
+       {
+        "0": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     2,
+     2
+    ],
+    "ell": 3,
+    "degree_d": 24,
+    "J": 13,
+    "V_coeffs_of_H0": [
+     714,
+     -33228,
+     87018984
+    ],
+    "count": 3,
+    "brute": 3,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 8,
+    "ok": true
+   },
+   {
+    "p": 3,
+    "F_p variables": 2,
+    "bits": 4,
+    "equations": [
+     [
+      [
+       1,
+       {
+        "1": 1
+       }
+      ],
+      [
+       2,
+       {
+        "1": 1
+       }
+      ]
+     ],
+     [
+      [
+       1,
+       {
+        "1": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     3,
+     2,
+     2
+    ],
+    "ell": 3,
+    "degree_d": 24,
+    "J": 13,
+    "V_coeffs_of_H0": [
+     318,
+     -12600,
+     42154560
+    ],
+    "count": 3,
+    "brute": 3,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 8,
+    "ok": true
+   },
+   {
+    "p": 3,
+    "F_p variables": 3,
+    "bits": 6,
+    "equations": [
+     [
+      [
+       2,
+       {
+        "0": 1,
+        "2": 1
+       }
+      ],
+      [
+       2,
+       {
+        "1": 1
+       }
+      ]
+     ],
+     [
+      [
+       2,
+       {
+        "0": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     1,
+     1
+    ],
+    "ell": 4,
+    "degree_d": 32,
+    "J": 1,
+    "V_coeffs_of_H0": [
+     7023,
+     -732348,
+     25152756552,
+     -4767577797312
+    ],
+    "count": 3,
+    "brute": 3,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 16,
+    "ok": true
+   },
+   {
+    "p": 3,
+    "F_p variables": 3,
+    "bits": 6,
+    "equations": [
+     [
+      [
+       1,
+       {
+        "1": 1
+       }
+      ],
+      [
+       1,
+       {
+        "2": 1,
+        "0": 1
+       }
+      ]
+     ],
+     [
+      [
+       2,
+       {
+        "2": 1,
+        "0": 1
+       }
+      ],
+      [
+       1,
+       {
+        "0": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     2,
+     2
+    ],
+    "ell": 4,
+    "degree_d": 32,
+    "J": 17,
+    "V_coeffs_of_H0": [
+     8948,
+     -1009464,
+     22377601872,
+     -3578611496256
+    ],
+    "count": 5,
+    "brute": 5,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 18,
+    "ok": true
+   },
+   {
+    "p": 5,
+    "F_p variables": 2,
+    "bits": 6,
+    "equations": [
+     [
+      [
+       1,
+       {
+        "1": 1
+       }
+      ]
+     ],
+     [
+      [
+       4,
+       {
+        "1": 2
+       }
+      ],
+      [
+       4,
+       {
+        "0": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     1,
+     1
+    ],
+    "ell": 3,
+    "degree_d": 42,
+    "J": 1,
+    "V_coeffs_of_H0": [
+     37217264431,
+     -1092596082572191680,
+     35687833323422685366510000
+    ],
+    "count": 1,
+    "brute": 1,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 4,
+    "ok": true
+   },
+   {
+    "p": 5,
+    "F_p variables": 2,
+    "bits": 6,
+    "equations": [
+     [
+      [
+       1,
+       {
+        "1": 1
+       }
+      ],
+      [
+       3,
+       {
+        "1": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     2,
+     2
+    ],
+    "ell": 3,
+    "degree_d": 34,
+    "J": 18,
+    "V_coeffs_of_H0": [
+     -453095,
+     23708505600,
+     -1452251649600000
+    ],
+    "count": 5,
+    "brute": 5,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 16,
+    "ok": true
+   },
+   {
+    "p": 7,
+    "F_p variables": 2,
+    "bits": 6,
+    "equations": [
+     [
+      [
+       2,
+       {
+        "1": 1
+       }
+      ]
+     ]
+    ],
+    "(r,Q,R)": [
+     2,
+     1,
+     1
+    ],
+    "ell": 3,
+    "degree_d": 46,
+    "J": 1,
+    "V_coeffs_of_H0": [
+     -30092559,
+     69909064327872,
+     -193490005338339183936
+    ],
+    "count": 7,
+    "brute": 7,
+    "separated_equals_direct(node 1)": true,
+    "without_validity_factors": 16,
+    "ok": true
+   }
+  ],
+  "negative_validity_detects": "8/8",
+  "negative_jets_detects": "4/4 (cases with Q*J > 3)"
+ },
+ "all_ok": true
+}

@@ -1,1 +1,111 @@
 # OPENAI-REVIEWS-II
+
+Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the one used in [Claude-GPT-reviews](https://github.com/JimmysanUWU/Claude-GPT-reviews).
+
+**Start here: [`START_HERE.md`](START_HERE.md)** (context recovery in one page), then [`PROOF_MAP.md`](PROOF_MAP.md) (every result in dependency order with a proof sketch) and [`ROADMAP.md`](ROADMAP.md). It maps every result reviewed here, with stable IDs, precise statements, statuses, dependency graphs, check scripts and open targets. Its machine-readable twin [`roadmap.json`](roadmap.json) is validated by `python3 tools/check_roadmap.py`. AI agents (GPT, Claude) should read it first and follow its protocol (§7).
+
+**New to the Kakeya proof?** [`reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md`](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md) reads it at four levels, from no formulas to the Lean statements.
+
+## User priorities (each target)
+
+1. Does the paper answer the question?
+2. Verify rigorously, and identify methods, leaps of insight and new structure; assess how radical they are.
+3. Does the paper explain its ideas, or rely on unexplained "miracles"?
+4. Distill the mathematics into better structure.
+
+## Targets
+
+| Target | Claim | Claude verdict | GPT |
+|---|---|---|---|
+| [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct. The minimal chain was re-derived, and the algorithm was run in exact arithmetic. **OpenAI's formal proof of the exact statement builds locally** (3,091 modules, 0 sorry, only standard axioms, elaborated statement byte-identical) ([06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md)). | pending |
+| [**Kakeya / local smoothing**](reviews/claude/kakeya/01_VERDICT.md): *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Stein square function, Kakeya maximal and Kakeya set conjectures | Answers the question. The core identities were verified. **OpenAI's formal proof builds locally** (2,261 modules, 0 errors, 0 sorry; only standard axioms; elaborated statements byte-identical to the challenge) ([06](reviews/claude/kakeya/06_LEAN_AUDIT.md)). A new method: positive currents plus quaternionic Monge–Ampère energies. | pending |
+
+## Gapless proofs (distillation round 3)
+
+- **ETH** ([`08_GAPLESS_PROOF.md`](reviews/claude/eth/08_GAPLESS_PROOF.md)). A complete, self-contained proof that #$k$-SAT runs in $2^{O_k(n(\log\log n)^{k+1}/(\log n)^{1/(2k)})}$ time and polynomial space, refuting ETH. The arithmetic is mod $p^\mu$, the swap rows are in closed form, and the parameters are explicit (exponent $13n\nu^2/\sqrt\lambda$). Every lemma is checked by [`verify_gapless_chain.py`](reviews/claude/eth/scripts/verify_gapless_chain.py).
+- **ETH, formally verified exponent** ([`09_GAPLESS_SHARP_EXPONENT.md`](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md)). #$k$-SAT in $2^{O_k(n(\log\log n)^2/\sqrt{\log n})}$ time and polynomial space: the paper's Prop. 6.4 and the Lean statement's bound. New: the parity lift's $h$-adic digits in closed form, $e_j=(-1)^{j+1}\binom{2j-1}{j-1}(2Y-1)$, replacing App. B.1's $2^{C\ell^2}$ bound by $2\cdot4^j$. Checked by [`verify_sharp_route.py`](reviews/claude/eth/scripts/verify_sharp_route.py).
+- **ETH, one deformation theorem for Parts I–III** ([`13_UNIFIED_DEFORMATION.md`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md)).
+  - Swap interpolation and App. D are two instances of *interpolation through local nodes*: a filtered node lemma, Hermite recovery with valuation loss, and correction counts.
+  - New: the cost floor of App. D's architecture, $2^{\Omega(M/\sqrt{\log M})}$ per call. With E4, both $\sqrt{\log}$ barriers are theorems.
+  - Checked by [`verify_unified_deformation.py`](reviews/claude/eth/scripts/verify_unified_deformation.py).
+- **ETH, the design floor** ([`14_DESIGN_FLOOR.md`](reviews/claude/eth/14_DESIGN_FLOOR.md)).
+  - Every graded swap design, which includes every choice of $M_0$, symmetric or not, pays Part I's exponent $(\log\log n)^2/\sqrt{\log n}$.
+  - The reason is Smolensky's bound for parity, carried to the biased swap spectrum by a random restriction: Part I's square root is the agreement degree of parity.
+  - Ungraded designs remain open (`T.ETH.6`). Checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py).
+- **ETH, corollaries and a new theorem** ([`11_GAPLESS_COROLLARIES.md`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md), [`12_FP_COUNTING.md`](reviews/claude/eth/12_FP_COUNTING.md)).
+  - Proofs of all of the paper's corollaries. Cor. 1.4 is found to need App. D.
+  - **New:** counting zeros of sparse polynomial systems over any fixed finite field in $2^{O(n(\log\log n)^2/\sqrt{\log n})}$. This is the $\mathbb F_p$ analogue of the paper's Theorem 2.2, with a closed-form $p$-adic lift. Checked by [`verify_fp_counting.py`](reviews/claude/eth/scripts/verify_fp_counting.py).
+- **ETH, the headline exponent** ([`10_GAPLESS_TENSOR_CONTRACTION.md`](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md)). Theorem 1.1, #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ ($2^{O(n/\sqrt{\log n})}$ at fixed density), via App. D's Boolean tensor contraction. App. D is verified completely, with explicit constants for its recursion. Its child identity and one recursion level at the honest precision are checked end to end by [`verify_tensor_contraction.py`](reviews/claude/eth/scripts/verify_tensor_contraction.py).
+- **Kakeya** ([`08_GAPLESS_PROOF.md`](reviews/claude/kakeya/08_GAPLESS_PROOF.md), [`09_GAPLESS_CONSEQUENCES.md`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md)). Theorems 1.1 and 1.2 in every dimension with the sharp power $2/p_c$, and the five other formal targets (restriction, Kakeya maximal, Hausdorff dimension, Bochner–Riesz, Stein). Every step is written out or is a cited textbook theorem with hypotheses checked; the fibre Dirichlet existence theory is cited and also formally verified. A new script verifies the wave current's conservation directly, to $10^{-39}$.
+- **Kakeya, the remaining claims** ([`10_GAPLESS_REMAINING.md`](reviews/claude/kakeya/10_GAPLESS_REMAINING.md)).
+  - Complete proofs of cone and paraboloid restriction, Schrödinger local smoothing, the Nikodym maximal conjecture, and the weak-norm obstruction (App. C).
+  - Apps. B, D and E are checked at the level of exponents and new identities.
+  - Checked by [`verify_remaining_claims.py`](reviews/claude/kakeya/scripts/verify_remaining_claims.py).
+
+## Distillation round 4: frameworks
+
+- **Kakeya: the positivity engine as a theorem** ([`11_FRAMEWORK_POSITIVITY_ENGINE.md`](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)).
+  - Theorem 11.1 states axioms on a fibre chart and a current that never mention the equation, and proves the critical estimate from them alone.
+  - Every symmetric pencil with a simple, extremal, transversally curved eigenvalue satisfies the axioms. This gives a complete proof of the paper's App. E.
+  - **The wave is the "arrow" pencil**, whose polarization is stereographic projection. Theorem 1.2 is therefore a special case of App. E.
+  - A hypothesis-usage matrix says what breaks without each hypothesis.
+  - Checked by [`verify_positivity_engine.py`](reviews/claude/kakeya/scripts/verify_positivity_engine.py). The pencil current is conserved to $10^{-38}$ for five pencils, including App. E's non-quadric cubic example.
+- **Kakeya: the slot calculus as a standalone toolkit** ([`12_QUATERNIONIC_SLOT_CALCULUS.md`](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md)).
+  - The quaternionic null-Lagrangian identity holds for arbitrary quaternion frames.
+  - The Monge–Ampère operator is the gradient of a concave energy.
+  - Ellipticity forces at most 4 coordinates per slot.
+  - Checked by [`verify_slot_calculus.py`](reviews/claude/kakeya/scripts/verify_slot_calculus.py).
+- **Kakeya: the planar entry point** ([`13_PLANAR_ENTRY_POINT.md`](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md)).
+  - A complete proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ with $\log^{1/2}$ loss, using only linear PDE (the paper's App. D, every step written out).
+  - Recommended as the entry point to the paper.
+  - Checked by [`verify_planar_entry.py`](reviews/claude/kakeya/scripts/verify_planar_entry.py).
+- **Kakeya: the angular endpoint, line by line** ([`14_GAPLESS_ANGULAR_ENDPOINT.md`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md)).
+  - App. B (Thm B.1) is proved in full, so no Kakeya result is `PARTIAL` any more.
+  - The paper's uniform-in-degree stationary phase is replaced by an explicit Bessel bound (Funk–Hecke plus Hankel's integral).
+  - Five principles explain the exponents, including why the threshold is $B>A+\frac12-\frac1p$.
+  - Checked by [`verify_angular_endpoint.py`](reviews/claude/kakeya/scripts/verify_angular_endpoint.py).
+
+## Distillation round 5: reading guide, the paraboloid's own engine, which systems carry it
+
+- **How to read the Kakeya proof** ([`15_HOW_TO_READ_THE_PROOF.md`](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md)).
+  - Four levels: no formulas; seven moves with one formula each; the proof on one page; reading routes through the paper, the gapless files and the Lean proof.
+  - A ledger of every number in the proof and where it comes from, a dictionary to standard mathematics, notation traps, and checkpoints tied to the scripts.
+- **The null frame and a direct engine for Schrödinger** ([`16_NULL_FRAME_AND_SCHRODINGER.md`](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md)). Target `T.KAK.12` is done.
+  - In light-cone coordinates the engine is simplest: polynomial chart, Jacobian $aY^d$, and a one-multiplier time row.
+  - Its density is the wave continued along an imaginary light ray. For Schrödinger it is the Husimi density, which is therefore the time component of a positive conserved tensor.
+  - Schrödinger is the one-mass sector of the null-frame wave, so the paraboloid estimate (12.2) follows directly, without the sphere.
+  - Numerically, focusing gives exactly one logarithm, $\frac32\log\kappa$.
+  - Checked by [`verify_null_frame.py`](reviews/claude/kakeya/scripts/verify_null_frame.py).
+- **State-dimension rigidity** ([`17_STATE_DIMENSION_RIGIDITY.md`](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md)). This sharpens and corrects `T.KAK.7`.
+  - A symmetric system carries a tangent lifted current iff $\operatorname{rank}[z\,\vert\,C_1z\,\vert\cdots\vert\,C_nz]\le n$ for every complex state, iff $N'=n+m-1$.
+  - Simple sheets need $N'=n$: App. E's hypothesis is necessary. This corrects 11 §7.3.
+  - The equality cases are real, complex Hermitian and quaternionic Hermitian pencils. The Hopf pencils over $\mathbb R,\mathbb C,\mathbb H,\mathbb O$ are the isotropic ones, with the Hopf fibration as polarization. Maxwell's equations fail.
+  - Checked by [`verify_state_dimension.py`](reviews/claude/kakeya/scripts/verify_state_dimension.py).
+
+## Distillation round 2 (recyclable toolkit)
+
+See [`reviews/claude/SYNTHESIS.md`](reviews/claude/SYNTHESIS.md). New results proved and checked in this round:
+- $p$-adic cross-equation truncation for every prime (generalizes the ETH paper's Lemma 5.2);
+- exact weighted partition functions of bounded-degree factor graphs in $2^{o(n)}$;
+- a proved cost floor showing the ETH method's exponent is optimal for symmetric designs;
+- a rank-$r$ density-to-depth lemma;
+- the **capacity-dimension principle**: the Kakeya proof's auxiliary time must be exactly 2-dimensional for logarithmic loss.
+
+## Layout
+
+```
+START_HERE.md             one-page context recovery for a new or reset agent
+PROOF_MAP.md              the theorem DAG as readable paths with proof sketches (generated)
+ROADMAP.md                mathematical roadmap: graphs, node tables, frameworks, targets, protocol
+roadmap.json              its machine-readable twin (validated by tools/check_roadmap.py)
+tools/                    roadmap checker and renderer, its negative controls, verify_all.py
+source/eth/               pinned ETH sources (hashes, Lean statement)
+source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
+reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, FOR_GPT, scripts/, results/, lean/
+reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
+reviews/gpt/              GPT's reviews (to be added)
+REVIEW_STANDARD.md        working standard for this project
+```
+
+The ETH scripts need Python 3.10+ and the standard library only. The Kakeya scripts also use `numpy`, `sympy` and `scipy`.

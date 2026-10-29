@@ -1,0 +1,86 @@
+{
+ "X": {
+  "alpha_p_eq_n": true,
+  "d_minus_alpha_p": true,
+  "alpha_minus_d_over_p": true,
+  "alpha_minus_1_over_p": true,
+  "n_minus_alpha": true,
+  "p_minus_2": true,
+  "small_source": true,
+  "holder_b_exponent": true,
+  "threshold": true,
+  "transplant_error": true,
+  "weak_radial_power": true,
+  "delta_positive_n2_8": true,
+  "seconds": 0.4
+ },
+ "F": {
+  "max_error": 7.947958101815471e-16,
+  "two_term_n3": 7.754818242684634e-26,
+  "control_without_i_nu_min_error_odd_degrees": 0.00038104302933816836,
+  "seconds": 1.5
+ },
+ "H": {
+  "max_rel_error": 2.48401505020662e-26,
+  "control_min_rel_error": 0.006249796730030113,
+  "control_failures": 24,
+  "control_cases": 24,
+  "seconds": 5.8
+ },
+ "E": {
+  "max_ratio_to_bound_by_k": {
+   "0": 0.2123445232117283,
+   "1": 0.21240537023291536,
+   "2": 0.011769217285903726,
+   "3": 0.001135839734979972
+  },
+  "x_eps_at_threshold": {
+   "1": 0.3704072246014319,
+   "5": 12.359793159811023,
+   "10": 49.59155267555809,
+   "20": 198.2526280353469,
+   "40": 792.4429473405999
+  },
+  "eps_below_threshold": {
+   "10": 1.602567457598617,
+   "20": 2.28411034663189,
+   "40": 2.8495264739377313
+  },
+  "seconds": 24.6
+ },
+ "S": {
+  "stein_log_derivative_identity": true,
+  "control_wrong_sign": false,
+  "band_dimension_bound": true,
+  "zonal_peak_on_diagonal": true,
+  "seconds": 0.9
+ },
+ "K": {
+  "max_remainder_ratio": 0.11980192674204877,
+  "max_kernel_envelope_ratio": 0.29926704115689756,
+  "transition_relative_error": [
+   1.7415803396065765,
+   0.9755993383431903
+  ],
+  "seconds": 29.6
+ },
+ "G": {
+  "transplant_geometry": true,
+  "radial_integrals_exact": {
+   "2": true,
+   "3": true,
+   "4": true,
+   "5": true,
+   "6": true
+  },
+  "j_integral_bound": true,
+  "L_over_2m_range": [
+   0.34657359027997264,
+   1.2361157374507155
+  ],
+  "shell_bookkeeping": true,
+  "discrete_young": true,
+  "seconds": 2.2
+ },
+ "all_ok": true
+}
