@@ -78,7 +78,7 @@ $$
 
 For $W\sim\mathrm{Bin}(Q,p)$, the lower bound is $\gtrsim Q^{-1/2}e^{-(R/2)^2/(2Qp(1-p))}$. The interval construction attains $\lesssim e^{-(R/2)^2/(2Qp(1-p))}$, so it is optimal up to a $\mathrm{poly}(Q)$ factor. In the tested cases the measured ratio of upper to lower bound is 2.1–8.6 ([`results/distilled_swap_formula.json`](results/distilled_swap_formula.json)).
 
-Hence $R=\Theta(\sqrt{Q\log(1/\varepsilon)})$ is forced for symmetric constructions. Non-symmetric group-algebra constructions reduce to the *agreement degree of parity under the $p$-biased measure*. I expect the same $\Theta(\sqrt{Q\log(1/\varepsilon)})$ from known probabilistic-degree lower bounds for parity over $\mathbb R$, but I have not checked a reference.
+Hence $R=\Theta(\sqrt{Q\log(1/\varepsilon)})$ is forced for symmetric constructions. Non-symmetric group-algebra constructions reduce to the *agreement degree of parity under the $p$-biased measure*. [14](14_DESIGN_FLOOR.md) proves that this is also $\Theta(\sqrt{Q\log(1/\varepsilon)})$ (Corollary 2.5, by Smolensky's dimension argument and a random restriction), so non-symmetric choices of $M_0$ cannot beat the symmetric one in the exponent.
 
 ## 4.5 Why the method stops at $\sqrt{\log n}$ (a heuristic barrier)
 

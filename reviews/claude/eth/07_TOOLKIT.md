@@ -11,7 +11,7 @@ This file extracts from *The Exponential Time Hypothesis Is False* the parts tha
 | E1 | Commuting-involution interpolation | any $Q$ commuting involutions on any space | R, X | Abstract form; closed-form rows; exact rank; optimality among symmetric choices |
 | E2 | $p$-adic cross-equation truncation | $\mathbb F_p$ for every prime $p$ | R, X | **New:** generalizes Lemmas 5.1–5.2 from $p=2$; its counting corollary is proved in [12](12_FP_COUNTING.md) |
 | E3 | Deformation counting | weighted factor graphs over any commutative $\mathbb Q$-algebra | R | **New corollary:** exact partition functions of bounded-degree graphical models in $2^{o(n)}$ |
-| E4 | Cost floor of the method | any symmetric design | R, X | **New:** the $(\log\log n)^2/\sqrt{\log n}$ barrier becomes a theorem about the method |
+| E4 | Cost floor of the method | any symmetric design; every graded design in [14](14_DESIGN_FLOOR.md) | R, X | **New:** the $(\log\log n)^2/\sqrt{\log n}$ barrier becomes a theorem about the method |
 | E5 | Tapered Hermite recovery (App. D) | any polynomial over $\mathbb Z_{(2)}$-algebras | P, X | Isolated as a standalone numerical-algebra lemma |
 
 ---
@@ -39,7 +39,7 @@ $$\operatorname{rank}(I-M_0)=\sum_{\chi:\,(-1)^{|\chi|}f(|\chi|)\ne1}\dim V_\chi
 
 **Where else it applies.** Theorem E1 is a statement about one representation of $(\mathbb Z/2)^Q$. It gives a degree-$<R$ path from $I$ to "elements involving generator $t$" at every node, at the price of a low-rank defect. Any problem that needs simultaneous locality at many nodes with a low-degree interpolating family can use it with its own $V$ and $\Pi_s$. In the regular representation it is the group-algebra form of the parity-approximation phenomenon behind Walsh–Hadamard non-rigidity.
 
-**Open sharpening.** Item 4 covers only symmetric choices. For a general group-algebra element supported on $\{\Pi_{S^c}:|S|<R\}$, the eigenvalue is $(-1)^{|\chi|}g(\chi)$ with $g$ an arbitrary real multilinear polynomial of degree $<R$. The question becomes: *what is the least $p$-biased measure of the set where a degree-$<R$ real polynomial differs from parity?* Every $R$-dimensional subcube contains such a point, but that alone gives only $\min(p,1-p)^R$, far below the symmetric bound $e^{-\Theta(R^2/Q)}$. This is open.
+**Non-symmetric choices (resolved in [14](14_DESIGN_FLOOR.md)).** Item 4 covers only symmetric choices. For a general group-algebra element supported on $\{\Pi_{S^c}:|S|<R\}$, the eigenvalue is $(-1)^{|\chi|}g(\chi)$ with $g$ an arbitrary real multilinear polynomial of degree $<R$. The question becomes: *what is the least $p$-biased measure of the set where a degree-$<R$ real polynomial differs from parity?* Every $R$-dimensional subcube contains such a point, but that alone gives only $\min(p,1-p)^R$. [14](14_DESIGN_FLOOR.md) Lemma 2.4 answers it with Smolensky's dimension argument and a random restriction: the measure is $\ge e^{-2(R+1)^2/Q}/(4(Q+1))$ for $\frac14\le p\le\frac12$, so the symmetric bound $e^{-\Theta(R^2/Q)}$ is optimal up to $\mathrm{poly}(Q)$.
 
 (Verified: [`scripts/verify_distilled_swap_formula.py`](scripts/verify_distilled_swap_formula.py).)
 
@@ -117,7 +117,7 @@ Suppose $\delta\le\delta_0:=(\log\log n)^2/\sqrt{\log n}$.
 
 **Remark (thresholds are not intrinsic).** The cost floor drops below $1$ (beats $2^n$) already at $\log_2n\approx2^{10}$. The paper's parameters need $\log_2n\approx7\cdot10^{10}$ ([`results/parameters.json`](results/parameters.json)). The floor ignores the balance conditions of Lemma 4.5 and the clause-degree factor $d/n\le3$, so it is a lower bound, not an achievable threshold. Still, the astronomically large threshold is mostly a matter of the paper's constants, not of the method.
 
-Beyond this floor, gains need non-symmetric designs (the open part of E1), or a different decoupling. [13](13_UNIFIED_DEFORMATION.md) places E4 in a common framework with App. D, and proves App. D's own floor (Theorem 5.4). Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
+Beyond this floor, non-symmetric designs do not help: [14](14_DESIGN_FLOOR.md) Theorem 3.2 proves the same floor for every graded design, which includes every choice of $M_0$ in E1. Gains need ungraded designs (`T.ETH.6`) or a different decoupling. [13](13_UNIFIED_DEFORMATION.md) places E4 in a common framework with App. D, and proves App. D's own floor (Theorem 5.4). Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
 
 ---
 

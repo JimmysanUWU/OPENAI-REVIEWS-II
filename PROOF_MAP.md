@@ -40,6 +40,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The headline exponent (Part III, App. D)](#p-eth-iii) | Boolean tensor contraction by a 2-adic Cauchy-kernel deformation. | 9 | `ETH.I.SPARS`, `ETH.II.LIFT`, `ETH.II.TANNER`, `ETH.II.GREEDY` |
 | [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
+| [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -601,7 +602,9 @@ Notation used throughout the ETH paths:
 | mode, weight, source, target | Near a node the readout is local part + sum kappa_Z L_Z with kappa_Z of filtration weight w_Z; L_Z reads its source group; targeted modes are read only by one group. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Definition 2.2 |
 | Hermite loss l_t | -v(E_t(0)) = sum_q m_q (v(t-q) - v(q)): how much closer the other nodes are to t than to 0. Zero for unit-distance nodes; D_i Delta(i) on residue systems. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 3.1 |
 | depth profile, slope Delta(i) | Multiplicities m(v_2(t)) on the residue system mod 2^{a+1}; Delta(i) = sum_j (j/2^j)(m(i) - m(i+j)) sets both the loss and the node cost. | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 3.3 |
-| square-root law | Both architectures pay M/sqrt(number of node coordinates) per call: Part I via the central limit window, Part III via Hardy-Ramanujan; open in general (T.ETH.5). | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §7 |
+| square-root law | Both architectures pay M/sqrt(number of node coordinates) per call: Part I via Smolensky's agreement bound for parity (for every graded design, 14), Part III via Hardy-Ramanujan; open in general (T.ETH.5). | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §7 |
+| graded design | A swap design P(T) = sum c_U(T) Pi_U whose coefficients are constant whenever Pi_U leaves &gt;= R positions unswapped; equivalently its eigenvalue polynomials are 1 - par \* (degree &lt; R). Every node-independent defect (every M_0 in E1) is graded. | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Definition 1.1 |
+| Smolensky bound, tau_D(m) | A degree-D real polynomial agrees with parity on at most sum_{i &lt;= (m+D)/2} C(m,i) points of {0,1}^m; tau_D(m) = P[Bin(m,1/2) &gt; (m+D)/2] is the forced error, and under mu_p it becomes E tau_D(Bin(Q,2p)). | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 2.1 |
 <!-- END GENERATED: glossary-eth -->
 
 ### ETH is false (Part I)
@@ -1049,6 +1052,55 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 **Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) · *Note:* Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5.
 <!-- END GENERATED: path-p-eth-unified -->
 
+### Why Part I stops at √log n: the design floor (14)
+<a id="p-eth-floor"></a>
+
+<!-- BEGIN GENERATED: path-p-eth-floor -->
+*Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case.*
+
+Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e4).
+
+#### <a id="p-eth-floor--eth-d-normal"></a>1. `ETH.D.NORMAL` — Normal form of group-algebra swap designs
+
+*NEW, PROVED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+
+**Statement.** Let P(T) = sum_U c_U(T) Pi_U with deg c_U < R and P(0) = I, and call it graded if c_U is constant whenever |U^c| >= R. Graded iff the eigenvalue polynomials are n_X(T) = 1 - par(X) Lambda_T(X) with deg_X Lambda_T < R and Lambda_0 = 0. Then the defect at node t (the part of P(t) not involving Pi_t) acts on eigenvectors with antisymmetric set X by 1 - par(X) G_t(X), G_t = (Lambda_t)_{odd in x_t} of degree < R, so its rank is |B| mu_{p_r}({G_t != par}). Every family (G_t) occurs; every design with a node-independent defect is graded, with defect I - M_0 acting by 1 - par F, deg F < R.
+
+**Proof sketch.** Locality at t in the group algebra means 'involves Pi_t' (an all-off-diagonal label separates the group elements). A node-independent defect forces c_U(t) = n_U at the |U^c| nodes outside U, so c_U is constant when |U^c| >= R. Writing chi_{S^c} = par \* chi_S turns the graded eigenvalue polynomials into 1 - par \* (low degree), and the defect is the even part in x_t, i.e. 1 - par \* G_t with G_t the odd part of Lambda_t. Lagrange interpolation in T realizes any family G_t.
+
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Definition 1.1, Lemma 1.2, Remark 1.3
+
+#### <a id="p-eth-floor--eth-d-smol"></a>2. `ETH.D.SMOL` — Parity under a biased measure (Smolensky + restriction)
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** A real polynomial of degree <= D on {0,1}^m agrees with parity on at most sum_{i <= (m+D)/2} C(m,i) points. For 0 < p <= 1/2 and F of degree <= D on {0,1}^Q, mu_p(F != par) >= E tau_D(Bin(Q,2p)), tau_D(m) = P[Bin(m,1/2) > (m+D)/2]. Explicitly, for 1/4 <= p <= 1/2, Q >= 64, R <= Q/4 and deg F < R: mu_p({F != par} and |X| >= Q/32) >= e^{-2(R+1)^2/Q}/(4(Q+1)). Hence the least degree with mu_p-error eps is Theta(sqrt(Q log(1/eps))), symmetric or not.
+
+**Proof sketch.** Smolensky: on the agreement set chi_S = par chi_{S^c} = F chi_{S^c}, so characters of degree <= (m+D)/2 span all functions there. Restriction: X = Z and Y with Z ~ Bern(2p), Y ~ Bern(1/2) is mu_p-distributed, and fixing Z leaves a degree-<= D polynomial on the support of Z, where parity is parity. The explicit form uses the method of types (tau_D(m) >= e^{-(D+2)^2/m}/(m+1)), a Chernoff bound for the weight cut, and P[|Z| >= Q/2] >= 1/2.
+
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 2.1, Lemma 2.2, Lemma 2.3, Lemma 2.4, Corollary 2.5 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* Lemma 2.1 is Smolensky's dimension argument (STOC 1987, FOCS 1993); the window design shows it is sharp up to a factor 2 for the uniform measure.
+
+#### <a id="p-eth-floor--eth-d-floor"></a>3. `ETH.D.FLOOR` — Design floor: every graded swap design pays (log log n)^2/sqrt(log n)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.NORMAL`](#p-eth-floor--eth-d-normal), [`ETH.D.SMOL`](#p-eth-floor--eth-d-smol), [`ETH.K.E4`](#p-eth-more--eth-k-e4)
+
+**Statement.** In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows max(j0,1) eps0/2), Part I's algorithm with any graded group-algebra design of degree < R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta >= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F < R is e^{-Theta(R^2/Q)} up to poly(Q).
+
+**Proof sketch.** By the normal form, the measured set at each node contains {G != par} with deg G < R. The biased Smolensky bound gives measure >= e^{-2(R+1)^2/Q}/(4(Q+1)) on weights >= Q/32, so the measurement cost forces (R+1)^2 >~ Q log(1/delta). With r >= 1/delta and Q <= log n/(2 log r), this makes x = (R-1)/Q >~ log log n/sqrt(log n), and the Taylor cost x log(1/x) gives the floor. Small cases (R = 1, Q < 64, x > 1/8) are excluded by the Taylor and parity-class costs.
+
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* The measurement cost (C3) is inherited from E4 and not re-derived. Ungraded designs (node-dependent coefficients on far group elements) are not covered: target T.ETH.6.
+
+#### <a id="p-eth-floor--eth-d-face"></a>4. `ETH.D.FACE` — Face lemma for arbitrary group-algebra designs
+
+*NEW, PROVED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+
+**Statement.** For any group-algebra design of degree < R (graded or not), call the edge {X, X+e_t} bad if the defect at node t is nonzero on eigenvectors with antisymmetric set X. Every R-dimensional face of {0,1}^Q contains a bad edge, so some node has mu_{1/2}(bad) >= 2^{1-R}/R. Face-hitting alone cannot give more: edge sets of density 2^{4-R} Q meet every R-face.
+
+**Proof sketch.** Sum the eigenvalue polynomials n_Y(T) over a face C with directions A: the sum has degree < R and value 2^R at T = 0, but if C has no bad edge it vanishes at every t in A (pair the vertices along t). Double counting faces per edge gives the density bound; a random vertex set shows the counting is the limit of the face argument.
+
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 5.1, §5
+<!-- END GENERATED: path-p-eth-floor -->
+
 ## Index of nodes
 
 Each node links to its first appearance on a path.
@@ -1125,4 +1177,8 @@ Each node links to its first appearance on a path.
 | [`KAK.ARROW`](#p-kak-engine--kak-arrow) | The wave is the arrow pencil (Corollary 11.4) | NEW, PROVED, CHECKED | P.KAK.ENGINE |
 | [`KAK.FRAME`](#p-kak-planar--kak-frame) | Cofactor divergence for arbitrary quaternionic frames (Theorem 12.1) | NEW, PROVED, CHECKED | P.KAK.PLANAR, P.KAK.ENGINE |
 | [`KAK.MAENERGY`](#p-kak-engine--kak-maenergy) | The Monge-Ampere operator is the gradient of a concave energy (Theorem 12.3) | NEW, PROVED | P.KAK.ENGINE |
+| [`ETH.D.NORMAL`](#p-eth-floor--eth-d-normal) | Normal form of group-algebra swap designs | NEW, PROVED | P.ETH.FLOOR |
+| [`ETH.D.SMOL`](#p-eth-floor--eth-d-smol) | Parity under a biased measure (Smolensky + restriction) | NEW, PROVED, CHECKED | P.ETH.FLOOR |
+| [`ETH.D.FLOOR`](#p-eth-floor--eth-d-floor) | Design floor: every graded swap design pays (log log n)^2/sqrt(log n) | NEW, PROVED, CHECKED | P.ETH.FLOOR |
+| [`ETH.D.FACE`](#p-eth-floor--eth-d-face) | Face lemma for arbitrary group-algebra designs | NEW, PROVED | P.ETH.FLOOR |
 <!-- END GENERATED: node-index -->

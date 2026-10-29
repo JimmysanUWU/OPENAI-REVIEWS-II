@@ -293,7 +293,7 @@ The swap design's locality is exact only on a window of $R$ levels of the swap s
 - small groups need $r\ge1/\delta$;
 - the labels need $r^{2Q}\le n$.
 
-E4 combines these into $\delta\gtrsim(\log\log n)^2/\sqrt{\log n}$. **The square root is the central limit theorem's window of the swap spectrum.**
+E4 combines these into $\delta\gtrsim(\log\log n)^2/\sqrt{\log n}$. **The square root is the central limit theorem's window of the swap spectrum.** [14](14_DESIGN_FLOOR.md) shows it is intrinsic: for every graded design, symmetric or not, it is Smolensky's agreement degree of parity, $\Theta(\sqrt{Q\log(1/\varepsilon)})$.
 
 **Lemma 5.2 (the node cost does not depend on depth).** In Corollary 4.4, suppose at least $M/2$ wires cross at coordinate $i$, as the paper's balanced labels ensure (10 Lemma 5.1(3) with $r=64$).
 - **Modes.** Every crossing tile has $D_i/2$ columns, so there are $c_i\ge M/D_i$ modes of each weight.
@@ -379,7 +379,7 @@ The node coordinates are coordinates of a label space of polynomial size, so the
 - **A yes** would make the paper's $n/\sqrt{\log n}$ the limit of the whole method family.
 - **A no** would improve Theorem 1.1.
 
-`T.ETH.1` (non-symmetric swap designs) is the special case of Part I's architecture.
+For Part I's architecture with group-algebra designs, [14](14_DESIGN_FLOOR.md) settles the graded case (`T.ETH.1`, done) and isolates the ungraded case (`T.ETH.6`).
 
 ---
 

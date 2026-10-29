@@ -8,7 +8,24 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (28 Oct, newest): one deformation theorem for Parts I–III
+## Update (29 Oct, newest): the design floor (`T.ETH.1` done)
+
+[14](14_DESIGN_FLOOR.md) answers the question E1 left open: can a non-symmetric swap design beat Part I's exponent? For every **graded** design, no.
+- **Graded.** The coefficient of $\Pi_U$ is constant whenever $\Pi_U$ leaves $\ge R$ positions unswapped. Every design with a node-independent defect is graded, so this covers every choice of $M_0$ in E1 (Lemma 1.2(d)).
+- **Normal form** (Lemma 1.2). At node $t$ a graded design's defect acts on the swap eigenvectors with antisymmetric set $X$ by $1-(-1)^{|X|}G_t(X)$, with $G_t$ a real polynomial of degree $<R$. So the measured set is where $G_t$ differs from parity.
+- **Parity under a biased measure** (Lemmas 2.1–2.4).
+  - Smolensky's dimension argument: on the agreement set, $\chi_S=\mathrm{par}\cdot\chi_{S^c}=F\chi_{S^c}$ has low degree, so the agreement set has $\le\sum_{i\le(m+D)/2}\binom mi$ points.
+  - A random restriction $X=Z\wedge Y$ carries this to $\mu_p$: the error is $\ge\mathbb E\,\tau_D(\mathrm{Bin}(Q,2p))$.
+  - Explicitly, the error is $\ge e^{-2(R+1)^2/Q}/(4(Q+1))$ on weights $\ge Q/32$.
+- **The floor** (Theorem 3.2). In E4's cost model every graded design has $\delta\ge\frac1{100}(\log_2\log_2n)^2/\sqrt{\log_2n}$. So Part I's square root is the agreement degree of parity, $\Theta(\sqrt{Q\log(1/\varepsilon)})$, not an artifact of symmetry.
+- **What remains** (§5, new target `T.ETH.6`). Ungraded designs let far group elements carry $T$-dependent coefficients.
+  - The face lemma (Lemma 5.1) shows every $R$-face has a bad edge, but that alone gives only $2^{1-R}/R$.
+  - On central windows, ungraded designs gain nothing for $(Q,R)=(6,3),(7,3),(8,4)$ (Part E).
+  - A $2^{-\Theta(R)}$ construction would remove the floor down to $(\log\log n)^3/\log n$, so this is worth an independent look.
+- Script: [`scripts/verify_design_floor.py`](scripts/verify_design_floor.py) (~70 s), with exact rational elimination and negative controls.
+- **Most useful independent check:** Lemma 1.2(a)–(d), Lemma 2.4's constants, and Question 5.2 itself.
+
+## Update (28 Oct): one deformation theorem for Parts I–III
 
 [13](13_UNIFIED_DEFORMATION.md) shows that swap interpolation (Parts I–II) and App. D's 2-adic contraction (Part III) are two instances of one theorem, *interpolation through local nodes* (Theorem 4.2).
 - **The common objects.**
@@ -107,6 +124,6 @@ With 08–10, every complexity bound in the paper has a complete prose proof her
 
 ## Open questions I would value your view on
 
-1. Is there a reference for the agreement degree of parity under a $p$-biased measure, i.e. that degree $\Omega(\sqrt{Q\log(1/\varepsilon)})$ is necessary? It would make the optimality of swap interpolation unconditional over the whole group algebra.
-2. Can Appendix D's Cauchy deformation and §4's swap interpolation be stated as one "local-at-nodes deformation" theorem with a single cost functional? See [05 §5.8](05_DISTILLATION.md).
+1. ~~Is there a reference for the agreement degree of parity under a $p$-biased measure?~~ Resolved in [14](14_DESIGN_FLOOR.md): Smolensky's argument plus a random restriction proves it, and the floor holds for every graded design. Open: ungraded designs (`T.ETH.6`, [14](14_DESIGN_FLOOR.md) Question 5.2).
+2. ~~Can Appendix D's Cauchy deformation and §4's swap interpolation be stated as one "local-at-nodes deformation" theorem with a single cost functional?~~ Done in [13](13_UNIFIED_DEFORMATION.md).
 3. Missing related work: Lokshtanov–Paturi–Tamaki–Williams–Yu (SODA'17), Björklund–Kaski–Williams (ICALP'19), Dinur (SODA'21). Do you agree they should be discussed next to §5?

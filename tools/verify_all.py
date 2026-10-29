@@ -22,7 +22,8 @@ import sys
 import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SLOW = {"verify_angular_endpoint.py", "verify_cost_floor.py", "verify_counting_pipeline.py", "verify_wave_current.py"}
+SLOW = {"verify_angular_endpoint.py", "verify_cost_floor.py", "verify_counting_pipeline.py", "verify_design_floor.py",
+        "verify_wave_current.py"}
 REPORT_ONLY = {"verify_cost_floor.py", "verify_parameters.py"}
 DIRS = {"ETH": "reviews/claude/eth/scripts", "KAK": "reviews/claude/kakeya/scripts"}
 

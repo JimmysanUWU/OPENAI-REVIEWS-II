@@ -15,9 +15,9 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 | *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #k-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | **Correct.** ETH is false (≈99%). The headline exponent via App. D is ≈95%. | OpenAI's Lean proof of the weaker $2^{O(n(\log\log n)^2/\sqrt{\log n})}$ bound builds here, with only the standard axioms |
 | *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Kakeya maximal and sets, Stein, Nikodym | **Correct** (≈99% for the six formal targets; ≈90% for the sharp power $2/p_c$, which is prose-only) | OpenAI's Lean proof of all six targets builds here, with only the standard axioms |
 
-**Where things stand (28 Oct 2026).**
+**Where things stand (29 Oct 2026).**
 - **Verification is complete for both papers.** Every claim has a prose proof in this repository; no node is `PARTIAL`. The last one, Kakeya App. B, is proved line by line in [kakeya/14](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md).
-- **Distillation.** The Kakeya frameworks are written: the engine theorem, the slot calculus, and the planar entry point. The open targets are listed in [`ROADMAP.md`](ROADMAP.md) §6.
+- **Distillation.** The Kakeya frameworks are written: the engine theorem, the slot calculus, and the planar entry point. For ETH, one deformation theorem covers Parts I–III ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md)), and the design floor ([eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md)) shows that no graded swap design beats Part I's exponent. The open targets are listed in [`ROADMAP.md`](ROADMAP.md) §6.
 
 ## 2. Read in this order
 
@@ -39,7 +39,8 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`10`](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md): Part III;
      - [`11`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md): the corollaries;
      - [`12`](reviews/claude/eth/12_FP_COUNTING.md): the new $\mathbb F_q$ theorem;
-     - [`13`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md): one deformation theorem for Parts I–III, and both cost floors.
+     - [`13`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md): one deformation theorem for Parts I–III, and both cost floors;
+     - [`14`](reviews/claude/eth/14_DESIGN_FLOOR.md): the design floor: every graded swap design pays $(\log\log n)^2/\sqrt{\log n}$, because of Smolensky's bound for parity.
 4. **Background, only if needed:**
    - the verdict, ledger, methods and "miracles" files (`01`–`04`) in each review folder;
    - the toolkits (`07`);
@@ -49,8 +50,8 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 23 check scripts, about 3 min with 4 jobs; prints ALL OK
-python3 tools/verify_all.py --quick    # skips the four slowest scripts
+python3 tools/verify_all.py            # 2 roadmap checks + 24 check scripts, about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
 ```
@@ -71,7 +72,7 @@ roadmap.json       the source of truth: nodes, sketches, dependencies, paths, gl
 tools/             check_roadmap.py (validator and renderer), test_check_roadmap.py, verify_all.py
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
-reviews/claude/eth/     ETH review (01-13, FOR_GPT, scripts/, results/, lean/)
+reviews/claude/eth/     ETH review (01-14, FOR_GPT, scripts/, results/, lean/)
 reviews/claude/kakeya/  Kakeya review (01-14, FOR_GPT, scripts/, results/, lean/)
 reviews/gpt/            reserved for GPT's reviews (empty so far)
 ```
@@ -110,7 +111,8 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
 4. **The Kakeya formal proof** proves Theorem 1.2 with the power $2n+5$, not the sharp $2/p_c$. The sharp power is prose ([kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §8). The formal Kakeya maximal statement is the $\delta^{-\varepsilon}$ form.
 5. **The wave is the arrow pencil.** Its passive coordinate in 11 is spatial, while 08 (the paper) uses a null direction. Both satisfy the engine axioms, so they give two proofs of the cap estimate (`KAK.T12` has an alternative proof).
 6. **The paraboloid** is reached only through the wave, by rescaling. A direct engine for it is open (`T.KAK.12`).
-7. **App. B's threshold.** $B>\frac12+\frac1p$ is what the proof gives ($A+\frac12-\frac1p$ with $A=2/p$), not a proved optimum (`T.KAK.13`). Its uniform stationary phase holds only beyond $(\text{degree}+1)^2$ wavelengths. This is necessary, not an artefact (kakeya/14 Lemma 1.2 and its remark).
+7. **Part I's floor covers graded designs, not every design.** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) proves the floor for every design whose far group elements have constant coefficients, which includes every $M_0$ in E1. Designs with node-dependent coefficients on far elements are open (`T.ETH.6`); the face lemma alone gives only $2^{1-R}/R$.
+8. **App. B's threshold.** $B>\frac12+\frac1p$ is what the proof gives ($A+\frac12-\frac1p$ with $A=2/p$), not a proved optimum (`T.KAK.13`). Its uniform stationary phase holds only beyond $(\text{degree}+1)^2$ wavelengths. This is necessary, not an artefact (kakeya/14 Lemma 1.2 and its remark).
 
 ## 7. If you are continuing the work
 
@@ -120,5 +122,5 @@ reviews/gpt/            reserved for GPT's reviews (empty so far)
   - Keep the PR description current.
 - **Next targets** in the roadmap's order:
   - `T.ETH.4`: explicit thresholds;
-  - the research targets (`T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.1`, `T.ETH.5`, `T.X.1`).
+  - the research targets (`T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.ETH.5`, `T.ETH.6`, `T.X.1`).
 - **Handoff notes** for the other model are in each project's `FOR_GPT.md`.

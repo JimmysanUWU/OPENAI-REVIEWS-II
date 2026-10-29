@@ -160,6 +160,6 @@ The bit complexity is polynomial per examined vector, because all denominators d
 
 ## 5.8 Open distillation targets
 
-1. **Agreement degree of parity under the $p$-biased measure.** A lower bound of $\Omega(\sqrt{Q\log(1/\varepsilon)})$ for *all* (non-symmetric) group-algebra choices would make Proposition B″ unconditional within the group-algebra framework.
-2. **A unified deformation theorem.** Theorems A and B, and Appendix D's $W(T)$, are all "identity at 0, local at nodes" deformations: one controlled by degree, the other by 2-adic precision. A common abstract statement, with a cost functional, would explain both $\sqrt{\log}$ barriers at once.
+1. **Agreement degree of parity under the $p$-biased measure. Done** ([14](14_DESIGN_FLOOR.md)). The lower bound $\Omega(\sqrt{Q\log(1/\varepsilon)})$ holds for all real polynomials (Corollary 2.5), so Proposition B″ is unconditional for every graded group-algebra design (Theorem 3.2). Ungraded designs are `T.ETH.6`.
+2. **A unified deformation theorem. Done** ([13](13_UNIFIED_DEFORMATION.md)). Theorems A and B, and Appendix D's $W(T)$, are all "identity at 0, local at nodes" deformations: one controlled by degree, the other by 2-adic precision. 13 Theorem 4.2 is the common statement, with a cost functional that explains both $\sqrt{\log}$ barriers.
 3. **Measurement range.** Using the $\ell_1\le2^Q$ bound together with a balanced assignment achieving $D\approx n/\mathrm{polylog}$ (instead of $\sqrt n$) changes only constants. A cleaner parameter table could be extracted from this.

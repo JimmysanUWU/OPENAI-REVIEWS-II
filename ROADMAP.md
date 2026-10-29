@@ -1,6 +1,6 @@
 # Mathematical roadmap
 
-This is a map of every result reviewed in this repository, written for AI agents (GPT, Claude) and for people. Its machine-readable twin is [`roadmap.json`](roadmap.json). The tables and graphs between `GENERATED` markers are produced from that file by [`tools/check_roadmap.py`](tools/check_roadmap.py), which also validates it. Updated 28 October 2026.
+This is a map of every result reviewed in this repository, written for AI agents (GPT, Claude) and for people. Its machine-readable twin is [`roadmap.json`](roadmap.json). The tables and graphs between `GENERATED` markers are produced from that file by [`tools/check_roadmap.py`](tools/check_roadmap.py), which also validates it. Updated 29 October 2026.
 
 ## 0. Quick start for AI agents
 
@@ -25,7 +25,8 @@ This is a map of every result reviewed in this repository, written for AI agents
 |---|---|---|
 | Verdict in 5 minutes | [eth/01](reviews/claude/eth/01_VERDICT.md) | [kakeya/01](reviews/claude/kakeya/01_VERDICT.md) |
 | Shortest complete proof | path *ETH is false* in [PROOF_MAP](PROOF_MAP.md#p-eth-i), full text [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) | path *Shortest complete proof* in [PROOF_MAP](PROOF_MAP.md#p-kak-planar), full text [kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md) |
-| The distilled general proof | — | path *The distilled route* in [PROOF_MAP](PROOF_MAP.md#p-kak-engine), full text [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) |
+| The distilled general proof | path *One deformation theorem* in [PROOF_MAP](PROOF_MAP.md#p-eth-unified), full text [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) | path *The distilled route* in [PROOF_MAP](PROOF_MAP.md#p-kak-engine), full text [kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md) |
+| Why the method stops where it does | path *the design floor* in [PROOF_MAP](PROOF_MAP.md#p-eth-floor), full text [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) and [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §5 | path *Sharpness* in [PROOF_MAP](PROOF_MAP.md#p-kak-limits) |
 | Everything the paper claims | eth/08 → [09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) → [10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) → [11](reviews/claude/eth/11_GAPLESS_COROLLARIES.md) | kakeya/08 → [09](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) → [10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) |
 | Reusable tools | [eth/07](reviews/claude/eth/07_TOOLKIT.md), [eth/12](reviews/claude/eth/12_FP_COUNTING.md) | [kakeya/07](reviews/claude/kakeya/07_TOOLKIT.md) |
 | Formal proofs | [eth/06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md) | [kakeya/06](reviews/claude/kakeya/06_LEAN_AUDIT.md) |
@@ -51,10 +52,10 @@ The checker enforces that a node proved in prose depends only on nodes proved in
 <!-- BEGIN GENERATED: summary -->
 | Project | Results | FORMAL | PROVED | PROVED_CITED | PARTIAL | HEURISTIC | NEW | CHECKED |
 |---|---|---|---|---|---|---|---|---|
-| ETH | 35 | 1 | 33 | 2 | 0 | 0 | 9 | 27 |
+| ETH | 39 | 1 | 37 | 2 | 0 | 0 | 13 | 29 |
 | KAK | 34 | 6 | 28 | 6 | 0 | 0 | 8 | 18 |
 
-Targets: 14 open, 0 in progress, 5 done.
+Targets: 14 open, 0 in progress, 6 done.
 <!-- END GENERATED: summary -->
 
 ## 2. ETH: *The Exponential Time Hypothesis Is False*
@@ -128,6 +129,12 @@ flowchart TD
     ETH_U_MAIN["ETH.U.MAIN<br/>Interpolation through local nodes (the unified deformation theorem) (new)"]
     ETH_U_FLOOR3["ETH.U.FLOOR3<br/>Cost floor of the 2-adic architecture (new)"]
   end
+  subgraph ETH_g6["Design floor"]
+    ETH_D_NORMAL["ETH.D.NORMAL<br/>Normal form of group-algebra swap designs (new)"]
+    ETH_D_SMOL["ETH.D.SMOL<br/>Parity under a biased measure (Smolensky + restriction) (new)"]
+    ETH_D_FLOOR["ETH.D.FLOOR<br/>Design floor: every graded swap design pays (log log n)^2/sqrt(log n) (new)"]
+    ETH_D_FACE["ETH.D.FACE<br/>Face lemma for arbitrary group-algebra designs (new)"]
+  end
   ETH_U_MAIN -.->|alt| ETH_I_DEFCOUNT
   ETH_I_SWAP --> ETH_I_TRANSFER
   ETH_I_DEFCOUNT --> ETH_I_PARAM
@@ -182,8 +189,13 @@ flowchart TD
   ETH_U_COUNT --> ETH_U_MAIN
   ETH_U_HERMITE --> ETH_U_FLOOR3
   ETH_U_COUNT --> ETH_U_FLOOR3
+  ETH_I_SWAP --> ETH_D_NORMAL
+  ETH_D_NORMAL --> ETH_D_FLOOR
+  ETH_D_SMOL --> ETH_D_FLOOR
+  ETH_K_E4 --> ETH_D_FLOOR
+  ETH_I_SWAP --> ETH_D_FACE
   class ETH_II_MAIN formal
-  class ETH_I_SPARS,ETH_I_TOVEY,ETH_I_DEFCOUNT,ETH_I_SWAP,ETH_I_TRANSFER,ETH_I_PARAM,ETH_I_MAIN,ETH_II_LIFT,ETH_II_ZEROS,ETH_II_TANNER,ETH_II_GREEDY,ETH_III_RING,ETH_III_CAUCHY,ETH_III_HERMITE,ETH_III_PACK,ETH_III_CHILD,ETH_III_TENSOR,ETH_III_FIXED,ETH_III_SPARSEZ,ETH_III_MAIN,ETH_C_MAXSAT,ETH_C_GRAPH,ETH_C_LOCAL,ETH_N_LIFTP,ETH_N_FQ,ETH_K_E3,ETH_K_E4,ETH_U_NODE,ETH_U_HERMITE,ETH_U_COUNT,ETH_U_MAIN,ETH_U_FLOOR3 proved
+  class ETH_I_SPARS,ETH_I_TOVEY,ETH_I_DEFCOUNT,ETH_I_SWAP,ETH_I_TRANSFER,ETH_I_PARAM,ETH_I_MAIN,ETH_II_LIFT,ETH_II_ZEROS,ETH_II_TANNER,ETH_II_GREEDY,ETH_III_RING,ETH_III_CAUCHY,ETH_III_HERMITE,ETH_III_PACK,ETH_III_CHILD,ETH_III_TENSOR,ETH_III_FIXED,ETH_III_SPARSEZ,ETH_III_MAIN,ETH_C_MAXSAT,ETH_C_GRAPH,ETH_C_LOCAL,ETH_N_LIFTP,ETH_N_FQ,ETH_K_E3,ETH_K_E4,ETH_U_NODE,ETH_U_HERMITE,ETH_U_COUNT,ETH_U_MAIN,ETH_U_FLOOR3,ETH_D_NORMAL,ETH_D_SMOL,ETH_D_FLOOR,ETH_D_FACE proved
   class ETH_C_CIRC1,ETH_C_CIRC2 cited
   classDef formal fill:#c8e6c9,stroke:#2e7d32,color:#000
   classDef proved fill:#bbdefb,stroke:#1565c0,color:#000
@@ -233,6 +245,10 @@ flowchart TD
 | `ETH.U.COUNT` | **Correction counts, two-sided.** With c_w modes of weight w: #{beta : sum w beta &lt; P} &lt;= inf_theta e^{theta(P-1)} prod_w (1-e^{-theta w})^{-c_w} &lt;= exp(pi sqrt(2cP/3)) if c_w &lt;= c; and log_2 # &gt;= (1/8) min(P-1, sqrt(c(P-1))) if c_w &gt;= c for all w &lt; P. Boolean: #{U subset E : weight(E) &lt; P} &lt;= inf_theta e^{theta(P-1)} prod_Z (1 + 2 e^{-theta w_Z}) (= C_{P-1}(n) for n weight-1 modes). | NEW, PROVED, CHECKED | closed | — | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Lemma 4.1 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
 | `ETH.U.MAIN` | **Interpolation through local nodes (the unified deformation theorem).** Readout system, deformation rho(T) with rho(0) = incidence readout (degree R', deformed-port degree d), recovery data with sum m_t &gt; dR', and at each node a mode expansion (formal, or varpi-adic at more than dR' unit-separated points): Z is computed mod varpi^P by node evaluation, interpolation and Hermite recovery, with work sum_t \|Xi_t\| Y_t N_t sum_g W_{t,g} + poly. Parts I-II (formal, unit nodes, Boolean modes, brute-force groups) and Part III (2-adic, residue system, tile modes, recursive groups) are corollaries. | NEW, PROVED, CHECKED | closed | `ETH.U.NODE`, `ETH.U.HERMITE`, `ETH.U.COUNT` | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 4.2, Cor. 4.3, Cor. 4.4, Definition 0.3 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
 | `ETH.U.FLOOR3` | **Cost floor of the 2-adic architecture.** In App. D's architecture (Cauchy-kernel deformation, nodes S\{0}, any depth profile on depths &lt; a, formula-based Hermite recovery at output precision p, tile modes with &gt;= M/2 crossing wires), some node needs &gt;= 2^{(1/8) min(p-1, sqrt(3/16) M/sqrt(a))} correction tuples; with a &lt;= log_2 M and p &gt;= M/C at the top level this is 2^{Omega(M/sqrt(log M))}, matching Thm D.1. *Note:* Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5. | NEW, PROVED, CHECKED | closed | `ETH.U.HERMITE`, `ETH.U.COUNT` | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 | [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) | — |
+| `ETH.D.NORMAL` | **Normal form of group-algebra swap designs.** Let P(T) = sum_U c_U(T) Pi_U with deg c_U &lt; R and P(0) = I, and call it graded if c_U is constant whenever \|U^c\| &gt;= R. Graded iff the eigenvalue polynomials are n_X(T) = 1 - par(X) Lambda_T(X) with deg_X Lambda_T &lt; R and Lambda_0 = 0. Then the defect at node t (the part of P(t) not involving Pi_t) acts on eigenvectors with antisymmetric set X by 1 - par(X) G_t(X), G_t = (Lambda_t)_{odd in x_t} of degree &lt; R, so its rank is \|B\| mu_{p_r}({G_t != par}). Every family (G_t) occurs; every design with a node-independent defect is graded, with defect I - M_0 acting by 1 - par F, deg F &lt; R. | NEW, PROVED | closed | `ETH.I.SWAP` | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Definition 1.1, Lemma 1.2, Remark 1.3 | — | — |
+| `ETH.D.SMOL` | **Parity under a biased measure (Smolensky + restriction).** A real polynomial of degree &lt;= D on {0,1}^m agrees with parity on at most sum_{i &lt;= (m+D)/2} C(m,i) points. For 0 &lt; p &lt;= 1/2 and F of degree &lt;= D on {0,1}^Q, mu_p(F != par) &gt;= E tau_D(Bin(Q,2p)), tau_D(m) = P[Bin(m,1/2) &gt; (m+D)/2]. Explicitly, for 1/4 &lt;= p &lt;= 1/2, Q &gt;= 64, R &lt;= Q/4 and deg F &lt; R: mu_p({F != par} and \|X\| &gt;= Q/32) &gt;= e^{-2(R+1)^2/Q}/(4(Q+1)). Hence the least degree with mu_p-error eps is Theta(sqrt(Q log(1/eps))), symmetric or not. *Note:* Lemma 2.1 is Smolensky's dimension argument (STOC 1987, FOCS 1993); the window design shows it is sharp up to a factor 2 for the uniform measure. | NEW, PROVED, CHECKED | closed | — | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 2.1, Lemma 2.2, Lemma 2.3, Lemma 2.4, Corollary 2.5 | [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) | — |
+| `ETH.D.FLOOR` | **Design floor: every graded swap design pays (log log n)^2/sqrt(log n).** In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows max(j0,1) eps0/2), Part I's algorithm with any graded group-algebra design of degree &lt; R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta &gt;= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F &lt; R is e^{-Theta(R^2/Q)} up to poly(Q). *Note:* The measurement cost (C3) is inherited from E4 and not re-derived. Ungraded designs (node-dependent coefficients on far group elements) are not covered: target T.ETH.6. | NEW, PROVED, CHECKED | closed | `ETH.D.NORMAL`, `ETH.D.SMOL`, `ETH.K.E4` | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3 | [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) | — |
+| `ETH.D.FACE` | **Face lemma for arbitrary group-algebra designs.** For any group-algebra design of degree &lt; R (graded or not), call the edge {X, X+e_t} bad if the defect at node t is nonzero on eigenvectors with antisymmetric set X. Every R-dimensional face of {0,1}^Q contains a bad edge, so some node has mu_{1/2}(bad) &gt;= 2^{1-R}/R. Face-hitting alone cannot give more: edge sets of density 2^{4-R} Q meet every R-face. | NEW, PROVED | closed | `ETH.I.SWAP` | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 5.1, §5 | — | — |
 <!-- END GENERATED: eth-nodes -->
 
 ## 3. Kakeya: *Local smoothing for the Euclidean wave equation*
@@ -418,13 +434,14 @@ These are statements that make sense outside the papers. The ranking is by expec
 | K4. Capacity-dimension principle | Superharmonic transport between two spheres costs $\log^{-2}$ only when the auxiliary time is 2-dimensional. | `KAK.CAP` | new, proved, checked |
 | K3. Density to depth, any rank | A Monge–Ampère potential is deep where the density is large, at the exponent $1/f$ with $f$ free directions. | `KAK.E.DEPTH` | new (rank $r$), proved |
 | E4. Cost floor | Symmetric swap designs cannot beat the exponent $(\log\log n)^2/\sqrt{\log n}$. | `ETH.K.E4` | new, proved, checked |
+| E7. Design floor and the agreement degree of parity | Every graded group-algebra design (every $M_0$, symmetric or not) reduces to low-degree polynomials that must match parity on the swap spectrum. Smolensky's bound plus a random restriction gives error $\ge e^{-2(R+1)^2/Q}/(4(Q+1))$ under $\mu_p$, so the floor of E4 holds for all of them. | `ETH.D.NORMAL`, `ETH.D.SMOL`, `ETH.D.FLOOR`, `ETH.D.FACE` | new, proved, checked ([eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md)) |
 | E5. Tapered Hermite recovery | Exact interpolation from many nodes, where the precision needed tapers with the 2-adic depth of the node. | `ETH.III.HERMITE` | proved, checked |
 | K5. Two-circle propagation | $\Delta E\le VE$ on a thin cylinder transports averages between two circles at cost $\log(r/b)/\log^2(3/b)$, sharp for supersolutions. | `KAK.PROP` | proved, checked |
 | K6. Cofactor conservation, any frame | The Moore cofactor of a frame Hessian $\sum f_{a,i}\bar f_{b,j}\partial\partial u$ is divergence-free, for any quaternion frames. The Monge–Ampère operator is the gradient of a concave energy. | `KAK.Q.CALC`, `KAK.FRAME`, `KAK.MAENERGY` | proved, checked; generalized in [kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md) |
 | K7. Positivity engine | Axioms on a fibre chart and a current imply the critical cap estimate with $\log^2$ loss. The axioms say nothing about the equation. Symmetric pencils satisfy them, and the wave is the arrow pencil. | `KAK.ENGINE`, `KAK.PENCIL`, `KAK.ARROW` | new, proved, checked ([kakeya/11](reviews/claude/kakeya/11_FRAMEWORK_POSITIVITY_ENGINE.md)) |
 
 **One pattern behind both papers.** Each paper moves information along an auxiliary parameter and pays a capacity for the transport:
-- ETH: interpolation in $T$, at the cost of the binomial bulk (Part I) or of 2-adic precision (App. D). Both cost $M/\sqrt{\#\text{node coordinates}}$ per call, the *square-root law* of eth/13 §7 (`T.ETH.5`);
+- ETH: interpolation in $T$, at the cost of the binomial bulk (Part I) or of 2-adic precision (App. D). Both cost $M/\sqrt{\#\text{node coordinates}}$ per call, the *square-root law* of eth/13 §7 (`T.ETH.5`). For Part I the square root is Smolensky's agreement degree of parity, for every graded design (eth/14);
 - Kakeya: superharmonic comparison in $\tau\in\mathbb R^2$, at the cost of the planar capacity.
 
 Each paper's barrier is a sharp statement about that capacity (`ETH.K.E4`, `KAK.CAP`). Target `T.X.1` asks whether this analogy is a theorem.
@@ -441,16 +458,17 @@ Verification is complete for both papers (see the verdict files). The remaining 
    - §7 is the hypothesis-usage matrix.
 2. **Kakeya, `T.KAK.3`: the quaternionic slot calculus. Done** ([kakeya/12](reviews/claude/kakeya/12_QUATERNIONIC_SLOT_CALCULUS.md)). Cofactor divergence holds for arbitrary quaternion frames (Theorem 12.1). The Monge–Ampère operator is the gradient of a concave energy (Theorem 12.3). Ellipticity holds iff the frames are independent (Proposition 12.4).
 3. **Kakeya, `T.KAK.2`: the planar entry point. Done** ([kakeya/13](reviews/claude/kakeya/13_PLANAR_ENTRY_POINT.md)). It gives a complete proof of sharp $L^4$ local smoothing in $\mathbb R^{2+1}$ with $\log^{1/2}$ loss, using only linear PDE: a Dirichlet Laplacian on a disk, Fourier series, and the maximum principle. The prose chain is closed: no cited non-elementary theorem.
-4. **ETH, `T.ETH.2`: one deformation theorem** covering the degree-controlled deformations of Parts I–II and the 2-adic one of Part III. Then `T.ETH.4`: explicit thresholds.
+4. **ETH, `T.ETH.2`: one deformation theorem. Done** ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md)). It covers the degree-controlled deformations of Parts I–II and the 2-adic one of Part III, with a floor for each. Then `T.ETH.4`: explicit thresholds.
+5. **ETH, `T.ETH.1`: non-symmetric swap designs. Done** ([eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md)). No graded design beats the floor; ungraded designs are `T.ETH.6`.
 
-Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are open problems made precise by the distillation. They are listed for anyone who wants them.
+Research targets (`T.ETH.5`, `T.ETH.6`, `T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.12`, `T.KAK.13`, `T.X.1`) are open problems made precise by the distillation. They are listed for anyone who wants them.
 
 ## 6. Targets
 
 <!-- BEGIN GENERATED: targets -->
 | ID | Kind | Title | Status | Owner | Builds on | Goal | Acceptance |
 |---|---|---|---|---|---|---|---|
-| `T.ETH.1` | research | Non-symmetric swap designs | OPEN | — | `ETH.I.SWAP`, `ETH.K.E4` | Find the least p-biased measure of the set where a real polynomial of degree &lt;R differs from parity on the cube; either prove e^{-O(R^2/Q)} for all polynomials (making the cost floor a barrier for the whole group algebra) or construct a non-symmetric design that beats the exponent (log log n)^2/sqrt(log n). | a proof or construction with a precise statement; an exact check script with a negative control; roadmap updated |
+| `T.ETH.1` | research | Non-symmetric swap designs | DONE | claude | `ETH.I.SWAP`, `ETH.K.E4` | Find the least p-biased measure of the set where a real polynomial of degree &lt;R differs from parity on the cube; either prove e^{-O(R^2/Q)} for all polynomials (making the cost floor a barrier for the whole group algebra) or construct a non-symmetric design that beats the exponent (log log n)^2/sqrt(log n). Deliverable: [`14_DESIGN_FLOOR.md`](reviews/claude/eth/14_DESIGN_FLOOR.md). | a proof or construction with a precise statement; an exact check script with a negative control; roadmap updated |
 | `T.ETH.2` | distillation | A unified deformation theorem | DONE | claude | `ETH.I.DEFCOUNT`, `ETH.III.CHILD`, `ETH.III.HERMITE`, `ETH.K.E4` | One abstract statement covering the degree-controlled deformations (Parts I-II) and App. D's 2-adic deformation, with a cost functional that explains both sqrt(log) barriers. Deliverable: [`13_UNIFIED_DEFORMATION.md`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md). | abstract theorem with hypotheses; both instances derived as corollaries; barrier computation for each instance |
 | `T.ETH.3` | formal | Formalize App. D (Theorem 1.1) in Lean | OPEN | — | `ETH.III.MAIN` | Extend OpenAI's Lean development from Prop. 6.4 to Theorem 1.1. | a Lean proof building against the pinned Mathlib with standard axioms only |
 | `T.ETH.4` | distillation | Explicit thresholds for Parts II and III | OPEN | — | `ETH.II.MAIN`, `ETH.III.TENSOR` | Explicit n_0 in Theorem 9.1 and an explicit s_0 in Theorem 10.2, as was done for Part I (lambda &gt;= 2^17+1). | every inequality checked by script on its full range; thresholds stated in the docs |
@@ -468,7 +486,8 @@ Research targets (`T.ETH.1`, `T.KAK.4`–`T.KAK.9`, `T.KAK.12`, `T.X.1`) are ope
 | `T.X.1` | research | Capacity of transport as a theorem | OPEN | — | `ETH.K.E4`, `KAK.CAP` | Turn the cross-paper analogy (move information along an auxiliary parameter and pay a capacity) into a precise statement covering both papers' barriers. | a precise common statement or a reasoned negative answer |
 | `T.KAK.12` | research | A direct engine for the paraboloid | OPEN | — | `KAK.ENGINE`, `KAK.ARROW`, `KAK.R.PARAB` | e^{it Delta} is not a first-order symmetric system, so it is not an instance of Theorem 11.2; its critical estimate currently comes from the wave by parabolic rescaling. Find an exactly conserved, positive current tangent to a passive coordinate for the Schrodinger flow satisfying (A1)-(A4), e.g. as a parabolic limit of arrow-pencil currents. | engine data for the paraboloid with proofs; a direct-coordinate conservation check |
 | `T.KAK.13` | research | The angular threshold | OPEN | — | `KAK.APP.B`, `KAK.ANG.BALL` | Decide whether B &gt; 1/2 + 1/p in the angular endpoint is sharp. The 1/2 - 1/p comes from l^2-vs-l^p over the ~log H_m frequencies near the stationary-phase threshold, and A = 2/p from the ball estimate: a square-function form of the shell-transplant lemma, or A = 1/p (T.KAK.6), would lower it. | a lower threshold with proof, or a counterexample family |
-| `T.ETH.5` | research | The square-root law | OPEN | — | `ETH.U.MAIN`, `ETH.U.FLOOR3`, `ETH.K.E4` | Does every interpolation-through-local-nodes scheme (13, Theorem 4.2) whose node coordinates come from a label space of size M^{O(1)} cost 2^{Omega(M/sqrt(log M))} per call? Part I pays it through the central limit window (E4), Part III through Hardy-Ramanujan and the profile lemma (13 Thm 5.4). A proof would make n/sqrt(log n) the limit of the method family; a counterexample would improve Theorem 1.1. | a precise class of schemes with a proof of the floor, or a scheme beating it |
+| `T.ETH.5` | research | The square-root law | OPEN | — | `ETH.U.MAIN`, `ETH.U.FLOOR3`, `ETH.K.E4`, `ETH.D.FLOOR` | Does every interpolation-through-local-nodes scheme (13, Theorem 4.2) whose node coordinates come from a label space of size M^{O(1)} cost 2^{Omega(M/sqrt(log M))} per call? Part I pays it through Smolensky's agreement bound for parity (every graded design, 14 Theorem 3.2), Part III through Hardy-Ramanujan and the profile lemma (13 Thm 5.4). A proof would make n/sqrt(log n) the limit of the method family; a counterexample would improve Theorem 1.1. T.ETH.6 is the group-algebra special case left open by 14. | a precise class of schemes with a proof of the floor, or a scheme beating it |
+| `T.ETH.6` | research | Ungraded swap designs | OPEN | — | `ETH.D.FLOOR`, `ETH.D.FACE` | For maps a: {0,1}^Q -&gt; {1} x R^{R-1}, call the edge {X, X+e_t} good if (a(X) + a(X+e_t)) . (1, t, ..., t^{R-1}) = 0. Must some direction have bad edges of mu_p-measure e^{-O(R^2/Q)}/poly(Q) (1/4 &lt;= p &lt;= 1/2)? This is the defect of an arbitrary group-algebra swap design. Graded maps (a = e_0 + par \* low degree) satisfy it (14 Theorem 3.2); the face lemma gives only 2^{1-R}/R, and face-hitting alone cannot give more. A 2^{-Theta(R)} construction would remove the floor of Part I's architecture down to (log log n)^3/log n. | a proof of the bound for all maps a, or a construction beating e^{-c R^2/Q}; an exact check script with a negative control; roadmap updated |
 <!-- END GENERATED: targets -->
 
 ## 7. Protocol for AI contributors
@@ -530,3 +549,7 @@ A node may carry a list `reviews` of entries `{"by": "gpt", "verdict": "agree" |
   - Alternative proofs recorded for `ETH.I.DEFCOUNT`, `ETH.III.CHILD` and `ETH.III.HERMITE`.
   - New target `T.ETH.5` (the square-root law).
   - Six glossary terms added.
+- **2026-10-29.** `T.ETH.1` done: [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md).
+  - New nodes `ETH.D.NORMAL`, `ETH.D.SMOL`, `ETH.D.FLOOR` and `ETH.D.FACE`, on the new reading path `P.ETH.FLOOR`.
+  - New target `T.ETH.6` (ungraded swap designs); `T.ETH.5` now cites the design floor.
+  - New framework E7; two glossary terms added, and the square-root-law entry updated.

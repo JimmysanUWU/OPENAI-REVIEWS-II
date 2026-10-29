@@ -26,6 +26,10 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
   - Swap interpolation and App. D are two instances of *interpolation through local nodes*: a filtered node lemma, Hermite recovery with valuation loss, and correction counts.
   - New: the cost floor of App. D's architecture, $2^{\Omega(M/\sqrt{\log M})}$ per call. With E4, both $\sqrt{\log}$ barriers are theorems.
   - Checked by [`verify_unified_deformation.py`](reviews/claude/eth/scripts/verify_unified_deformation.py).
+- **ETH, the design floor** ([`14_DESIGN_FLOOR.md`](reviews/claude/eth/14_DESIGN_FLOOR.md)).
+  - Every graded swap design, which includes every choice of $M_0$, symmetric or not, pays Part I's exponent $(\log\log n)^2/\sqrt{\log n}$.
+  - The reason is Smolensky's bound for parity, carried to the biased swap spectrum by a random restriction: Part I's square root is the agreement degree of parity.
+  - Ungraded designs remain open (`T.ETH.6`). Checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py).
 - **ETH, corollaries and a new theorem** ([`11_GAPLESS_COROLLARIES.md`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md), [`12_FP_COUNTING.md`](reviews/claude/eth/12_FP_COUNTING.md)).
   - Proofs of all of the paper's corollaries. Cor. 1.4 is found to need App. D.
   - **New:** counting zeros of sparse polynomial systems over any fixed finite field in $2^{O(n(\log\log n)^2/\sqrt{\log n})}$. This is the $\mathbb F_p$ analogue of the paper's Theorem 2.2, with a closed-form $p$-adic lift. Checked by [`verify_fp_counting.py`](reviews/claude/eth/scripts/verify_fp_counting.py).

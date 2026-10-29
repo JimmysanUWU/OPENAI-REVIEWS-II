@@ -22,6 +22,11 @@ def node(data, nid):
     return next(n for n in data["nodes"] if n["id"] == nid)
 
 
+def open_target(data):
+    """A target without a deliverable, so that marking it DONE must be reported."""
+    return next(t for t in data["targets"] if t["status"] == "OPEN" and not t.get("deliverable"))
+
+
 def main():
     with open(C.JSON_PATH, encoding="utf-8") as fh:
         base = json.load(fh)
@@ -41,8 +46,8 @@ def main():
         "FORMAL without name": lambda d: node(d, "KAK.PROP")["status"].append("FORMAL"),
         "unknown Lean name": lambda d: node(d, "KAK.KD").__setitem__("formal", "OAI.Analysis.Fourier.LocalSmoothing.Comparator.kakeya_set"),
         "unknown status": lambda d: node(d, "KAK.CAP")["status"].append("MAYBE"),
-        "target without owner": lambda d: d["targets"][0].update(status="IN_PROGRESS", owner=None),
-        "done without deliverable": lambda d: d["targets"][0].update(status="DONE"),
+        "target without owner": lambda d: open_target(d).update(status="IN_PROGRESS", owner=None),
+        "done without deliverable": lambda d: open_target(d).update(status="DONE"),
         "bad review": lambda d: node(d, "KAK.CAP").__setitem__("reviews", [{"by": "gpt", "verdict": "maybe", "file": "README.md"}]),
         "missing sketch": lambda d: node(d, "KAK.PROP").__setitem__("sketch", "short"),
         "path out of order": lambda d: d["reading_paths"][0]["nodes"].reverse(),
