@@ -1,0 +1,7 @@
+[C] child identity (D.16), 66 (network, t, zeta) cases: True; negative controls detect: {'drop the crossing terms (all modes)': True, 'credit modes to the source group': True}; tile expansion (D.12) mod 2^40 at 20 nodes: True, b = 0 alone fails at 12
+[F] one level at honest precision (Lagrange over O, tapered Hermite): True; without extra precision fails in 8/8
+[M] mode-tuple count <= exp(2 pi sqrt(c p / 6)) on 25 (c, p): True
+[L] Lemma D.2 encoding (incidence subsets on group wires) = common-zero count: True; dropping the variable-side weights detected in 6/6
+[D] clause network contraction = #F on 10 CNFs (variables with up to 4 ports): True; removing the equalities detected in 10/10
+[P] recursion inequalities (A1),(A2),(D.6), points: thresholds log2(lambda) = [25.58, 26.75, 26.86] for C = 1, 4, 16; paper's u >= lambda^(4/5) needs log2(lambda) ~ 500.1
+ALL OK

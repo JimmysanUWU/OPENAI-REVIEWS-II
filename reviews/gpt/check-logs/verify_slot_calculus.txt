@@ -1,0 +1,7 @@
+F ok [{"case": "complex + 3-slot", "m": 2, "frame_sizes": [2, 3], "hermitian": true, "nonzero_divergence_components": 0, "ok": true}, {"case": "random sizes (2, 3)", "m": 2, "frame_sizes": [2, 3], "hermitian": true, "nonzero_divergence_components": 0, "control_divergence_with_f": 4, "control_non_hessian_field": 4, "ok": true}, {"case": "random sizes (5, 2), dependent", "m": 2, "frame_sizes": [5, 2], "h
+R ok {"frame_sizes": [2, 3], "identity_holds": true}
+K ok {"real_hessian": true, "real_determinant": true, "complex_hessian": true, "complex_determinant": true}
+D ok {"decomposition_holds": true}
+E ok {"independent_frames_(3,4,2)_min_symbol": 0.04237676821979684, "dependent_frame_(5,3)_min_symbol": 2.9761623406225913e-16}
+U ok {"euler_relative": 1.7213951951909495e-08, "min_eigenvalue_of_C(A)_for_A>0": 0.499999998244953}
+ALL OK

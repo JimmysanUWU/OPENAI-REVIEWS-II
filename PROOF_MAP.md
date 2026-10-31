@@ -24,6 +24,8 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 - `python3 tools/check_roadmap.py --path P.KAK.PLANAR` prints a path.
 - `--node KAK.T12` prints a node and everything beneath it.
 
+**Research continuation:** new prose proofs and qualifications are summarized in [GPT / Astra notes](reviews/gpt/README.md). The checker verifies the recorded structure; it does not independently establish the mathematical correctness of a proof or a status label.
+
 ## Paths
 
 <!-- BEGIN GENERATED: path-index -->
@@ -42,6 +44,8 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
 | [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
+| [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. | 7 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
+| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish algebraic tangency from a finite positive push-forward; the Weyl gauge fibre is an explicit test case. | 1 | `KAK.C.LIFT` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -78,6 +82,7 @@ Notation used throughout the Kakeya paths:
 | Husimi density (as a current) | For one-mass data, A^0_tt = (kappa/y)^d e^{-kappa y\|W\|^2}\|psi(t - iy, x - iy Re W)\|^2: the Husimi density of psi(t) at (x, kappa W), width sqrt(y/kappa), as the time component of a positive conserved tensor. | [kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Corollary 16.6 |
 | single lift, tangency test | Lift with auxiliary states in V (span of the extremal eigenvectors) and push through the flux map plus one passive variable. A passive coordinate exists iff rank[z \| C_1 z \| ... \| C_n z] &lt;= n for all complex z, iff N' = n + m - 1. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.2 |
 | Hopf pencil | C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = \|xi\|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Proposition 17.6 |
+| Complex gauge fibre | The noncompact C\* orbit (u,v)-&gt;(lambda u,lambda^-1 v) in the realified Weyl flux map; coarea gives multiplicative Haar measure. | [reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) Lemma 2.1 |
 <!-- END GENERATED: glossary-kak -->
 
 ### Shortest complete proof: sharp L^4 local smoothing in R^{2+1}
@@ -632,7 +637,7 @@ Assumes: [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave), [`KAK.ENGINE`](#p-kak-engine-
 
 **Proof sketch.** (dPhi) chi~ = sum_a d_{z_a}(Phi o Theta) i G_a, and G ranges over V, so tangency means Pi_V C(dPhi) z = 0. Then z, C_V^1 z, ... are dependent on an open set, hence everywhere. Hellmann-Feynman on eigenspaces and transversal curvature make the eigen-cone an (n-1+m)-dimensional submanifold and give rank DQ_V >= n at real eigenvectors. With rank <= n, the level set through z_0 has dimension N'-n; the identity z^T S z = 2(phi Q_0 - xi.Q') puts it inside the eigenspace, where it is an (m-1)-sphere. Conversely, N' = n + m - 1 makes every state an eigenvector, hence rank <= n, and Phi comes from the implicit function theorem.
 
-**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py) · *Note:* Corrects 11 §7.3, which had called the N > n push-forward tangent.
+**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py) · *Note:* Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl.
 
 #### <a id="p-kak-scope--kak-hopf"></a>5. `KAK.HOPF` — Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7)
 
@@ -671,6 +676,9 @@ Notation used throughout the ETH paths:
 | square-root law | Both architectures pay M/sqrt(number of node coordinates) per call: Part I via Smolensky's agreement bound for parity (for every graded design, 14), Part III via Hardy-Ramanujan; open in general (T.ETH.5). | [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) §7 |
 | graded design | A swap design P(T) = sum c_U(T) Pi_U whose coefficients are constant whenever Pi_U leaves &gt;= R positions unswapped; equivalently its eigenvalue polynomials are 1 - par \* (degree &lt; R). Every node-independent defect (every M_0 in E1) is graded. | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Definition 1.1 |
 | Smolensky bound, tau_D(m) | A degree-D real polynomial agrees with parity on at most sum_{i &lt;= (m+D)/2} C(m,i) points of {0,1}^m; tau_D(m) = P[Bin(m,1/2) &gt; (m+D)/2] is the forced error, and under mu_p it becomes E tau_D(Bin(Q,2p)). | [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 2.1 |
+| Cube spline | A polynomial at every cube vertex, with endpoint polynomials agreeing at the node assigned to each retained edge; degree gives a multiplicative filtration. | [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Definition 1.1 |
+| Parity completion | Multiplication by a parity-trace spline supplies the complementary Fourier characters in half the combined degree, forcing many erased constraints. | [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 2.1 |
+| Complete copy | A copy containing every incidence label; it preserves tensor-row support under filling and enables an aggregate measurement lower bound. | [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Lemma 1.2 |
 <!-- END GENERATED: glossary-eth -->
 
 ### ETH is false (Part I)
@@ -1002,15 +1010,15 @@ Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii
 
 **Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E3
 
-#### <a id="p-eth-more--eth-k-e4"></a>9. `ETH.K.E4` — Cost floor of the method
+#### <a id="p-eth-more--eth-k-e4"></a>9. `ETH.K.E4` — Symmetric enumeration floor, conditional on measurement cost
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
 
-**Statement.** For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n).
+**Statement.** In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.
 
 **Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
 
-**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py)
+**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression.
 <!-- END GENERATED: path-p-eth-more -->
 
 ### One deformation theorem for Parts I–III (13)
@@ -1097,15 +1105,15 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 
 **Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §4, Lemma 4.1; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E5 · **checks:** [verify_appendix_d](reviews/claude/eth/scripts/verify_appendix_d.py), [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
 
-#### <a id="p-eth-unified--eth-k-e4"></a>8. `ETH.K.E4` — Cost floor of the method
+#### <a id="p-eth-unified--eth-k-e4"></a>8. `ETH.K.E4` — Symmetric enumeration floor, conditional on measurement cost
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
 
-**Statement.** For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n).
+**Statement.** In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.
 
 **Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
 
-**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py)
+**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression.
 
 #### <a id="p-eth-unified--eth-u-floor3"></a>9. `ETH.U.FLOOR3` — Cost floor of the 2-adic architecture
 
@@ -1115,7 +1123,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 
 **Proof sketch.** Depth-free node cost: a depth-i node has >= M/D_i modes per weight and needs precision >= p + D_i Delta(i), so modes x precision >= M Delta(i). Profile lemma: Hermite needs sum 2^{a-i} m(i) > M(2L-1), and a downward induction gives m(i) <= 2 Delta\*(a-i), so Delta\* > 3M/(8a). The lower bound of ETH.U.COUNT gives the count. The exact optimum of the profile problem and the paper's linear taper both tend to 6M/a.
 
-**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) · *Note:* Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5.
+**Full proof:** [eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Theorem 5.4, Lemma 5.2, Lemma 5.3 · **checks:** [verify_unified_deformation](reviews/claude/eth/scripts/verify_unified_deformation.py) · *Note:* This is the stated depth-profile/formula-recovery architecture floor. The Part I measurement interface now has an explicit sufficient repair in ETH.TRANSFER.COMPLETE. The broad T.ETH.5 target remains open.
 <!-- END GENERATED: path-p-eth-unified -->
 
 ### Why Part I stops at √log n: the design floor (14)
@@ -1154,7 +1162,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e
 
 **Proof sketch.** By the normal form, the measured set at each node contains {G != par} with deg G < R. The biased Smolensky bound gives measure >= e^{-2(R+1)^2/Q}/(4(Q+1)) on weights >= Q/32, so the measurement cost forces (R+1)^2 >~ Q log(1/delta). With r >= 1/delta and Q <= log n/(2 log r), this makes x = (R-1)/Q >~ log log n/sqrt(log n), and the Taylor cost x log(1/x) gives the floor. Small cases (R = 1, Q < 64, x > 1/8) are excluded by the Taylor and parity-class costs.
 
-**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* The measurement cost (C3) is inherited from E4 and not re-derived. Ungraded designs (node-dependent coefficients on far group elements) are not covered: target T.ETH.6.
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* This theorem is conditional on C3. The sparse-copy issue and sufficient complete-copy repair are recorded in GPT 16. Ungraded abstract defects are now covered by ETH.D.UNGRADED; the repaired enumeration consequence is ETH.D.FLOORALL.
 
 #### <a id="p-eth-floor--eth-d-face"></a>4. `ETH.D.FACE` — Face lemma for arbitrary group-algebra designs
 
@@ -1170,6 +1178,100 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e
 ## Index of nodes
 
 Each node links to its first appearance on a path.
+
+## GPT extensions
+
+<!-- BEGIN GENERATED: path-p-eth-splines -->
+*A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included.*
+
+Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer).
+
+#### <a id="p-eth-splines--eth-spline-basis"></a>1. `ETH.SPLINE.BASIS` — Cube splines and the cost of deleted constraints
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** At distinct nonzero nodes t_i, the full cube spline module has basis chi_S prod_{i in S}(1-T/t_i). Its degree-d trace has dimension sum_{j<=d} binom(Q,j). Deleting b edge conditions increases trace dimension by at most b.
+
+**Proof sketch.** Fourier expansion makes the coefficient of chi_S divisible by every T-t_i for i in S. Distinct nodes give the product divisor. Restoring b deleted edges is a linear map to R^b whose kernel is the full spline space; its quotient surjects onto the trace quotient.
+
+**Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Lemma 1.2, Lemma 1.3 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-spline-parity"></a>2. `ETH.SPLINE.PARITY` — Parity completion forces a binomial tail of bad edges
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis)
+
+**Statement.** A degree-D spline with parity trace on a spanning subgraph of the Q-cube forces at least 2^Q tau_D(Q) missing edges, where tau_D(Q)=Pr[Bin(Q,1/2)>(Q+D)/2].
+
+**Proof sketch.** Set d=floor((Q+D)/2). Every character chi_S is the trace of g_S when |S|<=d, and of f g_{S^c} otherwise. The trace space is therefore all 2^Q functions. Compare this with the full-cube trace dimension using the deleted-constraint lemma.
+
+**Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 2.1, Corollary 2.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-spline-biased"></a>3. `ETH.SPLINE.BIASED` — Product-measure and heavy-defect spline bounds
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity)
+
+**Statement.** For degree-D vertex polynomials n_x with n_x(0)=1, let B_i={x:n_x(t_i)+n_{x+e_i}(t_i)!=0}. Then sum_i p_i mu_p(B_i)>=E tau_D(sum_i Bernoulli(2p_i)). For Q>=512, D<=Q/16, p in [1/4,1/2], sum_i mu_p(B_i intersect {|x|>=Q/32}) >= (3/8) exp(-25-4D^2/Q).
+
+**Proof sketch.** Restrict coordinates by X=Z and Y coordinatewise, with Z_i of bias 2p_i and Y fair. Each active cube obeys parity completion, and bad-edge events are independent of their own coordinate. A tilted-binomial likelihood estimate bounds a whole tail without polynomial prefactors; subtract the exponentially smaller low-weight tail.
+
+**Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 3.1, Corollary 3.2, Lemma 3.3, Theorem 3.4 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-spline-jets"></a>4. `ETH.SPLINE.JETS` — Unequal jet-order parity obstruction
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis)
+
+**Statement.** For distinct nonzero edge nodes and direction orders w_i, a degree-D parity-trace spline satisfying only a_e<=w_i jets per edge requires sum_e(w_i-a_e) >= #{S:sum_{i in S}w_i>floor((sum_i w_i+D)/2)}.
+
+**Proof sketch.** Full-cube Fourier coefficients have divisors prod_{i in S}(T-t_i)^{w_i}. Their degrees are weighted subset sizes. Multiplication preserves the retained initial jet segments. Parity completion works with complementary subset weights, and each erased jet restores at most one dimension.
+
+**Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 5.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-d-ungraded"></a>5. `ETH.D.UNGRADED` — All swap designs obey the defect bound (T.ETH.6)
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+
+**Statement.** For every group-algebra swap design of degree &lt;R, graded or not, at p_r=(r-1)/(2r), max_i rank(N_i)/|B| >= exp(-2(R+1)^2/Q)/(2 p_r Q(Q+1)) when Q>=4 and R<=Q/4; the exact product-measure bound holds in all degrees. Heavy defects obey ETH.SPLINE.BIASED.
+
+**Proof sketch.** The defect eigenvalue is (n_x(t_i)+n_{x+e_i}(t_i))/2, so its support is exactly the bad-edge endpoint set. Tensor-product eigenspace multiplicities are |B| mu_{p_r}(x). Apply the spline bounds without assuming Fourier grading.
+
+**Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Corollary 4.1, Theorem 0.1 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-transfer-complete"></a>6. `ETH.TRANSFER.COMPLETE` — Complete copies repair aggregate measurement transfer
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+
+**Statement.** Tensor-eigenvector support injects into first-coordinate schedules. A complete copy preserves nonzero group-row l1 norms >=2^{max(j-1,0)}. If k complete copies and |B| eps measured eigenvectors have j>=j0, the raw enumeration exponent is >=k|B| max(j0,1)eps/n. Variance <2M(b+w) and M>=8(b+w)|B|^2 imply k>=M/(2|B|).
+
+**Proof sketch.** Each supported local pair is determined by its first coordinate, preventing repeated-variable cancellation. Complete copies retain every support position. Count nonzero group rows across those copies and multiply by the maximum-row range cost. The variance slack bounds the minimum label occupancy, and consecutive copy numbering turns it into complete copies.
+
+**Full proof:** [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Lemma 1.1, Lemma 1.2, Proposition 2.2, Proposition 2.3 · **checks:** [reviews/gpt/eth/scripts/verify_complete_copies.py](reviews/gpt/eth/scripts/verify_complete_copies.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-d-floorall"></a>7. `ETH.D.FLOORALL` — Ungraded enumeration floor with explicit transfer assumptions
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.UNGRADED`](#p-eth-splines--eth-d-ungraded), [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete)
+
+**Statement.** For arbitrary group-algebra designs of degree D&lt;Q, r^{2Q}<=n, M>=n, at least M/(2|B|) complete copies, all nonzero defect eigenvectors measured with multiplicity, and cost C_floor(MD/Q)(n)(2 beta+1)^{c_\*}2^s, delta>= (log2 log2 n)^2/(1000 sqrt(log2 n)) for sufficiently large n.
+
+**Proof sketch.** Heavy spline defects and complete-copy transfer give delta>=c exp(-4D^2/Q). Small groups require r>=1/delta and polynomial label size gives Q<=log2 n/(2 log2 r). Hence D/Q is at least a constant times log log n/sqrt(log n); the uniform Taylor budget contributes its extra log factor. This bounds the stated enumeration expression, not every implementation or SAT algorithm.
+
+**Full proof:** [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Theorem 3.1, Corollary 3.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py), [reviews/gpt/eth/scripts/verify_complete_copies.py](reviews/gpt/eth/scripts/verify_complete_copies.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+<!-- END GENERATED: path-p-eth-splines -->
+
+<!-- BEGIN GENERATED: path-p-kak-fibre -->
+*Distinguish algebraic tangency from a finite positive push-forward; the Weyl gauge fibre is an explicit test case.*
+
+Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
+
+#### <a id="p-kak-fibre--kak-hermitian-divergence"></a>1. `KAK.HERMITIAN.DIVERGENCE` — The Weyl full-fibre current diverges at the polarization centre
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift)
+
+**Statement.** For the realified 2x2 Weyl pencil, the unweighted full complex-fibre push-forward of the single lifted current has infinite time density for a north-going plane wave at omega=(1/2,0,0,1/2). The coarea measure is d^2lambda/|lambda|^2, and its annular contribution is pi/2 (R^2-R^-2).
+
+**Proof sketch.** Complexify the phase symmetry as (u,v)->(lambda u,lambda^-1 v). Compute the two Jacobians to disintegrate ambient Lebesgue measure. On the central C\* fibre, the real plane-wave displacement has q^0-q^3=0, so there is no Gaussian damping. The time density is |(lambda+lambda^-1)/2|^2; its exact positive annular integral diverges.
+
+**Full proof:** [reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) Lemma 2.1, Theorem 3.1 · **checks:** [reviews/gpt/kakeya/scripts/verify_weyl_fibre.py](reviews/gpt/kakeya/scripts/verify_weyl_fibre.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+<!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: node-index -->
 | Node | Title | Status | On paths |
@@ -1203,7 +1305,7 @@ Each node links to its first appearance on a path.
 | [`ETH.N.LIFTP`](#p-eth-more--eth-n-liftp) | p-adic lift for every prime (E2) with a closed form | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.N.FQ`](#p-eth-more--eth-n-fq) | Counting zeros of sparse systems over any finite field (new) | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.K.E3`](#p-eth-more--eth-k-e3) | Exact partition functions of bounded-degree factor graphs | NEW, PROVED | P.ETH.MORE |
-| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Cost floor of the method | NEW, PROVED, CHECKED | P.ETH.MORE, P.ETH.UNIFIED |
+| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Symmetric enumeration floor, conditional on measurement cost | NEW, PROVED, CHECKED | P.ETH.MORE, P.ETH.UNIFIED |
 | [`ETH.U.NODE`](#p-eth-unified--eth-u-node) | Node lemma: filtered mode expansion | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
 | [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite) | Hermite recovery with valuation loss | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
 | [`ETH.U.COUNT`](#p-eth-unified--eth-u-count) | Correction counts, two-sided | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
@@ -1252,4 +1354,12 @@ Each node links to its first appearance on a path.
 | [`KAK.SCHR`](#p-kak-scope--kak-schr) | A direct engine for the paraboloid (Theorem 16.8) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
 | [`KAK.RIGID`](#p-kak-scope--kak-rigid) | State-dimension rigidity: the tangency test (Theorems 17.2, 17.4) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
 | [`KAK.HOPF`](#p-kak-scope--kak-hopf) | Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7) | NEW, PROVED, CHECKED | P.KAK.SCOPE |
+| [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis) | Cube splines and the cost of deleted constraints | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity) | Parity completion forces a binomial tail of bad edges | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased) | Product-measure and heavy-defect spline bounds | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.SPLINE.JETS`](#p-eth-splines--eth-spline-jets) | Unequal jet-order parity obstruction | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.D.UNGRADED`](#p-eth-splines--eth-d-ungraded) | All swap designs obey the defect bound (T.ETH.6) | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete) | Complete copies repair aggregate measurement transfer | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.D.FLOORALL`](#p-eth-splines--eth-d-floorall) | Ungraded enumeration floor with explicit transfer assumptions | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`KAK.HERMITIAN.DIVERGENCE`](#p-kak-fibre--kak-hermitian-divergence) | The Weyl full-fibre current diverges at the polarization centre | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 <!-- END GENERATED: node-index -->

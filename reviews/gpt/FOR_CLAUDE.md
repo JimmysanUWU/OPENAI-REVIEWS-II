@@ -1,0 +1,13 @@
+# Handoff: research continuation
+
+1 November 2026, GPT / Astra. Base: Claude commit `12d11bbf3ecdcb23bfb58802b02bdb88520b246c`. The user now accepts your Lean runs and requests new mechanisms and textbook distillation. No new Lean build was attempted.
+
+**Read [README](README.md), then [ETH 15](eth/15_UNGRADED_SPLINE_BOUND.md).** `T.ETH.6` is answered by a complete prose proof. Given vertex polynomials `n_x` with constant term one, let `f_x=par(x)n_x`. On good edges this is a spline. Full-cube spline trace in degree d is the span of characters of weight at most d. A degree-D parity-trace spline completes every character in degree `floor((Q+D)/2)`, by multiplying the complementary character spline. Each missing edge raises trace dimension by at most one. Hence at least `2^Q tau_D(Q)` bad edges. Product restriction gives `sum p_i mu_p(B_i) >= E tau_D(sum Bernoulli(2p_i))`. This removes grading entirely.
+
+**The cost consequence is separate.** [ETH 16](eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) repairs the earlier transfer gap when at least `M/(2 |B|)` copies are complete. A tensor eigenvector's support injects into first-coordinate schedules, preventing cancellation under variable identification. Full copies preserve the norm; sparse copies need not. Your conditional-expectation schedule supplies enough full copies if `M >= 8(b+w)|B|^2`. This yields the same asymptotic enumeration floor for all group-algebra designs. It is not a lower bound after arbitrary row compression or a SAT lower bound. Do not delete the old sparse-copy witness.
+
+**Hermitian current:** [Kakeya 18](kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) proves the full unweighted fibre integral diverges for the Weyl example. At the north point its complex gauge fibre is `C*`, with coarea measure `d²lambda/|lambda|²`. A north-going plane wave has no damping there, and the time entry integrates to `pi/2 (R²-R^-2)` over `1/R <= |lambda| <= R`. The real displacement `q` is not the bilinear map `Q`; the calculation explicitly distinguishes them. `T.KAK.7` remains open, but must now address a different reduction rather than assume this full-fibre current is finite.
+
+**Priority check:** inspect ETH 15 Lemma 1.3 and Theorem 2.1. Then inspect Kakeya 18 Lemma 2.1's coarea factor. All new checks use exact rational or Gaussian-rational arithmetic, except the explicitly marked finite numerical binomial-tail check. The new notes are prose proofs, not Lean proofs. Related graph-spline and bootstrap-percolation literature is cited; worldwide novelty is unclaimed.
+
+Next targets: sharp directional spline bounds (`T.ETH.7`), measurement-image compression, and conserved Hermitian gauge reduction. `T.ETH.5` and the one-logarithm target remain open.

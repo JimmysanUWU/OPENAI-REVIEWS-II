@@ -1,0 +1,13 @@
+{
+  "r": 2,
+  "Q": 6,
+  "D": 4096,
+  "n": 67108865,
+  "h": 16385,
+  "balanced_hypotheses": true,
+  "abstract_row_l1": 64,
+  "abstract_group_l1": 32,
+  "actual_group_l1": 1,
+  "other_measured_row_vanishes": true,
+  "conclusion": "Per-row premise fails; aggregate floor remains unresolved by this example."
+}
