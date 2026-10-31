@@ -42,10 +42,11 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The headline exponent (Part III, App. D)](#p-eth-iii) | Boolean tensor contraction by a 2-adic Cauchy-kernel deformation. | 9 | `ETH.I.SPARS`, `ETH.II.LIFT`, `ETH.II.TANNER`, `ETH.II.GREEDY` |
 | [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
-| [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
+| [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
 | [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. | 7 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
-| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish algebraic tangency from a finite positive push-forward; the Weyl gauge fibre is an explicit test case. | 1 | `KAK.C.LIFT` |
+| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable. | 2 | `KAK.C.LIFT` |
+| [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. | 4 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -1130,7 +1131,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 <a id="p-eth-floor"></a>
 
 <!-- BEGIN GENERATED: path-p-eth-floor -->
-*Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case.*
+*Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES.*
 
 Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e4).
 
@@ -1174,10 +1175,6 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e
 
 **Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Lemma 5.1, §5
 <!-- END GENERATED: path-p-eth-floor -->
-
-## Index of nodes
-
-Each node links to its first appearance on a path.
 
 ## GPT extensions
 
@@ -1258,7 +1255,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 <!-- END GENERATED: path-p-eth-splines -->
 
 <!-- BEGIN GENERATED: path-p-kak-fibre -->
-*Distinguish algebraic tangency from a finite positive push-forward; the Weyl gauge fibre is an explicit test case.*
+*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable.*
 
 Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
 
@@ -1271,7 +1268,67 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
 **Proof sketch.** Complexify the phase symmetry as (u,v)->(lambda u,lambda^-1 v). Compute the two Jacobians to disintegrate ambient Lebesgue measure. On the central C\* fibre, the real plane-wave displacement has q^0-q^3=0, so there is no Gaussian damping. The time density is |(lambda+lambda^-1)/2|^2; its exact positive annular integral diverges.
 
 **Full proof:** [reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) Lemma 2.1, Theorem 3.1 · **checks:** [reviews/gpt/kakeya/scripts/verify_weyl_fibre.py](reviews/gpt/kakeya/scripts/verify_weyl_fibre.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-kak-fibre--kak-hermitian-singularity"></a>2. `KAK.HERMITIAN.SINGULARITY` — Weyl time density is not locally integrable on the real target slice
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.HERMITIAN.DIVERGENCE`](#p-kak-fibre--kak-hermitian-divergence)
+
+**Statement.** For the full unweighted complex-fibre single lift and the north-going Weyl plane wave of frequency kappa, the north-branch time density on the real target slice is F=pi a^2 J(kappa^2 s^4/a^2)/(2 kappa s^2(a-d)^2), where s^2=omega1^2+omega2^2, a,d=omega0 +/- sqrt(omega0^2-s^2), J(v)=integral_0^infinity exp(-u-v/u)du. Thus F=pi/(2 kappa s^2)+O(1); transverse mass diverges with coefficient pi^2/kappa times log(delta/epsilon).
+
+**Proof sketch.** Compute the general complex coarea factor 1/|a-bc/a|^2. On real targets b and c are conjugate, so the radial damping has equal geometric coefficients. Two substitutions reduce the integral to J. The elementary bounds exp(-2 sqrt(v))<=J(v)<=1 imply the inverse-square singularity and a bounded remainder. Polar integration in two transverse dimensions proves failure of local finiteness; other positive branches cannot cancel it.
+
+**Full proof:** [reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) Lemma 1.1, Theorem 2.1, Theorem 3.2, Corollary 3.3 · **checks:** [reviews/gpt/kakeya/scripts/verify_weyl_singularity.py](reviews/gpt/kakeya/scripts/verify_weyl_singularity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
 <!-- END GENERATED: path-p-kak-fibre -->
+
+<!-- BEGIN GENERATED: path-p-eth-capacity -->
+*Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy.*
+
+Assumes: [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity), [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased).
+
+#### <a id="p-eth-capacity--eth-trace-rank"></a>1. `ETH.TRACE.RANK` — Multiplication-rank certificate for deleted constraints
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity)
+
+**Statement.** A degree-D spline on a cube subgraph with b missing edges and trace h implies b>=rank(pi_d M_h restricted to H_{d-D}) for d>=D. Here H_d is the low Fourier space and pi_d is quotient by H_d. A parity trace plus a correction in H_D obeys the same binomial-tail obstruction.
+
+**Proof sketch.** Lift H_{d-D} to full-cube splines and multiply by the given spline. The resulting trace space contains H_d+h H_{d-D}; its dimension excess is the displayed rank. Every missing edge contributes at most one dimension.
+
+**Full proof:** [reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) Theorem 1.1, Corollary 1.2 · **checks:** [reviews/gpt/eth/scripts/verify_defect_capacity.py](reviews/gpt/eth/scripts/verify_defect_capacity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+
+#### <a id="p-eth-capacity--eth-trace-joint"></a>2. `ETH.TRACE.JOINT` — Joint character completion on a shared good-edge graph
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.TRACE.RANK`](#p-eth-capacity--eth-trace-rank)
+
+**Statement.** If one graph supports degree-D_j splines with character traces chi_{A_j}, then b>=|U_d|-sum_{k<=d} binom(Q,k), where U_d is the union over J of Hamming balls centred at symmetric_difference_{j in J} A_j with radius d-sum_{j in J}D_j. Products can strengthen the joint span of individual certificates.
+
+**Proof sketch.** Multiply selected spline generators and then a full-cube character spline within the remaining degree budget. Every character in the resulting weighted ball union belongs to the trace space. Independence of characters and the deleted-constraint bound give the claim; the Q=4 example needs five missing edges versus four from the span without products.
+
+**Full proof:** [reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) Theorem 2.1, Example 2.2 · **checks:** [reviews/gpt/eth/scripts/verify_defect_capacity.py](reviews/gpt/eth/scripts/verify_defect_capacity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+
+#### <a id="p-eth-capacity--eth-spline-residue"></a>3. `ETH.SPLINE.RESIDUE` — Odd-residue unit defects retain the spline obstruction
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased)
+
+**Statement.** Over a discrete valuation ring of odd residue characteristic, with distinct nonzero node residues and integral degree-D vertex polynomials n_x(0)=1, unit defects satisfy the same edge-count and product-measure bounds as nonzero real defects. For nodes 1,...,Q over F_p this requires p>Q.
+
+**Proof sketch.** Reduce coefficients and nodes to the residue field. The characteristic-not-two Fourier basis and spline divisibility remain valid, and a reduced defect is nonzero exactly when the original defect is a unit. Random restriction counts the same endpoint sets with ordinary real probabilities. Colliding residues and characteristic two are explicit negative controls.
+
+**Full proof:** [reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) Theorem 3.1 · **checks:** [reviews/gpt/eth/scripts/verify_defect_capacity.py](reviews/gpt/eth/scripts/verify_defect_capacity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+
+#### <a id="p-eth-capacity--eth-defect-energy"></a>4. `ETH.DEFECT.ENERGY` — Sharp uniform quadratic defect and its square-root transition
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** For real degree-D vertex polynomials n_x(0)=1, nodes 1,...,Q, D&lt;Q, the minimum sum_i E_uniform[((n_x(i)+n_{x+e_i}(i))/2)^2] is rho/(1-rho), rho=prod_{j=0}^D (Q-j)/(Q+j+1). A scalar vertex family attains it. If (D+1)^2/Q tends to lambda>0, the minimum tends to 1/(exp(lambda)-1).
+
+**Proof sketch.** Uniform Parseval separates the Fourier coefficients and reduces the optimum to min sum_{i=1}^Q q(i)^2 with q(0)=1. A discrete Rodrigues calculation gives the classical Hahn polynomial norms. The endpoint reproducing kernel telescopes to 1-rho; Cauchy-Schwarz and subtraction of q(0)^2 give the exact optimum. Product bounds for rho give the transition. This is not a biased-measure or arithmetic approximation theorem.
+
+**Full proof:** [reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) Theorem 4.1, Lemma 5.1, Lemma 5.2, Corollary 6.1 · **checks:** [reviews/gpt/eth/scripts/verify_defect_capacity.py](reviews/gpt/eth/scripts/verify_defect_capacity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+<!-- END GENERATED: path-p-eth-capacity -->
+
+## Index of nodes
+
+Each node links to its first appearance on a path.
 
 <!-- BEGIN GENERATED: node-index -->
 | Node | Title | Status | On paths |
@@ -1362,4 +1419,9 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
 | [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete) | Complete copies repair aggregate measurement transfer | NEW, PROVED, CHECKED | P.ETH.SPLINES |
 | [`ETH.D.FLOORALL`](#p-eth-splines--eth-d-floorall) | Ungraded enumeration floor with explicit transfer assumptions | NEW, PROVED, CHECKED | P.ETH.SPLINES |
 | [`KAK.HERMITIAN.DIVERGENCE`](#p-kak-fibre--kak-hermitian-divergence) | The Weyl full-fibre current diverges at the polarization centre | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`ETH.TRACE.RANK`](#p-eth-capacity--eth-trace-rank) | Multiplication-rank certificate for deleted constraints | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.TRACE.JOINT`](#p-eth-capacity--eth-trace-joint) | Joint character completion on a shared good-edge graph | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.SPLINE.RESIDUE`](#p-eth-capacity--eth-spline-residue) | Odd-residue unit defects retain the spline obstruction | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.DEFECT.ENERGY`](#p-eth-capacity--eth-defect-energy) | Sharp uniform quadratic defect and its square-root transition | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`KAK.HERMITIAN.SINGULARITY`](#p-kak-fibre--kak-hermitian-singularity) | Weyl time density is not locally integrable on the real target slice | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 <!-- END GENERATED: node-index -->

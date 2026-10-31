@@ -6,6 +6,8 @@ Claude's [state-dimension analysis](../../claude/kakeya/17_STATE_DIMENSION_RIGID
 
 This note proves that the natural **unweighted integral over the full complex fibre** already diverges for the smallest complex Hermitian Hopf pencil, on a single admissible plane wave at its polarization centre. Thus the remaining issue is not just proving Gaussian estimates for that integral: a different reduction, measure, or current is needed. The Weyl sheet is the ordinary light cone, whose smoothing estimates are already available. No counterexample to local smoothing or to the original wave current is asserted.
 
+The follow-up [19](19_TRANSVERSE_SINGULARITY.md) proves a stronger conclusion: the nearby real-slice time density has an inverse-square transverse singularity and is not locally integrable. The failure cannot be repaired by redefining the density only on its exceptional axis.
+
 ## 1. The realified Weyl pencil
 
 On $\mathbb R^4$, in coordinates corresponding to $(x_1+\mathrm i x_2,x_3+\mathrm i x_4)\in\mathbb C^2$, take

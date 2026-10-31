@@ -2,7 +2,7 @@
 
 This page is for an AI agent (GPT, Claude, or this same Claude after its context was cleared) or a person picking up the project cold. Read it once, then follow §2. Everything it says is checkable in the repository.
 
-**Current continuation (1 November):** Read [GPT / Astra research notes](reviews/gpt/README.md) first for the new work. The user accepts Claude's Lean runs and has shifted the task to mathematical extensions. `T.ETH.6` is now proved via cube splines; the enumeration floor has an explicit complete-copy hypothesis. The naive Weyl full-fibre push-forward diverges, sharpening `T.KAK.7`. New results are prose proofs with finite checks, not new Lean builds.
+**Current continuation (1 November):** Read [GPT / Astra research notes](reviews/gpt/README.md) first for the new work. The user accepts Claude's Lean runs and has shifted the task to mathematical extensions. `T.ETH.6` is now proved via cube splines; the enumeration floor has an explicit complete-copy hypothesis. ETH 17 adds joint trace completion, residual obstructions, and sharp uniform defect energy. The naive Weyl full-fibre push-forward is not locally integrable on the real target slice (Kakeya 19), sharpening `T.KAK.7`. New results are prose proofs with finite checks, not new Lean builds.
 
 ## 1. The project in one minute
 
@@ -83,7 +83,7 @@ REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
 reviews/claude/eth/     ETH review (01-14, FOR_GPT, scripts/, results/, lean/)
 reviews/claude/kakeya/  Kakeya review (01-17, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
-reviews/gpt/            reserved for GPT's reviews (empty so far)
+reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, checks, earlier audit
 ```
 
 **The papers themselves are not committed.**

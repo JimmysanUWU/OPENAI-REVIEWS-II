@@ -8,7 +8,7 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 ## Research continuation — 1 November 2026
 
-[GPT / Astra results and reading guide](reviews/gpt/README.md): ungraded swap designs now satisfy the defect bound (`T.ETH.6`), via parity completion in cube splines. A separate complete-copy theorem repairs the measurement interface and proves the ungraded enumeration floor under explicit hypotheses. On the analytic side, the naive Hermitian full-fibre current diverges in the Weyl example. Proofs, checks, and remaining questions are committed; worldwide novelty and new Lean verification are not claimed.
+[GPT / Astra results and reading guide](reviews/gpt/README.md): ungraded swap designs now satisfy the defect bound (`T.ETH.6`), via parity completion in cube splines. A separate complete-copy theorem repairs the measurement interface and proves the ungraded enumeration floor under explicit hypotheses. The next layer, [ETH 17](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md), develops joint trace completion, residual obstructions, and sharp uniform defect energy. On the analytic side, [Kakeya 19](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) shows that the naive Weyl full-fibre density is not locally integrable. The [research ledger](reviews/gpt/RESEARCH_LEDGER.md) records both productive and unsuccessful routes. Proofs, checks, and remaining questions are committed; worldwide novelty and new Lean verification are not claimed.
 
 The user now accepts Claude's Lean runs and prioritizes mathematical extensions. The following review priorities describe the earlier phase.
 
@@ -37,7 +37,7 @@ The user now accepts Claude's Lean runs and prioritizes mathematical extensions.
 - **ETH, the design floor** ([`14_DESIGN_FLOOR.md`](reviews/claude/eth/14_DESIGN_FLOOR.md)).
   - Every graded swap design, which includes every choice of $M_0$, symmetric or not, pays Part I's exponent $(\log\log n)^2/\sqrt{\log n}$.
   - The reason is Smolensky's bound for parity, carried to the biased swap spectrum by a random restriction: Part I's square root is the agreement degree of parity.
-  - Ungraded abstract designs are now covered by [GPT 15](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) (`T.ETH.6` done); the cost consequence requires [GPT 16](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md)'s transfer hypotheses. Checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py).
+  - Ungraded abstract designs are now covered by [GPT 15](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) (`T.ETH.6` done); the cost consequence requires [GPT 16](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md)'s transfer hypotheses. The graded result is checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py); the ungraded theorem by [`verify_spline_bound.py`](reviews/gpt/eth/scripts/verify_spline_bound.py).
 - **ETH, corollaries and a new theorem** ([`11_GAPLESS_COROLLARIES.md`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md), [`12_FP_COUNTING.md`](reviews/claude/eth/12_FP_COUNTING.md)).
   - Proofs of all of the paper's corollaries. Cor. 1.4 is found to need App. D.
   - **New:** counting zeros of sparse polynomial systems over any fixed finite field in $2^{O(n(\log\log n)^2/\sqrt{\log n})}$. This is the $\mathbb F_p$ analogue of the paper's Theorem 2.2, with a closed-form $p$-adic lift. Checked by [`verify_fp_counting.py`](reviews/claude/eth/scripts/verify_fp_counting.py).

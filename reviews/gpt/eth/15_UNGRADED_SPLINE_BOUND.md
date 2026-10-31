@@ -6,6 +6,8 @@ This answers the abstract question `T.ETH.6` in [Claude's §5](../../claude/eth/
 
 The computational cost consequence needs a separate measurement-transfer hypothesis. It is proved, with that hypothesis explicit, in [16](16_MEASUREMENT_TRANSFER_AND_FLOOR.md). This file's abstract design theorem does not use the disputed cost condition C3.
 
+The subsequent [trace-capacity note](17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) abstracts this argument to multiplication ranks and several shared traces, and treats residual and quadratic notions of approximate locality separately.
+
 ## 0. The result and the idea
 
 Let the cube be $\{0,1\}^Q$, and let $t_1,\ldots,t_Q$ be distinct nonzero real numbers. Assign each vertex a polynomial $n_x(T)$ of degree at most $D$, with $n_x(0)=1$. The edge $\{x,x\oplus e_i\}$ is **bad** when
