@@ -1,0 +1,555 @@
+{
+  "scope": "Finite exact checks support the separate prose proofs; no SAT algorithm or Lean build.",
+  "local_operator_biases": 6,
+  "independent_quadratic_programs": 24,
+  "monotonicity_cases": 20,
+  "sharp_high_degree_cases": 24,
+  "cases": [
+    {
+      "nodes": [
+        "1"
+      ],
+      "biases": [
+        "1/4"
+      ],
+      "degree": 0,
+      "weights": [
+        "1"
+      ],
+      "minimum": "1",
+      "determinant_lower_bound": "1",
+      "uniform_minimum": "1"
+    },
+    {
+      "nodes": [
+        "1"
+      ],
+      "biases": [
+        "1/2"
+      ],
+      "degree": 0,
+      "weights": [
+        "1"
+      ],
+      "minimum": "1",
+      "determinant_lower_bound": "1",
+      "uniform_minimum": "1"
+    },
+    {
+      "nodes": [
+        "1",
+        "2"
+      ],
+      "biases": [
+        "1/4",
+        "1/4"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1"
+      ],
+      "minimum": "2",
+      "determinant_lower_bound": "2",
+      "uniform_minimum": "2"
+    },
+    {
+      "nodes": [
+        "1",
+        "2"
+      ],
+      "biases": [
+        "1/2",
+        "1/2"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1"
+      ],
+      "minimum": "2",
+      "determinant_lower_bound": "2",
+      "uniform_minimum": "2"
+    },
+    {
+      "nodes": [
+        "1",
+        "2"
+      ],
+      "biases": [
+        "1/4",
+        "1/4"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1"
+      ],
+      "minimum": "3/20",
+      "determinant_lower_bound": "3/20",
+      "uniform_minimum": "1/5"
+    },
+    {
+      "nodes": [
+        "1",
+        "2"
+      ],
+      "biases": [
+        "1/2",
+        "1/2"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1"
+      ],
+      "minimum": "1/5",
+      "determinant_lower_bound": "1/5",
+      "uniform_minimum": "1/5"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "3",
+      "determinant_lower_bound": "3",
+      "uniform_minimum": "3"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "3",
+      "determinant_lower_bound": "3",
+      "uniform_minimum": "3"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "2679/7280",
+      "determinant_lower_bound": "9/28",
+      "uniform_minimum": "3/7"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "3/7",
+      "determinant_lower_bound": "3/7",
+      "uniform_minimum": "3/7"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 2,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "9/304",
+      "determinant_lower_bound": "9/304",
+      "uniform_minimum": "1/19"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 2,
+      "weights": [
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "1/19",
+      "determinant_lower_bound": "1/19",
+      "uniform_minimum": "1/19"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "4",
+      "determinant_lower_bound": "4",
+      "uniform_minimum": "4"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "4",
+      "determinant_lower_bound": "4",
+      "uniform_minimum": "4"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "43634169/71780800",
+      "determinant_lower_bound": "1/2",
+      "uniform_minimum": "2/3"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "2/3",
+      "determinant_lower_bound": "2/3",
+      "uniform_minimum": "2/3"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 2,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "18940981/207497632",
+      "determinant_lower_bound": "9/124",
+      "uniform_minimum": "4/31"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 2,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "4/31",
+      "determinant_lower_bound": "4/31",
+      "uniform_minimum": "4/31"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/4",
+        "1/4",
+        "1/4",
+        "1/4"
+      ],
+      "degree": 3,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "9/1472",
+      "determinant_lower_bound": "9/1472",
+      "uniform_minimum": "1/69"
+    },
+    {
+      "nodes": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "biases": [
+        "1/2",
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "degree": 3,
+      "weights": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "minimum": "1/69",
+      "determinant_lower_bound": "1/69",
+      "uniform_minimum": "1/69"
+    },
+    {
+      "nodes": [
+        "-2",
+        "1",
+        "3",
+        "7"
+      ],
+      "biases": [
+        "1/5",
+        "1/2",
+        "2/3",
+        "3/4"
+      ],
+      "degree": 0,
+      "weights": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "minimum": "11",
+      "determinant_lower_bound": "11",
+      "uniform_minimum": "11"
+    },
+    {
+      "nodes": [
+        "-2",
+        "1",
+        "3",
+        "7"
+      ],
+      "biases": [
+        "1/5",
+        "1/2",
+        "2/3",
+        "3/4"
+      ],
+      "degree": 1,
+      "weights": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "minimum": "2190148474319942016/570441316813688243",
+      "determinant_lower_bound": "2448/797",
+      "uniform_minimum": "561/139"
+    },
+    {
+      "nodes": [
+        "-2",
+        "1",
+        "3",
+        "7"
+      ],
+      "biases": [
+        "1/5",
+        "1/2",
+        "2/3",
+        "3/4"
+      ],
+      "degree": 2,
+      "weights": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "minimum": "19521129267951504/7147605627772643",
+      "determinant_lower_bound": "8778240/3762737",
+      "uniform_minimum": "3810/953"
+    },
+    {
+      "nodes": [
+        "-2",
+        "1",
+        "3",
+        "7"
+      ],
+      "biases": [
+        "1/5",
+        "1/2",
+        "2/3",
+        "3/4"
+      ],
+      "degree": 3,
+      "weights": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "minimum": "1382400/2373151",
+      "determinant_lower_bound": "1382400/2373151",
+      "uniform_minimum": "5400/4027"
+    }
+  ],
+  "negative_controls": {
+    "scalar_optimality_is_false": true,
+    "thinning_at_2p_is_false": true,
+    "stronger_exponent_D_minus_1_bound_is_false": true,
+    "omitted_inverse_theta_is_false": true
+  },
+  "example": {
+    "Q": 2,
+    "D": 1,
+    "p": "1/4",
+    "minimum": "3/20",
+    "coefficients": [
+      [
+        "1",
+        "-21/40"
+      ],
+      [
+        "1",
+        "-43/40"
+      ],
+      [
+        "1",
+        "-23/40"
+      ],
+      [
+        "1",
+        "-9/40"
+      ]
+    ]
+  }
+}

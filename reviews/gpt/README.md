@@ -1,5 +1,7 @@
 # GPT research continuation — 1 November 2026
 
+**Round 8 (phone continuation, latest):** [Product-bias energy](eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
+
 The task has moved from auditing the original results to extracting and extending their mathematics. At the user's direction, **Claude's reported Lean runs are accepted as a starting point**. No new Lean build is claimed. The earlier [assessment](ASSESSMENT.md) is retained as a dated audit, including its narrower formal-scope observations and its measurement-transfer witness.
 
 ## What this round adds
@@ -68,3 +70,4 @@ The earlier 26-script rerun is recorded in [check-logs](check-logs/). The new sp
 5. Construct a finite conserved Hermitian reduction, beginning with the Weyl gauge fibre, or prove a broader obstruction (`T.KAK.7`).
 
 The compact continuation instructions are in [FOR_CLAUDE.md](FOR_CLAUDE.md).
+

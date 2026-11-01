@@ -46,7 +46,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
 | [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 10 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. | 5 | `KAK.C.LIFT`, `KAK.RIGID` |
-| [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. | 4 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
+| [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. | 6 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -1345,7 +1345,7 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--
 <!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: path-p-eth-capacity -->
-*Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy.*
+*Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias.*
 
 Assumes: [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity), [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased).
 
@@ -1388,6 +1388,26 @@ Assumes: [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PA
 **Proof sketch.** Uniform Parseval separates the Fourier coefficients and reduces the optimum to min sum_{i=1}^Q q(i)^2 with q(0)=1. A discrete Rodrigues calculation gives the classical Hahn polynomial norms. The endpoint reproducing kernel telescopes to 1-rho; Cauchy-Schwarz and subtraction of q(0)^2 give the exact optimum. Product bounds for rho give the transition. This is not a biased-measure or arithmetic approximation theorem.
 
 **Full proof:** [reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md) Theorem 4.1, Lemma 5.1, Lemma 5.2, Corollary 6.1 · **checks:** [reviews/gpt/eth/scripts/verify_defect_capacity.py](reviews/gpt/eth/scripts/verify_defect_capacity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+
+#### <a id="p-eth-capacity--eth-energy-thinning"></a>5. `ETH.ENERGY.THINNING` — Exact product-bias energy by tensor spectral thinning
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** For arbitrary distinct nonzero real nodes t_i, weights w_i>0 and biases 0&lt;p_i<1, the minimum degree-D normalized vertex energy is E_S C_D(S;w/theta), where theta_i=4p_i(1-p_i), S retains coordinates independently with probabilities theta_i, and C_D is one-variable constrained least squares. Formula (21.4) gives an explicit optimal family. The optimum is nondecreasing and concave in each theta_i separately.
+
+**Proof sketch.** The edge averages P_i are not self-adjoint under bias. Their commuting squared readouts P_i^\*P_i are rank-one operators with eigenvalues 1/theta_i and zero. Tensor spectral projections split the H-valued polynomial optimization into scalar sectors; the squared projection of the constant trace in a sector is exactly its product-Bernoulli probability. Each scalar sector has a moment-matrix inverse formula. A conditional infimum of affine functions proves coordinate monotonicity and concavity.
+
+**Full proof:** [reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) Theorem 21.1, Proposition 21.5 · **checks:** [reviews/gpt/eth/scripts/verify_biased_energy.py](reviews/gpt/eth/scripts/verify_biased_energy.py) · *Note:* Independent prose derivation and 24 exact original vertex QPs; no Lean build. T.ETH.8 solved as an exact finite optimization problem; the subset formula has exponential size.
+
+#### <a id="p-eth-capacity--eth-energy-bias"></a>6. `ETH.ENERGY.BIAS` — Sharp degree-dependent bias comparison and actual-spectrum asymptotics
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.ENERGY.THINNING`](#p-eth-capacity--eth-energy-thinning), [`ETH.DEFECT.ENERGY`](#p-eth-capacity--eth-defect-energy)
+
+**Statement.** The exact biased optimum lies between Delta_{D+1}(w)/Gamma_D(w/theta) and the scalar uniform optimum. Hence it is at least theta_min^D times that optimum, sharply at D=Q-1. For t_i=i,w_i=1,p_r=(r-1)/(2r), its ratio to the uniform rho/(1-rho) is between (1-1/r^2)^D and 1; relative error is at most D/r^2, and is O(lambda^-1/2) in Part I.
+
+**Proof sketch.** Cauchy-Binet expresses each scalar capacity as a positive Vandermonde sum of size D+1 divided by one of size D. Bound the random denominator by the full denominator; Bernoulli retention cancels all inverse theta factors in the expected numerator. Compare the degree-D denominator monomials with the uniform ones. At degree Q-1 only the full retained subset contributes, proving sharpness. Insert the uniform Christoffel formula and use Bernoulli inequality for the actual swap bias.
+
+**Full proof:** [reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) Lemma 21.2, Theorem 21.3, Corollary 21.4 · **checks:** [reviews/gpt/eth/scripts/verify_biased_energy.py](reviews/gpt/eth/scripts/verify_biased_energy.py) · *Note:* An amplitude-energy result, not an exact-support, p-adic, or SAT lower bound. No improved counting algorithm is asserted.
 <!-- END GENERATED: path-p-eth-capacity -->
 
 ## Index of nodes
@@ -1494,4 +1514,7 @@ Each node links to its first appearance on a path.
 | [`KAK.GAUGE.DIV`](#p-kak-fibre--kak-gauge-div) | Gauge-orbit divergence for every Hermitian single lift | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 | [`ETH.SPLINE.AVERAGE`](#p-eth-splines--eth-spline-average) | Subcube averaging of spline defects | NEW, PROVED, CHECKED | P.ETH.SPLINES |
 | [`KAK.QUOTIENT`](#p-kak-fibre--kak-quotient) | The flux map is a linear projection of a rank-one cone | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`ETH.ENERGY.THINNING`](#p-eth-capacity--eth-energy-thinning) | Exact product-bias energy by tensor spectral thinning | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.ENERGY.BIAS`](#p-eth-capacity--eth-energy-bias) | Sharp degree-dependent bias comparison and actual-spectrum asymptotics | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
 <!-- END GENERATED: node-index -->
+

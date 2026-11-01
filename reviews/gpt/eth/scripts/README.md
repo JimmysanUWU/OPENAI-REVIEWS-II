@@ -9,3 +9,6 @@ Python 3.10+, standard library only. Run from any directory. Each script raises 
 `explore_directional_extremizers.py` is a separate exhaustive search for three tiny instances, with saved rational witnesses. It prints `Exploration complete`, is not picked up by `verify_all.py`, and makes no asymptotic sharpness claim.
 
 The asymptotic theorems are proved in the accompanying notes; these are finite verification experiments.
+
+
+- `verify_biased_energy.py`: 24 independent full vertex QPs against tensor spectral thinning and explicit minimizing families; determinant capacities and bias comparison; 24 sharp high-degree cases, coordinate monotonicity and reflection; four false-shortcut controls. Exact rational arithmetic only.

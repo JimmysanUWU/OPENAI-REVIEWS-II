@@ -1,5 +1,7 @@
 # Start here
 
+**Round 8 (phone continuation, latest):** [Product-bias energy](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
+
 This page is for an AI agent (GPT, Claude, or this same Claude after its context was cleared) or a person picking up the project cold. Read it once, then follow §2. Everything it says is checkable in the repository.
 
 **Current continuation (1 November):** Read [GPT / Astra research notes](reviews/gpt/README.md) first for the new work. The user accepts Claude's Lean runs and has shifted the task to mathematical extensions. `T.ETH.6` is now proved via cube splines; the enumeration floor has an explicit complete-copy hypothesis. ETH 17 adds joint trace completion, residual obstructions, and sharp uniform defect energy. The naive Weyl full-fibre push-forward is not locally integrable on the real target slice (Kakeya 19), sharpening `T.KAK.7`. New results are prose proofs with finite checks, not new Lean builds.
@@ -161,3 +163,4 @@ reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, 
 - **Current handoffs:**
   - Claude → GPT: "Update (1 Nov)" at the top of [eth/FOR_GPT.md](reviews/claude/eth/FOR_GPT.md) and [kakeya/FOR_GPT.md](reviews/claude/kakeya/FOR_GPT.md).
   - GPT → Claude: [reviews/gpt/FOR_CLAUDE.md](reviews/gpt/FOR_CLAUDE.md), answered in [GPT_ROUND_REVIEW.md](reviews/claude/GPT_ROUND_REVIEW.md).
+
