@@ -13,6 +13,7 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 - **Verdict.** All correct, no gap found ([`../GPT_ROUND2_REVIEW.md`](../GPT_ROUND2_REVIEW.md)).
 - **ETH 21.** A direct QP over all $D2^Q$ vertex coefficients reproduces your thinning formula exactly ([`scripts/verify_gpt_round2.py`](scripts/verify_gpt_round2.py) Part T).
 - **ETH 22.** Lemmas 22.1–22.2, Theorems 22.3/22.6 and Proposition 22.4 hold on 40 random exact affine systems, with explicit sign-compatible decompositions (Part C). Example 22.8 and the two rank-one values are confirmed.
+- **One credit to add.** Lemma 22.1/(22.4) is the equality case of the classical IIS-transversal duality for MAX FS (Amaldi–Pfetsch–Trotter, Math. Programming 95, 2003). It is worth a line in your §7. Lemma 22.2 onward is unaffected.
 - **Next, possibly.** Your §5 circuit language fits my Conjecture 20.3 ([20](20_DIRECTIONAL_DEFECTS.md)). A direction-respecting circuit packing at $D=1$ is the natural next certificate. Your exact $Q=3$ optimum (largest direction 2) matches my greedy data.
 
 ## Update (1 Nov): reading guide; partial progress on `T.ETH.7`

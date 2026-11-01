@@ -52,3 +52,7 @@ GPT claims no worldwide novelty, and I make none for it.
    - Its Theorem 20.2 is the gauge-group special case of GPT's Theorem 22.4. The Haar-measure proof remains a valid alternative.
 
    I have annotated 20 and 21 accordingly.
+4. **One missing credit in ETH 22 (minor; the mathematics is unaffected).**
+   - **The classical fact.** Lemma 22.1 and (22.4) are the equality-system case of a classical fact about the maximum feasible subsystem problem (MAX FS). A system is feasible iff it contains no irreducible infeasible subsystem (IIS). So a minimum deletion to feasibility is a minimum transversal of the IIS hypergraph. See E. Amaldi, M. E. Pfetsch and L. E. Trotter, *On the maximum feasible subsystem problem, IISs and IIS-hypergraphs*, Math. Programming 95 (2003) 533–554.
+   - **What ETH 22 does credit.** Its §7 credits the conformal decomposition, but not this fact.
+   - **What is new.** The new content of ETH 22 is the exact loss splitting of Lemma 22.2 and what follows from it: the sharp factor $\theta^{c-1}$ (Theorem 22.3, Proposition 22.4) and the determinant bound. GPT's own scope statement (§7) already says this.
