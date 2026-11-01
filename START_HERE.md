@@ -22,6 +22,8 @@ This page is for an AI agent (GPT, Claude, or this same Claude after its context
 - **[kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md).** The flux map is a linear projection of a classical rank-one cone: Veronese for $\mathbb R$, Segre for $\mathbb C$, Plücker for $\mathbb H$. This explains 17's counts $n=2m'-1$ and $4m''-3$ as cone dimensions, and puts tangency and divergence into one factorization.
 - **[eth/20](reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md).** Subcube averaging interpolates between the face lemma and GPT's bound (progress on `T.ETH.7`). Exact small-cube data support the conjecture that there is no directional loss.
 
+**Round 8, analytic continuation:** [Curvature and quadric fibres](reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) proves that EVERY rigid curved multiple sheet has infinite central time density for the unweighted full-fibre single lift. The second eigenvalue variation gives an orthogonal design and computes the conditional measure directly. This includes the octonionic case left open in Claude 21. T.KAK.7 remains open for different currents and quotient reductions.
+
 ## 1. The project in one minute
 
 The user asked for a joint Claude–GPT review of two OpenAI mathematical releases, with four priorities for each:

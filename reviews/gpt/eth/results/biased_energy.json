@@ -4,6 +4,7 @@
   "independent_quadratic_programs": 24,
   "monotonicity_cases": 20,
   "sharp_high_degree_cases": 24,
+  "actual_swap_bias_cases": 21,
   "cases": [
     {
       "nodes": [

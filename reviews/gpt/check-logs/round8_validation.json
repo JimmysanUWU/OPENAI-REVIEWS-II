@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-01",
+  "status": "ALL OK",
+  "scope": "Repository finite checks and roadmap validation; no new Lean build or independent audit of every original proof.",
+  "verification_scripts": {
+    "ETH": {
+      "count": 21,
+      "status": "All passed in the initial full-suite invocation.",
+      "paths": [
+        "reviews/claude/eth/scripts/verify_aggregate_transfer.py",
+        "reviews/claude/eth/scripts/verify_appendix_d.py",
+        "reviews/claude/eth/scripts/verify_cost_floor.py",
+        "reviews/claude/eth/scripts/verify_counting_pipeline.py",
+        "reviews/claude/eth/scripts/verify_design_floor.py",
+        "reviews/claude/eth/scripts/verify_directional_defects.py",
+        "reviews/claude/eth/scripts/verify_distilled_swap_formula.py",
+        "reviews/claude/eth/scripts/verify_fp_counting.py",
+        "reviews/claude/eth/scripts/verify_gapless_chain.py",
+        "reviews/claude/eth/scripts/verify_padic_truncation.py",
+        "reviews/claude/eth/scripts/verify_parameters.py",
+        "reviews/claude/eth/scripts/verify_parity_lift.py",
+        "reviews/claude/eth/scripts/verify_replacement_forms.py",
+        "reviews/claude/eth/scripts/verify_sharp_route.py",
+        "reviews/claude/eth/scripts/verify_tensor_contraction.py",
+        "reviews/claude/eth/scripts/verify_unified_deformation.py",
+        "reviews/claude/eth/scripts/verify_worked_example.py",
+        "reviews/gpt/eth/scripts/verify_biased_energy.py",
+        "reviews/gpt/eth/scripts/verify_complete_copies.py",
+        "reviews/gpt/eth/scripts/verify_defect_capacity.py",
+        "reviews/gpt/eth/scripts/verify_spline_bound.py"
+      ]
+    },
+    "KAK": {
+      "count": 17,
+      "status": "All passed in the scientific-runtime rerun.",
+      "paths": [
+        "reviews/claude/kakeya/scripts/verify_angular_endpoint.py",
+        "reviews/claude/kakeya/scripts/verify_capacity_dimension.py",
+        "reviews/claude/kakeya/scripts/verify_gauge_orbit.py",
+        "reviews/claude/kakeya/scripts/verify_gauge_quotient.py",
+        "reviews/claude/kakeya/scripts/verify_null_frame.py",
+        "reviews/claude/kakeya/scripts/verify_planar_entry.py",
+        "reviews/claude/kakeya/scripts/verify_positivity_engine.py",
+        "reviews/claude/kakeya/scripts/verify_propagation_and_exponents.py",
+        "reviews/claude/kakeya/scripts/verify_quaternion_calculus.py",
+        "reviews/claude/kakeya/scripts/verify_remaining_claims.py",
+        "reviews/claude/kakeya/scripts/verify_slot_calculus.py",
+        "reviews/claude/kakeya/scripts/verify_state_dimension.py",
+        "reviews/claude/kakeya/scripts/verify_wave_current.py",
+        "reviews/claude/kakeya/scripts/verify_wave_current_target.py",
+        "reviews/gpt/kakeya/scripts/verify_curvature_fibre.py",
+        "reviews/gpt/kakeya/scripts/verify_weyl_fibre.py",
+        "reviews/gpt/kakeya/scripts/verify_weyl_singularity.py"
+      ],
+      "log": "round8_kakeya.txt"
+    }
+  },
+  "environment_note": "The initial default-Python invocation lacked mpmath and sympy for 13 legacy KAK scripts. A complete KAK rerun used the bundled scientific Python with workspace-installed mpmath and sympy; every script then passed. ETH checks did not need repeating.",
+  "scientific_runtime_versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "roadmap": {
+    "nodes": 101,
+    "targets": 23,
+    "validator": "OK",
+    "negative_controls": 24,
+    "negative_controls_status": "ALL OK"
+  },
+  "new_exact_checks": {
+    "vertex_QPs": 24,
+    "high_degree_energy_cases": 24,
+    "coordinate_monotonicity_and_concavity_cases": 20,
+    "actual_bias_comparison_cases": 21,
+    "pencils_with_full_Jacobians": 5,
+    "energy_negative_controls": 4,
+    "fibre_negative_controls": 5
+  }
+}

@@ -45,7 +45,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES. | 4 | `ETH.I.SWAP`, `ETH.K.E4`, `ETH.TRANSFER.AGG` |
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
 | [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 10 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
-| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. | 5 | `KAK.C.LIFT`, `KAK.RIGID` |
+| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. Finally the second eigenvalue variation gives a square orthogonal design and proves central divergence for every rigid sheet of multiplicity greater than one, with no gauge group (including octonions). | 7 | `KAK.C.LIFT`, `KAK.RIGID` |
 | [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. | 6 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
@@ -1289,7 +1289,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 <!-- END GENERATED: path-p-eth-splines -->
 
 <!-- BEGIN GENERATED: path-p-kak-fibre -->
-*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count.*
+*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. Finally the second eigenvalue variation gives a square orthogonal design and proves central divergence for every rigid sheet of multiplicity greater than one, with no gauge group (including octonions).*
 
 Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--kak-rigid).
 
@@ -1342,6 +1342,26 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--
 **Proof sketch.** C: each C^mu commutes with J, so it pairs the +k and -k eigenspaces and kills each, giving Q = u^T L v, linear in u v^T; C^\* acts by (lambda u, lambda^-1 v) with invariants u_a v_b. H: (H tensor C)^{m''} is 2m'' copies of the standard SL(2,C) module, invariant quadratic forms are the quaternionic Hermitian forms, and by the first fundamental theorem they are spanned by the brackets det(z_a, z_b). R: Q is linear in z z^T. Generic fibres of pi are free K_C-orbits, so dim = N' - dim K_C.
 
 **Full proof:** [kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md) Theorem 21.1, Corollary 21.2 · **checks:** [verify_gauge_quotient](reviews/claude/kakeya/scripts/verify_gauge_quotient.py) · *Note:* Explains the numerology n = 2m'-1 and n = 4m''-3 of 17 and puts 17 (tangency: the quotient has dimension n) and 20 (divergence: the quotient map has noncompact fibres) into one factorization. T.KAK.7 becomes: a positive conserved current on the cone itself.
+
+#### <a id="p-kak-fibre--kak-curv-design"></a>6. `KAK.CURV.DESIGN` — Critical curvature is a square orthogonal design
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.RIGID`](#p-kak-scope--kak-rigid)
+
+**Statement.** For a curved top sheet of constant multiplicity m in the tangency dimension N=n+m-1, write E for the eigenspace, F=E^perp, S=(phi I-C(xi0))|F, H for the transverse Hessian, and R_a b=(b^T(C^j-d_j I)a)_j. Then R_a S^-1 R_a^T=(a.a)H/2, including complex a. Fixed invertible scalings give an orthogonal design and m-1 skew-symmetric anticommuting complex structures on R^{n-1}; hence n is odd when m>1.
+
+**Proof sketch.** Differentiate a constant-norm eigensection in a transverse direction, choosing its internal rotation zero at the base point. The eigenvector derivative is S^-1(C^j-d_j I)a. Differentiating Hellmann-Feynman gives the curvature identity for every real a; polynomial continuation gives complex a. Whiten H and S and normalize the value at one basis vector to identity. Comparing quadratic coefficients yields the Clifford relations.
+
+**Full proof:** [reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md](reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) Lemma 22.1, Corollary 22.2 · **checks:** [reviews/gpt/kakeya/scripts/verify_curvature_fibre.py](reviews/gpt/kakeya/scripts/verify_curvature_fibre.py) · *Note:* A necessary local structure, not a classification or a construction of all pencils. The finite checks include the octonionic Hopf pencil and a non-Clifford Hermitian 3x3 pencil.
+
+#### <a id="p-kak-fibre--kak-fibre-multiple"></a>7. `KAK.FIBRE.MULTIPLE` — Every rigid multiple-sheet full fibre has infinite central density
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.CURV.DESIGN`](#p-kak-fibre--kak-curv-design), [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift)
+
+**Statement.** For every symmetric pencil in the tangency dimension N=n+m-1 with a curved top sheet of constant multiplicity m>1, the unweighted full-fibre single lift has infinite physical-time density at every polarization centre. On the central complex eigensphere a.a=1 its conditional measure is gamma |a_1|^-2 d^{2m-2}a_prime, gamma=1/(det S det(H/2)); the polarized plane wave is undamped and its time entry is |a_1|^2. Both sheets over |a_prime|&lt;R contribute exactly 2 gamma pi^{m-1} R^{2m-2}/(m-1)!. This includes octonions (m=8,gamma=1).
+
+**Proof sketch.** The curvature identity fixes |det R_a| on the complex eigensphere. Adjoin a_prime to the adapted target coordinates: the full complex Jacobian is a_1 det R_a. Disintegrating ambient volume gives the stated coarea factor. The plane-wave damping vanishes on the whole complexified eigenspace, and its time entry cancels |a_1|^-2. The two square-root sheets cover a complex (m-1)-ball away from a null discriminant. Its volume diverges for m>1. Combined with rigidity, finite central density in this route forces a simple sheet and N=n.
+
+**Full proof:** [reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md](reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) Lemma 22.3, Theorem 22.4, Corollary 22.5 · **checks:** [reviews/gpt/kakeya/scripts/verify_curvature_fibre.py](reviews/gpt/kakeya/scripts/verify_curvature_fibre.py) · *Note:* No gauge group or Cartan formula is assumed. Closes the octonionic full-fibre convergence question and extends the central obstruction to every rigid multiple sheet. It does not prove ambient non-integrability for every pencil, or exclude new quotient currents or compensating fluxes.
 <!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: path-p-eth-capacity -->
@@ -1516,5 +1536,7 @@ Each node links to its first appearance on a path.
 | [`KAK.QUOTIENT`](#p-kak-fibre--kak-quotient) | The flux map is a linear projection of a rank-one cone | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 | [`ETH.ENERGY.THINNING`](#p-eth-capacity--eth-energy-thinning) | Exact product-bias energy by tensor spectral thinning | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
 | [`ETH.ENERGY.BIAS`](#p-eth-capacity--eth-energy-bias) | Sharp degree-dependent bias comparison and actual-spectrum asymptotics | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`KAK.CURV.DESIGN`](#p-kak-fibre--kak-curv-design) | Critical curvature is a square orthogonal design | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`KAK.FIBRE.MULTIPLE`](#p-kak-fibre--kak-fibre-multiple) | Every rigid multiple-sheet full fibre has infinite central density | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 <!-- END GENERATED: node-index -->
 

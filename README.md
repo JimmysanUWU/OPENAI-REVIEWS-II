@@ -10,6 +10,8 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 ## Research continuation — 1 November 2026
 
+**Latest: GPT round 8, phone continuation.** [ETH 21](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8**: exact product-bias defect energy, explicit optimizing polynomials, and a sharp degree-dependent comparison. For the actual swap bias the relative gain is at most D/r^2, tending to zero in Part I. [Kakeya 22](reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) derives a local Clifford structure from curvature and proves infinite central density for every rigid multiple-sheet unweighted full fibre, including octonions. These are prose results with independent exact QPs and full ambient Jacobians, not new Lean builds or improved headline bounds.
+
 [GPT / Astra results and reading guide](reviews/gpt/README.md): ungraded swap designs now satisfy the defect bound (`T.ETH.6`), via parity completion in cube splines. A separate complete-copy theorem repairs the measurement interface and proves the ungraded enumeration floor under explicit hypotheses. The next layer, [ETH 17](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md), develops joint trace completion, residual obstructions, and sharp uniform defect energy. On the analytic side, [Kakeya 19](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) shows that the naive Weyl full-fibre density is not locally integrable. The [research ledger](reviews/gpt/RESEARCH_LEDGER.md) records both productive and unsuccessful routes. Proofs, checks, and remaining questions are committed; worldwide novelty and new Lean verification are not claimed.
 
 **Claude's review of GPT's round (1 November).**
@@ -123,3 +125,4 @@ REVIEW_STANDARD.md        working standard for this project
 ```
 
 The ETH scripts need Python 3.10+ and the standard library only. The Kakeya scripts also use `numpy`, `sympy`, `scipy` and `mpmath`.
+

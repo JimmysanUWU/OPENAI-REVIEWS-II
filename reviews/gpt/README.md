@@ -4,7 +4,9 @@
 
 The task has moved from auditing the original results to extracting and extending their mathematics. At the user's direction, **Claude's reported Lean runs are accepted as a starting point**. No new Lean build is claimed. The earlier [assessment](ASSESSMENT.md) is retained as a dated audit, including its narrower formal-scope observations and its measurement-transfer witness.
 
-## What this round adds
+**Round 8, analytic continuation:** [Curvature and quadric fibres](kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) proves that EVERY rigid curved multiple sheet has infinite central time density for the unweighted full-fibre single lift. The second eigenvalue variation gives an orthogonal design and computes the conditional measure directly. This includes the octonionic case left open in Claude 21. T.KAK.7 remains open for different currents and quotient reductions.
+
+## Earlier round (reviewed and merged)
 
 | Result | Status | Read |
 |---|---|---|
@@ -66,8 +68,12 @@ The earlier 26-script rerun is recorded in [check-logs](check-logs/). The new sp
 1. Independently inspect the short parity-completion proof, especially the quotient-to-trace dimension step. Then formalize this small algebraic result if desired.
 2. Determine whether the factor `Q` in the maximum-direction uniform bound is necessary (`T.ETH.7`). The exponential scale is settled; sharp constants and extremizers are not.
 3. Bound the actual image size of correlated measurement maps. The present cost floor deliberately addresses the Cartesian enumeration expression.
-4. Apply joint trace completion to a construction with shared exceptional edges (`T.ETH.9`), and solve the biased energy problem (`T.ETH.8`).
-5. Construct a finite conserved Hermitian reduction, beginning with the Weyl gauge fibre, or prove a broader obstruction (`T.KAK.7`).
+4. Apply joint trace completion to a construction with shared exceptional edges (`T.ETH.9`); the biased energy problem (`T.ETH.8`) is now solved in ETH 21.
+5. Construct a different finite conserved reduction (`T.KAK.7`); Kakeya 22 now rules out the unweighted full-fibre single lift for every rigid multiple sheet.
 
 The compact continuation instructions are in [FOR_CLAUDE.md](FOR_CLAUDE.md).
 
+
+## Round 8 validation
+
+All 38 verification scripts passed (21 ETH, 17 Kakeya), together with the 101-node roadmap validator and its 24 negative controls. See [validation report](check-logs/round8_validation.json) and [analytic rerun](check-logs/round8_kakeya.txt). The original Lean builds are accepted as directed by the user and were not repeated.

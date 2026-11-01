@@ -187,6 +187,7 @@ def main():
         _, den = determinants(nodes, [w / t for w, t in zip(actual_weights, theta)], degree)
         lower = num / den
         assert lower <= exact <= uniform
+        assert prod(sorted(theta)[:degree]) * uniform <= exact
         if degree == len(nodes) - 1:
             assert lower == exact
         if all(p == F(1, 2) for p in biases):
@@ -220,7 +221,21 @@ def main():
                     reflected[coordinate] = 1 - p
                     assert spectral(nodes, reflected, d)[0] == energies[-1]
                 assert energies == sorted(energies)
+                thetas = [4 * p * (1 - p) for p in [F(1, 10), F(1, 4), F(1, 3), F(1, 2)]]
+                slopes = [(b - a) / (t - s) for a, b, s, t in
+                          zip(energies, energies[1:], thetas, thetas[1:])]
+                assert slopes == sorted(slopes, reverse=True)
                 monotone_cases += 1
+
+    actual_bias_cases = 0
+    for r in [2, 3, 4]:
+        for q in [3, 4]:
+            nodes = list(map(F, range(1, q + 1)))
+            for d in range(q):
+                exact = spectral(nodes, [F(r - 1, 2 * r)] * q, d)[0]
+                uniform = capacity(nodes, [F(1)] * q, d)[0]
+                assert 0 <= 1 - exact / uniform <= F(d, r * r)
+                actual_bias_cases += 1
 
     example, family = spectral([F(1), F(2)], [F(1, 4)] * 2, 1)
     assert example == F(3, 20)
@@ -236,6 +251,7 @@ def main():
     output = dict(scope="Finite exact checks support the separate prose proofs; no SAT algorithm or Lean build.",
                   local_operator_biases=6, independent_quadratic_programs=len(cases),
                   monotonicity_cases=monotone_cases, sharp_high_degree_cases=24,
+                  actual_swap_bias_cases=actual_bias_cases,
                   cases=cases, negative_controls=controls,
                   example=dict(Q=2, D=1, p="1/4", minimum=str(example),
                                coefficients=[[str(c) for c in row] for row in family]))
