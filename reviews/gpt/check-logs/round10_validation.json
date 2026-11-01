@@ -1,0 +1,46 @@
+{
+  "round": 10,
+  "date": "2026-11-01",
+  "method": "Route search followed by circuit splitting and sharp erasure theorem.",
+  "new_checker": "reviews/gpt/eth/scripts/verify_circuit_erasure.py",
+  "new_checker_status": "ALL OK",
+  "exact_designs": 29,
+  "checks": [
+    "direct rational normal equations",
+    "sign-compatible circuit and nonnegative weight splitting",
+    "independent Gram determinants and minor sums",
+    "moment-matched masks",
+    "sharp exponent and independence threshold d=1..4",
+    "short-circuit and exact fourth-power fixtures",
+    "three fixed-ridge models",
+    "all deletion sets in Q=2,3 cubes"
+  ],
+  "negative_controls": {
+    "d_wise_not_enough": true,
+    "smaller_exponent_false": true,
+    "singular_positive_residual": true,
+    "faces_not_all_loops": true,
+    "matching_moments_not_matching_optimum": true,
+    "nonlinear_model_extension_false": true
+  },
+  "route_probes": "reviews/gpt/experiments/round10_routes.py",
+  "route_probe_status": "exact probes passed",
+  "roadmap": {
+    "nodes": 106,
+    "targets": 23,
+    "validator": "OK: 106 nodes, 23 targets, 5 free-text labels not checked",
+    "negative_controls": 24,
+    "negative_controls_status": "ALL OK"
+  },
+  "documentation": {
+    "local_links_checked": 769,
+    "missing_links": 0,
+    "whitespace": "OK",
+    "discoverable_verification_scripts": 40
+  },
+  "proof_ingredients": {
+    "circuit_decomposition": "Classical sign-compatible elementary-vector decomposition; elementary support-reduction proof supplied. Muller-Regensburger 2016, Theorem 3, credited.",
+    "quadratic_specialization": "Cauchy-Binet, Schur complement and least-squares projection; classical volume-sampling interpretation."
+  },
+  "scope": "Targeted validation of the new work. The prior full 38-script snapshot and the later global-rigidity check were not rerun. The general convex-loss statement has a prose proof; nonlinear exact checks are the stated fourth-power fixtures. No new Lean build, SAT speedup or sharper asymptotic directional bound. T.ETH.7, T.KAK.7, T.X.1 remain open."
+}

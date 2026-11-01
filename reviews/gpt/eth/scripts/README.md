@@ -12,3 +12,4 @@ The asymptotic theorems are proved in the accompanying notes; these are finite v
 
 
 - `verify_biased_energy.py`: 24 independent full vertex QPs against tensor spectral thinning and explicit minimizing families; determinant capacities and bias comparison; 24 sharp high-degree cases, coordinate monotonicity and reflection; four false-shortcut controls. Exact rational arithmetic only.
+- `verify_circuit_erasure.py`: 29 exact affine regression designs; sign-compatible weight splitting, arbitrary-feature Gram/minor identities, moment-matched erasure bounds, sharp independence threshold, short-circuit and fourth-power fixtures, fixed ridge penalties, and all deletion sets of the Q=2,3 degree-one cubes. Controls reject a nonlinear-model extension, singular-loss cancellation, testing only square faces, and equality of exact optima under matching low-order moments.

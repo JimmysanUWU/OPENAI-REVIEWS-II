@@ -363,7 +363,7 @@
    "id": "P.ETH.CAPACITY",
    "project": "ETH",
    "title": "Trace capacity, residual defects, and approximate locality",
-   "purpose": "Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias.",
+   "purpose": "Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. Then strip the erasure mechanism to minimal inconsistent circuits: exact support is a hitting problem, and convex-loss sensitivity depends on circuit size, with a sharp independence threshold.",
    "assumes": [
     "ETH.SPLINE.BASIS",
     "ETH.SPLINE.PARITY",
@@ -375,7 +375,10 @@
     "ETH.SPLINE.RESIDUE",
     "ETH.DEFECT.ENERGY",
     "ETH.ENERGY.THINNING",
-    "ETH.ENERGY.BIAS"
+    "ETH.ENERGY.BIAS",
+    "ETH.CIRCUIT.SUPPORT",
+    "ETH.CIRCUIT.ERASURE",
+    "ETH.ERASURE.DET"
    ]
   }
  ],
@@ -3973,6 +3976,94 @@
    "formal": null,
    "confidence": null,
    "notes": "No classification up to orthogonal conjugacy is asserted. This classifies global dispersion under the stated strong assumptions, not all local App. E sheets and not all quotient currents. Primary sources: Hatcher Ch.4 and Baez The Octonions sections 2.3 and 3.3."
+  },
+  {
+   "project": "ETH",
+   "group": "GPT extensions",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "id": "ETH.CIRCUIT.SUPPORT",
+   "kind": "framework",
+   "title": "Exact locality as hitting minimal inconsistent circuits",
+   "statement": "For any real affine system A beta=b, its minimal inconsistent subsystems are row circuits of size at most rank(A)+1. A deletion set restores consistency iff it hits every inconsistent circuit. Hence minimum weighted failure support, and minimum maximum directional load, equal the corresponding circuit-hitting optima. Applied to degree-D vertex polynomials, the equations have D*2^Q coefficient variables before removing redundancy; they are not D-parameter scalar fits.",
+   "sketch": "Fit independent rows spanning a subsystem. A violated dependent row and its nonzero basis coefficients give an inconsistent circuit. A retained system is therefore consistent exactly when all such circuits have been hit. Actual failure sets are hitting sets, and any hitting set permits a fit whose failures are contained in it, proving equality for every inclusion-monotone support cost. At degree one the circuits are cycles with nonzero prescribed circulation.",
+   "where": [
+    {
+     "file": "reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md",
+     "label": "Lemma 22.1, §5"
+    }
+   ],
+   "depends_on": [],
+   "notes": "Exact reformulation, not efficient circuit enumeration or an improved asymptotic directional bound. All deletion sets of Q=2,3 cubes are checked; square faces alone miss retained longer contradictions. T.ETH.7 remains open."
+  },
+  {
+   "project": "ETH",
+   "group": "GPT extensions",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "id": "ETH.CIRCUIT.ERASURE",
+   "kind": "theorem",
+   "title": "Convex-loss erasure bounds from sign-compatible circuit splitting",
+   "statement": "For L_s(v)=min_beta sum_i v_i |b_i-a_i^T beta|^s, s>1, and largest inconsistent-circuit size c, inverse-probability retention weights V_i=w_i Z_i/theta_i satisfy (product of the c-1 smallest theta_i)*L_s(w) <= E L_s(V) <= L_s(w), provided marginals are theta_i and every inconsistent circuit has joint survival at least the product of its marginals. In particular c-wise independence suffices. For common theta the factor theta^(c-1) and the c-wise threshold are sharp; (c-1)-wise fair masks can make every sampled subsystem consistent.",
+   "sketch": "The full-data residual gradient lies in ker(A^T). Decompose it into support-minimal kernel vectors without sign cancellation, and split the row weights in those same proportions. Each component is an inconsistent circuit and has the original fit as its minimizer, so their optimized losses sum exactly to the full loss. After deletion, superadditivity bounds the total loss below by the independent component fits; each contributes only when its circuit survives. Full-spark interpolation and an all-ones-excluding parity law prove both sharpness claims.",
+   "where": [
+    {
+     "file": "reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md",
+     "label": "Lemma 22.2, Theorem 22.3, Proposition 22.4, Example 22.5, Example 22.8"
+    }
+   ],
+   "depends_on": [
+    "ETH.CIRCUIT.SUPPORT"
+   ],
+   "notes": "The sign-compatible elementary-vector ingredient is classical and proved here. The proof also covers the stated differentiable convex row losses. Generic quadratic tests and exact fourth-power fixtures are separate from the general proof. Nonlinear model images can violate the same circuit-size bound. No Lean formalization or worldwide novelty claim."
+  },
+  {
+   "project": "ETH",
+   "group": "GPT extensions",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "id": "ETH.ERASURE.DET",
+   "kind": "theorem",
+   "title": "Determinant erasure comparison for arbitrary least squares and fixed ridge",
+   "statement": "For full-column-rank A with d parameters and matching Bernoulli inclusion moments through order d+1, E L_2(w Z/theta) >= kappa L_2(w), where kappa=det(A^T W A)/det(A^T diag(w/theta) A) >= product of the d smallest theta_i. For fixed ridge lambda I, add lambda I to both Gram matrices; the original A may then be rank deficient. The determinant ratio is a reciprocal expectation under the classical row-basis volume-sampling law.",
+   "sketch": "The augmented Gram determinant Delta(v) equals Gamma(v)*L_2(v) by the Schur complement; if the retained design loses rank both determinants vanish, even though its loss may be positive. Cauchy-Binet makes Delta a nonnegative multiaffine polynomial of degree d+1, whose expectation is Delta(w). Bound Gamma(V) by Gamma(w/theta) and divide. Positive degree-d basis monomials give the simpler factor. Fixed ridge is represented by penalty rows retained with probability one.",
+   "where": [
+    {
+     "file": "reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md",
+     "label": "Theorem 22.6, Corollary 22.7"
+    }
+   ],
+   "depends_on": [
+    "ETH.CIRCUIT.ERASURE"
+   ],
+   "notes": "Generalizes the determinant mechanism of ETH 21 beyond polynomial features; it is a geometric refinement distinct from the circuit-size bound. Classical matrix identities and volume-sampling interpretation are attributed. Matching low-order moments does not determine the exact optimized expectation."
   }
  ],
  "targets": [
@@ -4340,12 +4431,13 @@
    "id": "T.ETH.7",
    "kind": "research",
    "title": "Sharp directional spline bounds",
-   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved. Known: at degree Q-1 an ungraded design has 1 bad edge where every graded design needs Q, yet the largest single direction is 2 tau_D(Q) in both (Claude 18 §4); so the question is how defects distribute over directions. Progress (Claude 20): subcube averaging gives max_i mu(B_i) >= max_m (2/m) tau_D(m), which removes the factor Q down to D^2 when D << sqrt(Q); exact greedy data for Q <= 5 support Conjecture 20.3, max_i mu(B_i) >= tau_D(Q) (no directional loss).",
+   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved. Known: at degree Q-1 an ungraded design has 1 bad edge where every graded design needs Q, yet the largest single direction is 2 tau_D(Q) in both (Claude 18 §4); so the question is how defects distribute over directions. Progress (Claude 20): subcube averaging gives max_i mu(B_i) >= max_m (2/m) tau_D(m), which removes the factor Q down to D^2 when D << sqrt(Q); exact greedy data for Q <= 5 support Conjecture 20.3, max_i mu(B_i) >= tau_D(Q) (no directional loss). Further reformulation (GPT 22): directional support is exactly a hitting problem on minimal inconsistent circuits; this supplies no stronger asymptotic bound yet.",
    "builds_on": [
     "ETH.SPLINE.PARITY",
     "ETH.SPLINE.BIASED",
     "ETH.D.UNGRADED",
-    "ETH.SPLINE.AVERAGE"
+    "ETH.SPLINE.AVERAGE",
+    "ETH.CIRCUIT.SUPPORT"
    ],
    "status": "OPEN",
    "owner": null,

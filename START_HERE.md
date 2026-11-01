@@ -1,6 +1,8 @@
 # Start here
 
-**Round 9 (abstraction search, latest):** [Route log](reviews/gpt/ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
+**Round 10 (latest):** [Minimal contradictions](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) explain the degree exponent without polynomials or squared loss. A sign-compatible splitting of the residual splits the full loss into circuit losses. Contradictions of size at most c give a sharp theta^(c-1) bound after inverse-weighted deletion and refitting; c-wise independence suffices and is sharp. Exact locality is a circuit-hitting problem, with no improved asymptotic bound yet. [Search log](reviews/gpt/ABSTRACTION_SEARCH_ROUND10.md).
+
+**Round 9:** [Route log](reviews/gpt/ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
 
 
 **Round 8 (phone continuation):** [Product-bias energy](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
@@ -89,7 +91,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 36 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 40 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it

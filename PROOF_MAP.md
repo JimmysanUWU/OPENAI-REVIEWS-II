@@ -46,7 +46,7 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
 | [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 10 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. Finally the second eigenvalue variation gives a square orthogonal design and proves central divergence for every rigid sheet of multiplicity greater than one, with no gauge group (including octonions). The route-search continuation then distinguishes local flexibility from global rigidity: a sphere-bundle obstruction forces globally curved critical pencils to be drifted anisotropic wave cones. | 9 | `KAK.C.LIFT`, `KAK.RIGID` |
-| [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. | 6 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
+| [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. Then strip the erasure mechanism to minimal inconsistent circuits: exact support is a hitting problem, and convex-loss sensitivity depends on circuit size, with a sharp independence threshold. | 9 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
 ## Kakeya / local smoothing
@@ -1385,7 +1385,7 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--
 <!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: path-p-eth-capacity -->
-*Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias.*
+*Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. Ends with the exact product-bias optimum, its explicit optimizer, and stability under the actual swap bias. Then strip the erasure mechanism to minimal inconsistent circuits: exact support is a hitting problem, and convex-loss sensitivity depends on circuit size, with a sharp independence threshold.*
 
 Assumes: [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity), [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased).
 
@@ -1448,6 +1448,36 @@ Assumes: [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis), [`ETH.SPLINE.PA
 **Proof sketch.** Cauchy-Binet expresses each scalar capacity as a positive Vandermonde sum of size D+1 divided by one of size D. Bound the random denominator by the full denominator; Bernoulli retention cancels all inverse theta factors in the expected numerator. Compare the degree-D denominator monomials with the uniform ones. At degree Q-1 only the full retained subset contributes, proving sharpness. Insert the uniform Christoffel formula and use Bernoulli inequality for the actual swap bias.
 
 **Full proof:** [reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) Lemma 21.2, Theorem 21.3, Corollary 21.4 · **checks:** [reviews/gpt/eth/scripts/verify_biased_energy.py](reviews/gpt/eth/scripts/verify_biased_energy.py) · *Note:* An amplitude-energy result, not an exact-support, p-adic, or SAT lower bound. No improved counting algorithm is asserted.
+
+#### <a id="p-eth-capacity--eth-circuit-support"></a>7. `ETH.CIRCUIT.SUPPORT` — Exact locality as hitting minimal inconsistent circuits
+
+*NEW, PROVED, CHECKED* · prose chain: closed
+
+**Statement.** For any real affine system A beta=b, its minimal inconsistent subsystems are row circuits of size at most rank(A)+1. A deletion set restores consistency iff it hits every inconsistent circuit. Hence minimum weighted failure support, and minimum maximum directional load, equal the corresponding circuit-hitting optima. Applied to degree-D vertex polynomials, the equations have D\*2^Q coefficient variables before removing redundancy; they are not D-parameter scalar fits.
+
+**Proof sketch.** Fit independent rows spanning a subsystem. A violated dependent row and its nonzero basis coefficients give an inconsistent circuit. A retained system is therefore consistent exactly when all such circuits have been hit. Actual failure sets are hitting sets, and any hitting set permits a fit whose failures are contained in it, proving equality for every inclusion-monotone support cost. At degree one the circuits are cycles with nonzero prescribed circulation.
+
+**Full proof:** [reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) Lemma 22.1, §5 · **checks:** [reviews/gpt/eth/scripts/verify_circuit_erasure.py](reviews/gpt/eth/scripts/verify_circuit_erasure.py) · *Note:* Exact reformulation, not efficient circuit enumeration or an improved asymptotic directional bound. All deletion sets of Q=2,3 cubes are checked; square faces alone miss retained longer contradictions. T.ETH.7 remains open.
+
+#### <a id="p-eth-capacity--eth-circuit-erasure"></a>8. `ETH.CIRCUIT.ERASURE` — Convex-loss erasure bounds from sign-compatible circuit splitting
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.CIRCUIT.SUPPORT`](#p-eth-capacity--eth-circuit-support)
+
+**Statement.** For L_s(v)=min_beta sum_i v_i |b_i-a_i^T beta|^s, s>1, and largest inconsistent-circuit size c, inverse-probability retention weights V_i=w_i Z_i/theta_i satisfy (product of the c-1 smallest theta_i)\*L_s(w) <= E L_s(V) <= L_s(w), provided marginals are theta_i and every inconsistent circuit has joint survival at least the product of its marginals. In particular c-wise independence suffices. For common theta the factor theta^(c-1) and the c-wise threshold are sharp; (c-1)-wise fair masks can make every sampled subsystem consistent.
+
+**Proof sketch.** The full-data residual gradient lies in ker(A^T). Decompose it into support-minimal kernel vectors without sign cancellation, and split the row weights in those same proportions. Each component is an inconsistent circuit and has the original fit as its minimizer, so their optimized losses sum exactly to the full loss. After deletion, superadditivity bounds the total loss below by the independent component fits; each contributes only when its circuit survives. Full-spark interpolation and an all-ones-excluding parity law prove both sharpness claims.
+
+**Full proof:** [reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) Lemma 22.2, Theorem 22.3, Proposition 22.4, Example 22.5, Example 22.8 · **checks:** [reviews/gpt/eth/scripts/verify_circuit_erasure.py](reviews/gpt/eth/scripts/verify_circuit_erasure.py) · *Note:* The sign-compatible elementary-vector ingredient is classical and proved here. The proof also covers the stated differentiable convex row losses. Generic quadratic tests and exact fourth-power fixtures are separate from the general proof. Nonlinear model images can violate the same circuit-size bound. No Lean formalization or worldwide novelty claim.
+
+#### <a id="p-eth-capacity--eth-erasure-det"></a>9. `ETH.ERASURE.DET` — Determinant erasure comparison for arbitrary least squares and fixed ridge
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.CIRCUIT.ERASURE`](#p-eth-capacity--eth-circuit-erasure)
+
+**Statement.** For full-column-rank A with d parameters and matching Bernoulli inclusion moments through order d+1, E L_2(w Z/theta) >= kappa L_2(w), where kappa=det(A^T W A)/det(A^T diag(w/theta) A) >= product of the d smallest theta_i. For fixed ridge lambda I, add lambda I to both Gram matrices; the original A may then be rank deficient. The determinant ratio is a reciprocal expectation under the classical row-basis volume-sampling law.
+
+**Proof sketch.** The augmented Gram determinant Delta(v) equals Gamma(v)\*L_2(v) by the Schur complement; if the retained design loses rank both determinants vanish, even though its loss may be positive. Cauchy-Binet makes Delta a nonnegative multiaffine polynomial of degree d+1, whose expectation is Delta(w). Bound Gamma(V) by Gamma(w/theta) and divide. Positive degree-d basis monomials give the simpler factor. Fixed ridge is represented by penalty rows retained with probability one.
+
+**Full proof:** [reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) Theorem 22.6, Corollary 22.7 · **checks:** [reviews/gpt/eth/scripts/verify_circuit_erasure.py](reviews/gpt/eth/scripts/verify_circuit_erasure.py) · *Note:* Generalizes the determinant mechanism of ETH 21 beyond polynomial features; it is a geometric refinement distinct from the circuit-size bound. Classical matrix identities and volume-sampling interpretation are attributed. Matching low-order moments does not determine the exact optimized expectation.
 <!-- END GENERATED: path-p-eth-capacity -->
 
 ## Index of nodes
@@ -1560,5 +1590,8 @@ Each node links to its first appearance on a path.
 | [`KAK.FIBRE.MULTIPLE`](#p-kak-fibre--kak-fibre-multiple) | Every rigid multiple-sheet full fibre has infinite central density | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 | [`KAK.GLOBAL.SPHERE`](#p-kak-fibre--kak-global-sphere) | Global critical eigenvectors form a sphere bundle with balanced dimensions | NEW, PROVED_CITED, CHECKED | P.KAK.FIBRE |
 | [`KAK.GLOBAL.SPIN`](#p-kak-fibre--kak-global-spin) | Global critical pencils are drifted wave cones and spin factors | NEW, PROVED_CITED, CHECKED | P.KAK.FIBRE |
+| [`ETH.CIRCUIT.SUPPORT`](#p-eth-capacity--eth-circuit-support) | Exact locality as hitting minimal inconsistent circuits | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.CIRCUIT.ERASURE`](#p-eth-capacity--eth-circuit-erasure) | Convex-loss erasure bounds from sign-compatible circuit splitting | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
+| [`ETH.ERASURE.DET`](#p-eth-capacity--eth-erasure-det) | Determinant erasure comparison for arbitrary least squares and fixed ridge | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
 <!-- END GENERATED: node-index -->
 
