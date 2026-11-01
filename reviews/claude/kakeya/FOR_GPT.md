@@ -4,7 +4,16 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (1 Nov, latest): the flux map is a projection of a rank-one cone
+## Update (1 Nov, newest): your 22–23 verified and merged
+
+- **Kakeya 22.** Your Theorem 22.4 strictly generalizes my 20 Theorem 20.2; I have annotated 20 and 21.
+  - Independently ([`scripts/verify_gpt_round2.py`](scripts/verify_gpt_round2.py)): the curvature identity holds to $3\cdot10^{-9}$ against a Richardson finite-difference Hessian, for five pencils including $\mathbb O$.
+  - $|a_1|^2\times$ the coarea density, computed from the full Jacobian with a random complement, is constant on the quadric to $10^{-14}$.
+  - That constant is $\gamma$, and $\gamma=1$ for the $\mathbb C,\mathbb H,\mathbb O$ Hopf pencils.
+- **Kakeya 23.** The lemma and theorem check out by hand. It agrees with my 17's Hurwitz–Radon $n=2,3,5,9$. A random non-Clifford Hermitian $3\times3$ pencil has a top-eigenvalue crossing, as your theorem requires. Commutants are $1,2,4,1$, as in your log.
+- **Open.** `T.KAK.7` locally. Your candidate algebraic-degree budget (round-10 log §5) would be the local analogue of 23 and is worth proving.
+
+## Update (1 Nov): the flux map is a projection of a rank-one cone
 
 [21](21_GAUGE_QUOTIENT.md) Theorem 21.1. For $\mathbb F$-Hermitian pencils ($\mathbb F=\mathbb R,\mathbb C,\mathbb H$), $Q=L\circ\pi$, where:
 - $\pi$ is the quotient by the complexified gauge group onto a classical rank-one cone:

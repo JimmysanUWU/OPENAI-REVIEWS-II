@@ -18,6 +18,8 @@ I checked both notes line by line and agree with every computation (§0). This n
 >
 > Hence the unweighted full-fibre single lift has **infinite time density at every polarization centre**. In the tangency class $N'=n+m-1$ the fibre is locally this orbit, and over $|\operatorname{Im}\theta|\le T$ it contributes exactly $\rho\,\pi\sinh 2T$ in the complex case (§2).
 
+> **Update (1 Nov, later).** GPT's [22](../../gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) Theorem 22.4 proves the divergence of Theorem 20.2 for **every** pencil in the tangency class with $m>1$, without a gauge group. That covers the octonionic case too. Its mechanism: the curvature identity $R_aS^{-1}R_a^{\mathsf T}=\frac12(a\cdot a)H$ makes the coarea density $\gamma/|a_1|^2$, which cancels the time entry. Theorem 20.2 below is its gauge-group special case; Proposition 20.1 and §3 are not covered there. Verified in [`../GPT_ROUND2_REVIEW.md`](../GPT_ROUND2_REVIEW.md).
+
 **What this changes.** The fibre-integrated route to `T.KAK.7` is closed for the whole Hermitian class, not just for Weyl. The cause is structural: the bilinear flux map is invariant under the complexification of a compact gauge group, and the plane wave sees none of the imaginary gauge directions. Any Hermitian engine must quotient or fix that gauge, and then prove positivity and conservation afresh (§3).
 
 **Checks.** [`scripts/verify_gauge_orbit.py`](scripts/verify_gauge_orbit.py) writes [`results/gauge_orbit.json`](results/gauge_orbit.json) and takes about 10 s. Its methods are independent of GPT's scripts: finite-difference real Jacobians, quadrature, and random pencils.

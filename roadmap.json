@@ -3733,7 +3733,7 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.94,
-   "notes": "Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3)."
+   "notes": "Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3). Generalized by KAK.FIBRE.MULTIPLE (GPT 22), which needs no gauge group and covers octonions; this node is its gauge-group special case with a Haar-measure proof."
   },
   {
    "id": "ETH.SPLINE.AVERAGE",
@@ -3794,7 +3794,7 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.97,
-   "notes": "Explains the numerology n = 2m'-1 and n = 4m''-3 of 17 and puts 17 (tangency: the quotient has dimension n) and 20 (divergence: the quotient map has noncompact fibres) into one factorization. T.KAK.7 becomes: a positive conserved current on the cone itself."
+   "notes": "Explains the numerology n = 2m'-1 and n = 4m''-3 of 17 and puts 17 (tangency: the quotient has dimension n) and 20 (divergence: the quotient map has noncompact fibres) into one factorization. T.KAK.7 becomes: a positive conserved current on the cone itself. The octonionic case (no gauge group; commutant dimension 1) is covered by KAK.FIBRE.MULTIPLE; under global hypotheses KAK.GLOBAL.SPIN restricts critical pencils to the four Hopf/spin-factor cases."
   },
   {
    "id": "ETH.ENERGY.THINNING",
@@ -3817,12 +3817,20 @@
    ],
    "depends_on": [],
    "checks": [
-    "reviews/gpt/eth/scripts/verify_biased_energy.py"
+    "reviews/gpt/eth/scripts/verify_biased_energy.py",
+    "reviews/claude/eth/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Independent prose derivation and 24 exact original vertex QPs; no Lean build. T.ETH.8 solved as an exact finite optimization problem; the subset formula has exponential size."
+   "notes": "Independent prose derivation and 24 exact original vertex QPs; no Lean build. T.ETH.8 solved as an exact finite optimization problem; the subset formula has exponential size.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.ENERGY.BIAS",
@@ -3848,12 +3856,20 @@
     "ETH.DEFECT.ENERGY"
    ],
    "checks": [
-    "reviews/gpt/eth/scripts/verify_biased_energy.py"
+    "reviews/gpt/eth/scripts/verify_biased_energy.py",
+    "reviews/claude/eth/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "An amplitude-energy result, not an exact-support, p-adic, or SAT lower bound. No improved counting algorithm is asserted."
+   "notes": "An amplitude-energy result, not an exact-support, p-adic, or SAT lower bound. No improved counting algorithm is asserted.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "KAK.CURV.DESIGN",
@@ -3878,12 +3894,20 @@
     "KAK.RIGID"
    ],
    "checks": [
-    "reviews/gpt/kakeya/scripts/verify_curvature_fibre.py"
+    "reviews/gpt/kakeya/scripts/verify_curvature_fibre.py",
+    "reviews/claude/kakeya/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "A necessary local structure, not a classification or a construction of all pencils. The finite checks include the octonionic Hopf pencil and a non-Clifford Hermitian 3x3 pencil."
+   "notes": "A necessary local structure, not a classification or a construction of all pencils. The finite checks include the octonionic Hopf pencil and a non-Clifford Hermitian 3x3 pencil.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "KAK.FIBRE.MULTIPLE",
@@ -3909,12 +3933,20 @@
     "KAK.C.LIFT"
    ],
    "checks": [
-    "reviews/gpt/kakeya/scripts/verify_curvature_fibre.py"
+    "reviews/gpt/kakeya/scripts/verify_curvature_fibre.py",
+    "reviews/claude/kakeya/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "No gauge group or Cartan formula is assumed. Closes the octonionic full-fibre convergence question and extends the central obstruction to every rigid multiple sheet. It does not prove ambient non-integrability for every pencil, or exclude new quotient currents or compensating fluxes."
+   "notes": "No gauge group or Cartan formula is assumed. Closes the octonionic full-fibre convergence question and extends the central obstruction to every rigid multiple sheet. It does not prove ambient non-integrability for every pencil, or exclude new quotient currents or compensating fluxes.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "KAK.GLOBAL.SPHERE",
@@ -3944,7 +3976,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Global direction hypotheses are essential. Topology is a cited proof ingredient, not verified by finite matrix checks. New to this repository; worldwide priority unclaimed."
+   "notes": "Global direction hypotheses are essential. Topology is a cited proof ingredient, not verified by finite matrix checks. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "KAK.GLOBAL.SPIN",
@@ -3970,12 +4009,20 @@
     "KAK.CURV.DESIGN"
    ],
    "checks": [
-    "reviews/gpt/kakeya/scripts/verify_global_rigidity.py"
+    "reviews/gpt/kakeya/scripts/verify_global_rigidity.py",
+    "reviews/claude/kakeya/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "No classification up to orthogonal conjugacy is asserted. This classifies global dispersion under the stated strong assumptions, not all local App. E sheets and not all quotient currents. Primary sources: Hatcher Ch.4 and Baez The Octonions sections 2.3 and 3.3."
+   "notes": "No classification up to orthogonal conjugacy is asserted. This classifies global dispersion under the stated strong assumptions, not all local App. E sheets and not all quotient currents. Primary sources: Hatcher Ch.4 and Baez The Octonions sections 2.3 and 3.3.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "project": "ETH",
@@ -3986,7 +4033,8 @@
     "CHECKED"
    ],
    "checks": [
-    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py",
+    "reviews/claude/eth/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
@@ -4003,7 +4051,14 @@
     }
    ],
    "depends_on": [],
-   "notes": "Exact reformulation, not efficient circuit enumeration or an improved asymptotic directional bound. All deletion sets of Q=2,3 cubes are checked; square faces alone miss retained longer contradictions. T.ETH.7 remains open."
+   "notes": "Exact reformulation, not efficient circuit enumeration or an improved asymptotic directional bound. All deletion sets of Q=2,3 cubes are checked; square faces alone miss retained longer contradictions. T.ETH.7 remains open.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "project": "ETH",
@@ -4014,7 +4069,8 @@
     "CHECKED"
    ],
    "checks": [
-    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py",
+    "reviews/claude/eth/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
@@ -4033,7 +4089,14 @@
    "depends_on": [
     "ETH.CIRCUIT.SUPPORT"
    ],
-   "notes": "The sign-compatible elementary-vector ingredient is classical and proved here. The proof also covers the stated differentiable convex row losses. Generic quadratic tests and exact fourth-power fixtures are separate from the general proof. Nonlinear model images can violate the same circuit-size bound. No Lean formalization or worldwide novelty claim."
+   "notes": "The sign-compatible elementary-vector ingredient is classical and proved here. The proof also covers the stated differentiable convex row losses. Generic quadratic tests and exact fourth-power fixtures are separate from the general proof. Nonlinear model images can violate the same circuit-size bound. No Lean formalization or worldwide novelty claim.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   },
   {
    "project": "ETH",
@@ -4044,7 +4107,8 @@
     "CHECKED"
    ],
    "checks": [
-    "reviews/gpt/eth/scripts/verify_circuit_erasure.py"
+    "reviews/gpt/eth/scripts/verify_circuit_erasure.py",
+    "reviews/claude/eth/scripts/verify_gpt_round2.py"
    ],
    "paper_ref": null,
    "formal": null,
@@ -4063,7 +4127,14 @@
    "depends_on": [
     "ETH.CIRCUIT.ERASURE"
    ],
-   "notes": "Generalizes the determinant mechanism of ETH 21 beyond polynomial features; it is a geometric refinement distinct from the circuit-size bound. Classical matrix identities and volume-sampling interpretation are attributed. Matching low-order moments does not determine the exact optimized expectation."
+   "notes": "Generalizes the determinant mechanism of ETH 21 beyond polynomial features; it is a geometric refinement distinct from the circuit-size bound. Classical matrix identities and volume-sampling interpretation are attributed. Matching low-order moments does not determine the exact optimized expectation.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND2_REVIEW.md"
+    }
+   ]
   }
  ],
  "targets": [

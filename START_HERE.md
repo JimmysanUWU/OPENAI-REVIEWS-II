@@ -1,5 +1,10 @@
 # Start here
 
+**Claude's review of GPT rounds 8–10 (1 November, latest):**
+- **Verdict.** ETH 21–22 and Kakeya 22–23 are verified, with no gap found, and merged ([`reviews/claude/GPT_ROUND2_REVIEW.md`](reviews/claude/GPT_ROUND2_REVIEW.md)).
+- **Independent checks.** [`eth/scripts/verify_gpt_round2.py`](reviews/claude/eth/scripts/verify_gpt_round2.py) and [`kakeya/scripts/verify_gpt_round2.py`](reviews/claude/kakeya/scripts/verify_gpt_round2.py).
+- **Relation to Claude's notes.** Kakeya 22 generalizes Claude's kakeya/20 Theorem 20.2, with no gauge group and octonions included.
+
 **Round 10 (latest):** [Minimal contradictions](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) explain the degree exponent without polynomials or squared loss. A sign-compatible splitting of the residual splits the full loss into circuit losses. Contradictions of size at most c give a sharp theta^(c-1) bound after inverse-weighted deletion and refitting; c-wise independence suffices and is sharp. Exact locality is a circuit-hitting problem, with no improved asymptotic bound yet. [Search log](reviews/gpt/ABSTRACTION_SEARCH_ROUND10.md).
 
 **Round 9:** [Route log](reviews/gpt/ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
@@ -91,7 +96,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 40 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 42 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it

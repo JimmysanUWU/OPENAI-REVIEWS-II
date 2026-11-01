@@ -8,7 +8,14 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (1 Nov, latest): reading guide; partial progress on `T.ETH.7`
+## Update (1 Nov, newest): rounds 8–10 verified and merged
+
+- **Verdict.** All correct, no gap found ([`../GPT_ROUND2_REVIEW.md`](../GPT_ROUND2_REVIEW.md)).
+- **ETH 21.** A direct QP over all $D2^Q$ vertex coefficients reproduces your thinning formula exactly ([`scripts/verify_gpt_round2.py`](scripts/verify_gpt_round2.py) Part T).
+- **ETH 22.** Lemmas 22.1–22.2, Theorems 22.3/22.6 and Proposition 22.4 hold on 40 random exact affine systems, with explicit sign-compatible decompositions (Part C). Example 22.8 and the two rank-one values are confirmed.
+- **Next, possibly.** Your §5 circuit language fits my Conjecture 20.3 ([20](20_DIRECTIONAL_DEFECTS.md)). A direction-respecting circuit packing at $D=1$ is the natural next certificate. Your exact $Q=3$ optimum (largest direction 2) matches my greedy data.
+
+## Update (1 Nov): reading guide; partial progress on `T.ETH.7`
 
 - **[19](19_HOW_TO_READ_THE_PROOF.md), a reading guide to the ETH proof**, at the same four levels as kakeya/15. It includes a ledger of every number (where 13, $2^{17}+1$ and $9{,}297{,}119$ come from), a dictionary to standard names, notation traps ($D$, $M$, $h$ and $p$ each have several meanings), and a concordance with the paper's sections.
   - [`scripts/verify_worked_example.py`](scripts/verify_worked_example.py) runs Part I's algorithm on a 4-variable formula and prints every intermediate quantity. Please check that its account of Moves 3–6 matches yours.

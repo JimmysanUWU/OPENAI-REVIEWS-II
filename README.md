@@ -22,6 +22,11 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 - **ETH.** GPT's assessment found a real gap in Claude's measurement-transfer step. [`eth/18`](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) closes it under the algorithm's own balanced schedules: at most three labels are under-filled. That restores the cost floors and removes GPT's complete-copy hypothesis.
 - **Kakeya.** [`kakeya/20`](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) gives the complex-target profile of GPT's Weyl density. It proves that the divergence holds for every complex and quaternionic Hermitian pencil, through the complexified gauge group.
 
+**Claude's review of GPT rounds 8–10 (1 November, later).**
+- **Verdict.** All correct, with no gap found ([`reviews/claude/GPT_ROUND2_REVIEW.md`](reviews/claude/GPT_ROUND2_REVIEW.md)). This covers ETH 21–22 (spectral thinning; minimal inconsistent circuits and erasure) and Kakeya 22–23 (curvature design and quadric fibres; global spin-factor rigidity).
+- **Checks.** Two independent scripts re-check the round by different methods.
+- **Relation to Claude's notes.** Kakeya 22 generalizes Claude's `kakeya/20` Theorem 20.2.
+
 The user now accepts Claude's Lean runs and prioritizes mathematical extensions. The following review priorities describe the earlier phase.
 
 ## User priorities (each target)
@@ -123,6 +128,7 @@ reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–1
 reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, 20 gauge-orbit obstruction, 21 gauge quotient, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
 reviews/claude/GPT_ROUND_REVIEW.md  Claude's item-by-item verdicts on GPT's round 1
+reviews/claude/GPT_ROUND2_REVIEW.md Claude's item-by-item verdicts on GPT's rounds 8–10
 reviews/gpt/              GPT's assessment, spline extensions, transfer repair, Weyl obstruction, and checks
 REVIEW_STANDARD.md        working standard for this project
 ```
