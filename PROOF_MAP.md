@@ -44,8 +44,8 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK`, `ETH.TRANSFER.AGG` |
 | [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES. | 4 | `ETH.I.SWAP`, `ETH.K.E4`, `ETH.TRANSFER.AGG` |
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
-| [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 9 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
-| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. | 4 | `KAK.C.LIFT`, `KAK.RIGID` |
+| [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 10 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
+| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count. | 5 | `KAK.C.LIFT`, `KAK.RIGID` |
 | [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. | 4 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
@@ -85,6 +85,7 @@ Notation used throughout the Kakeya paths:
 | Hopf pencil | C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = \|xi\|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Proposition 17.6 |
 | Complex gauge fibre | The noncompact C\* orbit (u,v)-&gt;(lambda u,lambda^-1 v) in the realified Weyl flux map; coarea gives multiplicative Haar measure. | [reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) Lemma 2.1 |
 | Complexified gauge group | C^\* or SL(2,C): the complexification of the unitary symmetry of a Hermitian pencil; it preserves the bilinear flux map and volume, and its imaginary directions are undamped. | [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) Theorem 20.2 |
+| Rank-one cone | The gauge quotient V_C//K_C of a Hermitian pencil's states: rank-one symmetric (R), rank-one square (C) or rank-two skew (H) matrices. The flux map is linear on it, and tangency means it has dimension n. | [kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md) Theorem 21.1 |
 <!-- END GENERATED: glossary-kak -->
 
 ### Shortest complete proof: sharp L^4 local smoothing in R^{2+1}
@@ -682,6 +683,7 @@ Notation used throughout the ETH paths:
 | Parity completion | Multiplication by a parity-trace spline supplies the complementary Fourier characters in half the combined degree, forcing many erased constraints. | [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 2.1 |
 | Complete copy | A copy containing every incidence label; it preserves tensor-row support under filling and enables an aggregate measurement lower bound. | [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Lemma 1.2 |
 | Under-filled label | A label occupied fewer than M/(2L) times; under 08 Lemma 6.2 there are at most three, so all other labels fill the first M/(2L) copies. | [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Lemma 18.1 |
+| Subcube averaging | Apply a defect bound to every m-dimensional subcube and double count edges; it interpolates between the face lemma (m = D+1) and parity completion (m = Q). | [eth/20](reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md) Proposition 20.1 |
 <!-- END GENERATED: glossary-eth -->
 
 ### ETH is false (Part I)
@@ -720,7 +722,7 @@ Notation used throughout the ETH paths:
 
 **Alternative proof.** Uses [`ETH.U.MAIN`](#p-eth-unified--eth-u-main). As the formal-neighbourhood instance of the unified deformation theorem: unit nodes, Boolean coordinate modes, measurements. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 4.3)
 
-**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py)
+**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py), [verify_worked_example](reviews/claude/eth/scripts/verify_worked_example.py)
 
 #### <a id="p-eth-i--eth-i-swap"></a>4. `ETH.I.SWAP` — Swap interpolation in closed form
 
@@ -730,7 +732,7 @@ Notation used throughout the ETH paths:
 
 **Proof sketch.** The swaps Pi_s are commuting involutions on the labels ([r]x[r])^Q. Their joint eigenbasis is the tensor products of symmetric and antisymmetric local vectors, and sum_{|S|=k} Pi_{S^c} acts by (-1)^j K_k(j) (Krawtchouk) on vectors with j antisymmetric factors. Take f of degree < R with f(j) = (-1)^j on R consecutive levels around Q p_r, written as f = sum gamma_k K_k with gamma_k in Z[1/2]. Then M_0 = sum gamma_k sum Pi_{S^c} is the identity on ker C. P(T) replaces Pi_{S^c} by prod_{s in S}(1-T/s) Pi_{S^c}, which vanishes at the nodes t in S, so P(t) is local. The defect is the binomial tail Pr[W not in window] <= 2e^{-R^2/(8Q)} (Hoeffding).
 
-**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §5, Thm 5.4, Cor. 5.6; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E1 · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_distilled_swap_formula](reviews/claude/eth/scripts/verify_distilled_swap_formula.py), [verify_replacement_forms](reviews/claude/eth/scripts/verify_replacement_forms.py)
+**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §5, Thm 5.4, Cor. 5.6; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E1 · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_distilled_swap_formula](reviews/claude/eth/scripts/verify_distilled_swap_formula.py), [verify_replacement_forms](reviews/claude/eth/scripts/verify_replacement_forms.py), [verify_worked_example](reviews/claude/eth/scripts/verify_worked_example.py)
 
 #### <a id="p-eth-i--eth-i-transfer"></a>5. `ETH.I.TRANSFER` — Transfer to a formula; balanced schedules
 
@@ -1082,7 +1084,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 
 **Alternative proof.** Uses [`ETH.U.MAIN`](#p-eth-unified--eth-u-main). As the formal-neighbourhood instance of the unified deformation theorem: unit nodes, Boolean coordinate modes, measurements. ([eth/13](reviews/claude/eth/13_UNIFIED_DEFORMATION.md) Cor. 4.3)
 
-**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py)
+**Full proof:** [eth/08](reviews/claude/eth/08_GAPLESS_PROOF.md) §4, Thm 4.6; [eth/09](reviews/claude/eth/09_GAPLESS_SHARP_EXPONENT.md) §1, Thm 1.1 (general factors) · **checks:** [verify_gapless_chain](reviews/claude/eth/scripts/verify_gapless_chain.py), [verify_sharp_route](reviews/claude/eth/scripts/verify_sharp_route.py), [verify_worked_example](reviews/claude/eth/scripts/verify_worked_example.py)
 
 #### <a id="p-eth-unified--eth-iii-child"></a>6. `ETH.III.CHILD` — Modes and the child identity
 
@@ -1215,7 +1217,17 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 3.1, Corollary 3.2, Lemma 3.3, Theorem 3.4 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
 
-#### <a id="p-eth-splines--eth-spline-jets"></a>4. `ETH.SPLINE.JETS` — Unequal jet-order parity obstruction
+#### <a id="p-eth-splines--eth-spline-average"></a>4. `ETH.SPLINE.AVERAGE` — Subcube averaging of spline defects
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.PARITY`](#p-eth-splines--eth-spline-parity)
+
+**Statement.** For every degree-D design on the Q-cube (n_x(0)=1, distinct nonzero nodes) and every D < m <= Q, the number of bad edges is at least (Q/m) 2^{Q-m} N(m,D), N(m,D) = sum_{j>(m+D)/2} C(m,j). Hence max_i mu_{1/2}(B_i) >= max_m (2/m) tau_D(m); with m = max(D+1, D^2) <= Q this is >= 1/(8m). m = Q is GPT 15 Theorem 2.1 and m = D+1 is the face lemma.
+
+**Proof sketch.** Restrict the design to every m-dimensional subcube: each is again a degree-D design, so parity completion gives N(m,D) bad edges in it. An edge in direction i lies in C(Q-1,m-1) of the C(Q,m)2^{Q-m} subcubes; double counting gives the bound. For m = max(D+1,D^2) the threshold is within one standard deviation of the binomial mean, so tau_D(m) >= 1/16.
+
+**Full proof:** [eth/20](reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md) Proposition 20.1, Corollary 20.2 · **checks:** [verify_directional_defects](reviews/claude/eth/scripts/verify_directional_defects.py) · *Note:* Partial progress on T.ETH.7: the directional loss factor Q drops to D^2 when D << sqrt(Q); in the floor regime the gain is a constant. Conjecture 20.3 (no directional loss) is open, with exact data for Q <= 5.
+
+#### <a id="p-eth-splines--eth-spline-jets"></a>5. `ETH.SPLINE.JETS` — Unequal jet-order parity obstruction
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BASIS`](#p-eth-splines--eth-spline-basis)
 
@@ -1225,7 +1237,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 5.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
 
-#### <a id="p-eth-splines--eth-d-ungraded"></a>5. `ETH.D.UNGRADED` — All swap designs obey the defect bound (T.ETH.6)
+#### <a id="p-eth-splines--eth-d-ungraded"></a>6. `ETH.D.UNGRADED` — All swap designs obey the defect bound (T.ETH.6)
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.SPLINE.BIASED`](#p-eth-splines--eth-spline-biased), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
 
@@ -1235,7 +1247,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Corollary 4.1, Theorem 0.1 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
 
-#### <a id="p-eth-splines--eth-transfer-complete"></a>6. `ETH.TRANSFER.COMPLETE` — Complete copies repair aggregate measurement transfer
+#### <a id="p-eth-splines--eth-transfer-complete"></a>7. `ETH.TRANSFER.COMPLETE` — Complete copies repair aggregate measurement transfer
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
 
@@ -1245,7 +1257,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Lemma 1.1, Lemma 1.2, Proposition 2.2, Proposition 2.3 · **checks:** [reviews/gpt/eth/scripts/verify_complete_copies.py](reviews/gpt/eth/scripts/verify_complete_copies.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
 
-#### <a id="p-eth-splines--eth-d-floorall"></a>7. `ETH.D.FLOORALL` — Ungraded enumeration floor with explicit transfer assumptions
+#### <a id="p-eth-splines--eth-d-floorall"></a>8. `ETH.D.FLOORALL` — Ungraded enumeration floor with explicit transfer assumptions
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.UNGRADED`](#p-eth-splines--eth-d-ungraded), [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete)
 
@@ -1255,7 +1267,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Theorem 3.1, Corollary 3.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py), [reviews/gpt/eth/scripts/verify_complete_copies.py](reviews/gpt/eth/scripts/verify_complete_copies.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
 
-#### <a id="p-eth-splines--eth-transfer-agg"></a>8. `ETH.TRANSFER.AGG` — Aggregate measurement transfer under balanced schedules
+#### <a id="p-eth-splines--eth-transfer-agg"></a>9. `ETH.TRANSFER.AGG` — Aggregate measurement transfer under balanced schedules
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete)
 
@@ -1265,7 +1277,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 
 **Full proof:** [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Lemma 18.1, Theorem 18.2 · **checks:** [verify_aggregate_transfer](reviews/claude/eth/scripts/verify_aggregate_transfer.py) · *Note:* Weakens GPT 16's complete-copy hypothesis M >= 8(b+w)L^2 to the algorithm's own M >= 2(b+w)L^2. The count 3 is attained (Part T).
 
-#### <a id="p-eth-splines--eth-d-floorbal"></a>9. `ETH.D.FLOORBAL` — Floor for every group-algebra design under balanced schedules
+#### <a id="p-eth-splines--eth-d-floorbal"></a>10. `ETH.D.FLOORBAL` — Floor for every group-algebra design under balanced schedules
 
 *NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.UNGRADED`](#p-eth-splines--eth-d-ungraded), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg), [`ETH.D.FLOORALL`](#p-eth-splines--eth-d-floorall)
 
@@ -1277,7 +1289,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 <!-- END GENERATED: path-p-eth-splines -->
 
 <!-- BEGIN GENERATED: path-p-kak-fibre -->
-*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group.*
+*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count.*
 
 Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--kak-rigid).
 
@@ -1320,6 +1332,16 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--
 **Proof sketch.** The gauge generators are real antisymmetric and commute with the pencil, so their complex exponentials are complex orthogonal with determinant 1: Q and volume are preserved, q is not. The orbit stays in the extremal eigenspace, where phi q^0 - xi0.q' = (1/2) sum w^T S w = 0. In the tangency class the fibre has the orbit's dimension and invariance makes the fibre measure Haar. Complex case: |cos theta|^2 integrates to pi sinh 2T. Quaternionic case: the Cartan decomposition and E_u (Re u)^2 = 1/4 give a lower bound by the integral of cosh^2|Y|.
 
 **Full proof:** [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) Theorem 20.2 · **checks:** [verify_gauge_orbit](reviews/claude/kakeya/scripts/verify_gauge_orbit.py) · *Note:* Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3).
+
+#### <a id="p-kak-fibre--kak-quotient"></a>5. `KAK.QUOTIENT` — The flux map is a linear projection of a rank-one cone
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.RIGID`](#p-kak-scope--kak-rigid), [`KAK.GAUGE.DIV`](#p-kak-fibre--kak-gauge-div)
+
+**Statement.** For a pencil of F-Hermitian matrices, F in {R, C, H} with unit group K = {+-1}, U(1), Sp(1) and m = dim_R F, the flux map factors as Q = L o pi, where pi is the quotient by the complexified gauge group K_C and L is linear. The quotient is the rank-one symmetric cone (Veronese, dim N'), the rank-one square cone (Segre, dim 2m'-1 = N'-1), or the rank-two skew cone (Pluecker cone over Gr(2,2m''), dim 4m''-3 = N'-3): in all cases dim = N'-(m-1). So the tangency count N' = n+m-1 says the quotient has dimension n, and then L is generically finite from the cone onto the image hypersurface.
+
+**Proof sketch.** C: each C^mu commutes with J, so it pairs the +k and -k eigenspaces and kills each, giving Q = u^T L v, linear in u v^T; C^\* acts by (lambda u, lambda^-1 v) with invariants u_a v_b. H: (H tensor C)^{m''} is 2m'' copies of the standard SL(2,C) module, invariant quadratic forms are the quaternionic Hermitian forms, and by the first fundamental theorem they are spanned by the brackets det(z_a, z_b). R: Q is linear in z z^T. Generic fibres of pi are free K_C-orbits, so dim = N' - dim K_C.
+
+**Full proof:** [kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md) Theorem 21.1, Corollary 21.2 · **checks:** [verify_gauge_quotient](reviews/claude/kakeya/scripts/verify_gauge_quotient.py) · *Note:* Explains the numerology n = 2m'-1 and n = 4m''-3 of 17 and puts 17 (tangency: the quotient has dimension n) and 20 (divergence: the quotient map has noncompact fibres) into one factorization. T.KAK.7 becomes: a positive conserved current on the cone itself.
 <!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: path-p-eth-capacity -->
@@ -1470,4 +1492,6 @@ Each node links to its first appearance on a path.
 | [`ETH.D.FLOORBAL`](#p-eth-splines--eth-d-floorbal) | Floor for every group-algebra design under balanced schedules | NEW, PROVED, CHECKED | P.ETH.SPLINES |
 | [`KAK.WEYL.PROFILE`](#p-kak-fibre--kak-weyl-profile) | Complex profile of the Weyl fibre density | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 | [`KAK.GAUGE.DIV`](#p-kak-fibre--kak-gauge-div) | Gauge-orbit divergence for every Hermitian single lift | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`ETH.SPLINE.AVERAGE`](#p-eth-splines--eth-spline-average) | Subcube averaging of spline defects | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`KAK.QUOTIENT`](#p-kak-fibre--kak-quotient) | The flux map is a linear projection of a rank-one cone | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 <!-- END GENERATED: node-index -->

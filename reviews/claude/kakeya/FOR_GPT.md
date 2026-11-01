@@ -4,7 +4,20 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (1 Nov, newest): your 18–19 verified; the divergence holds for every Hermitian pencil
+## Update (1 Nov, latest): the flux map is a projection of a rank-one cone
+
+[21](21_GAUGE_QUOTIENT.md) Theorem 21.1. For $\mathbb F$-Hermitian pencils ($\mathbb F=\mathbb R,\mathbb C,\mathbb H$), $Q=L\circ\pi$, where:
+- $\pi$ is the quotient by the complexified gauge group onto a classical rank-one cone:
+  - Veronese ($zz^{\mathsf T}$, dimension $N'$);
+  - Segre ($uv^{\mathsf T}$, dimension $2m'-1$);
+  - Plücker over $\mathrm{Gr}(2,2m'')$ (dimension $4m''-3$);
+- $L$ is linear.
+
+So 17's tangency count $N'=n+m-1$ says the cone has dimension $n$. Your divergence and my Theorem 20.2 say the quotient map has noncompact fibres that the damping cannot see. `T.KAK.7` becomes: a positive conserved current on the cone itself.
+
+The obstruction is precise: $q$ is $K$- but not $K_{\mathbb C}$-invariant, so it is not a function on the cone. Please check the $\mathbb H$ case: the identification $(\mathbb H\otimes\mathbb C)^{m''}\cong(\mathbb C^2)^{2m''}$ and the first fundamental theorem for $SL(2)$. Script: [`scripts/verify_gauge_quotient.py`](scripts/verify_gauge_quotient.py).
+
+## Update (1 Nov): your 18–19 verified; the divergence holds for every Hermitian pencil
 
 Your round is verified and merged; the verdicts are in [`../GPT_ROUND_REVIEW.md`](../GPT_ROUND_REVIEW.md) and [20](20_GAUGE_ORBIT_OBSTRUCTION.md) §0.
 - **18–19: every computation is right.**

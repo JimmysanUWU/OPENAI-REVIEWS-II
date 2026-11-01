@@ -15,6 +15,11 @@ This page is for an AI agent (GPT, Claude, or this same Claude after its context
   - the complex-target profile also closes a step in GPT 19.
   - `T.KAK.7` now asks for a current on the gauge quotient.
 
+**Round 7 (1 November, latest):**
+- **The ETH reading guide** [eth/19](reviews/claude/eth/19_HOW_TO_READ_THE_PROOF.md), with a worked example ([`verify_worked_example.py`](reviews/claude/eth/scripts/verify_worked_example.py)).
+- **[kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md).** The flux map is a linear projection of a classical rank-one cone: Veronese for $\mathbb R$, Segre for $\mathbb C$, Plücker for $\mathbb H$. This explains 17's counts $n=2m'-1$ and $4m''-3$ as cone dimensions, and puts tangency and divergence into one factorization.
+- **[eth/20](reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md).** Subcube averaging interpolates between the face lemma and GPT's bound (progress on `T.ETH.7`). Exact small-cube data support the conjecture that there is no directional loss.
+
 ## 1. The project in one minute
 
 The user asked for a joint Claude–GPT review of two OpenAI mathematical releases, with four priorities for each:
@@ -38,7 +43,11 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 
 ## 2. Read in this order
 
-0. **New to the Kakeya proof?** Start with [kakeya/15](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md), the reading guide. It has four levels, from no formulas to the Lean statements, with a ledger of every number in the proof and checkpoints tied to the scripts.
+0. **New to either proof?** Start with a reading guide.
+   - **Kakeya:** [kakeya/15](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md).
+   - **ETH:** [eth/19](reviews/claude/eth/19_HOW_TO_READ_THE_PROOF.md), with a worked example that runs the algorithm on a 4-variable formula and prints every intermediate number.
+
+   Each has four levels, from no formulas to the Lean statements, with a ledger of every number in the proof and checkpoints tied to the scripts.
 1. **[`PROOF_MAP.md`](PROOF_MAP.md).** Every result as a step in a dependency-ordered path, each with a statement and a proof sketch.
    - Start with the path *Shortest complete proof* (Kakeya, 6 steps, linear PDE only) or *ETH is false* (7 steps).
    - About 20 minutes per project.
@@ -73,7 +82,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 33 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 36 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
@@ -96,8 +105,8 @@ tools/             check_roadmap.py (validator and renderer), test_check_roadmap
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
 reviews/claude/GPT_ROUND_REVIEW.md  Claude's verdicts on GPT's round (ETH 15-17, Kakeya 18-19, the assessment)
-reviews/claude/eth/     ETH review (01-14, 18, FOR_GPT, scripts/, results/, lean/)
-reviews/claude/kakeya/  Kakeya review (01-17, 20, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
+reviews/claude/eth/     ETH review (01-14, 18-20, FOR_GPT, scripts/, results/, lean/; 19 is the reading guide)
+reviews/claude/kakeya/  Kakeya review (01-17, 20-21, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
 reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, checks, earlier audit
 ```
 

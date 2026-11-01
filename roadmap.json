@@ -329,6 +329,7 @@
     "ETH.SPLINE.BASIS",
     "ETH.SPLINE.PARITY",
     "ETH.SPLINE.BIASED",
+    "ETH.SPLINE.AVERAGE",
     "ETH.SPLINE.JETS",
     "ETH.D.UNGRADED",
     "ETH.TRANSFER.COMPLETE",
@@ -341,7 +342,7 @@
    "id": "P.KAK.FIBRE",
    "project": "KAK",
    "title": "A convergence obstruction for Hermitian fibre integration",
-   "purpose": "Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group.",
+   "purpose": "Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. It ends with the structural reason: the flux map is a linear projection of a rank-one cone (the gauge quotient), whose dimension is the tangency count.",
    "assumes": [
     "KAK.C.LIFT",
     "KAK.RIGID"
@@ -350,7 +351,8 @@
     "KAK.HERMITIAN.DIVERGENCE",
     "KAK.HERMITIAN.SINGULARITY",
     "KAK.WEYL.PROFILE",
-    "KAK.GAUGE.DIV"
+    "KAK.GAUGE.DIV",
+    "KAK.QUOTIENT"
    ]
   },
   {
@@ -735,6 +737,20 @@
    "meaning": "C^* or SL(2,C): the complexification of the unitary symmetry of a Hermitian pencil; it preserves the bilinear flux map and volume, and its imaginary directions are undamped.",
    "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md",
    "label": "Theorem 20.2"
+  },
+  {
+   "term": "Rank-one cone",
+   "project": "KAK",
+   "meaning": "The gauge quotient V_C//K_C of a Hermitian pencil's states: rank-one symmetric (R), rank-one square (C) or rank-two skew (H) matrices. The flux map is linear on it, and tangency means it has dimension n.",
+   "file": "reviews/claude/kakeya/21_GAUGE_QUOTIENT.md",
+   "label": "Theorem 21.1"
+  },
+  {
+   "term": "Subcube averaging",
+   "project": "ETH",
+   "meaning": "Apply a defect bound to every m-dimensional subcube and double count edges; it interpolates between the face lemma (m = D+1) and parity completion (m = Q).",
+   "file": "reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md",
+   "label": "Proposition 20.1"
   }
  ],
  "nodes": [
@@ -815,7 +831,8 @@
    "depends_on": [],
    "checks": [
     "reviews/claude/eth/scripts/verify_gapless_chain.py",
-    "reviews/claude/eth/scripts/verify_sharp_route.py"
+    "reviews/claude/eth/scripts/verify_sharp_route.py",
+    "reviews/claude/eth/scripts/verify_worked_example.py"
    ],
    "paper_ref": "§3, Prop. 3.4",
    "formal": null,
@@ -861,7 +878,8 @@
    "checks": [
     "reviews/claude/eth/scripts/verify_gapless_chain.py",
     "reviews/claude/eth/scripts/verify_distilled_swap_formula.py",
-    "reviews/claude/eth/scripts/verify_replacement_forms.py"
+    "reviews/claude/eth/scripts/verify_replacement_forms.py",
+    "reviews/claude/eth/scripts/verify_worked_example.py"
    ],
    "paper_ref": "§4, Lemmas 4.1-4.3",
    "formal": null,
@@ -3707,6 +3725,67 @@
    "formal": null,
    "confidence": 0.94,
    "notes": "Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3)."
+  },
+  {
+   "id": "ETH.SPLINE.AVERAGE",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "proposition",
+   "title": "Subcube averaging of spline defects",
+   "statement": "For every degree-D design on the Q-cube (n_x(0)=1, distinct nonzero nodes) and every D < m <= Q, the number of bad edges is at least (Q/m) 2^{Q-m} N(m,D), N(m,D) = sum_{j>(m+D)/2} C(m,j). Hence max_i mu_{1/2}(B_i) >= max_m (2/m) tau_D(m); with m = max(D+1, D^2) <= Q this is >= 1/(8m). m = Q is GPT 15 Theorem 2.1 and m = D+1 is the face lemma.",
+   "sketch": "Restrict the design to every m-dimensional subcube: each is again a degree-D design, so parity completion gives N(m,D) bad edges in it. An edge in direction i lies in C(Q-1,m-1) of the C(Q,m)2^{Q-m} subcubes; double counting gives the bound. For m = max(D+1,D^2) the threshold is within one standard deviation of the binomial mean, so tau_D(m) >= 1/16.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md",
+     "label": "Proposition 20.1, Corollary 20.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.PARITY"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_directional_defects.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.99,
+   "notes": "Partial progress on T.ETH.7: the directional loss factor Q drops to D^2 when D << sqrt(Q); in the floor regime the gain is a constant. Conjecture 20.3 (no directional loss) is open, with exact data for Q <= 5."
+  },
+  {
+   "id": "KAK.QUOTIENT",
+   "project": "KAK",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "The flux map is a linear projection of a rank-one cone",
+   "statement": "For a pencil of F-Hermitian matrices, F in {R, C, H} with unit group K = {+-1}, U(1), Sp(1) and m = dim_R F, the flux map factors as Q = L o pi, where pi is the quotient by the complexified gauge group K_C and L is linear. The quotient is the rank-one symmetric cone (Veronese, dim N'), the rank-one square cone (Segre, dim 2m'-1 = N'-1), or the rank-two skew cone (Pluecker cone over Gr(2,2m''), dim 4m''-3 = N'-3): in all cases dim = N'-(m-1). So the tangency count N' = n+m-1 says the quotient has dimension n, and then L is generically finite from the cone onto the image hypersurface.",
+   "sketch": "C: each C^mu commutes with J, so it pairs the +k and -k eigenspaces and kills each, giving Q = u^T L v, linear in u v^T; C^* acts by (lambda u, lambda^-1 v) with invariants u_a v_b. H: (H tensor C)^{m''} is 2m'' copies of the standard SL(2,C) module, invariant quadratic forms are the quaternionic Hermitian forms, and by the first fundamental theorem they are spanned by the brackets det(z_a, z_b). R: Q is linear in z z^T. Generic fibres of pi are free K_C-orbits, so dim = N' - dim K_C.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/21_GAUGE_QUOTIENT.md",
+     "label": "Theorem 21.1, Corollary 21.2"
+    }
+   ],
+   "depends_on": [
+    "KAK.RIGID",
+    "KAK.GAUGE.DIV"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_gauge_quotient.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "Explains the numerology n = 2m'-1 and n = 4m''-3 of 17 and puts 17 (tangency: the quotient has dimension n) and 20 (divergence: the quotient map has noncompact fibres) into one factorization. T.KAK.7 becomes: a positive conserved current on the cone itself."
   }
  ],
  "targets": [
@@ -3896,7 +3975,7 @@
    "id": "T.KAK.7",
    "kind": "research",
    "title": "Engines for Hermitian pencils",
-   "goal": "Construct finite positive conserved engine data for Hermitian pencils meeting N'=n+m-1. The fibre-integrated single lift cannot work: GPT 18-19 show the Weyl full-fibre density diverges centrally and is not locally integrable, and Claude 20 (KAK.GAUGE.DIV) proves the same infinite central density for every complex and quaternionic Hermitian pencil, caused by the complexified gauge group C^* or SL(2,C). Dividing by gauge volume and restricting to the Kempf-Ness slice both fail to conserve. Build a current on the gauge quotient (dimension n, where the flux map is a local biholomorphism), or a flux correction, and prove (A3)-(A4); then decide whether any resulting sheets extend beyond App. E.",
+   "goal": "Construct finite positive conserved engine data for Hermitian pencils meeting N'=n+m-1. The fibre-integrated single lift cannot work: GPT 18-19 show the Weyl full-fibre density diverges centrally and is not locally integrable, and Claude 20 (KAK.GAUGE.DIV) proves the same infinite central density for every complex and quaternionic Hermitian pencil, caused by the complexified gauge group C^* or SL(2,C). Dividing by gauge volume and restricting to the Kempf-Ness slice both fail to conserve. Build a current on the gauge quotient (dimension n, where the flux map is a local biholomorphism), or a flux correction, and prove (A3)-(A4); then decide whether any resulting sheets extend beyond App. E. Claude 21 (KAK.QUOTIENT): the flux map is a linear projection L of the rank-one cone X_F = V_C//K_C (Segre for C, Pluecker over Gr(2,2m'') for H), and tangency means dim X_F = n; so the task is a positive conserved current on X_F itself. The obstruction: the damping q is K- but not K_C-invariant, so it is not a function on X_F.",
    "builds_on": [
     "KAK.RIGID",
     "KAK.HOPF",
@@ -3905,7 +3984,8 @@
     "KAK.HERMITIAN.DIVERGENCE",
     "KAK.HERMITIAN.SINGULARITY",
     "KAK.WEYL.PROFILE",
-    "KAK.GAUGE.DIV"
+    "KAK.GAUGE.DIV",
+    "KAK.QUOTIENT"
    ],
    "status": "OPEN",
    "owner": null,
@@ -4070,11 +4150,12 @@
    "id": "T.ETH.7",
    "kind": "research",
    "title": "Sharp directional spline bounds",
-   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved. Known: at degree Q-1 an ungraded design has 1 bad edge where every graded design needs Q, yet the largest single direction is 2 tau_D(Q) in both (Claude 18 §4); so the question is how defects distribute over directions.",
+   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved. Known: at degree Q-1 an ungraded design has 1 bad edge where every graded design needs Q, yet the largest single direction is 2 tau_D(Q) in both (Claude 18 §4); so the question is how defects distribute over directions. Progress (Claude 20): subcube averaging gives max_i mu(B_i) >= max_m (2/m) tau_D(m), which removes the factor Q down to D^2 when D << sqrt(Q); exact greedy data for Q <= 5 support Conjecture 20.3, max_i mu(B_i) >= tau_D(Q) (no directional loss).",
    "builds_on": [
     "ETH.SPLINE.PARITY",
     "ETH.SPLINE.BIASED",
-    "ETH.D.UNGRADED"
+    "ETH.D.UNGRADED",
+    "ETH.SPLINE.AVERAGE"
    ],
    "status": "OPEN",
    "owner": null,

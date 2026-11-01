@@ -1,0 +1,71 @@
+{
+ "R": [
+  {
+   "n": 2,
+   "N": 2,
+   "quotient_dim": 2,
+   "flux_rank": 2
+  },
+  {
+   "n": 3,
+   "N": 3,
+   "quotient_dim": 3,
+   "flux_rank": 3
+  },
+  {
+   "n": 4,
+   "N": 4,
+   "quotient_dim": 4,
+   "flux_rank": 4
+  }
+ ],
+ "C": [
+  {
+   "mprime": 2,
+   "n": 3,
+   "N": 4,
+   "quotient_dim": 3,
+   "flux_rank": 3,
+   "flux_rank_one_fewer": 3
+  },
+  {
+   "mprime": 3,
+   "n": 5,
+   "N": 6,
+   "quotient_dim": 5,
+   "flux_rank": 5,
+   "flux_rank_one_fewer": 5
+  },
+  {
+   "mprime": 4,
+   "n": 7,
+   "N": 8,
+   "quotient_dim": 7,
+   "flux_rank": 7,
+   "flux_rank_one_fewer": 7
+  }
+ ],
+ "H": [
+  {
+   "mpp": 2,
+   "n": 5,
+   "N": 8,
+   "invariant_forms": 6,
+   "quotient_dim": 5,
+   "flux_rank": 5,
+   "flux_rank_one_fewer": 5
+  },
+  {
+   "mpp": 3,
+   "n": 9,
+   "N": 12,
+   "invariant_forms": 15,
+   "quotient_dim": 9,
+   "flux_rank": 9,
+   "flux_rank_one_fewer": 9
+  }
+ ],
+ "N": {
+  "real_N_eq_n_plus_1_flux_rank": 4
+ }
+}
