@@ -1,5 +1,12 @@
 # Start here
 
+**Round 10 (latest):** [Minimal contradictions](reviews/gpt/eth/22_CIRCUITS_AND_ERASURE.md) explain the degree exponent without polynomials or squared loss. A sign-compatible splitting of the residual splits the full loss into circuit losses. Contradictions of size at most c give a sharp theta^(c-1) bound after inverse-weighted deletion and refitting; c-wise independence suffices and is sharp. Exact locality is a circuit-hitting problem, with no improved asymptotic bound yet. [Search log](reviews/gpt/ABSTRACTION_SEARCH_ROUND10.md).
+
+**Round 9:** [Route log](reviews/gpt/ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
+
+
+**Round 8 (phone continuation):** [Product-bias energy](reviews/gpt/eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
+
 This page is for an AI agent (GPT, Claude, or this same Claude after its context was cleared) or a person picking up the project cold. Read it once, then follow §2. Everything it says is checkable in the repository.
 
 **Current continuation (1 November):** Read [GPT / Astra research notes](reviews/gpt/README.md) first for the new work. The user accepts Claude's Lean runs and has shifted the task to mathematical extensions. `T.ETH.6` is now proved via cube splines; the enumeration floor has an explicit complete-copy hypothesis. ETH 17 adds joint trace completion, residual obstructions, and sharp uniform defect energy. The naive Weyl full-fibre push-forward is not locally integrable on the real target slice (Kakeya 19), sharpening `T.KAK.7`. New results are prose proofs with finite checks, not new Lean builds.
@@ -19,6 +26,8 @@ This page is for an AI agent (GPT, Claude, or this same Claude after its context
 - **The ETH reading guide** [eth/19](reviews/claude/eth/19_HOW_TO_READ_THE_PROOF.md), with a worked example ([`verify_worked_example.py`](reviews/claude/eth/scripts/verify_worked_example.py)).
 - **[kakeya/21](reviews/claude/kakeya/21_GAUGE_QUOTIENT.md).** The flux map is a linear projection of a classical rank-one cone: Veronese for $\mathbb R$, Segre for $\mathbb C$, Plücker for $\mathbb H$. This explains 17's counts $n=2m'-1$ and $4m''-3$ as cone dimensions, and puts tangency and divergence into one factorization.
 - **[eth/20](reviews/claude/eth/20_DIRECTIONAL_DEFECTS.md).** Subcube averaging interpolates between the face lemma and GPT's bound (progress on `T.ETH.7`). Exact small-cube data support the conjecture that there is no directional loss.
+
+**Round 8, analytic continuation:** [Curvature and quadric fibres](reviews/gpt/kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) proves that EVERY rigid curved multiple sheet has infinite central time density for the unweighted full-fibre single lift. The second eigenvalue variation gives an orthogonal design and computes the conditional measure directly. This includes the octonionic case left open in Claude 21. T.KAK.7 remains open for different currents and quotient reductions.
 
 ## 1. The project in one minute
 
@@ -82,7 +91,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 36 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 40 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
@@ -161,3 +170,4 @@ reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, 
 - **Current handoffs:**
   - Claude → GPT: "Update (1 Nov)" at the top of [eth/FOR_GPT.md](reviews/claude/eth/FOR_GPT.md) and [kakeya/FOR_GPT.md](reviews/claude/kakeya/FOR_GPT.md).
   - GPT → Claude: [reviews/gpt/FOR_CLAUDE.md](reviews/gpt/FOR_CLAUDE.md), answered in [GPT_ROUND_REVIEW.md](reviews/claude/GPT_ROUND_REVIEW.md).
+

@@ -2,6 +2,16 @@
 
 GPT / Astra, 1 November 2026. This records the continuation after the first pushed snapshot, as well as the routes that led to it. “Proved” means a complete prose argument with the stated hypotheses. The new work is not Lean-formalized, and worldwide priority is unclaimed. A finite exploration cannot exhaust all mathematical routes; the purpose here is to preserve useful successes, obstructions, and unfinished interfaces rather than present an unlimited search as complete.
 
+## Round 9: abstraction-first route search
+
+See [the route log](ABSTRACTION_SEARCH_ROUND9.md) for the tested shortcuts, exact counterexamples, unresolved contour/loop ideas, and the selected lead. [Kakeya 23](kakeya/23_GLOBAL_WAVE_CONE_RIGIDITY.md) develops the global sphere-bundle obstruction into wave-cone and spin-factor rigidity. Global hypotheses and classical dependencies are explicit.
+
+## Round 8: the phone continuation
+
+- **[ETH 21](eth/21_PRODUCT_BIAS_ENERGY.md), T.ETH.8 DONE.** Diagonalize P_i^*P_i rather than the non-self-adjoint biased swaps. The exact optimum is a Bernoulli spectral thinning of scalar capacities, with a completely specified optimizer. A full-retention event alone gives a weak Q-dependent comparison; positive Cauchy-Binet sums improve the loss to theta^D. For the actual theta=1-1/r^2, relative gain is at most D/r^2 and vanishes in Part I. Exact original vertex QPs check the reduction independently. This is energy, not support or arithmetic locality.
+- **[Kakeya 22](kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md).** A gauge group is unnecessary for central divergence. The second eigenvalue variation in the critical state dimension is a square orthogonal design. Its determinant computes the complexified eigensphere coarea measure, and the time entry cancels the residue denominator. All m>1 rigid full fibres diverge, including the octonionic case. The same identity forces a local Clifford module. This is a necessary local structure, not a classification or an integrated current on a quotient.
+- **Boundaries preserved.** General infinite central density is weaker than ambient non-integrability. Scalar energy does not count exact defects. Neither result supplies a faster counting algorithm or a new dispersive estimate. No new Lean build is claimed. Claude 18 supersedes the old complete-copy qualification, and Claude 20 repairs the old real-slice-to-ambient inference.
+
 ## 1. Results worth retaining
 
 | Route | Concrete result | Remaining interface |
@@ -90,8 +100,9 @@ The one-logarithm local-smoothing target also remains open. The previously disti
 ## 5. A concrete next programme
 
 1. **Shared traces:** find a counting or interpolation construction that forces two or more trace characters to use the same exceptional edges. Optimize the weighted Hamming-ball union and compare it with separate parity bounds.
-2. **Biased energy:** solve the finite quadratic optimization under the actual swap spectrum. Determine whether its optimum has a tractable tensor or orthogonal-polynomial representation, without assuming the uniform Fourier reduction survives.
+2. **Biased energy:** solved exactly in ETH 21, including the actual-bias relative asymptotic. Efficient evaluation of the subset formula or sharper fixed-bias asymptotics would be further questions.
 3. **Measurement image:** use actual filling maps from complete schedules to study rank and integer image size. A useful theorem must address correlations across rows, not just the support of each row.
 4. **Conserved reduction:** start with the explicit Weyl coordinates and seek a finite positive current on a quotient, tracking the divergence identity through the reduction. The transverse singularity provides an exact test that any candidate must pass.
 
 These are unfinished research questions, intentionally left precise. All completed arguments, checks, and the small search are included in the repository rather than left in chat.
+

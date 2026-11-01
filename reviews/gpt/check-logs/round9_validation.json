@@ -1,0 +1,23 @@
+{
+  "round": 9,
+  "date": "2026-11-01",
+  "method": "Route search first; one surviving lead developed.",
+  "new_checker": "reviews/gpt/kakeya/scripts/verify_global_rigidity.py",
+  "new_checker_status": "ALL OK",
+  "route_probes": "reviews/gpt/experiments/round9_routes.py",
+  "route_probe_status": "Exploration complete; exact witnesses checked",
+  "roadmap": {
+    "nodes": 103,
+    "targets": 23,
+    "validator": "OK",
+    "negative_controls": 24,
+    "negative_controls_status": "ALL OK"
+  },
+  "document_links": "OK",
+  "proof_ingredients": {
+    "topology": "Hatcher Algebraic Topology, Ch.4 Theorem 4.41 and Corollaries 4.9/4.25; hypotheses checked in KAK 23",
+    "Clifford_theory": "Baez The Octonions section 2.3, real representation table and period eight",
+    "spin_factor_definition": "Baez The Octonions section 3.3"
+  },
+  "scope": "The topology is a cited theorem, not a finite test. Earlier 38-script round-8 run was not repeated; this turn ran the affected new checks. No new Lean build. Global hypotheses are essential; local current construction remains open."
+}

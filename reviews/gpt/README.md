@@ -1,8 +1,19 @@
 # GPT research continuation — 1 November 2026
 
+**Round 10 (abstraction search, latest):** [ETH 22](eth/22_CIRCUITS_AND_ERASURE.md) strips the erasure mechanism to minimal inconsistent circuits. Sign-compatible splitting of an optimal residual gives an exact splitting of its loss. If contradictions have at most c equations, inverse-weighted retention and refitting leave at least a theta^(c-1) fraction of the original loss, for every power s>1. The exponent and c-wise independence threshold are sharp. Exact locality becomes a circuit-hitting problem; no sharper asymptotic directional bound is claimed. The [route log](ABSTRACTION_SEARCH_ROUND10.md) preserves the tested failures, nonlinear-model counterexample and remaining algebraic-degree candidate.
+
+Targeted checks pass; see the [round-10 validation report](check-logs/round10_validation.json). The roadmap has 106 nodes and 23 targets, with all 24 validator controls passing. The unchanged full suite was not repeated.
+
+**Round 9:** [Route log](ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
+
+
+**Round 8 (phone continuation):** [Product-bias energy](eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
+
 The task has moved from auditing the original results to extracting and extending their mathematics. At the user's direction, **Claude's reported Lean runs are accepted as a starting point**. No new Lean build is claimed. The earlier [assessment](ASSESSMENT.md) is retained as a dated audit, including its narrower formal-scope observations and its measurement-transfer witness.
 
-## What this round adds
+**Round 8, analytic continuation:** [Curvature and quadric fibres](kakeya/22_CURVATURE_AND_QUADRIC_FIBRES.md) proves that EVERY rigid curved multiple sheet has infinite central time density for the unweighted full-fibre single lift. The second eigenvalue variation gives an orthogonal design and computes the conditional measure directly. This includes the octonionic case left open in Claude 21. T.KAK.7 remains open for different currents and quotient reductions.
+
+## Earlier round (reviewed and merged)
 
 | Result | Status | Read |
 |---|---|---|
@@ -49,6 +60,7 @@ From the repository root, with Python 3.10 or later:
 python reviews/gpt/eth/scripts/verify_spline_bound.py
 python reviews/gpt/eth/scripts/verify_complete_copies.py
 python reviews/gpt/eth/scripts/verify_defect_capacity.py
+python reviews/gpt/eth/scripts/verify_circuit_erasure.py
 python reviews/gpt/kakeya/scripts/verify_weyl_fibre.py
 python reviews/gpt/kakeya/scripts/verify_weyl_singularity.py
 python tools/check_roadmap.py
@@ -63,8 +75,14 @@ The earlier 26-script rerun is recorded in [check-logs](check-logs/). The new sp
 
 1. Independently inspect the short parity-completion proof, especially the quotient-to-trace dimension step. Then formalize this small algebraic result if desired.
 2. Determine whether the factor `Q` in the maximum-direction uniform bound is necessary (`T.ETH.7`). The exponential scale is settled; sharp constants and extremizers are not.
+   ETH 22 supplies an exact circuit-hitting formulation. A direction-sensitive packing certificate would be more useful than brute-force circuit enumeration.
 3. Bound the actual image size of correlated measurement maps. The present cost floor deliberately addresses the Cartesian enumeration expression.
-4. Apply joint trace completion to a construction with shared exceptional edges (`T.ETH.9`), and solve the biased energy problem (`T.ETH.8`).
-5. Construct a finite conserved Hermitian reduction, beginning with the Weyl gauge fibre, or prove a broader obstruction (`T.KAK.7`).
+4. Apply joint trace completion to a construction with shared exceptional edges (`T.ETH.9`); the biased energy problem (`T.ETH.8`) is now solved in ETH 21.
+5. Construct a different finite conserved reduction (`T.KAK.7`); Kakeya 22 now rules out the unweighted full-fibre single lift for every rigid multiple sheet.
 
 The compact continuation instructions are in [FOR_CLAUDE.md](FOR_CLAUDE.md).
+
+
+## Round 8 validation
+
+All 38 verification scripts passed (21 ETH, 17 Kakeya), together with the 101-node roadmap validator and its 24 negative controls. See [validation report](check-logs/round8_validation.json) and [analytic rerun](check-logs/round8_kakeya.txt). The original Lean builds are accepted as directed by the user and were not repeated.

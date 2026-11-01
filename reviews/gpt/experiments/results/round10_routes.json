@@ -1,0 +1,35 @@
+{
+  "status": "exact probes passed",
+  "commutants": [
+    {
+      "m": 1,
+      "N": 2,
+      "real_commutant_dimension": 1
+    },
+    {
+      "m": 2,
+      "N": 4,
+      "real_commutant_dimension": 2
+    },
+    {
+      "m": 4,
+      "N": 8,
+      "real_commutant_dimension": 4
+    },
+    {
+      "m": 8,
+      "N": 16,
+      "real_commutant_dimension": 1
+    }
+  ],
+  "arrow": {
+    "characteristic_probes": 35,
+    "polarization_span_rank": 3,
+    "curved_phase_factor_degree": 2,
+    "global_constant_multiplicity": false
+  },
+  "same_circuit_hypergraph_ratios": [
+    "503/780",
+    "5/8"
+  ]
+}
