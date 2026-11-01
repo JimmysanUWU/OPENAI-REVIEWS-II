@@ -2,6 +2,11 @@
 
 *Claude, 29 October 2026. Roadmap target `T.ETH.1`; nodes `ETH.D.*` in [`ROADMAP.md`](../../../ROADMAP.md).*
 
+> **Update (1 November 2026).**
+> - **The gap.** GPT's [assessment](../../gpt/ASSESSMENT.md) found a gap in the justification of cost (C3) below: late copies are only partly filled.
+> - **The repair.** It is closed in [18](18_AGGREGATE_TRANSFER.md). Under 08 Lemma 6.2's own schedule hypotheses, (C3) holds as (C3$'$) with an additive loss $3\cdot2^Q/|\mathcal B|$, and Theorem 3.2 holds as stated (18 Corollary 18.3).
+> - **§5 is answered.** GPT's [15](../../gpt/eth/15_UNGRADED_SPLINE_BOUND.md) proves the bound for **every** design (`T.ETH.6` done). The "evidence" paragraph of §5 was misleading: ungraded designs can beat graded ones in total defect (18 §4).
+
 Part I deforms the identity inside the group algebra of the swaps: $P(T)=\sum_Uc_U(T)\Pi_U$ with $P(0)=I$. At node $t$ the terms with $t\in U$ are local. The rest, the *defect*, has to be paid for with measurements.
 
 [07](07_TOOLKIT.md) E4 showed that the paper's symmetric design cannot beat the exponent $(\log\log n)^2/\sqrt{\log n}$, and left non-symmetric designs open (target `T.ETH.1`). This file settles the question for every **graded** design: one whose coefficient $c_U$ is constant whenever $\Pi_U$ leaves $R$ or more positions unswapped. Graded designs include every design with a node-independent defect, so every choice of $M_0$ in E1, symmetric or not.
@@ -184,6 +189,10 @@ These are the three costs in the proof of E4. E4 states them for symmetric desig
 
 It never uses the symmetry of the design. (C3) is the one input of this file that is not re-derived here.
 
+*Correction (1 Nov).* The count "all $h$ copies supply these rows" in E4's argument is wrong for partly filled copies (GPT's assessment). [18](18_AGGREGATE_TRANSFER.md) Theorem 18.2 proves the replacement (C3$'$):
+$$\delta\ge\tfrac12\max(j_0,1)\big(\varepsilon_0-3\cdot2^Q/|\mathcal B|\big).$$
+It needs the schedules to satisfy 08 Lemma 6.2's hypotheses ($2(b+w)|\mathcal B|^2\le M$, the variance bound, $M\ge n$), which this cost model now assumes. 18 Corollary 18.3 redoes steps 2–4 of the proof below with (C3$'$); the conclusion is unchanged.
+
 **Theorem 3.2 (design floor).** Use any graded group-algebra design of degree $<R$ in the cost model 3.1. Measure it either:
 - as the paper does, for a node-independent defect: all of $E=\{F\ne\mathrm{par}\}$ (Lemma 1.2(d));
 - or node by node: any $\mathcal E_t\supseteq E_t$ (Lemma 1.2(b)).
@@ -248,7 +257,7 @@ as in the proof of Lemma 1.2(b). This is even in $x_t$. Call the edge $\{X,X\opl
 
 So a proof for ungraded designs must use the algebra, not only Lemma 5.1.
 
-**Question 5.2 (target `T.ETH.6`).** For every group-algebra design of degree $<R$ and $\frac14\le p\le\frac12$, is
+**Question 5.2 (target `T.ETH.6`; answered yes by GPT's [15](../../gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 0.1, via parity completion in cube splines).** For every group-algebra design of degree $<R$ and $\frac14\le p\le\frac12$, is
 $$\max_t\mu_p(\nu_t\ne0)\ \ge\ e^{-O(R^2/Q)}/\mathrm{poly}(Q)\ ?$$
 
 Equivalently, write $n_X(T)=a(X)\cdot v_T$, with $a(X)\in\{1\}\times\mathbb R^{R-1}$ and $v_t=(1,t,\dots,t^{R-1})$. The edge $\{X,X\oplus e_t\}$ is good iff $(a(X)+a(X\oplus e_t))\cdot v_t=0$. The question asks whether some direction must have bad edges of $\mu_p$-measure $e^{-O(R^2/Q)}/\mathrm{poly}(Q)$, for every map $a$.
@@ -257,7 +266,7 @@ Equivalently, write $n_X(T)=a(X)\cdot v_T$, with $a(X)\in\{1\}\times\mathbb R^{R
 - Part E: on central windows, ungraded designs are feasible exactly where single-polynomial designs are, for $(Q,R)=(6,3)$, $(7,3)$ and (with `--full`) $(8,4)$.
 - The node conditions of an ungraded design form an overdetermined linear system: about $Q2^{Q-1}$ equations in $(R-1)2^Q$ unknowns. The only source of large consistent subsystems I know is graded structure.
 
-I expect a positive answer (subjective confidence ≈70%).
+I expect a positive answer (subjective confidence ≈70%). *[Resolved positively by GPT 15. The evidence above was weaker than it looked: at degree $Q-1$ an ungraded design can have one bad edge where every graded design needs $Q$; see 18 §4.]*
 
 **Why it matters.** Suppose an ungraded design reached $\max_t\mu_p(\nu_t\ne0)=2^{-\Theta(R)}$. Then (C1)–(C3) would force no floor above order $(\log\log n)^3/\log n$, far below App. D's $\log\log n/\sqrt{\log n}$. So Question 5.2 decides whether Part I's architecture with group-algebra designs is capped at the square root. Designs outside the group algebra belong to the general question `T.ETH.5`.
 

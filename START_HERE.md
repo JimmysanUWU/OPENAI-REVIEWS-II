@@ -4,6 +4,17 @@ This page is for an AI agent (GPT, Claude, or this same Claude after its context
 
 **Current continuation (1 November):** Read [GPT / Astra research notes](reviews/gpt/README.md) first for the new work. The user accepts Claude's Lean runs and has shifted the task to mathematical extensions. `T.ETH.6` is now proved via cube splines; the enumeration floor has an explicit complete-copy hypothesis. ETH 17 adds joint trace completion, residual obstructions, and sharp uniform defect energy. The naive Weyl full-fibre push-forward is not locally integrable on the real target slice (Kakeya 19), sharpening `T.KAK.7`. New results are prose proofs with finite checks, not new Lean builds.
 
+**Claude's review of that round (1 November, later):**
+- **Verdict.** Every GPT proof checks out, and all scripts pass; see [`reviews/claude/GPT_ROUND_REVIEW.md`](reviews/claude/GPT_ROUND_REVIEW.md), item by item.
+- **The measurement-transfer gap is closed** under the algorithm's own balanced schedules ([eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md)):
+  - at most three labels are under-filled;
+  - the floors of 07 E4 and 14 hold as stated;
+  - GPT's ungraded floor no longer needs complete copies.
+- **The Weyl divergence is universal** ([kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md)):
+  - every complex and quaternionic Hermitian single lift has infinite time density at every polarization centre, because the complexified gauge group preserves the flux map but is invisible to the damping;
+  - the complex-target profile also closes a step in GPT 19.
+  - `T.KAK.7` now asks for a current on the gauge quotient.
+
 ## 1. The project in one minute
 
 The user asked for a joint Claude–GPT review of two OpenAI mathematical releases, with four priorities for each:
@@ -41,6 +52,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`14`](reviews/claude/kakeya/14_GAPLESS_ANGULAR_ENDPOINT.md): the angular endpoint (App. B);
      - [`16`](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md): the null frame, the Husimi current, and a direct engine for Schrödinger;
      - [`17`](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md): which symmetric systems carry the engine (the tangency test);
+     - GPT's [`18`](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md)–[`19`](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) and [`20`](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md): tangency is not enough; the fibre integral diverges for every Hermitian pencil;
      - [`09`](reviews/claude/kakeya/09_GAPLESS_CONSEQUENCES.md) and [`10`](reviews/claude/kakeya/10_GAPLESS_REMAINING.md): the consequences.
    - **ETH:**
      - [`08`](reviews/claude/eth/08_GAPLESS_PROOF.md): Part I;
@@ -49,7 +61,9 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
      - [`11`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md): the corollaries;
      - [`12`](reviews/claude/eth/12_FP_COUNTING.md): the new $\mathbb F_q$ theorem;
      - [`13`](reviews/claude/eth/13_UNIFIED_DEFORMATION.md): one deformation theorem for Parts I–III, and both cost floors;
-     - [`14`](reviews/claude/eth/14_DESIGN_FLOOR.md): the design floor: every graded swap design pays $(\log\log n)^2/\sqrt{\log n}$, because of Smolensky's bound for parity.
+     - [`14`](reviews/claude/eth/14_DESIGN_FLOOR.md): the design floor: every graded swap design pays $(\log\log n)^2/\sqrt{\log n}$, because of Smolensky's bound for parity;
+     - GPT's [`15`](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md)–[`17`](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md): parity completion in cube splines (every design, graded or not), complete-copy transfer, trace capacity;
+     - [`18`](reviews/claude/eth/18_AGGREGATE_TRANSFER.md): measurement transfer under the algorithm's own schedules; the floors without extra hypotheses.
 4. **Background, only if needed:**
    - the verdict, ledger, methods and "miracles" files (`01`–`04`) in each review folder;
    - the toolkits (`07`);
@@ -59,7 +73,7 @@ The user asked for a joint Claude–GPT review of two OpenAI mathematical releas
 ## 3. Verify everything in three minutes
 
 ```
-python3 tools/verify_all.py            # 2 roadmap checks + 29 check scripts, about 3 min with 4 jobs; prints ALL OK
+python3 tools/verify_all.py            # 2 roadmap checks + 33 check scripts (Claude's and GPT's), about 3 min with 4 jobs; prints ALL OK
 python3 tools/verify_all.py --quick    # skips the five slowest scripts
 python3 tools/check_roadmap.py --path P.KAK.PLANAR   # read a path in the terminal
 python3 tools/check_roadmap.py --node KAK.T12        # a node, its sketch, and everything beneath it
@@ -81,8 +95,9 @@ roadmap.json       the source of truth: nodes, sketches, dependencies, paths, gl
 tools/             check_roadmap.py (validator and renderer), test_check_roadmap.py, verify_all.py
 REVIEW_STANDARD.md the working standard
 source/            pinned sources: hashes, Lean statements, where the papers live
-reviews/claude/eth/     ETH review (01-14, FOR_GPT, scripts/, results/, lean/)
-reviews/claude/kakeya/  Kakeya review (01-17, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
+reviews/claude/GPT_ROUND_REVIEW.md  Claude's verdicts on GPT's round (ETH 15-17, Kakeya 18-19, the assessment)
+reviews/claude/eth/     ETH review (01-14, 18, FOR_GPT, scripts/, results/, lean/)
+reviews/claude/kakeya/  Kakeya review (01-17, 20, FOR_GPT, scripts/, results/, lean/; 15 is the reading guide)
 reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, checks, earlier audit
 ```
 
@@ -120,17 +135,20 @@ reviews/gpt/            research continuation: ETH 15-17, Kakeya 18-19, ledger, 
 4. **The Kakeya formal proof** proves Theorem 1.2 with the power $2n+5$, not the sharp $2/p_c$. The sharp power is prose ([kakeya/08](reviews/claude/kakeya/08_GAPLESS_PROOF.md) §8). The formal Kakeya maximal statement is the $\delta^{-\varepsilon}$ form.
 5. **The wave is the arrow pencil.** Its passive coordinate in 11 is spatial, while 08 (the paper) uses a null direction. Both satisfy the engine axioms, so they give two proofs of the cap estimate (`KAK.T12` has an alternative proof).
 6. **The paraboloid has its own engine.** Schrödinger is the one-mass sector of the wave in light-cone coordinates ([kakeya/16](reviews/claude/kakeya/16_NULL_FRAME_AND_SCHRODINGER.md) Theorem 16.8), which proves the paper's (12.2) directly. (12.1) and (12.3) still go through the sphere ([kakeya/10](reviews/claude/kakeya/10_GAPLESS_REMAINING.md) §4).
-7. **Ungraded defect bounds are now proved.** [GPT 15](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) answers `T.ETH.6` without grading. [GPT 16](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) proves the enumeration floor with complete-copy transfer. This is a bound on that cost expression, not every faster implementation.
+7. **Ungraded defect bounds are now proved.** [GPT 15](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) answers `T.ETH.6` without grading. [GPT 16](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) proves the enumeration floor with complete-copy transfer, and [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) removes that hypothesis: the algorithm's own balanced schedules suffice. This is a bound on that cost expression, not every faster implementation. The original justification of E4's measurement cost ("all $h$ copies") was wrong for partly filled copies; it is repaired, not deleted.
 8. **App. B's threshold.** $B>\frac12+\frac1p$ is what the proof gives ($A+\frac12-\frac1p$ with $A=2/p$), not a proved optimum (`T.KAK.13`). Its uniform stationary phase holds only beyond $(\text{degree}+1)^2$ wavelengths. This is necessary, not an artefact (kakeya/14 Lemma 1.2 and its remark).
-9. **Larger systems.** For a pencil with $N>n$ states, the lifted current is tangent to a passive coordinate only if $N'=n+m-1$, where $N'$ is the dimension of the span of the extremal eigenvectors and $m$ their multiplicity ([kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.4). An earlier version of 11 §7.3 said the push-forward stays tangent; it is corrected. Tangency does not imply integrability: [GPT 18](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) proves divergence of the naive full-fibre Weyl current.
+9. **Larger systems.** For a pencil with $N>n$ states, the lifted current is tangent to a passive coordinate only if $N'=n+m-1$, where $N'$ is the dimension of the span of the extremal eigenvectors and $m$ their multiplicity ([kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.4). An earlier version of 11 §7.3 said the push-forward stays tangent; it is corrected. Tangency does not imply integrability: [GPT 18](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) proves divergence of the naive full-fibre Weyl current, and [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) proves it for every complex and quaternionic Hermitian pencil.
 
 ## 7. If you are continuing the work
 
 - **Git.**
-  - Research branch: `gpt/astra-spline-extensions`, based on `claude/pensive-franklin-4oovjw`.
-  - Draft PR: [JimmysanUWU/OPENAI-REVIEWS-II#1](https://github.com/JimmysanUWU/OPENAI-REVIEWS-II/pull/1).
+  - Working branch: `claude/pensive-franklin-4oovjw`, with draft PR [JimmysanUWU/OPENAI-REVIEWS-II#1](https://github.com/JimmysanUWU/OPENAI-REVIEWS-II/pull/1).
+  - GPT's round 1 (`gpt/astra-spline-extensions`, [JimmysanUWU/OPENAI-REVIEWS-II#2](https://github.com/JimmysanUWU/OPENAI-REVIEWS-II/pull/2)) is merged into it after review.
+  - New GPT work: branch from `claude/pensive-franklin-4oovjw` and open a PR into it.
   - Keep the PR description current.
 - **Next targets** in the roadmap's order:
   - `T.ETH.4`: explicit thresholds;
-  - the research targets (`T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.13`, `T.ETH.5`, `T.ETH.7`, `T.X.1`).
-- **Current handoff:** [reviews/gpt/FOR_CLAUDE.md](reviews/gpt/FOR_CLAUDE.md). Older Claude notes are retained in each project's `FOR_GPT.md`.
+  - the research targets (`T.KAK.4`, `T.KAK.6`–`T.KAK.9`, `T.KAK.13`, `T.ETH.5`, `T.ETH.7`–`T.ETH.9`, `T.X.1`).
+- **Current handoffs:**
+  - Claude → GPT: "Update (1 Nov)" at the top of [eth/FOR_GPT.md](reviews/claude/eth/FOR_GPT.md) and [kakeya/FOR_GPT.md](reviews/claude/kakeya/FOR_GPT.md).
+  - GPT → Claude: [reviews/gpt/FOR_CLAUDE.md](reviews/gpt/FOR_CLAUDE.md), answered in [GPT_ROUND_REVIEW.md](reviews/claude/GPT_ROUND_REVIEW.md).

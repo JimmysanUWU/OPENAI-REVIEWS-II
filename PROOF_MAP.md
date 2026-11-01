@@ -40,12 +40,12 @@ This file is the **readable form of the theorem DAG** in [`roadmap.json`](roadma
 | [ETH is false (Part I)](#p-eth-i) | The shortest complete refutation of ETH: deformation counting with swap interpolation. | 7 | — |
 | [The formally verified exponent rho(n) (Part II)](#p-eth-ii) | Reduction to sparse F_2 systems; parity lift; the bound OpenAI proved in Lean. | 5 | `ETH.I.SPARS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
 | [The headline exponent (Part III, App. D)](#p-eth-iii) | Boolean tensor contraction by a 2-adic Cauchy-kernel deformation. | 9 | `ETH.I.SPARS`, `ETH.II.LIFT`, `ETH.II.TANNER`, `ETH.II.GREEDY` |
-| [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER` |
-| [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK` |
-| [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES. | 4 | `ETH.I.SWAP`, `ETH.K.E4` |
+| [Corollaries, new theorems, and the method's limits](#p-eth-more) | What the counting algorithms give, the F_q extension, and the cost floor. | 9 | `ETH.I.MAIN`, `ETH.II.MAIN`, `ETH.III.FIXED`, `ETH.II.LIFT`, `ETH.II.ZEROS`, `ETH.I.DEFCOUNT`, `ETH.I.SWAP`, `ETH.I.TRANSFER`, `ETH.TRANSFER.AGG` |
+| [One deformation theorem for Parts I-III (13)](#p-eth-unified) | The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors. | 9 | `ETH.I.SWAP`, `ETH.III.CAUCHY`, `ETH.III.PACK`, `ETH.TRANSFER.AGG` |
+| [Why Part I stops at sqrt(log n): the design floor (14)](#p-eth-floor) | Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES. | 4 | `ETH.I.SWAP`, `ETH.K.E4`, `ETH.TRANSFER.AGG` |
 | [The reach of the engine: the null frame, Schrodinger, and which systems carry it (16, 17)](#p-kak-scope) | The simplest instance of the engine (light-cone coordinates), its time component as the continued wave and the Husimi density, a direct proof for Schrodinger, and the linear-algebra test that decides which symmetric systems can carry a tangent lifted current. | 5 | `KAK.C.WAVE`, `KAK.ENGINE`, `KAK.C.LIFT`, `KAK.PENCIL` |
-| [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. | 7 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
-| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable. | 2 | `KAK.C.LIFT` |
+| [Ungraded designs through cube splines](#p-eth-splines) | A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice. | 9 | `ETH.I.SWAP`, `ETH.I.TRANSFER` |
+| [A convergence obstruction for Hermitian fibre integration](#p-kak-fibre) | Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group. | 4 | `KAK.C.LIFT`, `KAK.RIGID` |
 | [Trace capacity, residual defects, and approximate locality](#p-eth-capacity) | Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy. | 4 | `ETH.SPLINE.BASIS`, `ETH.SPLINE.PARITY`, `ETH.SPLINE.BIASED` |
 <!-- END GENERATED: path-index -->
 
@@ -84,6 +84,7 @@ Notation used throughout the Kakeya paths:
 | single lift, tangency test | Lift with auxiliary states in V (span of the extremal eigenvectors) and push through the flux map plus one passive variable. A passive coordinate exists iff rank[z \| C_1 z \| ... \| C_n z] &lt;= n for all complex z, iff N' = n + m - 1. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Theorem 17.2 |
 | Hopf pencil | C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = \|xi\|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9. | [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Proposition 17.6 |
 | Complex gauge fibre | The noncompact C\* orbit (u,v)-&gt;(lambda u,lambda^-1 v) in the realified Weyl flux map; coarea gives multiplicative Haar measure. | [reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md](reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) Lemma 2.1 |
+| Complexified gauge group | C^\* or SL(2,C): the complexification of the unitary symmetry of a Hermitian pencil; it preserves the bilinear flux map and volume, and its imaginary directions are undamped. | [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) Theorem 20.2 |
 <!-- END GENERATED: glossary-kak -->
 
 ### Shortest complete proof: sharp L^4 local smoothing in R^{2+1}
@@ -638,7 +639,7 @@ Assumes: [`KAK.C.WAVE`](#p-kak-paper--kak-c-wave), [`KAK.ENGINE`](#p-kak-engine-
 
 **Proof sketch.** (dPhi) chi~ = sum_a d_{z_a}(Phi o Theta) i G_a, and G ranges over V, so tangency means Pi_V C(dPhi) z = 0. Then z, C_V^1 z, ... are dependent on an open set, hence everywhere. Hellmann-Feynman on eigenspaces and transversal curvature make the eigen-cone an (n-1+m)-dimensional submanifold and give rank DQ_V >= n at real eigenvectors. With rank <= n, the level set through z_0 has dimension N'-n; the identity z^T S z = 2(phi Q_0 - xi.Q') puts it inside the eigenspace, where it is an (m-1)-sphere. Conversely, N' = n + m - 1 makes every state an eigenvector, hence rank <= n, and Phi comes from the implicit function theorem.
 
-**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py) · *Note:* Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl.
+**Full proof:** [kakeya/17](reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md) Lemma 17.1, Theorem 17.2, Lemma 17.3, Theorem 17.4, Corollary 17.5 · **checks:** [verify_state_dimension](reviews/claude/kakeya/scripts/verify_state_dimension.py) · *Note:* Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl; KAK.GAUGE.DIV extends this to every complex and quaternionic Hermitian pencil.
 
 #### <a id="p-kak-scope--kak-hopf"></a>5. `KAK.HOPF` — Division-algebra pencils and the Hopf pencils (Prop. 17.6, Cor. 17.7)
 
@@ -680,6 +681,7 @@ Notation used throughout the ETH paths:
 | Cube spline | A polynomial at every cube vertex, with endpoint polynomials agreeing at the node assigned to each retained edge; degree gives a multiplicative filtration. | [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Definition 1.1 |
 | Parity completion | Multiplication by a parity-trace spline supplies the complementary Fourier characters in half the combined degree, forcing many erased constraints. | [reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) Theorem 2.1 |
 | Complete copy | A copy containing every incidence label; it preserves tensor-row support under filling and enables an aggregate measurement lower bound. | [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Lemma 1.2 |
+| Under-filled label | A label occupied fewer than M/(2L) times; under 08 Lemma 6.2 there are at most three, so all other labels fill the first M/(2L) copies. | [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Lemma 18.1 |
 <!-- END GENERATED: glossary-eth -->
 
 ### ETH is false (Part I)
@@ -929,7 +931,7 @@ Assumes: [`ETH.I.SPARS`](#p-eth-i--eth-i-spars), [`ETH.II.LIFT`](#p-eth-ii--eth-
 <!-- BEGIN GENERATED: path-p-eth-more -->
 *What the counting algorithms give, the F_q extension, and the cost floor.*
 
-Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii-main), [`ETH.III.FIXED`](#p-eth-iii--eth-iii-fixed), [`ETH.II.LIFT`](#p-eth-ii--eth-ii-lift), [`ETH.II.ZEROS`](#p-eth-ii--eth-ii-zeros), [`ETH.I.DEFCOUNT`](#p-eth-i--eth-i-defcount), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer).
+Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii-main), [`ETH.III.FIXED`](#p-eth-iii--eth-iii-fixed), [`ETH.II.LIFT`](#p-eth-ii--eth-ii-lift), [`ETH.II.ZEROS`](#p-eth-ii--eth-ii-zeros), [`ETH.I.DEFCOUNT`](#p-eth-i--eth-i-defcount), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg).
 
 #### <a id="p-eth-more--eth-c-maxsat"></a>1. `ETH.C.MAXSAT` — Max-k-SAT approximation
 
@@ -1011,15 +1013,15 @@ Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii
 
 **Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E3
 
-#### <a id="p-eth-more--eth-k-e4"></a>9. `ETH.K.E4` — Symmetric enumeration floor, conditional on measurement cost
+#### <a id="p-eth-more--eth-k-e4"></a>9. `ETH.K.E4` — Cost floor of the method (symmetric designs)
 
-*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg)
 
-**Statement.** In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.
+**Statement.** For symmetric designs, with schedules satisfying 08 Lemma 6.2 (2(b+w)D^2 <= M, its variance bound, M >= n) and the enumeration cost of 08 Theorem 4.6, the method's exponent satisfies delta >= c (log log n)^2/sqrt(log n) for all large n.
 
-**Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
+**Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/64 (measurement rows at the worst level inside the window, transferred by ETH.TRANSFER.AGG, which loses at most 3\*2^Q/D in eps_\*); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
 
-**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression.
+**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4; [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Corollary 18.3 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* History: the original proof counted all h copies of each row, which fails for partly filled copies (GPT's assessment; GPT's 'partial' review refers to that proof). GPT 16 repaired it with complete copies (M >= 8(b+w)D^2); Claude 18 repairs it under 08 Lemma 6.2's own hypotheses, restoring the statement for the algorithm as specified. Not a lower bound after compressing correlated measurements.
 <!-- END GENERATED: path-p-eth-more -->
 
 ### One deformation theorem for Parts I–III (13)
@@ -1028,7 +1030,7 @@ Assumes: [`ETH.I.MAIN`](#p-eth-i--eth-i-main), [`ETH.II.MAIN`](#p-eth-ii--eth-ii
 <!-- BEGIN GENERATED: path-p-eth-unified -->
 *The common skeleton of swap interpolation and App. D: readout systems, the filtered node lemma, Hermite recovery with loss, correction counts; both instances; both square-root floors.*
 
-Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack).
+Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--eth-iii-cauchy), [`ETH.III.PACK`](#p-eth-iii--eth-iii-pack), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg).
 
 #### <a id="p-eth-unified--eth-u-node"></a>1. `ETH.U.NODE` — Node lemma: filtered mode expansion
 
@@ -1106,15 +1108,15 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 
 **Full proof:** [eth/10](reviews/claude/eth/10_GAPLESS_TENSOR_CONTRACTION.md) §4, Lemma 4.1; [eth/07](reviews/claude/eth/07_TOOLKIT.md) E5 · **checks:** [verify_appendix_d](reviews/claude/eth/scripts/verify_appendix_d.py), [verify_tensor_contraction](reviews/claude/eth/scripts/verify_tensor_contraction.py)
 
-#### <a id="p-eth-unified--eth-k-e4"></a>8. `ETH.K.E4` — Symmetric enumeration floor, conditional on measurement cost
+#### <a id="p-eth-unified--eth-k-e4"></a>8. `ETH.K.E4` — Cost floor of the method (symmetric designs)
 
-*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap)
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg)
 
-**Statement.** In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.
+**Statement.** For symmetric designs, with schedules satisfying 08 Lemma 6.2 (2(b+w)D^2 <= M, its variance bound, M >= n) and the enumeration cost of 08 Theorem 4.6, the method's exponent satisfies delta >= c (log log n)^2/sqrt(log n) for all large n.
 
-**Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
+**Proof sketch.** The three costs are: delta >= 1/r (largest group); delta >= Q eps_\*/64 (measurement rows at the worst level inside the window, transferred by ETH.TRANSFER.AGG, which loses at most 3\*2^Q/D in eps_\*); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_\* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).
 
-**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression.
+**Full proof:** [eth/07](reviews/claude/eth/07_TOOLKIT.md) E4; [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Corollary 18.3 · **checks:** [verify_cost_floor](reviews/claude/eth/scripts/verify_cost_floor.py) · *Note:* History: the original proof counted all h copies of each row, which fails for partly filled copies (GPT's assessment; GPT's 'partial' review refers to that proof). GPT 16 repaired it with complete copies (M >= 8(b+w)D^2); Claude 18 repairs it under 08 Lemma 6.2's own hypotheses, restoring the statement for the algorithm as specified. Not a lower bound after compressing correlated measurements.
 
 #### <a id="p-eth-unified--eth-u-floor3"></a>9. `ETH.U.FLOOR3` — Cost floor of the 2-adic architecture
 
@@ -1133,7 +1135,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.III.CAUCHY`](#p-eth-iii--et
 <!-- BEGIN GENERATED: path-p-eth-floor -->
 *Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES.*
 
-Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e4).
+Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e4), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg).
 
 #### <a id="p-eth-floor--eth-d-normal"></a>1. `ETH.D.NORMAL` — Normal form of group-algebra swap designs
 
@@ -1157,13 +1159,13 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e
 
 #### <a id="p-eth-floor--eth-d-floor"></a>3. `ETH.D.FLOOR` — Design floor: every graded swap design pays (log log n)^2/sqrt(log n)
 
-*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.NORMAL`](#p-eth-floor--eth-d-normal), [`ETH.D.SMOL`](#p-eth-floor--eth-d-smol), [`ETH.K.E4`](#p-eth-more--eth-k-e4)
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.NORMAL`](#p-eth-floor--eth-d-normal), [`ETH.D.SMOL`](#p-eth-floor--eth-d-smol), [`ETH.K.E4`](#p-eth-more--eth-k-e4), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg)
 
-**Statement.** In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows max(j0,1) eps0/2), Part I's algorithm with any graded group-algebra design of degree < R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta >= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F < R is e^{-Theta(R^2/Q)} up to poly(Q).
+**Statement.** In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows (C3') max(j0,1)(eps0 - 3\*2^Q/|B|)/2, schedules satisfying 08 Lemma 6.2), Part I's algorithm with any graded group-algebra design of degree < R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta >= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F < R is e^{-Theta(R^2/Q)} up to poly(Q).
 
 **Proof sketch.** By the normal form, the measured set at each node contains {G != par} with deg G < R. The biased Smolensky bound gives measure >= e^{-2(R+1)^2/Q}/(4(Q+1)) on weights >= Q/32, so the measurement cost forces (R+1)^2 >~ Q log(1/delta). With r >= 1/delta and Q <= log n/(2 log r), this makes x = (R-1)/Q >~ log log n/sqrt(log n), and the Taylor cost x log(1/x) gives the floor. Small cases (R = 1, Q < 64, x > 1/8) are excluded by the Taylor and parity-class costs.
 
-**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* This theorem is conditional on C3. The sparse-copy issue and sufficient complete-copy repair are recorded in GPT 16. Ungraded abstract defects are now covered by ETH.D.UNGRADED; the repaired enumeration consequence is ETH.D.FLOORALL.
+**Full proof:** [eth/14](reviews/claude/eth/14_DESIGN_FLOOR.md) Theorem 3.2, Corollary 3.3; [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Corollary 18.3 · **checks:** [verify_design_floor](reviews/claude/eth/scripts/verify_design_floor.py) · *Note:* The measurement cost was C3, whose justification failed for partly filled copies (GPT's assessment; GPT's 'partial' review refers to it). Claude 18 proves the replacement C3' from 08 Lemma 6.2's variance bound, and redoes steps 2-4 with the same conclusion. Ungraded designs: ETH.D.UNGRADED (abstract), ETH.D.FLOORALL and ETH.D.FLOORBAL (enumeration floors).
 
 #### <a id="p-eth-floor--eth-d-face"></a>4. `ETH.D.FACE` — Face lemma for arbitrary group-algebra designs
 
@@ -1179,7 +1181,7 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.K.E4`](#p-eth-more--eth-k-e
 ## GPT extensions
 
 <!-- BEGIN GENERATED: path-p-eth-splines -->
-*A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included.*
+*A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice.*
 
 Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer).
 
@@ -1252,12 +1254,32 @@ Assumes: [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.I.TRANSFER`](#p-eth-i--eth-
 **Proof sketch.** Heavy spline defects and complete-copy transfer give delta>=c exp(-4D^2/Q). Small groups require r>=1/delta and polynomial label size gives Q<=log2 n/(2 log2 r). Hence D/Q is at least a constant times log log n/sqrt(log n); the uniform Taylor budget contributes its extra log factor. This bounds the stated enumeration expression, not every implementation or SAT algorithm.
 
 **Full proof:** [reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) Theorem 3.1, Corollary 3.2 · **checks:** [reviews/gpt/eth/scripts/verify_spline_bound.py](reviews/gpt/eth/scripts/verify_spline_bound.py), [reviews/gpt/eth/scripts/verify_complete_copies.py](reviews/gpt/eth/scripts/verify_complete_copies.py) · *Note:* Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.
+
+#### <a id="p-eth-splines--eth-transfer-agg"></a>8. `ETH.TRANSFER.AGG` — Aggregate measurement transfer under balanced schedules
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.I.TRANSFER`](#p-eth-i--eth-i-transfer), [`ETH.I.SWAP`](#p-eth-i--eth-i-swap), [`ETH.TRANSFER.COMPLETE`](#p-eth-splines--eth-transfer-complete)
+
+**Statement.** If the label occupancies satisfy sum_u (c_u - M/L)^2 < 2M(b+w) and 2(b+w)L^2 <= M (L = r^{2Q} labels; 08 Lemma 6.2), then no label is empty and at most 3 labels have c_u < M/(2L). Every eigenvector avoiding them has, in each of the first ceil(M/(2L)) copies and at every node, a nonzero group row of l1-norm >= 2^max(j-1,0); at most 3\*2^Q eigenvectors meet them. Hence (C3'): if L eps0 measured eigenvectors have j >= j0 and M >= n, then delta >= max(j0,1)(eps0 - 3\*2^Q/L)/2.
+
+**Proof sketch.** Each under-filled label contributes more than (M/2L)^2 to the variance and forces an equal excess elsewhere; with 2M(b+w) <= M^2/L^2 this allows at most three. Copies below M/(2L) contain every other label, so clean eigenvectors keep their full support there, and support injection (GPT 16 Lemma 1.1) prevents cancellation. A label lies in the support of at most 2^Q eigenvectors. Multiply the row count by the range cost of the largest row.
+
+**Full proof:** [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Lemma 18.1, Theorem 18.2 · **checks:** [verify_aggregate_transfer](reviews/claude/eth/scripts/verify_aggregate_transfer.py) · *Note:* Weakens GPT 16's complete-copy hypothesis M >= 8(b+w)L^2 to the algorithm's own M >= 2(b+w)L^2. The count 3 is attained (Part T).
+
+#### <a id="p-eth-splines--eth-d-floorbal"></a>9. `ETH.D.FLOORBAL` — Floor for every group-algebra design under balanced schedules
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`ETH.D.UNGRADED`](#p-eth-splines--eth-d-ungraded), [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg), [`ETH.D.FLOORALL`](#p-eth-splines--eth-d-floorall)
+
+**Statement.** GPT 16 Theorem 3.1 holds with its complete-copy hypothesis replaced by the schedule hypotheses of 08 Lemma 6.2 (variance bound, 2(b+w)L^2 <= M, M >= n): every group-algebra swap design, graded or not, has enumeration exponent delta >= (log2 log2 n)^2/(1000 sqrt(log2 n)) for all large n.
+
+**Proof sketch.** GPT's proof uses complete copies only for its measurement cost (16.7). Replace Proposition 2.2 by (C3') of ETH.TRANSFER.AGG: in the heavy-defect regime the mass (3/(8Q))e^{-25-4D^2/Q} exceeds 6\*2^-Q, so the additive loss costs a factor 2 and the constant becomes c0/2. The rest of the proof only needs delta <= c0'^2 eventually.
+
+**Full proof:** [eth/18](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) Theorem 18.4 · **checks:** [verify_aggregate_transfer](reviews/claude/eth/scripts/verify_aggregate_transfer.py) · *Note:* Scope as in GPT 16: a floor for the enumeration expression, not after measurement compression, not for designs outside the swap group algebra, not a SAT lower bound.
 <!-- END GENERATED: path-p-eth-splines -->
 
 <!-- BEGIN GENERATED: path-p-kak-fibre -->
-*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable.*
+*Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group.*
 
-Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
+Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.RIGID`](#p-kak-scope--kak-rigid).
 
 #### <a id="p-kak-fibre--kak-hermitian-divergence"></a>1. `KAK.HERMITIAN.DIVERGENCE` — The Weyl full-fibre current diverges at the polarization centre
 
@@ -1277,7 +1299,27 @@ Assumes: [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift).
 
 **Proof sketch.** Compute the general complex coarea factor 1/|a-bc/a|^2. On real targets b and c are conjugate, so the radial damping has equal geometric coefficients. Two substitutions reduce the integral to J. The elementary bounds exp(-2 sqrt(v))<=J(v)<=1 imply the inverse-square singularity and a bounded remainder. Polar integration in two transverse dimensions proves failure of local finiteness; other positive branches cannot cancel it.
 
-**Full proof:** [reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) Lemma 1.1, Theorem 2.1, Theorem 3.2, Corollary 3.3 · **checks:** [reviews/gpt/kakeya/scripts/verify_weyl_singularity.py](reviews/gpt/kakeya/scripts/verify_weyl_singularity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.
+**Full proof:** [reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) Lemma 1.1, Theorem 2.1, Theorem 3.2, Corollary 3.3 · **checks:** [reviews/gpt/kakeya/scripts/verify_weyl_singularity.py](reviews/gpt/kakeya/scripts/verify_weyl_singularity.py) · *Note:* Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note. Claude: the step from the real slice to the full (complex-target) measure is not automatic; KAK.WEYL.PROFILE proves it directly.
+
+#### <a id="p-kak-fibre--kak-weyl-profile"></a>3. `KAK.WEYL.PROFILE` — Complex profile of the Weyl fibre density
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.HERMITIAN.SINGULARITY`](#p-kak-fibre--kak-hermitian-singularity)
+
+**Statement.** At every complex target near the polarization centre, the north-branch time density of the full-fibre Weyl single lift is F = pi|a|^2 J(kappa^2|b|^2|c|^2/|a|^2)(|b|^-2 + |c|^-2)/(4 kappa |a-d|^2), J(v) = int_0^inf exp(-u-v/u) du. It is +infinity on the complex hypersurfaces b = 0 and c = 0, and is not locally integrable on the complex target C_k^4.
+
+**Proof sketch.** Use GPT 19's coarea factor 1/(|a-d|^2|lambda|^2) at a general complex point. The damping is exp(-A r^2 - B/r^2) with A = kappa|c|^2/|a|^2, B = kappa|b|^2; the angular average of |z1|^2 is pi(r^2 + |a|^2 r^-2)/2; two substitutions give J. Near the centre F >= (pi/8kappa)|b|^-2, which is not integrable in the transverse complex coordinate b. This proves directly the non-local-finiteness that GPT 19 inferred from the real slice.
+
+**Full proof:** [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) Proposition 20.1, Corollary 20.1a · **checks:** [verify_gauge_orbit](reviews/claude/kakeya/scripts/verify_gauge_orbit.py) · *Note:* On real targets it reduces to GPT 19 (19.4).
+
+#### <a id="p-kak-fibre--kak-gauge-div"></a>4. `KAK.GAUGE.DIV` — Gauge-orbit divergence for every Hermitian single lift
+
+*NEW, PROVED, CHECKED* · prose chain: closed · uses [`KAK.RIGID`](#p-kak-scope--kak-rigid), [`KAK.C.LIFT`](#p-kak-planar--kak-c-lift), [`KAK.HERMITIAN.DIVERGENCE`](#p-kak-fibre--kak-hermitian-divergence)
+
+**Statement.** For every realified complex or quaternionic Hermitian pencil, the complexified gauge group (C^\* or SL(2,C)) preserves the flux map Q and Lebesgue measure; its orbit through a real extremal eigenvector z0 stays in E(xi0)_C, where the plane wave with polarization z0 has no damping, and the time entry there is |&lt;g z0, z0>|^2. In the tangency class N' = n + m - 1 this orbit is open in the fibre with Haar measure times a constant rho > 0, and its contribution is infinite (rho pi sinh 2T over |Im theta| <= T in the complex case). So the unweighted full-fibre single lift has infinite time density at every polarization centre.
+
+**Proof sketch.** The gauge generators are real antisymmetric and commute with the pencil, so their complex exponentials are complex orthogonal with determinant 1: Q and volume are preserved, q is not. The orbit stays in the extremal eigenspace, where phi q^0 - xi0.q' = (1/2) sum w^T S w = 0. In the tangency class the fibre has the orbit's dimension and invariance makes the fibre measure Haar. Complex case: |cos theta|^2 integrates to pi sinh 2T. Quaternionic case: the Cartan decomposition and E_u (Re u)^2 = 1/4 give a lower bound by the integral of cosh^2|Y|.
+
+**Full proof:** [kakeya/20](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) Theorem 20.2 · **checks:** [verify_gauge_orbit](reviews/claude/kakeya/scripts/verify_gauge_orbit.py) · *Note:* Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3).
 <!-- END GENERATED: path-p-kak-fibre -->
 
 <!-- BEGIN GENERATED: path-p-eth-capacity -->
@@ -1362,7 +1404,7 @@ Each node links to its first appearance on a path.
 | [`ETH.N.LIFTP`](#p-eth-more--eth-n-liftp) | p-adic lift for every prime (E2) with a closed form | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.N.FQ`](#p-eth-more--eth-n-fq) | Counting zeros of sparse systems over any finite field (new) | NEW, PROVED, CHECKED | P.ETH.MORE |
 | [`ETH.K.E3`](#p-eth-more--eth-k-e3) | Exact partition functions of bounded-degree factor graphs | NEW, PROVED | P.ETH.MORE |
-| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Symmetric enumeration floor, conditional on measurement cost | NEW, PROVED, CHECKED | P.ETH.MORE, P.ETH.UNIFIED |
+| [`ETH.K.E4`](#p-eth-more--eth-k-e4) | Cost floor of the method (symmetric designs) | NEW, PROVED, CHECKED | P.ETH.MORE, P.ETH.UNIFIED |
 | [`ETH.U.NODE`](#p-eth-unified--eth-u-node) | Node lemma: filtered mode expansion | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
 | [`ETH.U.HERMITE`](#p-eth-unified--eth-u-hermite) | Hermite recovery with valuation loss | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
 | [`ETH.U.COUNT`](#p-eth-unified--eth-u-count) | Correction counts, two-sided | NEW, PROVED, CHECKED | P.ETH.UNIFIED |
@@ -1424,4 +1466,8 @@ Each node links to its first appearance on a path.
 | [`ETH.SPLINE.RESIDUE`](#p-eth-capacity--eth-spline-residue) | Odd-residue unit defects retain the spline obstruction | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
 | [`ETH.DEFECT.ENERGY`](#p-eth-capacity--eth-defect-energy) | Sharp uniform quadratic defect and its square-root transition | NEW, PROVED, CHECKED | P.ETH.CAPACITY |
 | [`KAK.HERMITIAN.SINGULARITY`](#p-kak-fibre--kak-hermitian-singularity) | Weyl time density is not locally integrable on the real target slice | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`ETH.TRANSFER.AGG`](#p-eth-splines--eth-transfer-agg) | Aggregate measurement transfer under balanced schedules | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`ETH.D.FLOORBAL`](#p-eth-splines--eth-d-floorbal) | Floor for every group-algebra design under balanced schedules | NEW, PROVED, CHECKED | P.ETH.SPLINES |
+| [`KAK.WEYL.PROFILE`](#p-kak-fibre--kak-weyl-profile) | Complex profile of the Weyl fibre density | NEW, PROVED, CHECKED | P.KAK.FIBRE |
+| [`KAK.GAUGE.DIV`](#p-kak-fibre--kak-gauge-div) | Gauge-orbit divergence for every Hermitian single lift | NEW, PROVED, CHECKED | P.KAK.FIBRE |
 <!-- END GENERATED: node-index -->

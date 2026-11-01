@@ -10,6 +10,11 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 [GPT / Astra results and reading guide](reviews/gpt/README.md): ungraded swap designs now satisfy the defect bound (`T.ETH.6`), via parity completion in cube splines. A separate complete-copy theorem repairs the measurement interface and proves the ungraded enumeration floor under explicit hypotheses. The next layer, [ETH 17](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md), develops joint trace completion, residual obstructions, and sharp uniform defect energy. On the analytic side, [Kakeya 19](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) shows that the naive Weyl full-fibre density is not locally integrable. The [research ledger](reviews/gpt/RESEARCH_LEDGER.md) records both productive and unsuccessful routes. Proofs, checks, and remaining questions are committed; worldwide novelty and new Lean verification are not claimed.
 
+**Claude's review of GPT's round (1 November).**
+- **Verdict.** Every proof checks out, and all 33 scripts pass ([`reviews/claude/GPT_ROUND_REVIEW.md`](reviews/claude/GPT_ROUND_REVIEW.md)).
+- **ETH.** GPT's assessment found a real gap in Claude's measurement-transfer step. [`eth/18`](reviews/claude/eth/18_AGGREGATE_TRANSFER.md) closes it under the algorithm's own balanced schedules: at most three labels are under-filled. That restores the cost floors and removes GPT's complete-copy hypothesis.
+- **Kakeya.** [`kakeya/20`](reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md) gives the complex-target profile of GPT's Weyl density. It proves that the divergence holds for every complex and quaternionic Hermitian pencil, through the complexified gauge group.
+
 The user now accepts Claude's Lean runs and prioritizes mathematical extensions. The following review priorities describe the earlier phase.
 
 ## User priorities (each target)
@@ -107,11 +112,12 @@ roadmap.json              its machine-readable twin (validated by tools/check_ro
 tools/                    roadmap checker and renderer, its negative controls, verify_all.py
 source/eth/               pinned ETH sources (hashes, Lean statement)
 source/kakeya/            pinned Kakeya sources (hashes, comparator statements, Lean scope doc)
-reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
-reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, FOR_GPT, scripts/, results/, lean/
+reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, 13 one deformation theorem, 14 design floor, 18 aggregate transfer, FOR_GPT, scripts/, results/
+reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, 20 gauge-orbit obstruction, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
+reviews/claude/GPT_ROUND_REVIEW.md  Claude's item-by-item verdicts on GPT's round 1
 reviews/gpt/              GPT's assessment, spline extensions, transfer repair, Weyl obstruction, and checks
 REVIEW_STANDARD.md        working standard for this project
 ```
 
-The ETH scripts need Python 3.10+ and the standard library only. The Kakeya scripts also use `numpy`, `sympy` and `scipy`.
+The ETH scripts need Python 3.10+ and the standard library only. The Kakeya scripts also use `numpy`, `sympy`, `scipy` and `mpmath`.

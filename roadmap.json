@@ -242,7 +242,8 @@
     "ETH.II.ZEROS",
     "ETH.I.DEFCOUNT",
     "ETH.I.SWAP",
-    "ETH.I.TRANSFER"
+    "ETH.I.TRANSFER",
+    "ETH.TRANSFER.AGG"
    ],
    "nodes": [
     "ETH.C.MAXSAT",
@@ -264,7 +265,8 @@
    "assumes": [
     "ETH.I.SWAP",
     "ETH.III.CAUCHY",
-    "ETH.III.PACK"
+    "ETH.III.PACK",
+    "ETH.TRANSFER.AGG"
    ],
    "nodes": [
     "ETH.U.NODE",
@@ -285,7 +287,8 @@
    "purpose": "Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES.",
    "assumes": [
     "ETH.I.SWAP",
-    "ETH.K.E4"
+    "ETH.K.E4",
+    "ETH.TRANSFER.AGG"
    ],
    "nodes": [
     "ETH.D.NORMAL",
@@ -317,7 +320,7 @@
    "id": "P.ETH.SPLINES",
    "project": "ETH",
    "title": "Ungraded designs through cube splines",
-   "purpose": "A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included.",
+   "purpose": "A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included. Claude 18 then removes the complete-copy condition: the algorithm's own balanced schedules suffice.",
    "assumes": [
     "ETH.I.SWAP",
     "ETH.I.TRANSFER"
@@ -329,20 +332,25 @@
     "ETH.SPLINE.JETS",
     "ETH.D.UNGRADED",
     "ETH.TRANSFER.COMPLETE",
-    "ETH.D.FLOORALL"
+    "ETH.D.FLOORALL",
+    "ETH.TRANSFER.AGG",
+    "ETH.D.FLOORBAL"
    ]
   },
   {
    "id": "P.KAK.FIBRE",
    "project": "KAK",
    "title": "A convergence obstruction for Hermitian fibre integration",
-   "purpose": "Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable.",
+   "purpose": "Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, the nearby density is not locally integrable (on the real slice, and on the complex target), and the divergence holds at every polarization centre of every complex and quaternionic Hermitian pencil because of the complexified gauge group.",
    "assumes": [
-    "KAK.C.LIFT"
+    "KAK.C.LIFT",
+    "KAK.RIGID"
    ],
    "nodes": [
     "KAK.HERMITIAN.DIVERGENCE",
-    "KAK.HERMITIAN.SINGULARITY"
+    "KAK.HERMITIAN.SINGULARITY",
+    "KAK.WEYL.PROFILE",
+    "KAK.GAUGE.DIV"
    ]
   },
   {
@@ -713,6 +721,20 @@
    "meaning": "The noncompact C* orbit (u,v)->(lambda u,lambda^-1 v) in the realified Weyl flux map; coarea gives multiplicative Haar measure.",
    "file": "reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md",
    "label": "Lemma 2.1"
+  },
+  {
+   "term": "Under-filled label",
+   "project": "ETH",
+   "meaning": "A label occupied fewer than M/(2L) times; under 08 Lemma 6.2 there are at most three, so all other labels fill the first M/(2L) copies.",
+   "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md",
+   "label": "Lemma 18.1"
+  },
+  {
+   "term": "Complexified gauge group",
+   "project": "KAK",
+   "meaning": "C^* or SL(2,C): the complexification of the unitary symmetry of a Hermitian pencil; it preserves the bilinear flux map and volume, and its imaginary directions are undamped.",
+   "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md",
+   "label": "Theorem 20.2"
   }
  ],
  "nodes": [
@@ -1592,9 +1614,9 @@
    "project": "ETH",
    "group": "New results",
    "kind": "theorem",
-   "title": "Symmetric enumeration floor, conditional on measurement cost",
-   "statement": "In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.",
-   "sketch": "The three costs are: delta >= 1/r (largest group); delta >= Q eps_*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).",
+   "title": "Cost floor of the method (symmetric designs)",
+   "statement": "For symmetric designs, with schedules satisfying 08 Lemma 6.2 (2(b+w)D^2 <= M, its variance bound, M >= n) and the enumeration cost of 08 Theorem 4.6, the method's exponent satisfies delta >= c (log log n)^2/sqrt(log n) for all large n.",
+   "sketch": "The three costs are: delta >= 1/r (largest group); delta >= Q eps_*/64 (measurement rows at the worst level inside the window, transferred by ETH.TRANSFER.AGG, which loses at most 3*2^Q/D in eps_*); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).",
    "status": [
     "NEW",
     "PROVED",
@@ -1604,10 +1626,15 @@
     {
      "file": "reviews/claude/eth/07_TOOLKIT.md",
      "label": "E4"
+    },
+    {
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md",
+     "label": "Corollary 18.3"
     }
    ],
    "depends_on": [
-    "ETH.I.SWAP"
+    "ETH.I.SWAP",
+    "ETH.TRANSFER.AGG"
    ],
    "checks": [
     "reviews/claude/eth/scripts/verify_cost_floor.py"
@@ -1622,7 +1649,7 @@
      "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md"
     }
    ],
-   "notes": "The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression."
+   "notes": "History: the original proof counted all h copies of each row, which fails for partly filled copies (GPT's assessment; GPT's 'partial' review refers to that proof). GPT 16 repaired it with complete copies (M >= 8(b+w)D^2); Claude 18 repairs it under 08 Lemma 6.2's own hypotheses, restoring the statement for the algorithm as specified. Not a lower bound after compressing correlated measurements."
   },
   {
    "project": "ETH",
@@ -2859,7 +2886,7 @@
    "group": "Design floor",
    "kind": "theorem",
    "title": "Design floor: every graded swap design pays (log log n)^2/sqrt(log n)",
-   "statement": "In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows max(j0,1) eps0/2), Part I's algorithm with any graded group-algebra design of degree < R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta >= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F < R is e^{-Theta(R^2/Q)} up to poly(Q).",
+   "statement": "In E4's cost model (groups 1/r, Taylor jets x log(1/x) with x = (R-1)/Q, measurement rows (C3') max(j0,1)(eps0 - 3*2^Q/|B|)/2, schedules satisfying 08 Lemma 6.2), Part I's algorithm with any graded group-algebra design of degree < R, measured by eigenvectors (the paper's set E = {F != par}, or node by node any superset of E_t), has exponent per variable delta >= (1/100)(log2 log2 n)^2/sqrt(log2 n) for all large n. In particular no choice of M_0 in E1, symmetric or not, beats the floor; the least mu_p-measure of {F != par} over deg F < R is e^{-Theta(R^2/Q)} up to poly(Q).",
    "sketch": "By the normal form, the measured set at each node contains {G != par} with deg G < R. The biased Smolensky bound gives measure >= e^{-2(R+1)^2/Q}/(4(Q+1)) on weights >= Q/32, so the measurement cost forces (R+1)^2 >~ Q log(1/delta). With r >= 1/delta and Q <= log n/(2 log r), this makes x = (R-1)/Q >~ log log n/sqrt(log n), and the Taylor cost x log(1/x) gives the floor. Small cases (R = 1, Q < 64, x > 1/8) are excluded by the Taylor and parity-class costs.",
    "status": [
     "NEW",
@@ -2870,12 +2897,17 @@
     {
      "file": "reviews/claude/eth/14_DESIGN_FLOOR.md",
      "label": "Theorem 3.2, Corollary 3.3"
+    },
+    {
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md",
+     "label": "Corollary 18.3"
     }
    ],
    "depends_on": [
     "ETH.D.NORMAL",
     "ETH.D.SMOL",
-    "ETH.K.E4"
+    "ETH.K.E4",
+    "ETH.TRANSFER.AGG"
    ],
    "checks": [
     "reviews/claude/eth/scripts/verify_design_floor.py"
@@ -2883,7 +2915,7 @@
    "paper_ref": "answers T.ETH.1; extends E4 from symmetric to all graded designs",
    "formal": null,
    "confidence": 0.93,
-   "notes": "This theorem is conditional on C3. The sparse-copy issue and sufficient complete-copy repair are recorded in GPT 16. Ungraded abstract defects are now covered by ETH.D.UNGRADED; the repaired enumeration consequence is ETH.D.FLOORALL.",
+   "notes": "The measurement cost was C3, whose justification failed for partly filled copies (GPT's assessment; GPT's 'partial' review refers to it). Claude 18 proves the replacement C3' from 08 Lemma 6.2's variance bound, and redoes steps 2-4 with the same conclusion. Ungraded designs: ETH.D.UNGRADED (abstract), ETH.D.FLOORALL and ETH.D.FLOORBAL (enumeration floors).",
    "reviews": [
     {
      "by": "gpt",
@@ -3037,7 +3069,7 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.97,
-   "notes": "Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl."
+   "notes": "Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl; KAK.GAUGE.DIV extends this to every complex and quaternionic Hermitian pencil."
   },
   {
    "id": "KAK.HOPF",
@@ -3094,7 +3126,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.SPLINE.PARITY",
@@ -3124,7 +3163,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.SPLINE.BIASED",
@@ -3154,7 +3200,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.SPLINE.JETS",
@@ -3184,7 +3237,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.D.UNGRADED",
@@ -3215,7 +3275,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.TRANSFER.COMPLETE",
@@ -3246,7 +3313,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md"
+    }
+   ]
   },
   {
    "id": "ETH.D.FLOORALL",
@@ -3278,7 +3352,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md"
+    }
+   ]
   },
   {
    "id": "KAK.HERMITIAN.DIVERGENCE",
@@ -3308,7 +3389,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md"
+    }
+   ]
   },
   {
    "id": "ETH.TRACE.RANK",
@@ -3339,7 +3427,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.TRACE.JOINT",
@@ -3369,7 +3464,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.SPLINE.RESIDUE",
@@ -3399,7 +3501,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "ETH.DEFECT.ENERGY",
@@ -3427,7 +3536,14 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/GPT_ROUND_REVIEW.md"
+    }
+   ]
   },
   {
    "id": "KAK.HERMITIAN.SINGULARITY",
@@ -3457,7 +3573,140 @@
    "paper_ref": null,
    "formal": null,
    "confidence": null,
-   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note. Claude: the step from the real slice to the full (complex-target) measure is not automatic; KAK.WEYL.PROFILE proves it directly.",
+   "reviews": [
+    {
+     "by": "claude",
+     "verdict": "agree",
+     "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md"
+    }
+   ]
+  },
+  {
+   "id": "ETH.TRANSFER.AGG",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Aggregate measurement transfer under balanced schedules",
+   "statement": "If the label occupancies satisfy sum_u (c_u - M/L)^2 < 2M(b+w) and 2(b+w)L^2 <= M (L = r^{2Q} labels; 08 Lemma 6.2), then no label is empty and at most 3 labels have c_u < M/(2L). Every eigenvector avoiding them has, in each of the first ceil(M/(2L)) copies and at every node, a nonzero group row of l1-norm >= 2^max(j-1,0); at most 3*2^Q eigenvectors meet them. Hence (C3'): if L eps0 measured eigenvectors have j >= j0 and M >= n, then delta >= max(j0,1)(eps0 - 3*2^Q/L)/2.",
+   "sketch": "Each under-filled label contributes more than (M/2L)^2 to the variance and forces an equal excess elsewhere; with 2M(b+w) <= M^2/L^2 this allows at most three. Copies below M/(2L) contain every other label, so clean eigenvectors keep their full support there, and support injection (GPT 16 Lemma 1.1) prevents cancellation. A label lies in the support of at most 2^Q eigenvectors. Multiply the row count by the range cost of the largest row.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md",
+     "label": "Lemma 18.1, Theorem 18.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.TRANSFER",
+    "ETH.I.SWAP",
+    "ETH.TRANSFER.COMPLETE"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_aggregate_transfer.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.98,
+   "notes": "Weakens GPT 16's complete-copy hypothesis M >= 8(b+w)L^2 to the algorithm's own M >= 2(b+w)L^2. The count 3 is attained (Part T)."
+  },
+  {
+   "id": "ETH.D.FLOORBAL",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Floor for every group-algebra design under balanced schedules",
+   "statement": "GPT 16 Theorem 3.1 holds with its complete-copy hypothesis replaced by the schedule hypotheses of 08 Lemma 6.2 (variance bound, 2(b+w)L^2 <= M, M >= n): every group-algebra swap design, graded or not, has enumeration exponent delta >= (log2 log2 n)^2/(1000 sqrt(log2 n)) for all large n.",
+   "sketch": "GPT's proof uses complete copies only for its measurement cost (16.7). Replace Proposition 2.2 by (C3') of ETH.TRANSFER.AGG: in the heavy-defect regime the mass (3/(8Q))e^{-25-4D^2/Q} exceeds 6*2^-Q, so the additive loss costs a factor 2 and the constant becomes c0/2. The rest of the proof only needs delta <= c0'^2 eventually.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/eth/18_AGGREGATE_TRANSFER.md",
+     "label": "Theorem 18.4"
+    }
+   ],
+   "depends_on": [
+    "ETH.D.UNGRADED",
+    "ETH.TRANSFER.AGG",
+    "ETH.D.FLOORALL"
+   ],
+   "checks": [
+    "reviews/claude/eth/scripts/verify_aggregate_transfer.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.95,
+   "notes": "Scope as in GPT 16: a floor for the enumeration expression, not after measurement compression, not for designs outside the swap group algebra, not a SAT lower bound."
+  },
+  {
+   "id": "KAK.WEYL.PROFILE",
+   "project": "KAK",
+   "group": "GPT extensions",
+   "kind": "proposition",
+   "title": "Complex profile of the Weyl fibre density",
+   "statement": "At every complex target near the polarization centre, the north-branch time density of the full-fibre Weyl single lift is F = pi|a|^2 J(kappa^2|b|^2|c|^2/|a|^2)(|b|^-2 + |c|^-2)/(4 kappa |a-d|^2), J(v) = int_0^inf exp(-u-v/u) du. It is +infinity on the complex hypersurfaces b = 0 and c = 0, and is not locally integrable on the complex target C_k^4.",
+   "sketch": "Use GPT 19's coarea factor 1/(|a-d|^2|lambda|^2) at a general complex point. The damping is exp(-A r^2 - B/r^2) with A = kappa|c|^2/|a|^2, B = kappa|b|^2; the angular average of |z1|^2 is pi(r^2 + |a|^2 r^-2)/2; two substitutions give J. Near the centre F >= (pi/8kappa)|b|^-2, which is not integrable in the transverse complex coordinate b. This proves directly the non-local-finiteness that GPT 19 inferred from the real slice.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md",
+     "label": "Proposition 20.1, Corollary 20.1a"
+    }
+   ],
+   "depends_on": [
+    "KAK.HERMITIAN.SINGULARITY"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_gauge_orbit.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.97,
+   "notes": "On real targets it reduces to GPT 19 (19.4)."
+  },
+  {
+   "id": "KAK.GAUGE.DIV",
+   "project": "KAK",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Gauge-orbit divergence for every Hermitian single lift",
+   "statement": "For every realified complex or quaternionic Hermitian pencil, the complexified gauge group (C^* or SL(2,C)) preserves the flux map Q and Lebesgue measure; its orbit through a real extremal eigenvector z0 stays in E(xi0)_C, where the plane wave with polarization z0 has no damping, and the time entry there is |<g z0, z0>|^2. In the tangency class N' = n + m - 1 this orbit is open in the fibre with Haar measure times a constant rho > 0, and its contribution is infinite (rho pi sinh 2T over |Im theta| <= T in the complex case). So the unweighted full-fibre single lift has infinite time density at every polarization centre.",
+   "sketch": "The gauge generators are real antisymmetric and commute with the pencil, so their complex exponentials are complex orthogonal with determinant 1: Q and volume are preserved, q is not. The orbit stays in the extremal eigenspace, where phi q^0 - xi0.q' = (1/2) sum w^T S w = 0. In the tangency class the fibre has the orbit's dimension and invariance makes the fibre measure Haar. Complex case: |cos theta|^2 integrates to pi sinh 2T. Quaternionic case: the Cartan decomposition and E_u (Re u)^2 = 1/4 give a lower bound by the integral of cosh^2|Y|.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/claude/kakeya/20_GAUGE_ORBIT_OBSTRUCTION.md",
+     "label": "Theorem 20.2"
+    }
+   ],
+   "depends_on": [
+    "KAK.RIGID",
+    "KAK.C.LIFT",
+    "KAK.HERMITIAN.DIVERGENCE"
+   ],
+   "checks": [
+    "reviews/claude/kakeya/scripts/verify_gauge_orbit.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": 0.94,
+   "notes": "Generalizes GPT 18 from Weyl to the whole Hermitian tangency class. It closes the fibre-integration route to T.KAK.7; it does not rule out a current built on the gauge quotient. The Kempf-Ness slice is not conserved (20 §3)."
   }
  ],
  "targets": [
@@ -3647,20 +3896,22 @@
    "id": "T.KAK.7",
    "kind": "research",
    "title": "Engines for Hermitian pencils",
-   "goal": "Construct finite positive conserved engine data for Hermitian pencils meeting N'=n+m-1. GPT 18-19 prove that the naive Weyl full-fibre density diverges centrally and is not locally integrable nearby on the real target slice. A quotient, different current/measure, or flux correction must be justified before A3-A4; ignoring the singular axis does not suffice. Decide whether any resulting sheets extend beyond App. E.",
+   "goal": "Construct finite positive conserved engine data for Hermitian pencils meeting N'=n+m-1. The fibre-integrated single lift cannot work: GPT 18-19 show the Weyl full-fibre density diverges centrally and is not locally integrable, and Claude 20 (KAK.GAUGE.DIV) proves the same infinite central density for every complex and quaternionic Hermitian pencil, caused by the complexified gauge group C^* or SL(2,C). Dividing by gauge volume and restricting to the Kempf-Ness slice both fail to conserve. Build a current on the gauge quotient (dimension n, where the flux map is a local biholomorphism), or a flux correction, and prove (A3)-(A4); then decide whether any resulting sheets extend beyond App. E.",
    "builds_on": [
     "KAK.RIGID",
     "KAK.HOPF",
     "KAK.ENGINE",
     "KAK.PENCIL",
     "KAK.HERMITIAN.DIVERGENCE",
-    "KAK.HERMITIAN.SINGULARITY"
+    "KAK.HERMITIAN.SINGULARITY",
+    "KAK.WEYL.PROFILE",
+    "KAK.GAUGE.DIV"
    ],
    "status": "OPEN",
    "owner": null,
    "difficulty": "research",
    "acceptance": [
-    "a finite positive conserved reduction with (A3)-(A4), proved for a class of Hermitian pencils meeting N'=n+m-1",
+    "a finite positive conserved current on (or compatible with) the gauge quotient, with (A3)-(A4) proved for a class of Hermitian pencils meeting N'=n+m-1",
     "an example whose sheet is not an App. E sheet, or a reason none exists"
    ]
   },
@@ -3819,7 +4070,7 @@
    "id": "T.ETH.7",
    "kind": "research",
    "title": "Sharp directional spline bounds",
-   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved.",
+   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved. Known: at degree Q-1 an ungraded design has 1 bad edge where every graded design needs Q, yet the largest single direction is 2 tau_D(Q) in both (Claude 18 §4); so the question is how defects distribute over directions.",
    "builds_on": [
     "ETH.SPLINE.PARITY",
     "ETH.SPLINE.BIASED",

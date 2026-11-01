@@ -212,8 +212,8 @@ The passing pencils are random, and transversally curved at a sample direction. 
 | arrow $\oplus$ uncoupled scalar | $n+1$ | $n$ | 1 | $n$ | yes, after compressing to $V$ |
 | arrow coupled to one more state; generic $N=n+1$ | $n+1$ | $n$ | 1 | $n+1$ | **no** |
 | arrow $\oplus$ arrow, one lift | $2n$ | $n$ | 2 | $2n$ | **no** (two lifts, added, do work) |
-| 3D Weyl/Dirac, real form; quaternionic and octonionic Hopf | $2k$ | $k+1$ | $k$ | $2k$ | yes; (A3)–(A4) open |
-| complex Hermitian, $n=2m'-1$; quaternionic Hermitian, $n=4m''-3$ | $2m'$, $4m''$ | | 2, 4 | $=N$ | yes; (A3)–(A4) open |
+| 3D Weyl/Dirac, real form; quaternionic and octonionic Hopf | $2k$ | $k+1$ | $k$ | $2k$ | yes; fibre integral diverges for $k=2,4$ (GPT 18; [20](20_GAUGE_ORBIT_OBSTRUCTION.md)) |
+| complex Hermitian, $n=2m'-1$; quaternionic Hermitian, $n=4m''-3$ | $2m'$, $4m''$ | | 2, 4 | $=N$ | yes; but the fibre integral diverges ([20](20_GAUGE_ORBIT_OBSTRUCTION.md)) |
 | Maxwell; four of the five quaternionic Clifford matrices | 6, 8 | 3, 4 | 2, 4 | 6, 8 | **no** |
 
 **Two notes.**
@@ -228,6 +228,10 @@ The passing pencils are random, and transversally curved at a sample direction. 
 - **`T.KAK.7`** is restated: *Hermitian pencils.*
   - Complex and quaternionic Hermitian pencils that meet the bound pass the tangency test.
   - Prove (A3)–(A4) for their fibre-integrated currents. Whether the fibre integrals converge with uniform symbol bounds is part of the problem: the fibres of $\Theta$ are complexified spheres $S^{m-1}$, non-compact in their imaginary directions, and the Gaussian windows narrow along them.
+  - *Update (1 Nov):* **they do not converge.**
+    - GPT's [18–19](../../gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md) show the Weyl full-fibre time density is infinite at the polarization centre and not locally integrable nearby.
+    - [20](20_GAUGE_ORBIT_OBSTRUCTION.md) Theorem 20.2 proves the same divergence at every polarization centre, for every complex and quaternionic Hermitian pencil. The cause is the complexified gauge group $\mathbb C^\times$ or $SL(2,\mathbb C)$, which preserves $Q$ and is invisible to the damping.
+    - `T.KAK.7` now asks for a current built on the gauge quotient (20 §3).
   - Then decide whether their sheets reach beyond App. E. This connects to determinantal representations of hyperbolic polynomials, real symmetric versus Hermitian.
 
 ---

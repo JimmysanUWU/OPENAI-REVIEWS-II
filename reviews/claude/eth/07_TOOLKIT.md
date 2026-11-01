@@ -11,7 +11,7 @@ This file extracts from *The Exponential Time Hypothesis Is False* the parts tha
 | E1 | Commuting-involution interpolation | any $Q$ commuting involutions on any space | R, X | Abstract form; closed-form rows; exact rank; optimality among symmetric choices |
 | E2 | $p$-adic cross-equation truncation | $\mathbb F_p$ for every prime $p$ | R, X | **New:** generalizes Lemmas 5.1–5.2 from $p=2$; its counting corollary is proved in [12](12_FP_COUNTING.md) |
 | E3 | Deformation counting | weighted factor graphs over any commutative $\mathbb Q$-algebra | R | **New corollary:** exact partition functions of bounded-degree graphical models in $2^{o(n)}$ |
-| E4 | Cost floor of the method | any symmetric design; every graded design in [14](14_DESIGN_FLOOR.md) | R, X | **New:** the $(\log\log n)^2/\sqrt{\log n}$ barrier becomes a theorem about the method |
+| E4 | Cost floor of the method | any symmetric design; every graded design in [14](14_DESIGN_FLOOR.md); every group-algebra design in GPT [15–16](../../gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md) + [18](18_AGGREGATE_TRANSFER.md) | R, X | **New:** the $(\log\log n)^2/\sqrt{\log n}$ barrier becomes a theorem about the method (measurement transfer repaired in 18) |
 | E5 | Tapered Hermite recovery (App. D) | any polynomial over $\mathbb Z_{(2)}$-algebras | P, X | Isolated as a standalone numerical-algebra lemma |
 
 ---
@@ -89,7 +89,7 @@ Examples: Ising and Potts partition functions with rational couplings on bounded
 ## E4. The cost floor of the method (new: the barrier becomes a theorem)
 
 **Proposition E4.** Instantiate the §3–4 algorithm with:
-- $r$ groups, $Q$ nodes, labels $D=r^{2Q}\le n$;
+- $r$ groups, $Q$ nodes, labels $D=r^{2Q}$, with schedules from the balanced-schedule lemma (08 Lemma 6.2: $2(b+w)D^2\le M$, its variance bound, and $M\ge n$; this hypothesis was implicit before [18](18_AGGREGATE_TRANSFER.md));
 - a $\mathrm{Sym}(Q)$-invariant swap design of degree $<R$ (any $f$ in E1);
 - the cost bound (3.15).
 
@@ -103,7 +103,7 @@ for an absolute $c>0$ and all large $n$. The paper's parameters attain this orde
   - the rows of $C^{\mathcal B}$ at level $j_*$ number $D\varepsilon_*$;
   - each has $j_*\ge Q/16$ antisymmetric local factors (using $Qp\ge Q/4$ and $R\le Q/e$), so every nonzero restriction to a group has $\ell^1$-norm $\ge2^{Q/16-1}$ and ranges over $\ge Q/16$ bits of values;
   - every row has a nonzero restriction to some group;
-  - there are $h\ge M/D\ge n/D$ copies of each row;
+  - ~~there are $h\ge M/D\ge n/D$ copies of each row~~ *(wrong as stated, found by GPT's [assessment](../../gpt/ASSESSMENT.md): copy $\kappa$ contains label $u$ only if $\kappa<c_u$, so late copies are partly filled and rows can shrink or vanish there).* **Repaired** in [18](18_AGGREGATE_TRANSFER.md): under 08 Lemma 6.2's own variance bound, at most three labels are under-filled. So every eigenvector avoiding them has full rows in each of the first $\lceil M/(2D)\rceil$ copies, and the cost holds with $\varepsilon_*$ replaced by $\varepsilon_*-3\cdot2^Q/D$, halving $Q\varepsilon_*/32$ to $Q\varepsilon_*/64$ in E4's regime (18 Corollary 18.3);
 - $\delta\ge x\log_2(1/x)$, where $x=R/Q\le1/e$ (Taylor jets: $\log_2\binom nq\ge q\log_2(n/q)$ with $q\ge nR/Q$; if $x>1/e$ then $\delta$ is bounded below by a constant).
 
 Suppose $\delta\le\delta_0:=(\log\log n)^2/\sqrt{\log n}$.
@@ -117,7 +117,7 @@ Suppose $\delta\le\delta_0:=(\log\log n)^2/\sqrt{\log n}$.
 
 **Remark (thresholds are not intrinsic).** The cost floor drops below $1$ (beats $2^n$) already at $\log_2n\approx2^{10}$. The paper's parameters need $\log_2n\approx7\cdot10^{10}$ ([`results/parameters.json`](results/parameters.json)). The floor ignores the balance conditions of Lemma 4.5 and the clause-degree factor $d/n\le3$, so it is a lower bound, not an achievable threshold. Still, the astronomically large threshold is mostly a matter of the paper's constants, not of the method.
 
-Beyond this floor, non-symmetric designs do not help: [14](14_DESIGN_FLOOR.md) Theorem 3.2 proves the same floor for every graded design, which includes every choice of $M_0$ in E1. Gains need ungraded designs (`T.ETH.6`) or a different decoupling. [13](13_UNIFIED_DEFORMATION.md) places E4 in a common framework with App. D, and proves App. D's own floor (Theorem 5.4). Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
+Beyond this floor, non-symmetric designs do not help: [14](14_DESIGN_FLOOR.md) Theorem 3.2 proves the same floor for every graded design, which includes every choice of $M_0$ in E1. GPT's [15–16](../../gpt/eth/15_UNGRADED_SPLINE_BOUND.md) extend it to **every** group-algebra design, graded or not (`T.ETH.6`, done), and [18](18_AGGREGATE_TRANSFER.md) Theorem 18.4 removes their complete-copy hypothesis. Gains need a decoupling outside the swap group algebra, or a cheaper encoding of correlated measurements. [13](13_UNIFIED_DEFORMATION.md) places E4 in a common framework with App. D, and proves App. D's own floor (Theorem 5.4). Appendix D (E5) removes one $\log\log n$ by replacing subset counting with 2-adic modes.
 
 ---
 

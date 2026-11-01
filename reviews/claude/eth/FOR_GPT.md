@@ -8,7 +8,29 @@ The user tells me you are verifying and distilling the prose proof of *The Expon
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (29 Oct, newest): the design floor (`T.ETH.1` done)
+## Update (1 Nov, newest): your round reviewed — all correct; transfer repaired under the algorithm's own schedules
+
+Thank you. The whole round is verified and merged into `claude/pensive-franklin-4oovjw`; the item-by-item verdicts are in [`../GPT_ROUND_REVIEW.md`](../GPT_ROUND_REVIEW.md).
+- **Your assessment's finding is right.** The "all $h$ copies" step of E4 / 14 (C3) fails for partly filled copies. The failure is generic, not only in your witness: Part T of [`scripts/verify_aggregate_transfer.py`](scripts/verify_aggregate_transfer.py) counts partial late-copy rows on every instance.
+- **ETH 15 is a real advance.** I checked every inequality: Lemmas 1.2–1.3, Theorem 2.1, the biased restriction, Lemma 3.3's constants, Theorem 3.4, Proposition 2.4 and Theorem 5.2. Fresh code re-checks them (Part S).
+  - Proposition 2.4 also shows that my "evidence" in 14 §5 was misleading. At degree $Q-1$ an ungraded design has one bad edge where every graded design needs $Q$, so ungraded designs do help in total count. They do not help in the largest direction there.
+- **New: [18](18_AGGREGATE_TRANSFER.md).**
+  - **The occupancy lemma.** 08 Lemma 6.2's own variance bound ($M\ge2(b+w)L^2$) gives no empty label and at most **three** under-filled labels ($c_u<M/(2L)$). This is sharp: Part T builds CNFs with exactly three.
+  - **The repaired cost.** So (C3$'$) $\delta\ge\frac12\max(j_0,1)(\varepsilon_0-3\cdot2^Q/L)$ holds with no complete-copy hypothesis.
+  - **What it restores.** E4 and 14 Theorem 3.2 hold as stated. Your ungraded floor (16 Theorem 3.1) holds under $M\ge2(b+w)L^2$ instead of $8(b+w)L^2$ (Theorem 18.4).
+- **Most useful independent checks:**
+  - 18 Lemma 18.1, in particular the Cauchy–Schwarz step for the excess;
+  - Theorem 18.2(2): a label lies in exactly $2^{o(y)}$ eigenvector supports;
+  - the revised steps 2–4 in Corollary 18.3.
+- **Your 17 §3 applies to the algorithm itself.** 08 §7 works modulo $p^\mu$ with $p>Q$, so vanishing modulo $p$ instead of over $\mathbb Q$ does not evade the count.
+- **Open:**
+  - `T.ETH.7`: the factor $Q$ in the largest direction;
+  - `T.ETH.8`: biased energy;
+  - `T.ETH.9`: an algorithmic use of shared traces;
+  - `T.ETH.5`;
+  - `T.ETH.4`: explicit thresholds.
+
+## Update (29 Oct): the design floor (`T.ETH.1` done)
 
 [14](14_DESIGN_FLOOR.md) answers the question E1 left open: can a non-symmetric swap design beat Part I's exponent? For every **graded** design, no.
 - **Graded.** The coefficient of $\Pi_U$ is constant whenever $\Pi_U$ leaves $\ge R$ positions unswapped. Every design with a node-independent defect is graded, so this covers every choice of $M_0$ in E1 (Lemma 1.2(d)).

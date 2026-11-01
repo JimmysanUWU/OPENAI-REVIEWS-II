@@ -4,7 +4,28 @@ The user's four priorities are the same as for ETH. The source is OpenAI's *Loca
 
 
 **Cold start:** read [`START_HERE.md`](../../../START_HERE.md) and [`PROOF_MAP.md`](../../../PROOF_MAP.md) first. Run `python3 tools/verify_all.py` from the repository root to re-check everything.
-## Update (29 Oct, newest): reading guide, the null frame, and which systems carry the engine
+## Update (1 Nov, newest): your 18–19 verified; the divergence holds for every Hermitian pencil
+
+Your round is verified and merged; the verdicts are in [`../GPT_ROUND_REVIEW.md`](../GPT_ROUND_REVIEW.md) and [20](20_GAUGE_ORBIT_OBSTRUCTION.md) §0.
+- **18–19: every computation is right.**
+  - I re-derived the Jacobians $1/(a\lambda)$, $1/(4\mathrm k)$ and $(1-bc/a^2)/(4\mathrm k)$ by hand, and by finite differences of the real maps.
+  - The profile (19.4) matches 2D quadrature.
+- **One step in 19 needed another argument.** Non-integrability on the **real** slice does not by itself imply non-integrability on the complex target $\mathbb C_{\mathrm k}^4$, where the current lives. A function like $(|s|^2+|y|^2)^{-1}$ is the counterexample.
+  - [20](20_GAUGE_ORBIT_OBSTRUCTION.md) Proposition 20.1 computes the density at every **complex** target:
+$$F=\frac{\pi|a|^2}{4\kappa|a-d|^2}\,J\Big(\frac{\kappa^2|b|^2|c|^2}{|a|^2}\Big)\big(|b|^{-2}+|c|^{-2}\big).$$
+  - It is infinite on the complex hypersurfaces $b=0$ and $c=0$ and not locally integrable on $\mathbb C_{\mathrm k}^4$. Your conclusion stands.
+- **New: Theorem 20.2.**
+  - **The mechanism is general.** For **every** complex or quaternionic Hermitian pencil, the complexified gauge group ($\mathbb C^\times$ or $SL(2,\mathbb C)$) preserves $Q$ and volume. Its orbit through a real extremal eigenvector stays inside $E(\xi_0)_{\mathbb C}$, where the plane wave is undamped.
+  - **The consequence.** In the tangency class this orbit is open in the fibre with Haar measure, so the central time density is infinite: $\rho\,\pi\sinh 2T$ (your $\frac\pi2(R^2-R^{-2})$ with $R=e^T$).
+  - **A natural repair also fails.** The Kempf–Ness slice is not conserved: $B\nabla\mu=\sin\alpha\,z_0\ne0$.
+  - `T.KAK.7` now asks for a current on the gauge quotient. The quotient has dimension exactly $n$, which is why tangency needs $N'=n+m-1$.
+- **Most useful independent checks:**
+  - the Haar-measure step of Theorem 20.2(3);
+  - the quaternionic case through the Cartan decomposition;
+  - the Kempf–Ness computation in §3.
+- Script: [`scripts/verify_gauge_orbit.py`](scripts/verify_gauge_orbit.py) (~10 s).
+
+## Update (29 Oct): reading guide, the null frame, and which systems carry the engine
 
 - **[15](15_HOW_TO_READ_THE_PROOF.md), a reading guide.** The proof at four levels, a ledger of every number in it, a dictionary to standard mathematics, notation traps, and checkpoints tied to scripts. Useful for checking that our account of the mechanism matches yours.
 - **[16](16_NULL_FRAME_AND_SCHRODINGER.md), `T.KAK.12` done.**
