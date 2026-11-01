@@ -2,6 +2,10 @@
 
 GPT / Astra, 1 November 2026. This records the continuation after the first pushed snapshot, as well as the routes that led to it. “Proved” means a complete prose argument with the stated hypotheses. The new work is not Lean-formalized, and worldwide priority is unclaimed. A finite exploration cannot exhaust all mathematical routes; the purpose here is to preserve useful successes, obstructions, and unfinished interfaces rather than present an unlimited search as complete.
 
+## Round 9: abstraction-first route search
+
+See [the route log](ABSTRACTION_SEARCH_ROUND9.md) for the tested shortcuts, exact counterexamples, unresolved contour/loop ideas, and the selected lead. [Kakeya 23](kakeya/23_GLOBAL_WAVE_CONE_RIGIDITY.md) develops the global sphere-bundle obstruction into wave-cone and spin-factor rigidity. Global hypotheses and classical dependencies are explicit.
+
 ## Round 8: the phone continuation
 
 - **[ETH 21](eth/21_PRODUCT_BIAS_ENERGY.md), T.ETH.8 DONE.** Diagonalize P_i^*P_i rather than the non-self-adjoint biased swaps. The exact optimum is a Bernoulli spectral thinning of scalar capacities, with a completely specified optimizer. A full-retention event alone gives a weak Q-dependent comparison; positive Cauchy-Binet sums improve the loss to theta^D. For the actual theta=1-1/r^2, relative gain is at most D/r^2 and vanishes in Part I. Exact original vertex QPs check the reduction independently. This is energy, not support or arithmetic locality.

@@ -1,6 +1,9 @@
 # GPT research continuation — 1 November 2026
 
-**Round 8 (phone continuation, latest):** [Product-bias energy](eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
+**Round 9 (abstraction search, latest):** [Route log](ABSTRACTION_SEARCH_ROUND9.md) retains the tested failures and the lead developed in Kakeya 23: global curvature plus critical state dimension forces a sphere bundle, then two spectral levels and a classical spin-factor algebra. The global dispersion is necessarily a drifted anisotropic wave cone. This uses explicitly cited topology and Clifford theory; local nonquadratic sheets remain possible.
+
+
+**Round 8 (phone continuation):** [Product-bias energy](eth/21_PRODUCT_BIAS_ENERGY.md) solves **T.ETH.8** by diagonalizing squared edge readouts. It gives an explicit optimal family and a sharp degree-dependent comparison: for the actual swap bias, the relative difference from the uniform optimum is at most D/r^2. These are prose proofs with independent exact rational QPs; no new Lean build or SAT speedup is claimed.
 
 The task has moved from auditing the original results to extracting and extending their mathematics. At the user's direction, **Claude's reported Lean runs are accepted as a starting point**. No new Lean build is claimed. The earlier [assessment](ASSESSMENT.md) is retained as a dated audit, including its narrower formal-scope observations and its measurement-transfer witness.
 

@@ -8,3 +8,5 @@ Run from any directory. Results are written to `../results/weyl_fibre.json`; suc
 
 
 - `verify_curvature_fibre.py`: exact quadratic curvature identities, Clifford relations, full ambient Jacobians and coarea cancellation, for real/complex/quaternionic/octonionic Hopf pencils and a non-Clifford Hermitian 3x3 pencil. Five false-shortcut controls. Reuses Gaussian rational arithmetic from `verify_weyl_fibre.py`; standard library only.
+
+- `verify_global_rigidity.py`: exact trace reconstruction, Clifford relations, spin-factor products and sixteen state selectors for drifted anisotropic Hopf models; controls for dropping global curvature, constant multiplicity or critical dimension. Topology and the real Clifford table are cited proof ingredients, not inferred from finite tests.

@@ -1,0 +1,110 @@
+{
+  "joint_concavity": {
+    "theta_a": [
+      "3/4",
+      "1/4",
+      "3/4"
+    ],
+    "theta_b": [
+      "3/4",
+      "3/4",
+      "1/4"
+    ],
+    "E_a": "26713/80080",
+    "E_b": "8301/34720",
+    "E_midpoint": "247159/865592",
+    "Jensen_gap": "-9374301/11806674880"
+  },
+  "rational_pair": {
+    "even": "(1+T/3)/(1-T/3)",
+    "odd": "1-3T",
+    "nodes": [
+      1,
+      2
+    ],
+    "common_numerator": "2-3T+T^2",
+    "no_poles_on": "[0,2]"
+  },
+  "degree_one_heights": [
+    {
+      "Q": 2,
+      "bad_edges_by_direction": [
+        1,
+        1
+      ]
+    },
+    {
+      "Q": 3,
+      "bad_edges_by_direction": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "Q": 4,
+      "bad_edges_by_direction": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "Q": 5,
+      "bad_edges_by_direction": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    {
+      "Q": 6,
+      "bad_edges_by_direction": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "Q": 7,
+      "bad_edges_by_direction": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "Q": 8,
+      "bad_edges_by_direction": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ]
+    }
+  ],
+  "annealed_shortcut": {
+    "exact": "503/1820",
+    "ratio_of_expected_determinants": "3/7"
+  },
+  "central_period": {
+    "uncharged": "0",
+    "charged_coefficient": "1/2",
+    "conserved_charged_quotient": "not constructed"
+  },
+  "scope": "Exact route probes only; no sharp directional theorem or new counting algorithm."
+}
