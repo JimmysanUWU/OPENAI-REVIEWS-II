@@ -25,7 +25,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SLOW = {"verify_angular_endpoint.py", "verify_cost_floor.py", "verify_counting_pipeline.py", "verify_design_floor.py",
         "verify_wave_current.py"}
 REPORT_ONLY = {"verify_cost_floor.py", "verify_parameters.py"}
-DIRS = {"ETH": "reviews/claude/eth/scripts", "KAK": "reviews/claude/kakeya/scripts"}
+DIRS = {"ETH": ["reviews/claude/eth/scripts", "reviews/gpt/eth/scripts"],
+        "KAK": ["reviews/claude/kakeya/scripts", "reviews/gpt/kakeya/scripts"]}
+WRAPPER = ("import runpy,sys; p=sys.argv[1]; sys.path.insert(0,p.rsplit('/',1)[0]); "
+           "sys.argv=[p]; runpy.run_path(p,run_name='__main__')")
 
 
 def nodes_checked_by():
@@ -41,7 +44,9 @@ def nodes_checked_by():
 def run(cmd, cwd, timeout):
     t0 = time.time()
     try:
-        p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+        p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
+                           encoding="utf-8", timeout=timeout,
+                           env={**os.environ, "PYTHONUTF8": "1"})
         out = p.stdout + p.stderr
         code = p.returncode
     except subprocess.TimeoutExpired:
@@ -51,7 +56,9 @@ def run(cmd, cwd, timeout):
 
 def job(path, timeout):
     name = os.path.basename(path)
-    code, out, dt = run([sys.executable, name], os.path.dirname(path), timeout)
+    # Older scripts split __file__ on '/'. Supply that spelling on Windows too.
+    portable_path = os.path.abspath(path).replace("\\", "/")
+    code, out, dt = run([sys.executable, "-c", WRAPPER, portable_path], os.path.dirname(path), timeout)
     ok = code == 0 and (name in REPORT_ONLY or "ALL OK" in out or "ALL PASS" in out)
     last = [l for l in out.strip().splitlines() if l.strip()][-1:] or [""]
     return name, ok, dt, last[0][:100]
@@ -73,13 +80,14 @@ def main():
         print("%-4s %-34s %6.1fs  %s" % ("ok" if ok else "FAIL", cmd[0], dt, out.strip().splitlines()[-1][:100]))
 
     scripts = []
-    for proj, d in DIRS.items():
+    for proj, directories in DIRS.items():
         if args.project and proj != args.project:
             continue
-        for path in sorted(glob.glob(os.path.join(ROOT, d, "verify_*.py"))):
-            if args.quick and os.path.basename(path) in SLOW:
-                continue
-            scripts.append((proj, path))
+        for d in directories:
+            for path in sorted(glob.glob(os.path.join(ROOT, d, "verify_*.py"))):
+                if args.quick and os.path.basename(path) in SLOW:
+                    continue
+                scripts.append((proj, path))
     checked = nodes_checked_by()
     with cf.ThreadPoolExecutor(max_workers=max(1, args.jobs)) as ex:
         futs = {ex.submit(job, path, args.timeout): proj for proj, path in scripts}

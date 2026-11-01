@@ -1,6 +1,6 @@
 {
  "schema": "openai-reviews-ii/roadmap/v1",
- "updated": "2026-10-29",
+ "updated": "2026-11-01",
  "description": "Machine-readable map of the mathematics reviewed in this repository: every result has a stable ID, a statement, a status, where it is proved, what it depends on, which scripts check it, and its Lean name if formalized. Distillation and research targets have acceptance criteria. Validate with: python3 tools/check_roadmap.py",
  "status_codes": {
   "FORMAL": "the exact statement is a theorem of OpenAI's Lean proof, which was built locally with only propext, Classical.choice, Quot.sound and whose elaborated statement was audited (06 files). Internal lemmas are never marked FORMAL; see the optional field lean_area instead",
@@ -282,7 +282,7 @@
    "id": "P.ETH.FLOOR",
    "project": "ETH",
    "title": "Why Part I stops at sqrt(log n): the design floor (14)",
-   "purpose": "Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the open ungraded case.",
+   "purpose": "Turn any swap design into low-degree polynomials that must match parity, bound their agreement by Smolensky's argument under the biased swap spectrum, and conclude that no graded design beats (log log n)^2/sqrt(log n). Ends with the face lemma and the historically open ungraded case, now resolved on P.ETH.SPLINES.",
    "assumes": [
     "ETH.I.SWAP",
     "ETH.K.E4"
@@ -311,6 +311,55 @@
     "KAK.SCHR",
     "KAK.RIGID",
     "KAK.HOPF"
+   ]
+  },
+  {
+   "id": "P.ETH.SPLINES",
+   "project": "ETH",
+   "title": "Ungraded designs through cube splines",
+   "purpose": "A short reusable dimension argument answers T.ETH.6; a separate complete-copy condition gives the enumeration floor. The weighted-jet variant is also included.",
+   "assumes": [
+    "ETH.I.SWAP",
+    "ETH.I.TRANSFER"
+   ],
+   "nodes": [
+    "ETH.SPLINE.BASIS",
+    "ETH.SPLINE.PARITY",
+    "ETH.SPLINE.BIASED",
+    "ETH.SPLINE.JETS",
+    "ETH.D.UNGRADED",
+    "ETH.TRANSFER.COMPLETE",
+    "ETH.D.FLOORALL"
+   ]
+  },
+  {
+   "id": "P.KAK.FIBRE",
+   "project": "KAK",
+   "title": "A convergence obstruction for Hermitian fibre integration",
+   "purpose": "Distinguish tangency from a finite positive push-forward: the central Weyl fibre diverges, and the nearby real-slice density is not even locally integrable.",
+   "assumes": [
+    "KAK.C.LIFT"
+   ],
+   "nodes": [
+    "KAK.HERMITIAN.DIVERGENCE",
+    "KAK.HERMITIAN.SINGULARITY"
+   ]
+  },
+  {
+   "id": "P.ETH.CAPACITY",
+   "project": "ETH",
+   "title": "Trace capacity, residual defects, and approximate locality",
+   "purpose": "Extract a multiplication operator, combine shared traces, reduce to odd residue fields, and distinguish defect support from a sharp uniform quadratic energy.",
+   "assumes": [
+    "ETH.SPLINE.BASIS",
+    "ETH.SPLINE.PARITY",
+    "ETH.SPLINE.BIASED"
+   ],
+   "nodes": [
+    "ETH.TRACE.RANK",
+    "ETH.TRACE.JOINT",
+    "ETH.SPLINE.RESIDUE",
+    "ETH.DEFECT.ENERGY"
    ]
   }
  ],
@@ -636,6 +685,34 @@
    "meaning": "C(r,a) = [[r, L_a^T],[L_a, -r]] over R, C, H, O: C(xi)^2 = |xi|^2 I, the flux map is the Hopf map, the polarization is the Hopf fibration; n = 2, 3, 5, 9.",
    "file": "reviews/claude/kakeya/17_STATE_DIMENSION_RIGIDITY.md",
    "label": "Proposition 17.6"
+  },
+  {
+   "term": "Cube spline",
+   "project": "ETH",
+   "meaning": "A polynomial at every cube vertex, with endpoint polynomials agreeing at the node assigned to each retained edge; degree gives a multiplicative filtration.",
+   "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+   "label": "Definition 1.1"
+  },
+  {
+   "term": "Parity completion",
+   "project": "ETH",
+   "meaning": "Multiplication by a parity-trace spline supplies the complementary Fourier characters in half the combined degree, forcing many erased constraints.",
+   "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+   "label": "Theorem 2.1"
+  },
+  {
+   "term": "Complete copy",
+   "project": "ETH",
+   "meaning": "A copy containing every incidence label; it preserves tensor-row support under filling and enables an aggregate measurement lower bound.",
+   "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md",
+   "label": "Lemma 1.2"
+  },
+  {
+   "term": "Complex gauge fibre",
+   "project": "KAK",
+   "meaning": "The noncompact C* orbit (u,v)->(lambda u,lambda^-1 v) in the realified Weyl flux map; coarea gives multiplicative Haar measure.",
+   "file": "reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md",
+   "label": "Lemma 2.1"
   }
  ],
  "nodes": [
@@ -1515,8 +1592,8 @@
    "project": "ETH",
    "group": "New results",
    "kind": "theorem",
-   "title": "Cost floor of the method",
-   "statement": "For symmetric designs, the method's exponent cannot beat (log log n)^2/sqrt(log n).",
+   "title": "Symmetric enumeration floor, conditional on measurement cost",
+   "statement": "In the abstract three-cost model, including the assumed aggregate measurement lower bound, symmetric designs have exponent >=c (log log n)^2/sqrt(log n). Application to transferred rows needs an additional justification.",
    "sketch": "The three costs are: delta >= 1/r (largest group); delta >= Q eps_*/32 (measurement rows at the worst level inside the window); delta >= x log(1/x) with x = R/Q (Taylor jets). The method of types gives eps_* >= e^{-O(R^2/Q)}/(Q+1), forcing R^2 >~ Q log(1/delta). Together with Q <~ log n/log r and log r >~ log(1/delta), this forces x >~ log log n/sqrt(log n), hence delta >~ (log log n)^2/sqrt(log n).",
    "status": [
     "NEW",
@@ -1537,7 +1614,15 @@
    ],
    "paper_ref": null,
    "formal": null,
-   "confidence": 0.95
+   "confidence": 0.95,
+   "reviews": [
+    {
+     "by": "gpt",
+     "verdict": "partial",
+     "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md"
+    }
+   ],
+   "notes": "The original per-copy transfer premise fails for sparse copies (GPT assessment). ETH.TRANSFER.COMPLETE supplies a sufficient complete-copy repair; ETH.D.FLOORALL is the new explicit conditional floor. Neither is a lower bound after arbitrary measurement compression."
   },
   {
    "project": "ETH",
@@ -1681,7 +1766,7 @@
    ],
    "paper_ref": "App. D (new lower bound for its method)",
    "confidence": 0.93,
-   "notes": "Together with ETH.K.E4 (Part I's floor), both sqrt(log) barriers are theorems about their architectures. Whether every local-node scheme pays M/sqrt(log M) is target T.ETH.5."
+   "notes": "This is the stated depth-profile/formula-recovery architecture floor. The Part I measurement interface now has an explicit sufficient repair in ETH.TRANSFER.COMPLETE. The broad T.ETH.5 target remains open."
   },
   {
    "id": "KAK.Q.CALC",
@@ -2798,7 +2883,14 @@
    "paper_ref": "answers T.ETH.1; extends E4 from symmetric to all graded designs",
    "formal": null,
    "confidence": 0.93,
-   "notes": "The measurement cost (C3) is inherited from E4 and not re-derived. Ungraded designs (node-dependent coefficients on far group elements) are not covered: target T.ETH.6."
+   "notes": "This theorem is conditional on C3. The sparse-copy issue and sufficient complete-copy repair are recorded in GPT 16. Ungraded abstract defects are now covered by ETH.D.UNGRADED; the repaired enumeration consequence is ETH.D.FLOORALL.",
+   "reviews": [
+    {
+     "by": "gpt",
+     "verdict": "partial",
+     "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md"
+    }
+   ]
   },
   {
    "id": "ETH.D.FACE",
@@ -2945,7 +3037,7 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.97,
-   "notes": "Corrects 11 §7.3, which had called the N > n push-forward tangent."
+   "notes": "Corrects 11 §7.3, which had called the N > n push-forward tangent. This is an algebraic tangency criterion, not a convergence theorem: KAK.HERMITIAN.DIVERGENCE shows the natural full-fibre integral fails even for Weyl."
   },
   {
    "id": "KAK.HOPF",
@@ -2975,6 +3067,397 @@
    "paper_ref": null,
    "formal": null,
    "confidence": 0.97
+  },
+  {
+   "id": "ETH.SPLINE.BASIS",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "framework",
+   "title": "Cube splines and the cost of deleted constraints",
+   "statement": "At distinct nonzero nodes t_i, the full cube spline module has basis chi_S prod_{i in S}(1-T/t_i). Its degree-d trace has dimension sum_{j<=d} binom(Q,j). Deleting b edge conditions increases trace dimension by at most b.",
+   "sketch": "Fourier expansion makes the coefficient of chi_S divisible by every T-t_i for i in S. Distinct nodes give the product divisor. Restoring b deleted edges is a linear map to R^b whose kernel is the full spline space; its quotient surjects onto the trace quotient.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+     "label": "Lemma 1.2, Lemma 1.3"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.SPLINE.PARITY",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Parity completion forces a binomial tail of bad edges",
+   "statement": "A degree-D spline with parity trace on a spanning subgraph of the Q-cube forces at least 2^Q tau_D(Q) missing edges, where tau_D(Q)=Pr[Bin(Q,1/2)>(Q+D)/2].",
+   "sketch": "Set d=floor((Q+D)/2). Every character chi_S is the trace of g_S when |S|<=d, and of f g_{S^c} otherwise. The trace space is therefore all 2^Q functions. Compare this with the full-cube trace dimension using the deleted-constraint lemma.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+     "label": "Theorem 2.1, Corollary 2.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.BASIS"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.SPLINE.BIASED",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Product-measure and heavy-defect spline bounds",
+   "statement": "For degree-D vertex polynomials n_x with n_x(0)=1, let B_i={x:n_x(t_i)+n_{x+e_i}(t_i)!=0}. Then sum_i p_i mu_p(B_i)>=E tau_D(sum_i Bernoulli(2p_i)). For Q>=512, D<=Q/16, p in [1/4,1/2], sum_i mu_p(B_i intersect {|x|>=Q/32}) >= (3/8) exp(-25-4D^2/Q).",
+   "sketch": "Restrict coordinates by X=Z and Y coordinatewise, with Z_i of bias 2p_i and Y fair. Each active cube obeys parity completion, and bad-edge events are independent of their own coordinate. A tilted-binomial likelihood estimate bounds a whole tail without polynomial prefactors; subtract the exponentially smaller low-weight tail.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+     "label": "Theorem 3.1, Corollary 3.2, Lemma 3.3, Theorem 3.4"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.PARITY"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.SPLINE.JETS",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Unequal jet-order parity obstruction",
+   "statement": "For distinct nonzero edge nodes and direction orders w_i, a degree-D parity-trace spline satisfying only a_e<=w_i jets per edge requires sum_e(w_i-a_e) >= #{S:sum_{i in S}w_i>floor((sum_i w_i+D)/2)}.",
+   "sketch": "Full-cube Fourier coefficients have divisors prod_{i in S}(T-t_i)^{w_i}. Their degrees are weighted subset sizes. Multiplication preserves the retained initial jet segments. Parity completion works with complementary subset weights, and each erased jet restores at most one dimension.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+     "label": "Theorem 5.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.BASIS"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.D.UNGRADED",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "corollary",
+   "title": "All swap designs obey the defect bound (T.ETH.6)",
+   "statement": "For every group-algebra swap design of degree <R, graded or not, at p_r=(r-1)/(2r), max_i rank(N_i)/|B| >= exp(-2(R+1)^2/Q)/(2 p_r Q(Q+1)) when Q>=4 and R<=Q/4; the exact product-measure bound holds in all degrees. Heavy defects obey ETH.SPLINE.BIASED.",
+   "sketch": "The defect eigenvalue is (n_x(t_i)+n_{x+e_i}(t_i))/2, so its support is exactly the bad-edge endpoint set. Tensor-product eigenspace multiplicities are |B| mu_{p_r}(x). Apply the spline bounds without assuming Fourier grading.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md",
+     "label": "Corollary 4.1, Theorem 0.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.BIASED",
+    "ETH.I.SWAP"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.TRANSFER.COMPLETE",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "proposition",
+   "title": "Complete copies repair aggregate measurement transfer",
+   "statement": "Tensor-eigenvector support injects into first-coordinate schedules. A complete copy preserves nonzero group-row l1 norms >=2^{max(j-1,0)}. If k complete copies and |B| eps measured eigenvectors have j>=j0, the raw enumeration exponent is >=k|B| max(j0,1)eps/n. Variance <2M(b+w) and M>=8(b+w)|B|^2 imply k>=M/(2|B|).",
+   "sketch": "Each supported local pair is determined by its first coordinate, preventing repeated-variable cancellation. Complete copies retain every support position. Count nonzero group rows across those copies and multiply by the maximum-row range cost. The variance slack bounds the minimum label occupancy, and consecutive copy numbering turns it into complete copies.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md",
+     "label": "Lemma 1.1, Lemma 1.2, Proposition 2.2, Proposition 2.3"
+    }
+   ],
+   "depends_on": [
+    "ETH.I.TRANSFER",
+    "ETH.I.SWAP"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_complete_copies.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.D.FLOORALL",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Ungraded enumeration floor with explicit transfer assumptions",
+   "statement": "For arbitrary group-algebra designs of degree D<Q, r^{2Q}<=n, M>=n, at least M/(2|B|) complete copies, all nonzero defect eigenvectors measured with multiplicity, and cost C_floor(MD/Q)(n)(2 beta+1)^{c_*}2^s, delta>= (log2 log2 n)^2/(1000 sqrt(log2 n)) for sufficiently large n.",
+   "sketch": "Heavy spline defects and complete-copy transfer give delta>=c exp(-4D^2/Q). Small groups require r>=1/delta and polynomial label size gives Q<=log2 n/(2 log2 r). Hence D/Q is at least a constant times log log n/sqrt(log n); the uniform Taylor budget contributes its extra log factor. This bounds the stated enumeration expression, not every implementation or SAT algorithm.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md",
+     "label": "Theorem 3.1, Corollary 3.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.D.UNGRADED",
+    "ETH.TRANSFER.COMPLETE"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_spline_bound.py",
+    "reviews/gpt/eth/scripts/verify_complete_copies.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "KAK.HERMITIAN.DIVERGENCE",
+   "project": "KAK",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "The Weyl full-fibre current diverges at the polarization centre",
+   "statement": "For the realified 2x2 Weyl pencil, the unweighted full complex-fibre push-forward of the single lifted current has infinite time density for a north-going plane wave at omega=(1/2,0,0,1/2). The coarea measure is d^2lambda/|lambda|^2, and its annular contribution is pi/2 (R^2-R^-2).",
+   "sketch": "Complexify the phase symmetry as (u,v)->(lambda u,lambda^-1 v). Compute the two Jacobians to disintegrate ambient Lebesgue measure. On the central C* fibre, the real plane-wave displacement has q^0-q^3=0, so there is no Gaussian damping. The time density is |(lambda+lambda^-1)/2|^2; its exact positive annular integral diverges.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/kakeya/18_NONCOMPACT_FIBRE_OBSTRUCTION.md",
+     "label": "Lemma 2.1, Theorem 3.1"
+    }
+   ],
+   "depends_on": [
+    "KAK.C.LIFT"
+   ],
+   "checks": [
+    "reviews/gpt/kakeya/scripts/verify_weyl_fibre.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose derivation with finite checks; not Lean-formalized. New to this repository; worldwide priority unclaimed."
+  },
+  {
+   "id": "ETH.TRACE.RANK",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Multiplication-rank certificate for deleted constraints",
+   "statement": "A degree-D spline on a cube subgraph with b missing edges and trace h implies b>=rank(pi_d M_h restricted to H_{d-D}) for d>=D. Here H_d is the low Fourier space and pi_d is quotient by H_d. A parity trace plus a correction in H_D obeys the same binomial-tail obstruction.",
+   "sketch": "Lift H_{d-D} to full-cube splines and multiply by the given spline. The resulting trace space contains H_d+h H_{d-D}; its dimension excess is the displayed rank. Every missing edge contributes at most one dimension.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md",
+     "label": "Theorem 1.1, Corollary 1.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.BASIS",
+    "ETH.SPLINE.PARITY"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_defect_capacity.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+  },
+  {
+   "id": "ETH.TRACE.JOINT",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Joint character completion on a shared good-edge graph",
+   "statement": "If one graph supports degree-D_j splines with character traces chi_{A_j}, then b>=|U_d|-sum_{k<=d} binom(Q,k), where U_d is the union over J of Hamming balls centred at symmetric_difference_{j in J} A_j with radius d-sum_{j in J}D_j. Products can strengthen the joint span of individual certificates.",
+   "sketch": "Multiply selected spline generators and then a full-cube character spline within the remaining degree budget. Every character in the resulting weighted ball union belongs to the trace space. Independence of characters and the deleted-constraint bound give the claim; the Q=4 example needs five missing edges versus four from the span without products.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md",
+     "label": "Theorem 2.1, Example 2.2"
+    }
+   ],
+   "depends_on": [
+    "ETH.TRACE.RANK"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_defect_capacity.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+  },
+  {
+   "id": "ETH.SPLINE.RESIDUE",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Odd-residue unit defects retain the spline obstruction",
+   "statement": "Over a discrete valuation ring of odd residue characteristic, with distinct nonzero node residues and integral degree-D vertex polynomials n_x(0)=1, unit defects satisfy the same edge-count and product-measure bounds as nonzero real defects. For nodes 1,...,Q over F_p this requires p>Q.",
+   "sketch": "Reduce coefficients and nodes to the residue field. The characteristic-not-two Fourier basis and spline divisibility remain valid, and a reduced defect is nonzero exactly when the original defect is a unit. Random restriction counts the same endpoint sets with ordinary real probabilities. Colliding residues and characteristic two are explicit negative controls.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md",
+     "label": "Theorem 3.1"
+    }
+   ],
+   "depends_on": [
+    "ETH.SPLINE.BIASED"
+   ],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_defect_capacity.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+  },
+  {
+   "id": "ETH.DEFECT.ENERGY",
+   "project": "ETH",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Sharp uniform quadratic defect and its square-root transition",
+   "statement": "For real degree-D vertex polynomials n_x(0)=1, nodes 1,...,Q, D<Q, the minimum sum_i E_uniform[((n_x(i)+n_{x+e_i}(i))/2)^2] is rho/(1-rho), rho=prod_{j=0}^D (Q-j)/(Q+j+1). A scalar vertex family attains it. If (D+1)^2/Q tends to lambda>0, the minimum tends to 1/(exp(lambda)-1).",
+   "sketch": "Uniform Parseval separates the Fourier coefficients and reduces the optimum to min sum_{i=1}^Q q(i)^2 with q(0)=1. A discrete Rodrigues calculation gives the classical Hahn polynomial norms. The endpoint reproducing kernel telescopes to 1-rho; Cauchy-Schwarz and subtraction of q(0)^2 give the exact optimum. Product bounds for rho give the transition. This is not a biased-measure or arithmetic approximation theorem.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md",
+     "label": "Theorem 4.1, Lemma 5.1, Lemma 5.2, Corollary 6.1"
+    }
+   ],
+   "depends_on": [],
+   "checks": [
+    "reviews/gpt/eth/scripts/verify_defect_capacity.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
+  },
+  {
+   "id": "KAK.HERMITIAN.SINGULARITY",
+   "project": "KAK",
+   "group": "GPT extensions",
+   "kind": "theorem",
+   "title": "Weyl time density is not locally integrable on the real target slice",
+   "statement": "For the full unweighted complex-fibre single lift and the north-going Weyl plane wave of frequency kappa, the north-branch time density on the real target slice is F=pi a^2 J(kappa^2 s^4/a^2)/(2 kappa s^2(a-d)^2), where s^2=omega1^2+omega2^2, a,d=omega0 +/- sqrt(omega0^2-s^2), J(v)=integral_0^infinity exp(-u-v/u)du. Thus F=pi/(2 kappa s^2)+O(1); transverse mass diverges with coefficient pi^2/kappa times log(delta/epsilon).",
+   "sketch": "Compute the general complex coarea factor 1/|a-bc/a|^2. On real targets b and c are conjugate, so the radial damping has equal geometric coefficients. Two substitutions reduce the integral to J. The elementary bounds exp(-2 sqrt(v))<=J(v)<=1 imply the inverse-square singularity and a bounded remainder. Polar integration in two transverse dimensions proves failure of local finiteness; other positive branches cannot cancel it.",
+   "status": [
+    "NEW",
+    "PROVED",
+    "CHECKED"
+   ],
+   "where": [
+    {
+     "file": "reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md",
+     "label": "Lemma 1.1, Theorem 2.1, Theorem 3.2, Corollary 3.3"
+    }
+   ],
+   "depends_on": [
+    "KAK.HERMITIAN.DIVERGENCE"
+   ],
+   "checks": [
+    "reviews/gpt/kakeya/scripts/verify_weyl_singularity.py"
+   ],
+   "paper_ref": null,
+   "formal": null,
+   "confidence": null,
+   "notes": "Complete prose proof with finite checks, not Lean-formalized. New to this repository; worldwide priority unclaimed. Classical components are credited in the note."
   }
  ],
  "targets": [
@@ -3164,18 +3647,20 @@
    "id": "T.KAK.7",
    "kind": "research",
    "title": "Engines for Hermitian pencils",
-   "goal": "17 shows that a single lift is tangent iff N' = n + m - 1. So simple sheets need N' = n, and the earlier claim that the N > n push-forward stays tangent was wrong. Complex Hermitian pencils with n = 2m'-1 and quaternionic Hermitian pencils with n = 4m''-3 pass this test; the Hopf pencils are their isotropic members. Prove (A3)-(A4) for their fibre-integrated currents (the fibres are complexified spheres, non-compact in imaginary directions) and decide whether their sheets reach beyond App. E. Connects to Hermitian versus real symmetric determinantal representations of hyperbolic polynomials.",
+   "goal": "Construct finite positive conserved engine data for Hermitian pencils meeting N'=n+m-1. GPT 18-19 prove that the naive Weyl full-fibre density diverges centrally and is not locally integrable nearby on the real target slice. A quotient, different current/measure, or flux correction must be justified before A3-A4; ignoring the singular axis does not suffice. Decide whether any resulting sheets extend beyond App. E.",
    "builds_on": [
     "KAK.RIGID",
     "KAK.HOPF",
     "KAK.ENGINE",
-    "KAK.PENCIL"
+    "KAK.PENCIL",
+    "KAK.HERMITIAN.DIVERGENCE",
+    "KAK.HERMITIAN.SINGULARITY"
    ],
    "status": "OPEN",
    "owner": null,
    "difficulty": "research",
    "acceptance": [
-    "(A3)-(A4) for the fibre-integrated current of a class of Hermitian pencils meeting N' = n + m - 1, with proofs",
+    "a finite positive conserved reduction with (A3)-(A4), proved for a class of Hermitian pencils meeting N'=n+m-1",
     "an example whose sheet is not an App. E sheet, or a reason none exists"
    ]
   },
@@ -3297,12 +3782,11 @@
    "id": "T.ETH.5",
    "kind": "research",
    "title": "The square-root law",
-   "goal": "Does every interpolation-through-local-nodes scheme (13, Theorem 4.2) whose node coordinates come from a label space of size M^{O(1)} cost 2^{Omega(M/sqrt(log M))} per call? Part I pays it through Smolensky's agreement bound for parity (every graded design, 14 Theorem 3.2), Part III through Hardy-Ramanujan and the profile lemma (13 Thm 5.4). A proof would make n/sqrt(log n) the limit of the method family; a counterexample would improve Theorem 1.1. T.ETH.6 is the group-algebra special case left open by 14.",
+   "goal": "Define a nontrivial worst-case class of interpolation-through-local-nodes schemes with polynomial-size labels, and decide whether it has a 2^{Omega(M/sqrt(log M))} per-call floor. Already-local systems exclude an unrestricted universal statement. GPT 15 settles arbitrary swap-group-algebra defect bounds; GPT 16 gives an enumeration floor under complete-copy transfer. Designs outside that algebra and compressed measurements remain open.",
    "builds_on": [
     "ETH.U.MAIN",
     "ETH.U.FLOOR3",
-    "ETH.K.E4",
-    "ETH.D.FLOOR"
+    "ETH.D.FLOORALL"
    ],
    "status": "OPEN",
    "owner": null,
@@ -3315,18 +3799,72 @@
    "id": "T.ETH.6",
    "kind": "research",
    "title": "Ungraded swap designs",
-   "goal": "For maps a: {0,1}^Q -> {1} x R^{R-1}, call the edge {X, X+e_t} good if (a(X) + a(X+e_t)) . (1, t, ..., t^{R-1}) = 0. Must some direction have bad edges of mu_p-measure e^{-O(R^2/Q)}/poly(Q) (1/4 <= p <= 1/2)? This is the defect of an arbitrary group-algebra swap design. Graded maps (a = e_0 + par * low degree) satisfy it (14 Theorem 3.2); the face lemma gives only 2^{1-R}/R, and face-hitting alone cannot give more. A 2^{-Theta(R)} construction would remove the floor of Part I's architecture down to (log log n)^3/log n.",
+   "goal": "Determine whether arbitrary, possibly ungraded, degree-<R swap designs have some directional bad-edge measure >=exp(-O(R^2/Q))/poly(Q). Answered affirmatively by parity completion in cube splines (GPT 15), independently of measurement transfer. The enumeration consequence is GPT 16 under complete-copy hypotheses.",
    "builds_on": [
-    "ETH.D.FLOOR",
-    "ETH.D.FACE"
+    "ETH.D.FACE",
+    "ETH.SPLINE.PARITY",
+    "ETH.SPLINE.BIASED"
    ],
-   "status": "OPEN",
-   "owner": null,
+   "status": "DONE",
+   "owner": "gpt",
    "difficulty": "research",
    "acceptance": [
     "a proof of the bound for all maps a, or a construction beating e^{-c R^2/Q}",
     "an exact check script with a negative control",
     "roadmap updated"
+   ],
+   "deliverable": "reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md"
+  },
+  {
+   "id": "T.ETH.7",
+   "kind": "research",
+   "title": "Sharp directional spline bounds",
+   "goal": "Can the factor Q in max_i mu_1/2(B_i)>=2 tau_D(Q)/Q be removed, or can genuinely ungraded designs attain a polynomial improvement? Determine sharp bounds or extremizers; the exponential scale is already proved.",
+   "builds_on": [
+    "ETH.SPLINE.PARITY",
+    "ETH.SPLINE.BIASED",
+    "ETH.D.UNGRADED"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a stronger directional lower bound with proof or an explicit asymptotically separating design",
+    "exact finite checks and a clear comparison to graded designs"
+   ]
+  },
+  {
+   "id": "T.ETH.8",
+   "kind": "research",
+   "title": "Defect energy under the actual biased spectrum",
+   "goal": "Determine the exact or asymptotically sharp quadratic defect minimum under product bias p_r, with degree-D normalized vertex polynomials at nodes 1,...,Q. The uniform value in GPT 17 does not automatically transfer because its Fourier orthogonality changes.",
+   "builds_on": [
+    "ETH.DEFECT.ENERGY",
+    "ETH.SPLINE.BIASED"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "an explicit optimal family or sharp asymptotics with proof",
+    "exact finite quadratic-program checks and a comparison with the uniform formula"
+   ]
+  },
+  {
+   "id": "T.ETH.9",
+   "kind": "research",
+   "title": "An algorithmic application of shared trace completion",
+   "goal": "Find an interpolation or counting construction in which several low-degree character traces must share the same retained edges, and use the joint weighted-ball bound to obtain a consequence stronger than separate trace certificates.",
+   "builds_on": [
+    "ETH.TRACE.JOINT",
+    "ETH.D.UNGRADED"
+   ],
+   "status": "OPEN",
+   "owner": null,
+   "difficulty": "research",
+   "acceptance": [
+    "a precise shared-trace interface for the construction",
+    "a proved consequence exploiting products and exceeding separate certificates"
    ]
   }
  ]

@@ -1,0 +1,101 @@
+{
+  "cases": [
+    {
+      "r": 2,
+      "q": 1,
+      "eigenvectors": 4,
+      "row_node_checks": 4,
+      "spectral_multiplicities": [
+        3,
+        1
+      ],
+      "heavy_eigenvectors": 1,
+      "group_rows_per_complete_copy": [
+        2
+      ],
+      "max_norm": 1
+    },
+    {
+      "r": 2,
+      "q": 3,
+      "eigenvectors": 64,
+      "row_node_checks": 192,
+      "spectral_multiplicities": [
+        27,
+        27,
+        9,
+        1
+      ],
+      "heavy_eigenvectors": 37,
+      "group_rows_per_complete_copy": [
+        60,
+        60,
+        60
+      ],
+      "max_norm": 4
+    },
+    {
+      "r": 2,
+      "q": 4,
+      "eigenvectors": 256,
+      "row_node_checks": 1024,
+      "spectral_multiplicities": [
+        81,
+        108,
+        54,
+        12,
+        1
+      ],
+      "heavy_eigenvectors": 67,
+      "group_rows_per_complete_copy": [
+        114,
+        114,
+        114,
+        114
+      ],
+      "max_norm": 8
+    },
+    {
+      "r": 3,
+      "q": 2,
+      "eigenvectors": 81,
+      "row_node_checks": 162,
+      "spectral_multiplicities": [
+        36,
+        36,
+        9
+      ],
+      "heavy_eigenvectors": 45,
+      "group_rows_per_complete_copy": [
+        81,
+        81
+      ],
+      "max_norm": 2
+    },
+    {
+      "r": 3,
+      "q": 3,
+      "eigenvectors": 729,
+      "row_node_checks": 2187,
+      "spectral_multiplicities": [
+        216,
+        324,
+        162,
+        27
+      ],
+      "heavy_eigenvectors": 513,
+      "group_rows_per_complete_copy": [
+        891,
+        891,
+        891
+      ],
+      "max_norm": 4
+    }
+  ],
+  "variance_cases": 4,
+  "negative_controls": {
+    "sparse_copy_norm_loss": true,
+    "sparse_copy_zero_row": true
+  },
+  "all_ok": true
+}

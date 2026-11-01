@@ -1,0 +1,11 @@
+[L] p-adic lift (E2 digits and the closed-form idempotent), p = 2,3,5,7, ell <= 8: True
+    F_3: n = 2 (4 bits), 2 equations, (r,Q,R) = (2,1,1), N = 3, pipeline = 3, ok = True
+    F_3: n = 2 (4 bits), 2 equations, (r,Q,R) = (2,2,2), N = 3, pipeline = 3, ok = True
+    F_3: n = 2 (4 bits), 2 equations, (r,Q,R) = (3,2,2), N = 3, pipeline = 3, ok = True
+    F_3: n = 3 (6 bits), 2 equations, (r,Q,R) = (2,1,1), N = 3, pipeline = 3, ok = True
+    F_3: n = 3 (6 bits), 2 equations, (r,Q,R) = (2,2,2), N = 5, pipeline = 5, ok = True
+    F_5: n = 2 (6 bits), 2 equations, (r,Q,R) = (2,1,1), N = 1, pipeline = 1, ok = True
+    F_5: n = 2 (6 bits), 1 equations, (r,Q,R) = (2,2,2), N = 5, pipeline = 5, ok = True
+    F_7: n = 2 (6 bits), 1 equations, (r,Q,R) = (2,1,1), N = 7, pipeline = 7, ok = True
+[Z] F_p pipeline exact: True; without validity factors wrong in 8/8; too few jets wrong in 4/4 applicable cases
+ALL OK

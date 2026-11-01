@@ -6,6 +6,12 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 **New to the Kakeya proof?** [`reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md`](reviews/claude/kakeya/15_HOW_TO_READ_THE_PROOF.md) reads it at four levels, from no formulas to the Lean statements.
 
+## Research continuation — 1 November 2026
+
+[GPT / Astra results and reading guide](reviews/gpt/README.md): ungraded swap designs now satisfy the defect bound (`T.ETH.6`), via parity completion in cube splines. A separate complete-copy theorem repairs the measurement interface and proves the ungraded enumeration floor under explicit hypotheses. The next layer, [ETH 17](reviews/gpt/eth/17_TRACE_CAPACITY_AND_APPROXIMATE_LOCALITY.md), develops joint trace completion, residual obstructions, and sharp uniform defect energy. On the analytic side, [Kakeya 19](reviews/gpt/kakeya/19_TRANSVERSE_SINGULARITY.md) shows that the naive Weyl full-fibre density is not locally integrable. The [research ledger](reviews/gpt/RESEARCH_LEDGER.md) records both productive and unsuccessful routes. Proofs, checks, and remaining questions are committed; worldwide novelty and new Lean verification are not claimed.
+
+The user now accepts Claude's Lean runs and prioritizes mathematical extensions. The following review priorities describe the earlier phase.
+
 ## User priorities (each target)
 
 1. Does the paper answer the question?
@@ -17,8 +23,8 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 
 | Target | Claim | Claude verdict | GPT |
 |---|---|---|---|
-| [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct. The minimal chain was re-derived, and the algorithm was run in exact arithmetic. **OpenAI's formal proof of the exact statement builds locally** (3,091 modules, 0 sorry, only standard axioms, elaborated statement byte-identical) ([06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md)). | pending |
-| [**Kakeya / local smoothing**](reviews/claude/kakeya/01_VERDICT.md): *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Stein square function, Kakeya maximal and Kakeya set conjectures | Answers the question. The core identities were verified. **OpenAI's formal proof builds locally** (2,261 modules, 0 errors, 0 sorry; only standard axioms; elaborated statements byte-identical to the challenge) ([06](reviews/claude/kakeya/06_LEAN_AUDIT.md)). A new method: positive currents plus quaternionic Monge–Ampère energies. | pending |
+| [**ETH**](reviews/claude/eth/01_VERDICT.md): *The Exponential Time Hypothesis Is False* (OpenAI, Oct 2026) | #$k$-SAT in $2^{O_k(n\log\log n/\sqrt{\log n})}$ time, polynomial space | ETH refutation correct. The minimal chain was re-derived, and the algorithm was run in exact arithmetic. **OpenAI's formal proof of the exact statement builds locally** (3,091 modules, 0 sorry, only standard axioms, elaborated statement byte-identical) ([06](reviews/claude/eth/06_LEAN_STATEMENT_AUDIT.md)). | [Assessment and research continuation](reviews/gpt/README.md) |
+| [**Kakeya / local smoothing**](reviews/claude/kakeya/01_VERDICT.md): *Local smoothing for the Euclidean wave equation* (OpenAI, 25 Oct 2026) | Sogge's local smoothing conjecture in all dimensions, which implies Bochner–Riesz, restriction, Stein square function, Kakeya maximal and Kakeya set conjectures | Answers the question. The core identities were verified. **OpenAI's formal proof builds locally** (2,261 modules, 0 errors, 0 sorry; only standard axioms; elaborated statements byte-identical to the challenge) ([06](reviews/claude/kakeya/06_LEAN_AUDIT.md)). A new method: positive currents plus quaternionic Monge–Ampère energies. | [Assessment and research continuation](reviews/gpt/README.md) |
 
 ## Gapless proofs (distillation round 3)
 
@@ -31,7 +37,7 @@ Joint Claude–GPT review of OpenAI's mathematical releases. The workflow is the
 - **ETH, the design floor** ([`14_DESIGN_FLOOR.md`](reviews/claude/eth/14_DESIGN_FLOOR.md)).
   - Every graded swap design, which includes every choice of $M_0$, symmetric or not, pays Part I's exponent $(\log\log n)^2/\sqrt{\log n}$.
   - The reason is Smolensky's bound for parity, carried to the biased swap spectrum by a random restriction: Part I's square root is the agreement degree of parity.
-  - Ungraded designs remain open (`T.ETH.6`). Checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py).
+  - Ungraded abstract designs are now covered by [GPT 15](reviews/gpt/eth/15_UNGRADED_SPLINE_BOUND.md) (`T.ETH.6` done); the cost consequence requires [GPT 16](reviews/gpt/eth/16_MEASUREMENT_TRANSFER_AND_FLOOR.md)'s transfer hypotheses. The graded result is checked by [`verify_design_floor.py`](reviews/claude/eth/scripts/verify_design_floor.py); the ungraded theorem by [`verify_spline_bound.py`](reviews/gpt/eth/scripts/verify_spline_bound.py).
 - **ETH, corollaries and a new theorem** ([`11_GAPLESS_COROLLARIES.md`](reviews/claude/eth/11_GAPLESS_COROLLARIES.md), [`12_FP_COUNTING.md`](reviews/claude/eth/12_FP_COUNTING.md)).
   - Proofs of all of the paper's corollaries. Cor. 1.4 is found to need App. D.
   - **New:** counting zeros of sparse polynomial systems over any fixed finite field in $2^{O(n(\log\log n)^2/\sqrt{\log n})}$. This is the $\mathbb F_p$ analogue of the paper's Theorem 2.2, with a closed-form $p$-adic lift. Checked by [`verify_fp_counting.py`](reviews/claude/eth/scripts/verify_fp_counting.py).
@@ -104,7 +110,7 @@ source/kakeya/            pinned Kakeya sources (hashes, comparator statements, 
 reviews/claude/eth/       Claude's ETH review: 01 verdict … 07 toolkit, 08–11 gapless proofs, 12 F_q counting, FOR_GPT, scripts/, results/
 reviews/claude/kakeya/    Claude's Kakeya review: 01 verdict … 07 toolkit, 08–10 gapless proofs, 11 positivity engine, 12 slot calculus, 13 planar entry point, 14 angular endpoint, 15 reading guide, 16 null frame and Schrödinger, 17 state-dimension rigidity, FOR_GPT, scripts/, results/, lean/
 reviews/claude/SYNTHESIS.md  cross-paper synthesis: shared pattern, recyclable tools, new sharpenings
-reviews/gpt/              GPT's reviews (to be added)
+reviews/gpt/              GPT's assessment, spline extensions, transfer repair, Weyl obstruction, and checks
 REVIEW_STANDARD.md        working standard for this project
 ```
 

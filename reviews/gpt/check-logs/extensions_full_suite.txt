@@ -1,0 +1,61 @@
+ok   tools/check_roadmap.py                0.3s  OK: 86 nodes, 21 targets, 1 free-text labels not checked
+ok   tools/test_check_roadmap.py           2.1s  ALL OK
+ok   ETH verify_appendix_d.py                  1.3s  ALL PASS
+         checks: ETH.III.CAUCHY, ETH.III.HERMITE
+ok   ETH verify_complete_copies.py             0.2s  ALL OK
+         checks: ETH.TRANSFER.COMPLETE, ETH.D.FLOORALL
+ok   ETH verify_cost_floor.py                 93.3s  {'log2_n': '2^300', 'min_delta': 3.2548466424077023e-41, 'argmin_(r,Q,R)': (334509381627048597285208
+         checks: ETH.K.E4
+ok   ETH verify_counting_pipeline.py          58.1s  ALL PASS
+         checks: ETH.I.MAIN
+ok   ETH verify_design_floor.py               54.2s  ALL OK
+         checks: ETH.D.SMOL, ETH.D.FLOOR
+ok   ETH verify_distilled_swap_formula.py      1.3s  ALL PASS
+         checks: ETH.I.SWAP
+ok   ETH verify_fp_counting.py                 4.5s  ALL OK
+         checks: ETH.N.LIFTP, ETH.N.FQ
+ok   ETH verify_gapless_chain.py              27.8s  ALL OK
+         checks: ETH.I.SPARS, ETH.I.TOVEY, ETH.I.DEFCOUNT, ETH.I.SWAP, ETH.I.TRANSFER, ETH.I.PARAM, ETH.I.MAIN
+ok   ETH verify_padic_truncation.py            0.2s  ALL PASS
+         checks: ETH.N.LIFTP
+ok   ETH verify_parameters.py                  0.1s  }
+         checks: (toolkit/companion)
+ok   ETH verify_parity_lift.py                 0.2s  ALL PASS
+         checks: ETH.II.LIFT
+ok   ETH verify_replacement_forms.py           5.4s  ALL PASS
+         checks: ETH.I.SWAP
+ok   ETH verify_sharp_route.py                10.2s  ALL OK
+         checks: ETH.I.DEFCOUNT, ETH.II.LIFT, ETH.II.ZEROS, ETH.II.TANNER, ETH.II.GREEDY, ETH.II.MAIN
+ok   ETH verify_spline_bound.py                3.4s  ALL OK
+         checks: ETH.SPLINE.BASIS, ETH.SPLINE.PARITY, ETH.SPLINE.BIASED, ETH.SPLINE.JETS, ETH.D.UNGRADED, ETH.D.FLOORALL
+ok   ETH verify_tensor_contraction.py         34.7s  ALL OK
+         checks: ETH.III.HERMITE, ETH.III.CHILD, ETH.III.TENSOR, ETH.III.FIXED, ETH.III.SPARSEZ, ETH.III.MAIN
+ok   ETH verify_unified_deformation.py        26.5s  ALL OK
+         checks: ETH.U.NODE, ETH.U.HERMITE, ETH.U.COUNT, ETH.U.MAIN, ETH.U.FLOOR3
+ok   KAK verify_angular_endpoint.py           66.1s  ALL OK
+         checks: KAK.ANG.HANKEL, KAK.ANG.BALL, KAK.ANG.ENV, KAK.ANG.BAND, KAK.APP.B
+ok   KAK verify_capacity_dimension.py          4.2s  ALL PASS
+         checks: KAK.CAP
+ok   KAK verify_null_frame.py                 22.6s  ALL OK
+         checks: KAK.NULL, KAK.HUS, KAK.SCHR
+ok   KAK verify_planar_entry.py                2.7s  ALL OK
+         checks: KAK.APP.D
+ok   KAK verify_positivity_engine.py           8.9s  ALL OK
+         checks: KAK.APP.D, KAK.APP.E, KAK.PENCIL, KAK.ARROW
+ok   KAK verify_propagation_and_exponents.py    3.3s  ALL PASS
+         checks: KAK.PROP, KAK.OB.FOCUS
+ok   KAK verify_quaternion_calculus.py        10.2s  ALL PASS
+         checks: KAK.Q.CALC, KAK.E.BAL
+ok   KAK verify_remaining_claims.py           30.3s  ALL OK
+         checks: KAK.R.CONE, KAK.R.PARAB, KAK.NIK, KAK.OB.WEAK, KAK.APP.D, KAK.APP.E
+ok   KAK verify_slot_calculus.py              10.6s  ALL OK
+         checks: KAK.Q.CALC, KAK.FRAME, KAK.MAENERGY
+ok   KAK verify_state_dimension.py            12.2s  ALL OK
+         checks: KAK.RIGID, KAK.HOPF
+ok   KAK verify_wave_current.py               52.7s  ALL PASS
+         checks: KAK.C.LIFT, KAK.C.WAVE
+ok   KAK verify_wave_current_target.py         1.3s  ALL PASS
+         checks: KAK.C.WAVE
+ok   KAK verify_weyl_fibre.py                  0.2s  ALL OK
+         checks: KAK.HERMITIAN.DIVERGENCE
+ALL OK

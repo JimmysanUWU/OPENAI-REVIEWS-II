@@ -1,0 +1,13 @@
+[L] closed-form h-adic digits = division digits for ell <= 128; congruence; norms <= 2*4^j: True
+    Z (r,Q,R)=(2,1,1) n=3 eqs=2 N=2 got=2 ok=True
+    Z (r,Q,R)=(2,1,1) n=4 eqs=2 N=8 got=8 ok=True
+    Z (r,Q,R)=(2,2,2) n=3 eqs=2 N=5 got=5 ok=True
+    Z (r,Q,R)=(2,2,2) n=4 eqs=3 N=2 got=2 ok=True
+    Z (r,Q,R)=(2,3,2) n=3 eqs=2 N=4 got=4 ok=True
+    Z (r,Q,R)=(2,3,2) n=4 eqs=3 N=7 got=7 ok=True
+    Z (r,Q,R)=(3,2,2) n=3 eqs=2 N=5 got=5 ok=True
+    Z (r,Q,R)=(3,2,2) n=4 eqs=3 N=4 got=4 ok=True
+[Z] common-zero counting with V-truncation, mod p^mu: all exact: True
+[T] Tanner mechanism on toys (mixing, min weight >= delta(delta-eps)qd): True; Lemma 6.1 constant arithmetic: True
+[G] Lemma 6.2 greedy rows on small CNFs: D shrinks by >= 1/4 per round to 0: True
+ALL OK

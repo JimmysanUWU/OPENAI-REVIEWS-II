@@ -1,0 +1,42 @@
+{
+  "clifford_relations": true,
+  "exact_coordinate_checks": 10,
+  "real_jacobians": {
+    "z_to_uv": 16,
+    "base_to_target": "1/16"
+  },
+  "conditional_fibre_measure": "d^2(lambda)/|lambda|^2",
+  "annuli": [
+    {
+      "radius": 2,
+      "integral_divided_by_pi": "15/8"
+    },
+    {
+      "radius": 3,
+      "integral_divided_by_pi": "40/9"
+    },
+    {
+      "radius": 4,
+      "integral_divided_by_pi": "255/32"
+    },
+    {
+      "radius": 8,
+      "integral_divided_by_pi": "4095/128"
+    },
+    {
+      "radius": 16,
+      "integral_divided_by_pi": "65535/512"
+    },
+    {
+      "radius": 32,
+      "integral_divided_by_pi": "1048575/2048"
+    }
+  ],
+  "gaussian_cutoff_source_divided_by_exp": "-2 epsilon",
+  "controls": {
+    "real_displacement_not_assumed_constant": true,
+    "central_gaussian_does_not_damp": true,
+    "radial_cutoff_has_source": true
+  },
+  "all_ok": true
+}

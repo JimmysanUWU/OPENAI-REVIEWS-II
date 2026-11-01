@@ -1,0 +1,1083 @@
+{
+  "full_cube": [
+    {
+      "q": 1,
+      "weights": [
+        1
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 1,
+      "weights": [
+        1
+      ],
+      "degree": 1,
+      "module_dimension": 3,
+      "trace_dimension": 2
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        1
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        1
+      ],
+      "degree": 1,
+      "module_dimension": 4,
+      "trace_dimension": 3
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        1
+      ],
+      "degree": 2,
+      "module_dimension": 8,
+      "trace_dimension": 4
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "degree": 1,
+      "module_dimension": 5,
+      "trace_dimension": 4
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "degree": 2,
+      "module_dimension": 12,
+      "trace_dimension": 7
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "degree": 3,
+      "module_dimension": 20,
+      "trace_dimension": 8
+    },
+    {
+      "q": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "degree": 1,
+      "module_dimension": 6,
+      "trace_dimension": 5
+    },
+    {
+      "q": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "degree": 2,
+      "module_dimension": 17,
+      "trace_dimension": 11
+    },
+    {
+      "q": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "degree": 3,
+      "module_dimension": 32,
+      "trace_dimension": 15
+    },
+    {
+      "q": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "degree": 4,
+      "module_dimension": 48,
+      "trace_dimension": 16
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 1,
+      "module_dimension": 3,
+      "trace_dimension": 2
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 2,
+      "module_dimension": 6,
+      "trace_dimension": 3
+    },
+    {
+      "q": 2,
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 3,
+      "module_dimension": 10,
+      "trace_dimension": 4
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 0,
+      "module_dimension": 1,
+      "trace_dimension": 1
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 1,
+      "module_dimension": 4,
+      "trace_dimension": 3
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 2,
+      "module_dimension": 9,
+      "trace_dimension": 5
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 3,
+      "module_dimension": 16,
+      "trace_dimension": 7
+    },
+    {
+      "q": 3,
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 4,
+      "module_dimension": 24,
+      "trace_dimension": 8
+    }
+  ],
+  "deleted_constraints": [
+    {
+      "q": 2,
+      "degree": 0,
+      "erased": 3,
+      "trace_dimension": 3
+    },
+    {
+      "q": 2,
+      "degree": 0,
+      "erased": 3,
+      "trace_dimension": 3
+    },
+    {
+      "q": 2,
+      "degree": 0,
+      "erased": 2,
+      "trace_dimension": 2
+    },
+    {
+      "q": 2,
+      "degree": 0,
+      "erased": 3,
+      "trace_dimension": 3
+    },
+    {
+      "q": 2,
+      "degree": 1,
+      "erased": 1,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 1,
+      "erased": 3,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 1,
+      "erased": 3,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 1,
+      "erased": 2,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 2,
+      "erased": 1,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 2,
+      "erased": 2,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 2,
+      "erased": 2,
+      "trace_dimension": 4
+    },
+    {
+      "q": 2,
+      "degree": 2,
+      "erased": 1,
+      "trace_dimension": 4
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 7,
+      "trace_dimension": 3
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 6,
+      "trace_dimension": 2
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 4,
+      "trace_dimension": 1
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 7,
+      "trace_dimension": 3
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 6,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 5,
+      "trace_dimension": 7
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 7,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 8,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 5,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 6,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 5,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 3,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 7,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 6,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 4,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 5,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 7,
+      "trace_dimension": 2
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 6,
+      "trace_dimension": 2
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 8,
+      "trace_dimension": 2
+    },
+    {
+      "q": 3,
+      "degree": 0,
+      "erased": 4,
+      "trace_dimension": 1
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 9,
+      "trace_dimension": 7
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 7,
+      "trace_dimension": 6
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 11,
+      "trace_dimension": 7
+    },
+    {
+      "q": 3,
+      "degree": 1,
+      "erased": 11,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 10,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 7,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 7,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "erased": 3,
+      "trace_dimension": 6
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 8,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 6,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 11,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 3,
+      "erased": 8,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 4,
+      "erased": 9,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 4,
+      "erased": 7,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 4,
+      "erased": 9,
+      "trace_dimension": 8
+    },
+    {
+      "q": 3,
+      "degree": 4,
+      "erased": 7,
+      "trace_dimension": 8
+    }
+  ],
+  "ungraded_designs": {
+    "cases": [
+      {
+        "q": 2,
+        "degree": 0,
+        "seed": 0,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 2,
+        "degree": 0,
+        "seed": 1,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 2,
+        "degree": 0,
+        "seed": 2,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 2,
+        "degree": 1,
+        "seed": 0,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 2,
+        "degree": 1,
+        "seed": 1,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 2,
+        "degree": 1,
+        "seed": 2,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 0,
+        "seed": 0,
+        "bad_edges": 12,
+        "lower_bound": 4,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 3,
+        "degree": 0,
+        "seed": 1,
+        "bad_edges": 12,
+        "lower_bound": 4,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 3,
+        "degree": 0,
+        "seed": 2,
+        "bad_edges": 12,
+        "lower_bound": 4,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 3,
+        "degree": 1,
+        "seed": 0,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 1,
+        "seed": 1,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 1,
+        "seed": 2,
+        "bad_edges": 5,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 2,
+        "seed": 0,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 2,
+        "seed": 1,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 3,
+        "degree": 2,
+        "seed": 2,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 0,
+        "seed": 0,
+        "bad_edges": 32,
+        "lower_bound": 5,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 4,
+        "degree": 0,
+        "seed": 1,
+        "bad_edges": 32,
+        "lower_bound": 5,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 4,
+        "degree": 0,
+        "seed": 2,
+        "bad_edges": 32,
+        "lower_bound": 5,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 4,
+        "degree": 1,
+        "seed": 0,
+        "bad_edges": 17,
+        "lower_bound": 5,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 1,
+        "seed": 1,
+        "bad_edges": 17,
+        "lower_bound": 5,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 1,
+        "seed": 2,
+        "bad_edges": 15,
+        "lower_bound": 5,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 2,
+        "seed": 0,
+        "bad_edges": 5,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 2,
+        "seed": 1,
+        "bad_edges": 6,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 2,
+        "seed": 2,
+        "bad_edges": 4,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 3,
+        "seed": 0,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 3,
+        "seed": 1,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 4,
+        "degree": 3,
+        "seed": 2,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 0,
+        "seed": 0,
+        "bad_edges": 80,
+        "lower_bound": 16,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 5,
+        "degree": 0,
+        "seed": 1,
+        "bad_edges": 80,
+        "lower_bound": 16,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 5,
+        "degree": 0,
+        "seed": 2,
+        "bad_edges": 80,
+        "lower_bound": 16,
+        "genuinely_ungraded": false
+      },
+      {
+        "q": 5,
+        "degree": 1,
+        "seed": 0,
+        "bad_edges": 44,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 1,
+        "seed": 1,
+        "bad_edges": 42,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 1,
+        "seed": 2,
+        "bad_edges": 45,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 2,
+        "seed": 0,
+        "bad_edges": 19,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 2,
+        "seed": 1,
+        "bad_edges": 19,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 2,
+        "seed": 2,
+        "bad_edges": 22,
+        "lower_bound": 6,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 3,
+        "seed": 0,
+        "bad_edges": 6,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 3,
+        "seed": 1,
+        "bad_edges": 6,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 3,
+        "seed": 2,
+        "bad_edges": 7,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 4,
+        "seed": 0,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 4,
+        "seed": 1,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      },
+      {
+        "q": 5,
+        "degree": 4,
+        "seed": 2,
+        "bad_edges": 1,
+        "lower_bound": 1,
+        "genuinely_ungraded": true
+      }
+    ],
+    "genuinely_ungraded": 30
+  },
+  "weighted_jets": [
+    {
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 0,
+      "erased": 6,
+      "lower_bound": 2
+    },
+    {
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 1,
+      "erased": 3,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        1,
+        2
+      ],
+      "degree": 2,
+      "erased": 1,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 0,
+      "erased": 16,
+      "lower_bound": 3
+    },
+    {
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 1,
+      "erased": 8,
+      "lower_bound": 3
+    },
+    {
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 2,
+      "erased": 4,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        1,
+        2,
+        1
+      ],
+      "degree": 3,
+      "erased": 1,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 0,
+      "erased": 24,
+      "lower_bound": 4
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 1,
+      "erased": 16,
+      "lower_bound": 4
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 2,
+      "erased": 8,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 3,
+      "erased": 6,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 4,
+      "erased": 2,
+      "lower_bound": 1
+    },
+    {
+      "weights": [
+        2,
+        2,
+        2
+      ],
+      "degree": 5,
+      "erased": 1,
+      "lower_bound": 1
+    }
+  ],
+  "single_edge_extremizers": [
+    {
+      "q": 1,
+      "degree": 0,
+      "bad_edge": [
+        0,
+        1,
+        0
+      ],
+      "sharp_total_bound": 1
+    },
+    {
+      "q": 2,
+      "degree": 1,
+      "bad_edge": [
+        0,
+        2,
+        1
+      ],
+      "sharp_total_bound": 1
+    },
+    {
+      "q": 3,
+      "degree": 2,
+      "bad_edge": [
+        0,
+        4,
+        2
+      ],
+      "sharp_total_bound": 1
+    },
+    {
+      "q": 4,
+      "degree": 3,
+      "bad_edge": [
+        0,
+        8,
+        3
+      ],
+      "sharp_total_bound": 1
+    },
+    {
+      "q": 5,
+      "degree": 4,
+      "bad_edge": [
+        0,
+        16,
+        4
+      ],
+      "sharp_total_bound": 1
+    },
+    {
+      "q": 6,
+      "degree": 5,
+      "bad_edge": [
+        0,
+        32,
+        5
+      ],
+      "sharp_total_bound": 1
+    }
+  ],
+  "negative_controls": {
+    "distinct_nodes_needed": true,
+    "parity_trace_needed": true,
+    "degree_bound_needed": true
+  },
+  "tail_bound": {
+    "cases": 301,
+    "note": "Finite numerical check of an independently proved tail bound."
+  },
+  "all_ok": true
+}

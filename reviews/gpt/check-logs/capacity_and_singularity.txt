@@ -1,0 +1,34 @@
+Second batch verification: new scripts through the repository runner; roadmap and controls.
+verify_defect_capacity.py: PASS; ALL OK
+verify_weyl_singularity.py: PASS; ALL OK
+tools/check_roadmap.py
+OK: 91 nodes, 23 targets, 2 free-text labels not checked
+
+tools/test_check_roadmap.py
+unknown dependency         detected: ETH.I.MAIN: unknown dependency ETH.I.NOPE
+dependency cycle           detected: dependency cycle through ETH.I.PARAM -> ETH.I.SWAP
+duplicate id               detected: duplicate node ids: ['KAK.CAP']
+proved on partial          detected: dependency cycle through KAK.APP.B -> KAK.T12
+proved on heuristic        detected: KAK.T12 is proved in prose but depends on KAK.CAP (HEURISTIC)
+missing file               detected: KAK.PROP: missing file reviews/claude/kakeya/99_NOPE.md
+wrong theorem label        detected: ETH.I.DEFCOUNT: label 'Thm 4.9' not found in reviews/claude/eth/08_GAPLESS_PROOF.md
+wrong section label        detected: KAK.FIB: label '§17' not found in reviews/claude/kakeya/08_GAPLESS_PROOF.md
+missing script             detected: KAK.CAP: missing check script reviews/claude/kakeya/scripts/nope.py
+FORMAL without name        detected: KAK.PROP: FORMAL status and formal name must go together
+unknown Lean name          detected: KAK.KD: formal name OAI.Analysis.Fourier.LocalSmoothing.Comparator.kakeya_set not found in source/kakeya/LocalSmoothing.challenge.lean
+unknown status             detected: KAK.CAP: bad status ['NEW', 'PROVED', 'CHECKED', 'MAYBE']
+target without owner       detected: T.ETH.3: in progress without an owner
+done without deliverable   detected: T.ETH.3: DONE but deliverable missing
+bad review                 detected: KAK.CAP: bad review entry {'by': 'gpt', 'verdict': 'maybe', 'file': 'README.md'}
+missing sketch             detected: KAK.PROP: proof sketch missing or too short
+path out of order          detected: P.KAK.PLANAR: KAK.APP.D comes before its dependencies ['KAK.FRAME', 'KAK.PENCIL', 'KAK.PROP']
+node on no path            detected: KAK.OB.WEAK is on no reading path
+unknown assumed node       detected: P.KAK.CONSEQ: unknown assumed node KAK.NOPE
+bad alternative proof      detected: KAK.T12: bad alternative dependency KAK.NOPE
+alt proof makes a cycle    detected: dependency cycle through KAK.T11 -> KAK.T12
+glossary bad pointer       detected: glossary 'p_c, d, q': label '§99' not found in reviews/claude/kakeya/08_GAPLESS_PROOF.md
+stale block                detected
+repair by --write          ok
+ALL OK
+
+ALL OK. Prior full 29-script suite is recorded in extensions_full_suite.txt; both new scripts pass above.

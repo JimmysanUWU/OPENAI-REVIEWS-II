@@ -1,0 +1,5 @@
+A ok {"chart_inverts": true, "dPhi": true, "e_in_kernel": true, "Jcal": true, "conormal": true}
+L ok {"disk_operator_relative_error": 3.804869862951137e-25, "B_fib_error": 9.983993604081346e-25}
+EM ok {"D_B=beta det b": 2.8844733700694197e-15, "completed_square": 1.1742940662693453e-15, "M_TT": 9.088596542028426e-11, "M:H=2D": 3.9968028886505635e-14, "nu M nu": 5.551115123125783e-15, "min_A:H-D_B": 3.403579225558158}
+P ok {"mixed_cofactor_divergence_nonzero_components": 0, "control_non_hessian": 3}
+ALL OK
