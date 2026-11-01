@@ -1,0 +1,3 @@
+challenge pp.all statements+definitions: 51981 chars, sha256 805c7f1565e0060412a72db1f73bd6af9ee3f305cfd6bc85d52516f833fe31f3
+solution  pp.all statements+definitions: 51981 chars, sha256 805c7f1565e0060412a72db1f73bd6af9ee3f305cfd6bc85d52516f833fe31f3
+identical: True

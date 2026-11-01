@@ -1,0 +1,18 @@
+G arrow n=2 (Dirac)        HF 7.3e-42 curv 4.0e-26 Dv 1.9e-42 dB0 0.0e+00 stat 1.6e-41 conormal 1.2e-41  ok
+G arrow n=3                HF 4.1e-41 curv 1.3e-30 Dv 3.5e-42 dB0 0.0e+00 stat 1.6e-41 conormal 4.6e-42  ok
+G arrow n=4                HF 1.6e-41 curv 4.4e-31 Dv 1.6e-41 dB0 0.0e+00 stat 1.6e-41 conormal 5.9e-42  ok
+G cubic (Example E.2)      HF 6.6e-42 curv 5.3e-31 Dv 7.4e-42 dB0 0.0e+00 stat 1.6e-41 conormal 2.9e-42  ok
+G perturbed arrow n=3      HF 2.5e-41 curv 7.0e-31 Dv 1.1e-41 dB0 0.0e+00 stat 1.6e-41 conormal 1.2e-41  ok
+G cubic transverse Hessian at (0,0,1): diag(1.000000, 0.666667) (paper: diag(1, 2/3))  ok
+C arrow n=2 (Dirac)        div 4.1e-39 tang 3.2e-40 J 8.5e-62 gauss 4.4e-62 rows 5.3e-61  controls: conj 6.3e-02, no J 2.7e+00  ok
+C arrow n=2 (Dirac)        div 1.1e-38 tang 1.4e-40 J 1.1e-61 gauss 1.0e-61 rows 1.0e-60  ok
+C arrow n=3                div 5.6e-39 tang 6.1e-40 J 0.0e+00 gauss 6.5e-61 rows 1.3e-60  controls: conj 5.3e-04, no J 3.0e+00  ok
+C arrow n=3                div 4.5e-39 tang 4.6e-40 J 5.6e-61 gauss 4.8e-61 rows 1.1e-60  ok
+C arrow n=4                div 4.5e-39 tang 2.1e-40 J 4.6e-61 gauss 4.7e-61 rows 6.9e-61  controls: conj 9.2e-03, no J 5.5e+00  ok
+C cubic (Example E.2)      div 2.0e-39 tang 3.3e-40 J 1.0e-61 gauss 1.6e-61 rows 2.9e-61  controls: conj 2.6e-02, no J 4.1e+00  ok
+C cubic (Example E.2)      div 6.4e-39 tang 6.6e-40 J 5.9e-61 gauss 5.7e-61 rows 5.9e-61  ok
+C perturbed arrow n=3      div 4.8e-39 tang 9.1e-41 J 1.0e-61 gauss 2.2e-61 rows 5.0e-61  controls: conj 5.0e-02, no J 2.6e+00  ok
+C perturbed arrow n=3      div 2.8e-39 tang 1.8e-40 J 1.6e-61 gauss 6.3e-61 rows 1.4e-60  ok
+M middle sheet: S_perp eigenvalues ['-1.275', '0.959'], conserved (div 1.3e-38), Gaussian factor 1.006 > 1  ok
+W wave = arrow pencil (exact): {'n=2': [True, True, True, True, True, True, True], 'n=3': [True, True, True, True, True, True, True, True], 'n=4': [True, True, True, True, True, True, True, True, True]}  ok
+ALL OK

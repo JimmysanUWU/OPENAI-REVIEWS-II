@@ -1,0 +1,74 @@
+{
+ "null_phase": "True",
+ "symbol": {
+  "1": {
+   "-C(p)_matrix": true,
+   "quadratic_form": true,
+   "P_f_sys=0": true
+  },
+  "2": {
+   "-C(p)_matrix": true,
+   "quadratic_form": true,
+   "P_f_sys=0": true
+  }
+ },
+ "gaussian_(2.4)": {
+  "1": "True",
+  "2": "True"
+ },
+ "flux_map": [
+  {
+   "d": 1,
+   "theta_formula": true,
+   "jacobian_2R^(d+1)": true,
+   "ME=2RV": true,
+   "dPhi.V=0_and_Phi=eta": true,
+   "dW.V=(v-W)/2Y": true
+  },
+  {
+   "d": 2,
+   "theta_formula": true,
+   "jacobian_2R^(d+1)": true,
+   "ME=2RV": true,
+   "dPhi.V=0_and_Phi=eta": true,
+   "dW.V=(v-W)/2Y": true
+  }
+ ],
+ "lemma_2.1": [
+  {
+   "d": 1,
+   "seed": 1,
+   "flip": false,
+   "max_abs_divergence": 5.551115123125783e-17,
+   "max_abs_B": 5.327797885929954,
+   "min_eigenvalue_B": -7.324639254613179e-16
+  },
+  {
+   "d": 1,
+   "seed": 2,
+   "flip": false,
+   "max_abs_divergence": 2.220446049250313e-16,
+   "max_abs_B": 0.9408004102774947,
+   "min_eigenvalue_B": -1.5032002915533644e-16
+  },
+  {
+   "d": 2,
+   "seed": 3,
+   "flip": false,
+   "max_abs_divergence": 2.0296264668928643e-16,
+   "max_abs_B": 7.003434997632009,
+   "min_eigenvalue_B": -9.144822119961441e-16
+  }
+ ],
+ "lemma_2.1_negative_control": [
+  {
+   "d": 1,
+   "seed": 4,
+   "flip": true,
+   "max_abs_divergence": 1.0123232846942174,
+   "max_abs_B": 10.427407072860113,
+   "min_eigenvalue_B": -3.571048102020423e-16
+  }
+ ],
+ "all_ok": true
+}

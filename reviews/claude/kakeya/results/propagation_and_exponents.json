@@ -1,0 +1,144 @@
+{
+ "lemma_6.1_radial_comparison": {
+  "ok": true,
+  "rows": [
+   {
+    "h": 0.01,
+    "S": 3.0,
+    "kappa": 1.0472,
+    "min_u_over_logaffine": 0.25481806046953165,
+    "gronwall_constant": 0.09656100734142582
+   },
+   {
+    "h": 0.01,
+    "S": 1.0,
+    "kappa": 1.5708,
+    "min_u_over_logaffine": 0.7035381289820493,
+    "gronwall_constant": 0.5932606722681826
+   },
+   {
+    "h": 0.001,
+    "S": 3.0,
+    "kappa": 1.0472,
+    "min_u_over_logaffine": 0.2211313523357881,
+    "gronwall_constant": 0.08592517443738686
+   },
+   {
+    "h": 0.001,
+    "S": 1.0,
+    "kappa": 1.5708,
+    "min_u_over_logaffine": 0.6414525540818713,
+    "gronwall_constant": 0.5449618637289418
+   },
+   {
+    "h": 0.0001,
+    "S": 3.0,
+    "kappa": 1.0472,
+    "min_u_over_logaffine": 0.20878802039781036,
+    "gronwall_constant": 0.08491500078607515
+   },
+   {
+    "h": 0.0001,
+    "S": 1.0,
+    "kappa": 1.5708,
+    "min_u_over_logaffine": 0.6209177411227425,
+    "gronwall_constant": 0.5401637160027396
+   },
+   {
+    "h": 1e-06,
+    "S": 3.0,
+    "kappa": 1.0472,
+    "min_u_over_logaffine": 0.19854860187184958,
+    "gronwall_constant": 0.08480447839271794
+   },
+   {
+    "h": 1e-06,
+    "S": 1.0,
+    "kappa": 1.5708,
+    "min_u_over_logaffine": 0.6049597505052997,
+    "gronwall_constant": 0.5396364219095854
+   }
+  ]
+ },
+ "remark_6.2_sharpness": {
+  "ok": true,
+  "rows": [
+   {
+    "b": 0.01,
+    "D": 5.703782474656201,
+    "E(0,2b)": 0.047858670826528026,
+    "bound_(9/4)log2/D^2": 0.04793823833321779,
+    "int_1^2 H(T,b) dT": 0.9321735579822148
+   },
+   {
+    "b": 0.0001,
+    "D": 10.308952660644293,
+    "E(0,2b)": 0.01467501856949575,
+    "bound_(9/4)log2/D^2": 0.01467502630904382,
+    "int_1^2 H(T,b) dT": 0.9321735579822148
+   },
+   {
+    "b": 1e-08,
+    "D": 19.519293032620475,
+    "E(0,2b)": 0.004093358773847758,
+    "bound_(9/4)log2/D^2": 0.00409335877384785,
+    "int_1^2 H(T,b) dT": 0.9321735579822148
+   }
+  ]
+ },
+ "exponents": {
+  "ok": true,
+  "by_dimension": {
+   "2": {
+    "p_c": "4",
+    "kakeya_maximal_log_power": "1",
+    "kakeya_volume_log_power": 2,
+    "lean_log_power_A": 9,
+    "lean_volume_power": 36
+   },
+   "3": {
+    "p_c": "3",
+    "kakeya_maximal_log_power": "4/3",
+    "kakeya_volume_log_power": 4,
+    "lean_log_power_A": 11,
+    "lean_volume_power": 66
+   },
+   "4": {
+    "p_c": "8/3",
+    "kakeya_maximal_log_power": "3/2",
+    "kakeya_volume_log_power": 6,
+    "lean_log_power_A": 13,
+    "lean_volume_power": 104
+   },
+   "5": {
+    "p_c": "5/2",
+    "kakeya_maximal_log_power": "8/5",
+    "kakeya_volume_log_power": 8,
+    "lean_log_power_A": 15,
+    "lean_volume_power": 150
+   },
+   "6": {
+    "p_c": "12/5",
+    "kakeya_maximal_log_power": "5/3",
+    "kakeya_volume_log_power": 10,
+    "lean_log_power_A": 17,
+    "lean_volume_power": 204
+   },
+   "7": {
+    "p_c": "7/3",
+    "kakeya_maximal_log_power": "12/7",
+    "kakeya_volume_log_power": 12,
+    "lean_log_power_A": 19,
+    "lean_volume_power": 266
+   },
+   "8": {
+    "p_c": "16/7",
+    "kakeya_maximal_log_power": "7/4",
+    "kakeya_volume_log_power": 14,
+    "lean_log_power_A": 21,
+    "lean_volume_power": 336
+   }
+  }
+ },
+ "all_ok": true
+}

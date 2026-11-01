@@ -1,0 +1,7 @@
+[A] targeted node lemma (p-adic), 15 random systems: True; witnesses fail as they must: True; random negative controls detected {'low_valuation': [15, 2], 'early_truncation': [15, 3], 'wrong_target': [15, 8]}
+[B] Boolean node lemma (z-adic), 12 random systems: True; negative controls detected {'early_truncation': [12, 10], 'no_measurements': [12, 10]}
+[C] Hermite recovery: unit nodes zero loss and exact (True); non-unit node set loses {1: 2, 8: 2, 3: 0}; residue system: 6 profiles, loss formula, exact and rule-precision recovery: True; one bit less fails 6/6
+[D] correction counts: log2 N / lower bound >= 8.00, log2 N / Rankin <= 0.848, Boolean Rankin bound holds: True
+[E] profile lemma: max Delta / (3M/8a) >= 2.01 on random profiles; exact optimum a*maxDelta/M: [0.75, 1.167, 1.843, 2.78, 3.796, 4.65, 5.239, 5.594, 5.79]; tapered: [0.75, 2.1, 4.587, 6.386, 6.395, 6.194, 6.095, 6.047, 6.024]
+[F] instances: Part I jets reproduced at 5/5 nodes; Part III F(t + alpha zeta) reproduced at 8/8 nodes
+ALL OK

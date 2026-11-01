@@ -1,0 +1,37 @@
+ok   tools/check_roadmap.py                0.1s  OK: 101 nodes, 23 targets, 3 free-text labels not checked
+ok   tools/test_check_roadmap.py           0.6s  ALL OK
+ok   KAK verify_angular_endpoint.py           41.0s  ALL OK
+         checks: KAK.ANG.HANKEL, KAK.ANG.BALL, KAK.ANG.ENV, KAK.ANG.BAND, KAK.APP.B
+ok   KAK verify_capacity_dimension.py          2.9s  ALL PASS
+         checks: KAK.CAP
+ok   KAK verify_curvature_fibre.py             0.6s  ALL OK
+         checks: KAK.CURV.DESIGN, KAK.FIBRE.MULTIPLE
+ok   KAK verify_gauge_orbit.py                 9.1s  ALL OK
+         checks: KAK.WEYL.PROFILE, KAK.GAUGE.DIV
+ok   KAK verify_gauge_quotient.py              2.1s  ALL OK
+         checks: KAK.QUOTIENT
+ok   KAK verify_null_frame.py                  8.9s  ALL OK
+         checks: KAK.NULL, KAK.HUS, KAK.SCHR
+ok   KAK verify_planar_entry.py                1.5s  ALL OK
+         checks: KAK.APP.D
+ok   KAK verify_positivity_engine.py           5.4s  ALL OK
+         checks: KAK.APP.D, KAK.APP.E, KAK.PENCIL, KAK.ARROW
+ok   KAK verify_propagation_and_exponents.py    1.3s  ALL PASS
+         checks: KAK.PROP, KAK.OB.FOCUS
+ok   KAK verify_quaternion_calculus.py         5.9s  ALL PASS
+         checks: KAK.Q.CALC, KAK.E.BAL
+ok   KAK verify_remaining_claims.py           17.4s  ALL OK
+         checks: KAK.R.CONE, KAK.R.PARAB, KAK.NIK, KAK.OB.WEAK, KAK.APP.D, KAK.APP.E
+ok   KAK verify_slot_calculus.py               5.8s  ALL OK
+         checks: KAK.Q.CALC, KAK.FRAME, KAK.MAENERGY
+ok   KAK verify_state_dimension.py             6.5s  ALL OK
+         checks: KAK.RIGID, KAK.HOPF
+ok   KAK verify_wave_current.py               31.9s  ALL PASS
+         checks: KAK.C.LIFT, KAK.C.WAVE
+ok   KAK verify_wave_current_target.py         1.0s  ALL PASS
+         checks: KAK.C.WAVE
+ok   KAK verify_weyl_fibre.py                  0.1s  ALL OK
+         checks: KAK.HERMITIAN.DIVERGENCE
+ok   KAK verify_weyl_singularity.py            0.0s  ALL OK
+         checks: KAK.HERMITIAN.SINGULARITY
+ALL OK

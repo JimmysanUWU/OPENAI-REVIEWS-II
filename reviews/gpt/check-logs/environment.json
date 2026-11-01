@@ -1,0 +1,13 @@
+{
+  "review_commit": "12d11bbf3ecdcb23bfb58802b02bdb88520b246c",
+  "upstream_commit": "7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.5.4",
+    "sympy": "1.14.0",
+    "scipy": "1.18.1",
+    "mpmath": "1.3.0"
+  },
+  "lean_rebuilt": false
+}

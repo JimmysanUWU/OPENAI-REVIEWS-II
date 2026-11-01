@@ -1,0 +1,267 @@
+{
+ "G_null_chart": {
+  "ok": true,
+  "detail": {
+   "d=1": {
+    "inverse chart": true,
+    "Jacobian a Y^d": true,
+    "dPhi = l(W)": true,
+    "Phi o Theta = eta": true,
+    "W o Theta = zeta/R": true,
+    "tangency l(W) V^v = 0": true,
+    "(dW_j) V^v = (v_j - W_j)/(2Y)": true,
+    "displacement is null": true
+   },
+   "d=2": {
+    "inverse chart": true,
+    "Jacobian a Y^d": true,
+    "dPhi = l(W)": true,
+    "Phi o Theta = eta": true,
+    "W o Theta = zeta/R": true,
+    "tangency l(W) V^v = 0": true,
+    "(dW_j) V^v = (v_j - W_j)/(2Y)": true,
+    "displacement is null": true
+   },
+   "d=3": {
+    "inverse chart": true,
+    "Jacobian a Y^d": true,
+    "dPhi = l(W)": true,
+    "Phi o Theta = eta": true,
+    "W o Theta = zeta/R": true,
+    "tangency l(W) V^v = 0": true,
+    "(dW_j) V^v = (v_j - W_j)/(2Y)": true,
+    "displacement is null": true
+   },
+   "control: physical-frame Y is not polynomial": true
+  }
+ },
+ "H_husimi_time_row": {
+  "ok": true,
+  "detail": {
+   "multi_kappa": [
+    {
+     "d": 1,
+     "rel_err": 3.29898750414751e-51
+    },
+    {
+     "d": 1,
+     "rel_err": 1.362714034525999e-51
+    },
+    {
+     "d": 2,
+     "rel_err": 0.0
+    },
+    {
+     "d": 2,
+     "rel_err": 2.0998339470255636e-51
+    },
+    {
+     "d": 3,
+     "rel_err": 1.1331369492937014e-50
+    },
+    {
+     "d": 3,
+     "rel_err": 5.512936786919845e-51
+    }
+   ],
+   "one_kappa": [
+    {
+     "d": 1,
+     "rel_err": 1.8297624207689288e-51
+    },
+    {
+     "d": 1,
+     "rel_err": 2.818763810573357e-51
+    },
+    {
+     "d": 2,
+     "rel_err": 2.7940092951793746e-51
+    },
+    {
+     "d": 2,
+     "rel_err": 5.0647204031395095e-51
+    },
+    {
+     "d": 3,
+     "rel_err": 2.7129868444944696e-51
+    },
+    {
+     "d": 3,
+     "rel_err": 3.4213906141208214e-51
+    }
+   ],
+   "control": [
+    {
+     "d": 1,
+     "rel_err_wrong_sign": 0.10743002062948022
+    },
+    {
+     "d": 2,
+     "rel_err_wrong_sign": 0.1929436519911423
+    },
+    {
+     "d": 3,
+     "rel_err_wrong_sign": 0.10215030313014829
+    }
+   ]
+  }
+ },
+ "A_engine_rows": {
+  "ok": true,
+  "detail": [
+   {
+    "d": 1,
+    "max_rel_err_rows": 2.4350245102548956e-51,
+    "time_row_is_one_multiplier": true
+   },
+   {
+    "d": 2,
+    "max_rel_err_rows": 4.568553009248343e-51,
+    "time_row_is_one_multiplier": true
+   },
+   {
+    "d": 3,
+    "max_rel_err_rows": 1.0309272036988519e-50,
+    "time_row_is_one_multiplier": true
+   }
+  ]
+ },
+ "C_conservation_one_kappa": {
+  "ok": true,
+  "detail": {
+   "conservation_one_kappa": [
+    {
+     "d": 1,
+     "relative_divergence": 3.3148550191105582e-40
+    },
+    {
+     "d": 2,
+     "relative_divergence": 1.50494741737262e-39
+    },
+    {
+     "d": 3,
+     "relative_divergence": 3.767426926691009e-39
+    }
+   ],
+   "s0_independence": [
+    {
+     "d": 1,
+     "relative_ds0": 5.6953213751161266e-40
+    },
+    {
+     "d": 2,
+     "relative_ds0": 6.5340943624742975e-40
+    },
+    {
+     "d": 3,
+     "relative_ds0": 2.2523617310436672e-39
+    }
+   ],
+   "controls": [
+    {
+     "control": "two kappas: tensor depends on s0",
+     "relative_ds0": 0.06054312259178759,
+     "still_conserved_relative_div": 2.038133166734813e-39
+    },
+    {
+     "control": "one kappa, no rotation iota_e: not conserved",
+     "relative_div": 0.291535351118886
+    }
+   ]
+  }
+ },
+ "S_null_reduction": {
+  "ok": true,
+  "detail": {
+   "d=1": {
+    "system rows j>=1 vanish": true,
+    "row 0 = e^{i kappa s0}(2 d_t psi - (i/kappa) Lap psi)": true,
+    "null plane wave solves Schrodinger": true,
+    "null symbol": true,
+    "Galilean identity": true
+   },
+   "d=2": {
+    "system rows j>=1 vanish": true,
+    "row 0 = e^{i kappa s0}(2 d_t psi - (i/kappa) Lap psi)": true,
+    "null plane wave solves Schrodinger": true,
+    "null symbol": true,
+    "Galilean identity": true
+   },
+   "d=3": {
+    "system rows j>=1 vanish": true,
+    "row 0 = e^{i kappa s0}(2 d_t psi - (i/kappa) Lap psi)": true,
+    "null plane wave solves Schrodinger": true,
+    "null symbol": true,
+    "Galilean identity": true
+   },
+   "scaling (b)->(c) exponent": true,
+   "dyadic piece weight": true,
+   "time change s = t/(2 kappa)": true
+  }
+ },
+ "W_husimi_flux": {
+  "ok": true,
+  "detail": {
+   "gaussian identity dim=1": true,
+   "gaussian identity dim=2": true,
+   "two-mode solution solves Schrodinger": true,
+   "Husimi flux identity, max |residual|": 0.0,
+   "control: no d_xi H term, max relative residual": 18.2
+  }
+ },
+ "F_focusing": {
+  "ok": true,
+  "detail": {
+   "kappa": [
+    32.0,
+    64.0,
+    128.0,
+    256.0,
+    512.0,
+    1024.0,
+    2048.0
+   ],
+   "R_focus_inside": [
+    3.1670550702938325,
+    4.211119161799745,
+    5.2528249078784,
+    6.293179520531561,
+    7.333079927981663,
+    8.372849695333871,
+    9.412583662535342
+   ],
+   "increments_per_doubling": [
+    1.0440640915059127,
+    1.0417057460786552,
+    1.0403546126531609,
+    1.0399004074501015,
+    1.0397697673522082,
+    1.039733967201471
+   ],
+   "R_over_log_kappa": [
+    0.9138189288270319,
+    1.0125601218868303,
+    1.0826034921791707,
+    1.1348923607118586,
+    1.1754886718379491,
+    1.2079468733566843,
+    1.2344988883538377
+   ],
+   "R_focus_outside_control": [
+    0.2875716886966794,
+    0.2876506669816064,
+    0.2876739677385708,
+    0.287680033591424,
+    0.2876815621385127,
+    0.2876819448414453,
+    0.2876820405472934
+   ],
+   "grows": true,
+   "increments_stable(one log)": true,
+   "R/log^2 decreasing": true,
+   "control_bounded": true
+  }
+ },
+ "all_ok": true,
+ "seconds": 12.5
+}

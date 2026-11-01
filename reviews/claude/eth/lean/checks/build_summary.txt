@@ -1,0 +1,17 @@
+ETH formal proof build (closure of OAI.Algorithms.SubexponentialSAT.Main, 3,091 modules)
+background run 1: 2151 built, 0 errors (stopped at 2h session limit)
+chunk 2: 168 built; errors: 
+chunk 3: 192 built; errors: 
+chunk 4: 183 built; errors: 
+chunk 5: 210 built; errors: 
+chunk 6: 106 built; errors: 
+chunk 7: 51 built; errors:       1 error: Lean exited with code 137 
+chunk 8: 1 built; errors: 
+chunk 9: 6 built; errors:       1 error: Lean exited with code 137 
+chunk 10: 1 built; errors: 
+sequential: 14 built; 15 runs rc=0; ALL BUILT
+unique modules built across logs: 3091 (closure size 3091)
+the only errors were 'Lean exited with code 137' = SIGKILL by the container's memory cgroup (dmesg: oom-kill) when four large modules compiled in parallel; both modules (SqrtLogSpace.HighQueryLoop, SqrtLogSpace.HighQueryTraversal) then built successfully alone
+final: lake build OAI.Algorithms.SubexponentialSAT.Main --no-build -> All targets up-to-date (12014 jobs)
+sorry warnings in solution build logs: 0
+8 modules print informational messages: they contain in-repo #print axioms audit commands, every one of which reports only [propext, Classical.choice, Quot.sound]. These are counted as 'Built' (marked ℹ rather than ✔); counting both gives the 3,091 modules of the closure.

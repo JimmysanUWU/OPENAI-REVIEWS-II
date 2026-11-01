@@ -1,0 +1,36 @@
+{
+ "roots": [
+  "OAI.Analysis.Fourier.LocalSmoothing.Comparator"
+ ],
+ "oai_modules": 2261,
+ "lines": 190467,
+ "external_roots": [
+  "Mathlib"
+ ],
+ "hits": {
+  "sorry": [],
+  "admit": [],
+  "axiom_decl": [],
+  "native_decide": [],
+  "implemented_by": [],
+  "extern": [],
+  "unsafe": [],
+  "ofReduceBool": [],
+  "skipKernelTC": [],
+  "opaque_decl": [],
+  "set_option_debug": []
+ },
+ "hit_counts": {
+  "sorry": 0,
+  "admit": 0,
+  "axiom_decl": 0,
+  "native_decide": 0,
+  "implemented_by": 0,
+  "extern": 0,
+  "unsafe": 0,
+  "ofReduceBool": 0,
+  "skipKernelTC": 0,
+  "opaque_decl": 0,
+  "set_option_debug": 0
+ }
+}

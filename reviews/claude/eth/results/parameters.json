@@ -1,0 +1,218 @@
+{
+ "overview_(2.19)": {
+  "least_lambda_all_hypotheses": 10909384704,
+  "least_lambda_bound_below_2^n": 74279480832,
+  "log2_lambda_at_win": 36.11224468062896,
+  "detail_at_win": {
+   "lambda": 74279480832,
+   "nu": 37,
+   "r": 199,
+   "Q": 15684012,
+   "R": 1090172,
+   "log2D": 239545824.38,
+   "conds": {
+    "R>=32": true,
+    "6R<=Q": true,
+    "interval_inside_0..Q": true,
+    "balance_labels": true,
+    "balance_groups": true,
+    "tail_bound": true,
+    "log2D<=lam/128": true
+   },
+   "ok": true,
+   "exponent_over_n": 0.9999999634154169,
+   "terms": {
+    "taylor": 0.9899173008430431,
+    "measurements": 3.241131609238442e-05,
+    "groups": 0.010050251256281407
+   }
+  },
+  "table": [
+   {
+    "lambda": "2^20",
+    "ok": false,
+    "exponent_over_n": null,
+    "terms": null
+   },
+   {
+    "lambda": "2^30",
+    "ok": false,
+    "exponent_over_n": 2.547086755421871,
+    "terms": {
+     "taylor": 2.491381607219928,
+     "measurements": 0.00014959264638764362,
+     "groups": 0.05555555555555555
+    }
+   },
+   {
+    "lambda": "2^40",
+    "ok": true,
+    "exponent_over_n": 0.3910465560095548,
+    "terms": {
+     "taylor": 0.3879819623179232,
+     "measurements": 1.1158577127745373e-05,
+     "groups": 0.0030534351145038168
+    }
+   },
+   {
+    "lambda": "2^45",
+    "ok": true,
+    "exponent_over_n": 0.1051668602630624,
+    "terms": {
+     "taylor": 0.10448130295480451,
+     "measurements": 2.730404877895764e-06,
+     "groups": 0.0006828269033799932
+    }
+   },
+   {
+    "lambda": "2^50",
+    "ok": true,
+    "exponent_over_n": 0.026052690957987724,
+    "terms": {
+     "taylor": 0.025903032204702272,
+     "measurements": 6.385610494015455e-07,
+     "groups": 0.000149020192236048
+    }
+   },
+   {
+    "lambda": "2^60",
+    "ok": true,
+    "exponent_over_n": 0.0013847385759173949,
+    "terms": {
+     "taylor": 0.0013780012821129532,
+     "measurements": 3.17573782913379e-08,
+     "groups": 6.705536426150251e-06
+    }
+   },
+   {
+    "lambda": "2^80",
+    "ok": true,
+    "exponent_over_n": 2.8771823412803645e-06,
+    "terms": {
+     "taylor": 2.8654786083708215e-06,
+     "measurements": 6.220066992893322e-11,
+     "groups": 1.1641532239614096e-08
+    }
+   },
+   {
+    "lambda": "2^100",
+    "ok": true,
+    "exponent_over_n": 4.836087430364144e-09,
+    "terms": {
+     "taylor": 4.818221964902593e-09,
+     "measurements": 1.0189706750744141e-13,
+     "groups": 1.7763568394043906e-11
+    }
+   }
+  ],
+  "monotone_after_threshold": true
+ },
+ "lemma_4.8_beta=1": {
+  "least_lambda_all_hypotheses": 10909384704,
+  "least_lambda_bound_below_2^n": 74279480832,
+  "log2_lambda_at_win": 36.11224468062896,
+  "detail_at_win": {
+   "lambda": 74279480832,
+   "nu": 37,
+   "r": 199,
+   "Q": 15684012,
+   "R": 1090172,
+   "log2D": 239545824.38,
+   "conds": {
+    "R>=32": true,
+    "6R<=Q": true,
+    "interval_inside_0..Q": true,
+    "balance_labels": true,
+    "balance_groups": true,
+    "tail_bound": true,
+    "log2D<=lam/128": true
+   },
+   "ok": true,
+   "exponent_over_n": 0.9999999634154169,
+   "terms": {
+    "taylor": 0.9899173008430431,
+    "measurements": 3.241131609238442e-05,
+    "groups": 0.010050251256281407
+   }
+  },
+  "table": [
+   {
+    "lambda": "2^20",
+    "ok": false,
+    "exponent_over_n": null,
+    "terms": null
+   },
+   {
+    "lambda": "2^30",
+    "ok": false,
+    "exponent_over_n": 2.547086755421871,
+    "terms": {
+     "taylor": 2.491381607219928,
+     "measurements": 0.00014959264638764362,
+     "groups": 0.05555555555555555
+    }
+   },
+   {
+    "lambda": "2^40",
+    "ok": true,
+    "exponent_over_n": 0.3910465560095548,
+    "terms": {
+     "taylor": 0.3879819623179232,
+     "measurements": 1.1158577127745373e-05,
+     "groups": 0.0030534351145038168
+    }
+   },
+   {
+    "lambda": "2^45",
+    "ok": true,
+    "exponent_over_n": 0.1051668602630624,
+    "terms": {
+     "taylor": 0.10448130295480451,
+     "measurements": 2.730404877895764e-06,
+     "groups": 0.0006828269033799932
+    }
+   },
+   {
+    "lambda": "2^50",
+    "ok": true,
+    "exponent_over_n": 0.026052690957987724,
+    "terms": {
+     "taylor": 0.025903032204702272,
+     "measurements": 6.385610494015455e-07,
+     "groups": 0.000149020192236048
+    }
+   },
+   {
+    "lambda": "2^60",
+    "ok": true,
+    "exponent_over_n": 0.0013847385759173949,
+    "terms": {
+     "taylor": 0.0013780012821129532,
+     "measurements": 3.17573782913379e-08,
+     "groups": 6.705536426150251e-06
+    }
+   },
+   {
+    "lambda": "2^80",
+    "ok": true,
+    "exponent_over_n": 2.8771823412803645e-06,
+    "terms": {
+     "taylor": 2.8654786083708215e-06,
+     "measurements": 6.220066992893322e-11,
+     "groups": 1.1641532239614096e-08
+    }
+   },
+   {
+    "lambda": "2^100",
+    "ok": true,
+    "exponent_over_n": 4.836087430364144e-09,
+    "terms": {
+     "taylor": 4.818221964902593e-09,
+     "measurements": 1.0189706750744141e-13,
+     "groups": 1.7763568394043906e-11
+    }
+   }
+  ],
+  "monotone_after_threshold": true
+ }
+}

@@ -1,0 +1,6 @@
+[A] Smolensky over Q: 180 random sets of N_D+1 points, 0 interpolable (must be 0); central windows interpolable: True; control (degree D+2) interpolable: 100
+[B] restriction bound: 192 (Q, D, p, design) cases hold: True; coupling identity exact: True; min mu_p(E)/bound = 1.000; best design found / window >= 0.725; control violations: 48
+[C] tau_D(m) >= e^(-(D+2)^2/m)/(m+1) for m <= 300: min log-margin 1.446; low-weight tail <= e^(-0.229Q) for Q <= 2000: min log-margin 1.794
+[D] floor for all single-polynomial designs: ratio to (log log n)^2/sqrt(log n) in [0.018, 0.179] for log2 n = 2^10..2^300
+[E] central windows, feasible for node-dependent / single-polynomial designs: Q=6 R=3 [3]: True/True; Q=6 R=3 [2, 3]: False/False; Q=6 R=3 [2, 3, 4]: False/False; Q=7 R=3 [3]: True/True; Q=7 R=3 [4]: True/True; Q=7 R=3 [3, 4]: False/False
+ALL OK

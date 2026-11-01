@@ -1,0 +1,278 @@
+{
+  "scope": "Finite exact matrix checks; topology and real Clifford classification are explicitly cited in KAK 23.",
+  "cases": [
+    {
+      "multiplicity": 1,
+      "spatial_dimension": 2,
+      "state_dimension": 2,
+      "drift": [
+        "-2/7",
+        "-1/7"
+      ],
+      "metric": [
+        [
+          "1",
+          "1/3"
+        ],
+        [
+          "1/3",
+          "37/9"
+        ]
+      ],
+      "trace_reconstruction": true,
+      "Clifford_coefficients": true,
+      "spin_factor_products": 4,
+      "exact_state_selectors": 4
+    },
+    {
+      "multiplicity": 2,
+      "spatial_dimension": 3,
+      "state_dimension": 4,
+      "drift": [
+        "-2/7",
+        "-1/7",
+        "0"
+      ],
+      "metric": [
+        [
+          "1",
+          "1/3",
+          "0"
+        ],
+        [
+          "1/3",
+          "37/9",
+          "2/3"
+        ],
+        [
+          "0",
+          "2/3",
+          "82/9"
+        ]
+      ],
+      "trace_reconstruction": true,
+      "Clifford_coefficients": true,
+      "spin_factor_products": 4,
+      "exact_state_selectors": 4
+    },
+    {
+      "multiplicity": 4,
+      "spatial_dimension": 5,
+      "state_dimension": 8,
+      "drift": [
+        "-2/7",
+        "-1/7",
+        "0",
+        "1/7",
+        "2/7"
+      ],
+      "metric": [
+        [
+          "1",
+          "1/3",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1/3",
+          "37/9",
+          "2/3",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "2/3",
+          "82/9",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "145/9",
+          "4/3"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "4/3",
+          "226/9"
+        ]
+      ],
+      "trace_reconstruction": true,
+      "Clifford_coefficients": true,
+      "spin_factor_products": 4,
+      "exact_state_selectors": 4
+    },
+    {
+      "multiplicity": 8,
+      "spatial_dimension": 9,
+      "state_dimension": 16,
+      "drift": [
+        "-2/7",
+        "-1/7",
+        "0",
+        "1/7",
+        "2/7",
+        "3/7",
+        "4/7",
+        "5/7",
+        "6/7"
+      ],
+      "metric": [
+        [
+          "1",
+          "1/3",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1/3",
+          "37/9",
+          "2/3",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "2/3",
+          "82/9",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "145/9",
+          "4/3",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "4/3",
+          "226/9",
+          "5/3",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "5/3",
+          "325/9",
+          "2",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "2",
+          "442/9",
+          "7/3",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "7/3",
+          "577/9",
+          "8/3"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "8/3",
+          "730/9"
+        ]
+      ],
+      "trace_reconstruction": true,
+      "Clifford_coefficients": true,
+      "spin_factor_products": 4,
+      "exact_state_selectors": 4
+    }
+  ],
+  "controls": {
+    "local_nonClifford_curvature": [
+      "1",
+      "4",
+      "6",
+      "32/3"
+    ],
+    "opposite_curvature": [
+      [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "6",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "32/3"
+      ]
+    ],
+    "local_is_not_global": true,
+    "trace_without_two_levels_fails": true,
+    "arrow_multiplicity_changes": true,
+    "repeated_model_is_not_critical": true
+  },
+  "Clifford_dimension_arithmetic_to_128": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "wrong_periodicity_control": true
+}

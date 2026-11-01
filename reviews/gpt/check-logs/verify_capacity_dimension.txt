@@ -1,0 +1,6 @@
+1 True True True exponent~1.000 [0.3226, 0.0106, 0.0002, 0.0, 0.0]
+2 True True True exponent~0.104 [1.557, 1.5596, 1.5596, 1.5596, 1.5596]
+3 True True True exponent~1.000 [0.1613, 0.0053, 0.0001, 0.0, 0.0]
+4 True True True exponent~1.944 [0.0055, 0.0, 0.0, 0.0, 0.0]
+5 True True True exponent~2.000 [0.0006, 0.0, 0.0, 0.0, 0.0]
+ALL PASS

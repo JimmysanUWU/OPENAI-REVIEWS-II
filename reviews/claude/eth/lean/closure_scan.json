@@ -1,0 +1,41 @@
+{
+ "roots": [
+  "OAI.Algorithms.SubexponentialSAT.Main"
+ ],
+ "oai_modules": 3091,
+ "lines": 547460,
+ "external_roots": [
+  "Lean",
+  "Mathlib"
+ ],
+ "hits": {
+  "sorry": [],
+  "admit": [],
+  "axiom_decl": [],
+  "native_decide": [],
+  "implemented_by": [],
+  "extern": [],
+  "unsafe": [],
+  "ofReduceBool": [],
+  "skipKernelTC": [],
+  "opaque_decl": [
+   "lean/OAI/Algorithms/SubexponentialSAT/SqrtLog/LeafProgramPreparedRecoveryQuery.lean:57",
+   "lean/OAI/Algorithms/SubexponentialSAT/SqrtLog/LeafProgramPreparedRecoveryWitness.lean:175",
+   "lean/OAI/Algorithms/SubexponentialSAT/SqrtLog/LeafProgramPreparedRecoveryWitness.lean:195"
+  ],
+  "set_option_debug": []
+ },
+ "hit_counts": {
+  "sorry": 0,
+  "admit": 0,
+  "axiom_decl": 0,
+  "native_decide": 0,
+  "implemented_by": 0,
+  "extern": 0,
+  "unsafe": 0,
+  "ofReduceBool": 0,
+  "skipKernelTC": 0,
+  "opaque_decl": 3,
+  "set_option_debug": 0
+ }
+}

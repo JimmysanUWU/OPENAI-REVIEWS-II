@@ -1,0 +1,68 @@
+{
+ "K_J": [
+  {
+   "pencil": "Weyl (C Hopf, n=3)",
+   "n": 3,
+   "N": 4,
+   "m": 2,
+   "gamma_from_hessian": 0.999999999683437,
+   "gamma_from_coarea": 0.9999999999999984,
+   "curvature_identity_err": 4.080820319642153e-10,
+   "flatness_err": 2.886579864025407e-15,
+   "gamma_relative_gap": 3.165614437250497e-10
+  },
+  {
+   "pencil": "H Hopf (n=5)",
+   "n": 5,
+   "N": 8,
+   "m": 4,
+   "gamma_from_hessian": 0.9999999993159892,
+   "gamma_from_coarea": 0.9999999999999971,
+   "curvature_identity_err": 4.913488771568376e-10,
+   "flatness_err": 5.773159728050814e-15,
+   "gamma_relative_gap": 6.840079613823491e-10
+  },
+  {
+   "pencil": "O Hopf (n=9)",
+   "n": 9,
+   "N": 16,
+   "m": 8,
+   "gamma_from_hessian": 0.9999999974616163,
+   "gamma_from_coarea": 1.000000000000003,
+   "curvature_identity_err": 6.162490551889682e-10,
+   "flatness_err": 2.9753977059954195e-14,
+   "gamma_relative_gap": 2.538386834061157e-09
+  },
+  {
+   "pencil": "random complex Hermitian 3x3, n=5",
+   "n": 5,
+   "N": 6,
+   "m": 2,
+   "gamma_from_hessian": 202.12904118219174,
+   "gamma_from_coarea": 202.1294291260533,
+   "curvature_identity_err": 2.661538341615895e-09,
+   "flatness_err": 2.6645352591003757e-14,
+   "gamma_relative_gap": 1.919288090901361e-06
+  },
+  {
+   "pencil": "random quaternionic Hermitian 2x2, n=5",
+   "n": 5,
+   "N": 8,
+   "m": 4,
+   "gamma_from_hessian": 13.948878921034487,
+   "gamma_from_coarea": 13.94887936337988,
+   "curvature_identity_err": 2.0240257021688018e-10,
+   "flatness_err": 4.574118861455645e-14,
+   "gamma_relative_gap": 3.1711895775998755e-08
+  }
+ ],
+ "G": {
+  "noncliford_crossing_relative_gap": 2.459731228070618e-13
+ },
+ "R": {
+  "1": 1,
+  "2": 2,
+  "4": 4,
+  "8": 1
+ }
+}

@@ -1,0 +1,21 @@
+2 1 True True True True {'retained_max_degree': 3, 'bound': 3, 'untruncated': 3}
+2 2 True True True True {'retained_max_degree': 5, 'bound': 5, 'untruncated': 9}
+2 3 True True True True {'retained_max_degree': 7, 'bound': 7, 'untruncated': 15}
+2 4 True True True True {'retained_max_degree': 9, 'bound': 9, 'untruncated': 21}
+2 5 True True True True {'retained_max_degree': 11, 'bound': 11, 'untruncated': 27}
+2 6 True True True True {'retained_max_degree': 13, 'bound': 13, 'untruncated': 33}
+3 1 True True True True {'retained_max_degree': 6, 'bound': 6, 'untruncated': 6}
+3 2 True True True True {'retained_max_degree': 8, 'bound': 9, 'untruncated': 18}
+3 3 True True True True {'retained_max_degree': 12, 'bound': 12, 'untruncated': 30}
+3 4 True True True True {'retained_max_degree': 14, 'bound': 15, 'untruncated': 42}
+3 5 True True True True {'retained_max_degree': 18, 'bound': 18, 'untruncated': 54}
+3 6 True True True True {'retained_max_degree': 20, 'bound': 21, 'untruncated': 66}
+5 1 True True True True {'retained_max_degree': 12, 'bound': 12, 'untruncated': 12}
+5 2 True True True True {'retained_max_degree': 16, 'bound': 17, 'untruncated': 36}
+5 3 True True True True {'retained_max_degree': 20, 'bound': 22, 'untruncated': 60}
+5 4 True True True True {'retained_max_degree': 24, 'bound': 27, 'untruncated': 84}
+7 1 True True True True {'retained_max_degree': 18, 'bound': 18, 'untruncated': 18}
+7 2 True True True True {'retained_max_degree': 24, 'bound': 25, 'untruncated': 54}
+7 3 True True True True {'retained_max_degree': 30, 'bound': 32, 'untruncated': 90}
+7 4 True True True True {'retained_max_degree': 36, 'bound': 39, 'untruncated': 126}
+ALL PASS

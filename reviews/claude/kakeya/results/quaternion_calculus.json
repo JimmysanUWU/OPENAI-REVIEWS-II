@@ -1,0 +1,71 @@
+{
+ "moore_formula_3x3_matches_eigen": true,
+ "lemma_3.2": {
+  "(3.6)": true,
+  "(3.7)_compression": "True",
+  "(3.7)_rank_one_linear": "True",
+  "(3.8)_schur": "True",
+  "logdet_concave": true
+ },
+ "lemma_4.3_segment": "True",
+ "lemma_3.1": {
+  "slots=3": {
+   "H(xi xi^t)=gg*": true,
+   "trace=Laplacian": true,
+   "product_rule": true
+  },
+  "slots=4": {
+   "H(xi xi^t)=gg*": true,
+   "trace=Laplacian": true,
+   "product_rule": true
+  },
+  "(3.4)_H(|F|^2)=4J*J": true
+ },
+ "lemma_3.3_cofactor_divergence": [
+  {
+   "m": 2,
+   "slots": 3,
+   "seed": 1,
+   "perturbed": false,
+   "nonzero_components": 0
+  },
+  {
+   "m": 3,
+   "slots": 3,
+   "seed": 2,
+   "perturbed": false,
+   "nonzero_components": 0
+  },
+  {
+   "m": 3,
+   "slots": 3,
+   "seed": 3,
+   "perturbed": false,
+   "nonzero_components": 0
+  },
+  {
+   "m": 2,
+   "slots": 4,
+   "seed": 4,
+   "perturbed": false,
+   "nonzero_components": 0
+  },
+  {
+   "m": 3,
+   "slots": 2,
+   "seed": 5,
+   "perturbed": false,
+   "nonzero_components": 0
+  }
+ ],
+ "lemma_3.3_negative_control": [
+  {
+   "m": 3,
+   "slots": 3,
+   "seed": 6,
+   "perturbed": true,
+   "nonzero_components": 4
+  }
+ ],
+ "all_ok": true
+}

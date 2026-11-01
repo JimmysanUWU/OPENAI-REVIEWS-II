@@ -1,0 +1,90 @@
+{
+ "F": [
+  {
+   "case": "complex + 3-slot",
+   "m": 2,
+   "frame_sizes": [
+    2,
+    3
+   ],
+   "hermitian": true,
+   "nonzero_divergence_components": 0,
+   "ok": true
+  },
+  {
+   "case": "random sizes (2, 3)",
+   "m": 2,
+   "frame_sizes": [
+    2,
+    3
+   ],
+   "hermitian": true,
+   "nonzero_divergence_components": 0,
+   "control_divergence_with_f": 4,
+   "control_non_hessian_field": 4,
+   "ok": true
+  },
+  {
+   "case": "random sizes (5, 2), dependent",
+   "m": 2,
+   "frame_sizes": [
+    5,
+    2
+   ],
+   "hermitian": true,
+   "nonzero_divergence_components": 0,
+   "ok": true
+  },
+  {
+   "case": "random sizes (1, 2, 4)",
+   "m": 3,
+   "frame_sizes": [
+    1,
+    2,
+    4
+   ],
+   "hermitian": true,
+   "nonzero_divergence_components": 0,
+   "control_divergence_with_f": 4,
+   "control_non_hessian_field": 4,
+   "ok": true
+  },
+  {
+   "case": "random sizes (3, 3, 3)",
+   "m": 3,
+   "frame_sizes": [
+    3,
+    3,
+    3
+   ],
+   "hermitian": true,
+   "nonzero_divergence_components": 0,
+   "ok": true
+  }
+ ],
+ "R": {
+  "frame_sizes": [
+   2,
+   3
+  ],
+  "identity_holds": true
+ },
+ "K": {
+  "real_hessian": true,
+  "real_determinant": true,
+  "complex_hessian": true,
+  "complex_determinant": true
+ },
+ "D": {
+  "decomposition_holds": true
+ },
+ "E": {
+  "independent_frames_(3,4,2)_min_symbol": 0.04237676821979737,
+  "dependent_frame_(5,3)_min_symbol": -7.516746286436955e-16
+ },
+ "U": {
+  "euler_relative": 7.466757032028091e-08,
+  "min_eigenvalue_of_C(A)_for_A>0": 0.4999999982090332
+ },
+ "all_ok": true
+}

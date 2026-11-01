@@ -1,0 +1,7 @@
+[C] App. C tubes: separation, |B_X| <= 2 alpha/k + 2^m w, k|B_X|/alpha bounded (max 0.666): True
+[N] Nikodym projective map: lines -> parallel lines, Jacobian -(s-t0)^-(n+1), area Jacobian: True
+[P] parabolic rescaling powers vanish (d = 1..6), q_delta = |v|^2 + O(delta^2), Fresnel identity (rel. err 2.4e-16), Jacobian ~ lambda^(d+2): True
+[K] cone: p_c = 1 + (n+1)/(n-1), slicing exponents (b > a' => a > b'): True
+[E] Example E.2 (lambda = 1, Hessian diag(1, 2/3), no linear factor) and (E.2), group velocity on random pencils: True
+[D] App. D algebra: completed square (err 6.6e-16), rank-one Moore expansion (err 4.9e-14): True
+ALL OK

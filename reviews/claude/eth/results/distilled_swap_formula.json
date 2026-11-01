@@ -1,0 +1,118 @@
+{
+ "cases": [
+  {
+   "r": 2,
+   "Q": 2,
+   "R": 2,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  },
+  {
+   "r": 2,
+   "Q": 3,
+   "R": 2,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  },
+  {
+   "r": 2,
+   "Q": 3,
+   "R": 3,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  },
+  {
+   "r": 2,
+   "Q": 4,
+   "R": 2,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  },
+  {
+   "r": 2,
+   "Q": 4,
+   "R": 3,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  },
+  {
+   "r": 3,
+   "Q": 2,
+   "R": 2,
+   "M0_equal": true,
+   "P0_identity": true,
+   "degree_le_R-1": true,
+   "t_local_beyond_I-M0": true,
+   "kernel_condition": true,
+   "differs_from_paper_rows": true
+  }
+ ],
+ "symmetric_optimality": [
+  {
+   "Q": 20,
+   "r": 2,
+   "R": 6,
+   "no_R+1_run": true,
+   "lower_bound_rank_fraction": 0.060886689216204104,
+   "interval_construction_rank_fraction": 0.12612448178788327,
+   "ratio_upper_over_lower": 2.0714623082891666
+  },
+  {
+   "Q": 40,
+   "r": 2,
+   "R": 10,
+   "no_R+1_run": true,
+   "lower_bound_rank_fraction": 0.02723174275324595,
+   "interval_construction_rank_fraction": 0.07047948783740447,
+   "ratio_upper_over_lower": 2.588137251296688
+  },
+  {
+   "Q": 80,
+   "r": 4,
+   "R": 14,
+   "no_R+1_run": true,
+   "lower_bound_rank_fraction": 0.024936863623049962,
+   "interval_construction_rank_fraction": 0.10742489731415418,
+   "ratio_upper_over_lower": 4.307875237961273
+  },
+  {
+   "Q": 200,
+   "r": 8,
+   "R": 30,
+   "no_R+1_run": true,
+   "lower_bound_rank_fraction": 0.0050189033971260325,
+   "interval_construction_rank_fraction": 0.03224405433635592,
+   "ratio_upper_over_lower": 6.424521809847902
+  },
+  {
+   "Q": 400,
+   "r": 16,
+   "R": 44,
+   "no_R+1_run": true,
+   "lower_bound_rank_fraction": 0.0031652634614178134,
+   "interval_construction_rank_fraction": 0.02737717685492871,
+   "ratio_upper_over_lower": 8.649256906616449
+  }
+ ],
+ "all_ok": true
+}

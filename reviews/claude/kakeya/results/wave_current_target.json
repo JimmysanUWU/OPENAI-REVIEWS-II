@@ -1,0 +1,107 @@
+{
+ "conservation": [
+  {
+   "n": 2,
+   "trial": 0,
+   "max_abs_div": 3.650096241470067e-39,
+   "tensor_scale": 1.9653058436213628,
+   "relative": 1.8572662638321126e-39
+  },
+  {
+   "n": 2,
+   "trial": 1,
+   "max_abs_div": 1.2883586317446895e-39,
+   "tensor_scale": 1.939731506487486,
+   "relative": 6.641943111382881e-40
+  },
+  {
+   "n": 2,
+   "trial": 2,
+   "max_abs_div": 3.448790205259959e-39,
+   "tensor_scale": 1.4240585230326002,
+   "relative": 2.421803703625604e-39
+  },
+  {
+   "n": 3,
+   "trial": 0,
+   "max_abs_div": 1.1440260020091405e-39,
+   "tensor_scale": 0.8237946136963452,
+   "relative": 1.3887272179116652e-39
+  },
+  {
+   "n": 3,
+   "trial": 1,
+   "max_abs_div": 1.343053101960266e-39,
+   "tensor_scale": 1.6578683927000497,
+   "relative": 8.101083945348237e-40
+  },
+  {
+   "n": 3,
+   "trial": 2,
+   "max_abs_div": 2.19993313533763e-39,
+   "tensor_scale": 6.208447058555077,
+   "relative": 3.5434515501041122e-40
+  }
+ ],
+ "negative_controls": [
+  {
+   "n": 2,
+   "control": "no rotation iota_e -> iota_1",
+   "relative": 0.001406917194141046
+  },
+  {
+   "n": 2,
+   "control": "no volume factor (kappa/y)^{d/2}",
+   "relative": 1.0060975935183147
+  },
+  {
+   "n": 3,
+   "control": "no rotation iota_e -> iota_1",
+   "relative": 0.08491547831913628
+  },
+  {
+   "n": 3,
+   "control": "no volume factor (kappa/y)^{d/2}",
+   "relative": 1.6600042230699659
+  }
+ ],
+ "tangency_and_time": [
+  {
+   "n": 2,
+   "trial": 0,
+   "dPhi_chi": 2.544812155863626e-63,
+   "time_component_rel_err": 7.922213341777387e-62
+  },
+  {
+   "n": 2,
+   "trial": 1,
+   "dPhi_chi": 2.4308653429145085e-63,
+   "time_component_rel_err": 7.944113249700838e-62
+  },
+  {
+   "n": 2,
+   "trial": 2,
+   "dPhi_chi": 3.6462980143717627e-63,
+   "time_component_rel_err": 1.0924364821956155e-61
+  },
+  {
+   "n": 3,
+   "trial": 0,
+   "dPhi_chi": 2.066235541477332e-62,
+   "time_component_rel_err": 2.7093981794208536e-61
+  },
+  {
+   "n": 3,
+   "trial": 1,
+   "dPhi_chi": 7.292596028743525e-63,
+   "time_component_rel_err": 9.804339685048468e-62
+  },
+  {
+   "n": 3,
+   "trial": 2,
+   "dPhi_chi": 2.4308653429145085e-63,
+   "time_component_rel_err": 0.0
+  }
+ ],
+ "all_ok": true
+}
